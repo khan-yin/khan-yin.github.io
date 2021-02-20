@@ -211,12 +211,11 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>数值数据表示的三要素：<br>1.进位计数制<br>2.定点、浮点表示<br>3.如何用二进制编码<br>即：要确定一个数值数据的值必须先确定这三个要素。<br>例如机器数 01011001的值是多少？<strong>答案是不知道</strong></p>
-<h2 id="原码"><a href="#原码" class="headerlink" title="原码"></a>原码</h2><p>原码范围:-127~+127</p>
-<a id="more"></a>
-<p>[+127]=01111111<br>[-127]=11111111<br>0有两种：<br>[+0]=00000000<br>[-0]=10000000</p>
+<h2 id="原码"><a href="#原码" class="headerlink" title="原码"></a>原码</h2><p>原码范围:-127~+127<br><a id="more"></a><br>[+127]=01111111<br>[-127]=11111111<br>0有两种：<br>[+0]=00000000<br>[-0]=10000000</p>
 <h2 id="反码"><a href="#反码" class="headerlink" title="反码"></a>反码</h2><p><strong>$X原-&gt;X反$</strong><br>正数：X反=X原<br>负数： X原符号位为1，数值为按位取反<br>反码范围：-127~+127<br>[+127]=01111111<br>[-127]=10000000<br>0有两种：<br>[+0]=00000000<br>[-0]=11111111</p>
-<h2 id="补码"><a href="#补码" class="headerlink" title="补码"></a>补码</h2><p><strong>$X原-&gt;X补$</strong><br>正数：X补=X原<br>负数：符号位为1，数值为按位取反，末尾加1<br>补码范围：**-128~+127**<br>[+127]=01111111<br>[-128]=10000000<br>[-1] = 11111111<br>0只有一种表示[+0]补=[-0]补=00000000</p>
-<h2 id="移码"><a href="#移码" class="headerlink" title="移码"></a>移码</h2><p>移码通常表示浮点数的阶码<br>移码一般为整数，故移码通常只用于表示整数<br>对定点正数，阶码为n，他的移码是：<br>$$X_移=2^{n-1}+X_原$$<br>0的移码和补码一样<br><strong>$X原-&gt;X移$</strong><br>正数：将原码符号位一起变反<br>负数：将原码连同符号位一起变反，末尾再加1<br><strong>$X补-&gt;X移$</strong><br>符号相反，数值位相同<br><strong>移码的表示范围与补码一致：-128~+127</strong></p>
+<h2 id="补码"><a href="#补码" class="headerlink" title="补码"></a>补码</h2><p><strong>$X原-&gt;X补$</strong><br>正数：X补=X原<br>负数：符号位为1，数值为按位取反，末尾加1<br>补码范围：<strong>-128~+127</strong><br>[+127]=01111111<br>[-128]=10000000<br>[-1] = 11111111<br>0只有一种表示[+0]补=[-0]补=00000000</p>
+<h2 id="移码"><a href="#移码" class="headerlink" title="移码"></a>移码</h2><p>移码通常表示浮点数的阶码<br>移码一般为整数，故移码通常只用于表示整数<br>对定点正数，阶码为n，他的移码是：</p>
+<script type="math/tex; mode=display">X_移=2^{n-1}+X_原</script><p>0的移码和补码一样<br><strong>$X原-&gt;X移$</strong><br>正数：将原码符号位一起变反<br>负数：将原码连同符号位一起变反，末尾再加1<br><strong>$X补-&gt;X移$</strong><br>符号相反，数值位相同<br><strong>移码的表示范围与补码一致：-128~+127</strong></p>
 <h2 id="定点数"><a href="#定点数" class="headerlink" title="定点数"></a>定点数</h2><p>数的小数点固定在同一位置不变</p>
 <h4 id="1-带符号的定点小数"><a href="#1-带符号的定点小数" class="headerlink" title="1.带符号的定点小数"></a>1.带符号的定点小数</h4><p>约定所有数的小数点的位置，固定在符号位之后<br>符号位+<strong>“.”</strong>+数值位</p>
 <h5 id="字长n-1位时，表示范围是-1-2-n-gt-1-2-n"><a href="#字长n-1位时，表示范围是-1-2-n-gt-1-2-n" class="headerlink" title="字长n+1位时，表示范围是$-(1-2^{-n})=&gt;(1-2^{-n})$"></a>字长n+1位时，表示范围是$-(1-2^{-n})=&gt;(1-2^{-n})$</h5><h4 id="2-带符号的定点整数"><a href="#2-带符号的定点整数" class="headerlink" title="2.带符号的定点整数"></a>2.带符号的定点整数</h4><p>小数点固定在最低数值位之后<br>符号位+数值位+<strong>“.”</strong></p>
@@ -598,11 +597,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Java</a>
+                <a href="javascript:void(0)" class="js-tag color1">web基础</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">web基础</a>
+                <a href="javascript:void(0)" class="js-tag color5">Java</a>
               </li>
              
               <li class="article-tag-list-item">
