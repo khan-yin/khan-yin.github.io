@@ -187,6 +187,153 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-datawhale阿里云天池语义分割比赛-Task1-赛题理解和baseline代码" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/02/20/datawhale%E9%98%BF%E9%87%8C%E4%BA%91%E5%A4%A9%E6%B1%A0%E8%AF%AD%E4%B9%89%E5%88%86%E5%89%B2%E6%AF%94%E8%B5%9B-Task1-%E8%B5%9B%E9%A2%98%E7%90%86%E8%A7%A3%E5%92%8Cbaseline%E4%BB%A3%E7%A0%81/">datawhale阿里云天池语义分割比赛-Task1 赛题理解和baseline代码</a>
+    </h1>
+  
+
+        
+        <a href="/2021/02/20/datawhale%E9%98%BF%E9%87%8C%E4%BA%91%E5%A4%A9%E6%B1%A0%E8%AF%AD%E4%B9%89%E5%88%86%E5%89%B2%E6%AF%94%E8%B5%9B-Task1-%E8%B5%9B%E9%A2%98%E7%90%86%E8%A7%A3%E5%92%8Cbaseline%E4%BB%A3%E7%A0%81/" class="archive-article-date">
+  	<time datetime="2021-02-20T13:44:49.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-02-20</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="datawhale阿里云天池语义分割比赛-Task1-赛题理解和baseline代码"><a href="#datawhale阿里云天池语义分割比赛-Task1-赛题理解和baseline代码" class="headerlink" title="datawhale阿里云天池语义分割比赛-Task1 赛题理解和baseline代码"></a>datawhale阿里云天池语义分割比赛-Task1 赛题理解和baseline代码</h1><p>这里给出比赛地址：<a href="https://tianchi.aliyun.com/competition/entrance/531872/introduction?spm=5176.12281949.1003.10.493e3eafj1Afqc" target="_blank" rel="noopener">比赛地址</a><br>本章将对语义分割赛题进行赛题背景讲解，对赛题数据读取进行说明，并给出解题思路。</p>
+<h2 id="1-赛题理解"><a href="#1-赛题理解" class="headerlink" title="1 赛题理解"></a>1 赛题理解</h2><ul>
+<li>赛题名称：零基础入门语义分割-地表建筑物识别</li>
+<li>赛题目标：通过本次赛题可以引导大家熟练掌握语义分割任务的定义，具体的解题流程和相应的模型，并掌握语义分割任务的发展。</li>
+<li>赛题任务：赛题以计算机视觉为背景，要求选手使用给定的航拍图像训练模型并完成地表建筑物识别任务。</li>
+</ul>
+<h3 id="1-1-学习目标"><a href="#1-1-学习目标" class="headerlink" title="1.1 学习目标"></a>1.1 学习目标</h3><ul>
+<li>理解赛题背景和赛题数据</li>
+<li>完成赛题报名和数据下载，理解赛题的解题思路</li>
+</ul>
+<h3 id="1-2-赛题数据"><a href="#1-2-赛题数据" class="headerlink" title="1.2 赛题数据"></a>1.2 赛题数据</h3><p>遥感技术已成为获取地表覆盖信息最为行之有效的手段，遥感技术已经成功应用于地表覆盖检测、植被面积检测和建筑物检测任务。本赛题使用航拍数据，需要参赛选手完成地表建筑物识别，将地表航拍图像素划分为有建筑物和无建筑物两类。</p>
+<p>如下图，左边为原始航拍图，右边为对应的建筑物标注。</p>
+<p><img src="https://img-blog.csdnimg.cn/20210220213543778.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0phY2tfX19F,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p>
+<p>赛题数据来源（Inria Aerial Image Labeling），并进行拆分处理。数据集报名后可见并可下载。赛题数据为航拍图，需要参赛选手识别图片中的地表建筑具体像素位置。</p>
+<h3 id="1-3-数据标签"><a href="#1-3-数据标签" class="headerlink" title="1.3 数据标签"></a>1.3 数据标签</h3><p>赛题为语义分割任务，因此具体的标签为图像像素类别。在赛题数据中像素属于2类（无建筑物和有建筑物），因此标签为有建筑物的像素。赛题原始图片为jpg格式，标签为RLE编码的字符串。</p>
+<p>RLE全称（run-length encoding），翻译为游程编码或行程长度编码，对连续的黑、白像素数以不同的码字进行编码。RLE是一种简单的非破坏性资料压缩法，经常用在在语义分割比赛中对标签进行编码。</p>
+<p>RLE与图片之间的转换如下：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np<br><span class="hljs-keyword">import</span> pandas <span class="hljs-keyword">as</span> pd<br><span class="hljs-keyword">import</span> cv2<br><br><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">rle_encode</span><span class="hljs-params">(im)</span>:</span><br>    <span class="hljs-string">'''</span><br><span class="hljs-string">    im: numpy array, 1 - mask, 0 - background</span><br><span class="hljs-string">    Returns run length as string formated</span><br><span class="hljs-string">    '''</span><br>    pixels = im.flatten(order = <span class="hljs-string">'F'</span>)<br>    pixels = np.concatenate([[<span class="hljs-number">0</span>], pixels, [<span class="hljs-number">0</span>]])<br>    runs = np.where(pixels[<span class="hljs-number">1</span>:] != pixels[:<span class="hljs-number">-1</span>])[<span class="hljs-number">0</span>] + <span class="hljs-number">1</span><br>    runs[<span class="hljs-number">1</span>::<span class="hljs-number">2</span>] -= runs[::<span class="hljs-number">2</span>]<br>    <span class="hljs-keyword">return</span> <span class="hljs-string">' '</span>.join(str(x) <span class="hljs-keyword">for</span> x <span class="hljs-keyword">in</span> runs)<br><br><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">rle_decode</span><span class="hljs-params">(mask_rle, shape=<span class="hljs-params">(<span class="hljs-number">512</span>, <span class="hljs-number">512</span>)</span>)</span>:</span><br>    <span class="hljs-string">'''</span><br><span class="hljs-string">    mask_rle: run-length as string formated (start length)</span><br><span class="hljs-string">    shape: (height,width) of array to return </span><br><span class="hljs-string">    Returns numpy array, 1 - mask, 0 - background</span><br><span class="hljs-string"></span><br><span class="hljs-string">    '''</span><br>    s = mask_rle.split()<br>    starts, lengths = [np.asarray(x, dtype=int) <span class="hljs-keyword">for</span> x <span class="hljs-keyword">in</span> (s[<span class="hljs-number">0</span>:][::<span class="hljs-number">2</span>], s[<span class="hljs-number">1</span>:][::<span class="hljs-number">2</span>])]<br>    starts -= <span class="hljs-number">1</span><br>    ends = starts + lengths<br>    img = np.zeros(shape[<span class="hljs-number">0</span>]*shape[<span class="hljs-number">1</span>], dtype=np.uint8)<br>    <span class="hljs-keyword">for</span> lo, hi <span class="hljs-keyword">in</span> zip(starts, ends):<br>        img[lo:hi] = <span class="hljs-number">1</span><br>    <span class="hljs-keyword">return</span> img.reshape(shape, order=<span class="hljs-string">'F'</span>)<br></code></pre></td></tr></table></figure>
+
+<h3 id="rle-encode全过程分析"><a href="#rle-encode全过程分析" class="headerlink" title="rle_encode全过程分析"></a>rle_encode全过程分析</h3><figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">im = mask<br>pixels = im.flatten(order = <span class="hljs-string">'F'</span>)<br><br>print(pixels,len(pixels))<br>pixels = np.concatenate([[<span class="hljs-number">0</span>], pixels, [<span class="hljs-number">0</span>]])<br>print(pixels,len(pixels))<br>runs = np.where(pixels[<span class="hljs-number">1</span>:] != pixels[:<span class="hljs-number">-1</span>])[<span class="hljs-number">0</span>] + <span class="hljs-number">1</span><br>print(pixels[<span class="hljs-number">1</span>:].shape)<br>print(pixels[:<span class="hljs-number">-1</span>].shape)<br>print(runs,len(runs))<br><span class="hljs-comment">##这里其实就相当于是前后错位了一个数，</span><br><span class="hljs-comment">#然后就会找到左右不同的像素点即边界，从而将所有的感兴趣点都提取出来</span><br><span class="hljs-comment">#print(runs[::2]) #每一段的start位置</span><br><span class="hljs-comment">#print(runs[1::2]) #每一段的end位置</span><br>runs[<span class="hljs-number">1</span>::<span class="hljs-number">2</span>] -= runs[::<span class="hljs-number">2</span>] <span class="hljs-comment">#end-start即将end变成了length</span><br><span class="hljs-comment"># print(runs[1::2]) #得到每一段的长度</span><br><br>res = <span class="hljs-string">' '</span>.join(str(x) <span class="hljs-keyword">for</span> x <span class="hljs-keyword">in</span> runs)<br><span class="hljs-comment"># [str(x) for x in runs]</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="1-4-评价指标"><a href="#1-4-评价指标" class="headerlink" title="1.4 评价指标"></a>1.4 评价指标</h3><h5 id="语义分割的相关loss介绍"><a href="#语义分割的相关loss介绍" class="headerlink" title="语义分割的相关loss介绍"></a>语义分割的相关loss介绍</h5><p><a href="https://zhuanlan.zhihu.com/p/101773544" target="_blank" rel="noopener">知乎链接</a><br>赛题使用Dice coefficient来衡量选手结果与真实标签的差异性，Dice coefficient可以按像素差异性来比较结果的差异性。Dice coefficient的具体计算方式如下：</p>
+<p>$$<br>\frac{2 * |X \cap Y|}{|X| + |Y|}<br>$$</p>
+<p>其中$X$是预测结果，$Y$为真实标签的结果。当$X$与$Y$完全相同时Dice coefficient为1，排行榜使用所有测试集图片的平均Dice coefficient来衡量，分数值越大越好。<br><img src="https://img-blog.csdnimg.cn/20210220213913495.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0phY2tfX19F,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h3 id="1-5-读取数据"><a href="#1-5-读取数据" class="headerlink" title="1.5 读取数据"></a>1.5 读取数据</h3><table>
+<thead>
+<tr>
+<th align="left">FileName</th>
+<th align="left">Size</th>
+<th align="right">含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">test_a.zip</td>
+<td align="left">314.49MB</td>
+<td align="right">测试集A榜图片</td>
+</tr>
+<tr>
+<td align="left">test_a_samplesubmit.csv</td>
+<td align="left">46.39KB</td>
+<td align="right">测试集A榜提交样例</td>
+</tr>
+<tr>
+<td align="left">train.zip</td>
+<td align="left">3.68GB</td>
+<td align="right">训练集图片</td>
+</tr>
+<tr>
+<td align="left">train_mask.csv.zip</td>
+<td align="left">97.52MB</td>
+<td align="right">训练集图片标注</td>
+</tr>
+</tbody></table>
+<p>具体数据读取案例：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> pandas <span class="hljs-keyword">as</span> pd<br><span class="hljs-keyword">import</span> cv2<br>train_mask = pd.read_csv(<span class="hljs-string">'train_mask.csv'</span>, sep=<span class="hljs-string">'\t'</span>, names=[<span class="hljs-string">'name'</span>, <span class="hljs-string">'mask'</span>])<br><br><span class="hljs-comment"># 读取第一张图，并将对于的rle解码为mask矩阵</span><br>img = cv2.imread(<span class="hljs-string">'train/'</span>+ train_mask[<span class="hljs-string">'name'</span>].iloc[<span class="hljs-number">0</span>])<br>mask = rle_decode(train_mask[<span class="hljs-string">'mask'</span>].iloc[<span class="hljs-number">0</span>])<br><br>print(rle_encode(mask) == train_mask[<span class="hljs-string">'mask'</span>].iloc[<span class="hljs-number">0</span>])<br><span class="hljs-comment"># 结果为True</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="1-6-解题思路"><a href="#1-6-解题思路" class="headerlink" title="1.6 解题思路"></a>1.6 解题思路</h3><p>由于本次赛题是一个典型的语义分割任务，因此可以直接使用语义分割的模型来完成：</p>
+<ul>
+<li>步骤1：使用FCN模型模型跑通具体模型训练过程，并对结果进行预测提交；</li>
+<li>步骤2：在现有基础上加入数据扩增方法，并划分验证集以监督模型精度；</li>
+<li>步骤3：使用更加强大模型结构（如Unet和PSPNet）或尺寸更大的输入完成训练；</li>
+<li>步骤4：训练多个模型完成模型集成操作；</li>
+</ul>
+<h3 id="1-7-本章小结"><a href="#1-7-本章小结" class="headerlink" title="1.7 本章小结"></a>1.7 本章小结</h3><p>本章主要对赛题背景和主要任务进行讲解，并多对赛题数据和标注读取方式进行介绍，最后列举了赛题解题思路。</p>
+<h3 id="1-8-课后作业"><a href="#1-8-课后作业" class="headerlink" title="1.8 课后作业"></a>1.8 课后作业</h3><ol>
+<li>理解RLE编码过程，并完成赛题数据读取并可视化；</li>
+<li>统计所有图片整图中没有任何建筑物像素占所有训练集图片的比例；</li>
+<li>统计所有图片中建筑物像素占所有相似度的比例；</li>
+<li>统计所有图片中建筑物区域平均区域大小；</li>
+</ol>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">datawhale</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">计算机视觉</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/02/20/datawhale%E9%98%BF%E9%87%8C%E4%BA%91%E5%A4%A9%E6%B1%A0%E8%AF%AD%E4%B9%89%E5%88%86%E5%89%B2%E6%AF%94%E8%B5%9B-Task1-%E8%B5%9B%E9%A2%98%E7%90%86%E8%A7%A3%E5%92%8Cbaseline%E4%BB%A3%E7%A0%81/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-datawhale-pandas缺失数据处理" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -224,6 +371,10 @@
 			 
         		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">pandas</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">datawhale</a>
         		</li>
       		
 		</ul>
@@ -300,6 +451,10 @@
 			 
         		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">pandas</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">datawhale</a>
         		</li>
       		
 		</ul>
@@ -861,80 +1016,6 @@
 
 
   
-    <article id="post-操作系统的运行机制和体系结构" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/10/03/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%9A%84%E8%BF%90%E8%A1%8C%E6%9C%BA%E5%88%B6%E5%92%8C%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84/">操作系统的运行机制和体系结构</a>
-    </h1>
-  
-
-        
-        <a href="/2020/10/03/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%9A%84%E8%BF%90%E8%A1%8C%E6%9C%BA%E5%88%B6%E5%92%8C%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84/" class="archive-article-date">
-  	<time datetime="2020-10-03T13:37:16.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-10-03</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>操作系统比较硬核，不过最近发现了<a href="https://www.bilibili.com/video/BV1YE411D7nH?p=6" target="_blank" rel="noopener">王道考研</a>这个比较好的课程。这里是一些学习笔记总结。</p>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">操作系统</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/10/03/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%9A%84%E8%BF%90%E8%A1%8C%E6%9C%BA%E5%88%B6%E5%92%8C%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/">Next &amp;raquo;</a>
@@ -1204,6 +1285,14 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">编译原理</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">datawhale</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">计算机视觉</a>
               </li>
             
             <div class="clearfix"></div>
