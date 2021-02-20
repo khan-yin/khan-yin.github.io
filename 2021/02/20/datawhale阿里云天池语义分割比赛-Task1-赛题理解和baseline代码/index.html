@@ -8,17 +8,17 @@
   <link rel="dns-prefetch" href="https://yoursite.com">
   <title>datawhale阿里云天池语义分割比赛-Task1 赛题理解和baseline代码 | ykhblog 一路向北</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="datawhale阿里云天池语义分割比赛-Task1 赛题理解和baseline代码这里给出比赛地址：比赛地址本章将对语义分割赛题进行赛题背景讲解，对赛题数据读取进行说明，并给出解题思路。 1 赛题理解 赛题名称：零基础入门语义分割-地表建筑物识别 赛题目标：通过本次赛题可以引导大家熟练掌握语义分割任务的定义，具体的解题流程和相应的模型，并掌握语义分割任务的发展。 赛题任务：赛题以计算机视觉为背景">
+  <meta name="description" content="datawhale阿里云天池语义分割比赛-Task1 赛题理解和baseline代码这里给出比赛地址：比赛地址本章将对语义分割赛题进行赛题背景讲解，对赛题数据读取进行说明，并给出解题思路。 1 赛题理解">
 <meta property="og:type" content="article">
 <meta property="og:title" content="datawhale阿里云天池语义分割比赛-Task1 赛题理解和baseline代码">
 <meta property="og:url" content="https://yoursite.com/2021/02/20/datawhale%E9%98%BF%E9%87%8C%E4%BA%91%E5%A4%A9%E6%B1%A0%E8%AF%AD%E4%B9%89%E5%88%86%E5%89%B2%E6%AF%94%E8%B5%9B-Task1-%E8%B5%9B%E9%A2%98%E7%90%86%E8%A7%A3%E5%92%8Cbaseline%E4%BB%A3%E7%A0%81/index.html">
 <meta property="og:site_name" content="ykhblog 一路向北">
-<meta property="og:description" content="datawhale阿里云天池语义分割比赛-Task1 赛题理解和baseline代码这里给出比赛地址：比赛地址本章将对语义分割赛题进行赛题背景讲解，对赛题数据读取进行说明，并给出解题思路。 1 赛题理解 赛题名称：零基础入门语义分割-地表建筑物识别 赛题目标：通过本次赛题可以引导大家熟练掌握语义分割任务的定义，具体的解题流程和相应的模型，并掌握语义分割任务的发展。 赛题任务：赛题以计算机视觉为背景">
+<meta property="og:description" content="datawhale阿里云天池语义分割比赛-Task1 赛题理解和baseline代码这里给出比赛地址：比赛地址本章将对语义分割赛题进行赛题背景讲解，对赛题数据读取进行说明，并给出解题思路。 1 赛题理解">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/20210220213543778.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0phY2tfX19F,size_16,color_FFFFFF,t_70#pic_center">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/20210220213913495.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0phY2tfX19F,size_16,color_FFFFFF,t_70">
-<meta property="article:published_time" content="2021-02-20T13:44:49.000Z">
-<meta property="article:modified_time" content="2021-02-20T13:46:00.127Z">
+<meta property="article:published_time" content="2021-02-20T13:44:00.000Z">
+<meta property="article:modified_time" content="2021-02-20T13:48:48.703Z">
 <meta property="article:author" content="whut ykh">
 <meta property="article:tag" content="datawhale">
 <meta property="article:tag" content="计算机视觉">
@@ -205,7 +205,7 @@
 
         
         <a href="/2021/02/20/datawhale%E9%98%BF%E9%87%8C%E4%BA%91%E5%A4%A9%E6%B1%A0%E8%AF%AD%E4%B9%89%E5%88%86%E5%89%B2%E6%AF%94%E8%B5%9B-Task1-%E8%B5%9B%E9%A2%98%E7%90%86%E8%A7%A3%E5%92%8Cbaseline%E4%BB%A3%E7%A0%81/" class="archive-article-date">
-  	<time datetime="2021-02-20T13:44:49.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-02-20</time>
+  	<time datetime="2021-02-20T13:44:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-02-20</time>
 </a>
         
       </header>
@@ -213,7 +213,8 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h1 id="datawhale阿里云天池语义分割比赛-Task1-赛题理解和baseline代码"><a href="#datawhale阿里云天池语义分割比赛-Task1-赛题理解和baseline代码" class="headerlink" title="datawhale阿里云天池语义分割比赛-Task1 赛题理解和baseline代码"></a>datawhale阿里云天池语义分割比赛-Task1 赛题理解和baseline代码</h1><p>这里给出比赛地址：<a href="https://tianchi.aliyun.com/competition/entrance/531872/introduction?spm=5176.12281949.1003.10.493e3eafj1Afqc" target="_blank" rel="noopener">比赛地址</a><br>本章将对语义分割赛题进行赛题背景讲解，对赛题数据读取进行说明，并给出解题思路。</p>
-<h2 id="1-赛题理解"><a href="#1-赛题理解" class="headerlink" title="1 赛题理解"></a>1 赛题理解</h2><ul>
+<h2 id="1-赛题理解"><a href="#1-赛题理解" class="headerlink" title="1 赛题理解"></a>1 赛题理解</h2><a id="more"></a>
+<ul>
 <li>赛题名称：零基础入门语义分割-地表建筑物识别</li>
 <li>赛题目标：通过本次赛题可以引导大家熟练掌握语义分割任务的定义，具体的解题流程和相应的模型，并掌握语义分割任务的发展。</li>
 <li>赛题任务：赛题以计算机视觉为背景，要求选手使用给定的航拍图像训练模型并完成地表建筑物识别任务。</li>
@@ -628,6 +629,10 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">数据库系统</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">youth</a>
               </li>
              
@@ -636,7 +641,15 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">数据库系统</a>
+                <a href="javascript:void(0)" class="js-tag color2">pandas</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">datawhale</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">计算机视觉</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -645,10 +658,6 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">web基础</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">pandas</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -664,19 +673,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">计算机组成原理</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">编译原理</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">datawhale</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">计算机视觉</a>
+                <a href="javascript:void(0)" class="js-tag color3">计算机组成原理</a>
               </li>
             
             <div class="clearfix"></div>
