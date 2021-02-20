@@ -211,15 +211,24 @@
         <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
 <h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><a id="more"></a>
 <h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">$ hexo new <span class="hljs-string">"My New Post"</span><br></code></pre></td></tr></table></figure>
+
 <figure class="highlight c++"><table><tr><td class="code"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;iostream&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> <span class="hljs-built_in">std</span>;<br><br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span><br><span class="hljs-function"></span>&#123;<br>    <span class="hljs-built_in">cout</span>&lt;&lt;<span class="hljs-string">"Hello world!"</span>&lt;&lt;<span class="hljs-built_in">endl</span>;<br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">"aaa"</span>);<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
 <figure class="highlight c++"><table><tr><td class="code"><pre><code class="hljs c++"><span class="hljs-comment">/*</span><br><span class="hljs-comment"> * FILE: threadpool.h</span><br><span class="hljs-comment"> * Copyright (C) Lunar Eclipse</span><br><span class="hljs-comment"> * Copyright (C) Railgun</span><br><span class="hljs-comment"> */</span><br><br><span class="hljs-meta">#<span class="hljs-meta-keyword">ifndef</span> THREADPOOL_H</span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> THREADPOOL_H</span><br><br><span class="hljs-meta">#<span class="hljs-meta-keyword">ifdef</span> __cplusplus</span><br><span class="hljs-keyword">extern</span> <span class="hljs-string">"C"</span> &#123;<br><span class="hljs-meta">#<span class="hljs-meta-keyword">endif</span></span><br>    <br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;stdlib.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;unistd.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;pthread.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;stdint.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"debug.h"</span></span><br>    <br><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> THREAD_NUM 8</span><br><br><span class="hljs-keyword">typedef</span> <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">task_s</span> &#123;</span><br>    <span class="hljs-keyword">void</span> (*func)(<span class="hljs-keyword">void</span>*);  <span class="hljs-comment">//task function pointer</span><br>    <span class="hljs-keyword">void</span> *arg;            <span class="hljs-comment">//function arguments</span><br>    <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">task_s</span>* <span class="hljs-title">next</span>;</span>  <span class="hljs-comment">//points to the next task in the task queue</span><br>&#125; <span class="hljs-keyword">task_t</span>;<br><br><span class="hljs-keyword">typedef</span> <span class="hljs-class"><span class="hljs-keyword">struct</span> &#123;</span><br>    <span class="hljs-keyword">pthread_mutex_t</span> lock; <span class="hljs-comment">//mutex</span><br>    <span class="hljs-keyword">pthread_cond_t</span> cond; <span class="hljs-comment">//condition variable</span><br>    <span class="hljs-keyword">pthread_t</span>* threads; <span class="hljs-comment">//thread_t type array</span><br>    <br>    <span class="hljs-keyword">task_t</span>* head;<br>    <span class="hljs-keyword">int</span> thread_count; <span class="hljs-comment">//thread number in the threadpool</span><br>    <span class="hljs-keyword">int</span> queue_size;  <span class="hljs-comment">//task number in the task queue</span><br>    <span class="hljs-keyword">int</span> <span class="hljs-built_in">shutdown</span>;   <span class="hljs-comment">/*indicate if the threadpool is shutdown. Shutdown fall into two categories[immediate_shutdown, graceful_shutdown], immediate_shutdown means the threadpool has to shutdown no matter if there are tasks or not, graceful_shutdown will wait until all tasks are executed. */</span><br>    <span class="hljs-keyword">int</span> started; <span class="hljs-comment">//number of threads started</span><br>&#125; <span class="hljs-keyword">threadpool_t</span>;<br><br><span class="hljs-keyword">typedef</span> <span class="hljs-keyword">enum</span> &#123;<br>    tp_invalid = <span class="hljs-number">-1</span>,<br>    tp_lock_fail = <span class="hljs-number">-2</span>,<br>    tp_already_shutdown = <span class="hljs-number">-3</span>,<br>    tp_cond_broadcast = <span class="hljs-number">-4</span>,<br>    tp_thread_fail = <span class="hljs-number">-5</span>,<br>&#125; <span class="hljs-keyword">threadpool_error_t</span>;<br><br><span class="hljs-function"><span class="hljs-keyword">threadpool_t</span>* <span class="hljs-title">threadpool_init</span><span class="hljs-params">(<span class="hljs-keyword">int</span> thread_num)</span></span>;<br><br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">threadpool_add</span><span class="hljs-params">(<span class="hljs-keyword">threadpool_t</span>* pool, <span class="hljs-keyword">void</span> (*func)(<span class="hljs-keyword">void</span>*), <span class="hljs-keyword">void</span>* arg)</span></span>;<br><br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">threadpool_destory</span><span class="hljs-params">(<span class="hljs-keyword">threadpool_t</span>* pool, <span class="hljs-keyword">int</span> graceful)</span></span>;<br><br><span class="hljs-meta">#<span class="hljs-meta-keyword">ifdef</span> __cplusplus</span><br>&#125;<br><span class="hljs-meta">#<span class="hljs-meta-keyword">endif</span></span><br><br><span class="hljs-meta">#<span class="hljs-meta-keyword">endif</span></span><br></code></pre></td></tr></table></figure>
+
+
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> pandas<br>print(<span class="hljs-string">'hello world'</span>)<br></code></pre></td></tr></table></figure>
+
+
 <p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
 <h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">$ hexo server<br></code></pre></td></tr></table></figure>
+
 <p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
 <h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">$ hexo generate<br></code></pre></td></tr></table></figure>
+
 <p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
 <h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">$ hexo deploy<br></code></pre></td></tr></table></figure>
+
 <p>More info: <a href="https://hexo.io/docs/one-command-deployment.html" target="_blank" rel="noopener">Deployment</a></p>
 
       
@@ -563,10 +572,6 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Django</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">数据库系统</a>
               </li>
              
@@ -579,7 +584,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">pandas</a>
+                <a href="javascript:void(0)" class="js-tag color2">Django</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -592,6 +597,10 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">web基础</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">pandas</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -611,11 +620,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">编译原理</a>
+                <a href="javascript:void(0)" class="js-tag color3">计算机组成原理</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">计算机组成原理</a>
+                <a href="javascript:void(0)" class="js-tag color5">编译原理</a>
               </li>
             
             <div class="clearfix"></div>
