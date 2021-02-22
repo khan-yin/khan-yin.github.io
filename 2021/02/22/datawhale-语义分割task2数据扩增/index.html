@@ -8,12 +8,12 @@
   <link rel="dns-prefetch" href="https://yoursite.com">
   <title>datawhale-语义分割task2数据扩增 | ykhblog 一路向北</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="语义分割-Task2 数据扩增本章对语义分割任务中常见的数据扩增方法进行介绍，并使用OpenCV和albumentations两个库完成具体的数据扩增操作。干货链接：albumentations 数据增强工具的使用Pytorch：transforms的二十二个方法Pytorch使用albumentations实现数据增强 2 数据扩增方法简单来说数据扩充主要分成两类，一类是基于图像处理的数据扩增，">
+  <meta name="description" content="语义分割-Task2 数据扩增本章对语义分割任务中常见的数据扩增方法进行介绍，并使用OpenCV和albumentations两个库完成具体的数据扩增操作。干货链接：albumentations 数据增强工具的使用Pytorch：transforms的二十二个方法Pytorch使用albumentations实现数据增强">
 <meta property="og:type" content="article">
 <meta property="og:title" content="datawhale-语义分割task2数据扩增">
 <meta property="og:url" content="https://yoursite.com/2021/02/22/datawhale-%E8%AF%AD%E4%B9%89%E5%88%86%E5%89%B2task2%E6%95%B0%E6%8D%AE%E6%89%A9%E5%A2%9E/index.html">
 <meta property="og:site_name" content="ykhblog 一路向北">
-<meta property="og:description" content="语义分割-Task2 数据扩增本章对语义分割任务中常见的数据扩增方法进行介绍，并使用OpenCV和albumentations两个库完成具体的数据扩增操作。干货链接：albumentations 数据增强工具的使用Pytorch：transforms的二十二个方法Pytorch使用albumentations实现数据增强 2 数据扩增方法简单来说数据扩充主要分成两类，一类是基于图像处理的数据扩增，">
+<meta property="og:description" content="语义分割-Task2 数据扩增本章对语义分割任务中常见的数据扩增方法进行介绍，并使用OpenCV和albumentations两个库完成具体的数据扩增操作。干货链接：albumentations 数据增强工具的使用Pytorch：transforms的二十二个方法Pytorch使用albumentations实现数据增强">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/20210222185335244.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0phY2tfX19F,size_16,color_FFFFFF,t_70">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/20210222185326950.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0phY2tfX19F,size_16,color_FFFFFF,t_70">
@@ -23,8 +23,8 @@
 <meta property="og:image" content="https://img-blog.csdnimg.cn/20210222183636488.jpeg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0phY2tfX19F,size_16,color_FFFFFF,t_70#pic_center">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/20210222183659950.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0phY2tfX19F,size_16,color_FFFFFF,t_70#pic_center">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/20210222184217813.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0phY2tfX19F,size_16,color_FFFFFF,t_70#pic_center">
-<meta property="article:published_time" content="2021-02-22T11:04:45.000Z">
-<meta property="article:modified_time" content="2021-02-22T11:06:54.931Z">
+<meta property="article:published_time" content="2021-02-22T11:04:00.000Z">
+<meta property="article:modified_time" content="2021-02-22T11:10:39.045Z">
 <meta property="article:author" content="whut ykh">
 <meta property="article:tag" content="datawhale">
 <meta property="article:tag" content="计算机视觉">
@@ -211,7 +211,7 @@
 
         
         <a href="/2021/02/22/datawhale-%E8%AF%AD%E4%B9%89%E5%88%86%E5%89%B2task2%E6%95%B0%E6%8D%AE%E6%89%A9%E5%A2%9E/" class="archive-article-date">
-  	<time datetime="2021-02-22T11:04:45.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-02-22</time>
+  	<time datetime="2021-02-22T11:04:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-02-22</time>
 </a>
         
       </header>
@@ -219,6 +219,8 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h1 id="语义分割-Task2-数据扩增"><a href="#语义分割-Task2-数据扩增" class="headerlink" title="语义分割-Task2 数据扩增"></a>语义分割-Task2 数据扩增</h1><p>本章对语义分割任务中常见的数据扩增方法进行介绍，并使用OpenCV和albumentations两个库完成具体的数据扩增操作。<br>干货链接：<br><a href="https://zhuanlan.zhihu.com/p/107399127/" target="_blank" rel="noopener">albumentations 数据增强工具的使用</a><br><a href="https://blog.csdn.net/weixin_38533896/article/details/86028509" target="_blank" rel="noopener">Pytorch：transforms的二十二个方法</a><br><a href="https://blog.csdn.net/zhangyuexiang123/article/details/107705311" target="_blank" rel="noopener">Pytorch使用albumentations实现数据增强</a></p>
+<a id="more"></a>
+
 <h2 id="2-数据扩增方法"><a href="#2-数据扩增方法" class="headerlink" title="2 数据扩增方法"></a>2 数据扩增方法</h2><p><strong>简单来说数据扩充主要分成两类，一类是基于图像处理的数据扩增，一类是基于深度学习方法的数据扩充</strong>  这里简单介绍一下<br><strong>基于图像处理的数据扩增—几何变换</strong><br>旋转，缩放，翻转，裁剪，平移，仿射变换<br>作用:几何变换可以有效地对抗数据中存在的位置偏差、视角偏差、尺寸偏差，而且易于实现，非常常用。</p>
 <p><strong>基于图像处理的数据扩增—灰度和彩色空间变换</strong><br>·亮度调整，对比度饱和度调整，颜色空间转换，色彩调整，gamma变换<br>作用：对抗数据中存在的光照，色彩，亮度，对比度偏差</p>
 <p><strong>基于图像处理的数据扩增——添加噪声和滤波</strong><br>添加高斯噪声，椒盐噪声<br>滤波：模糊，锐化，雾化等<br>作用：应对噪声干扰，恶劣环境，成像异常等特殊情况，帮助CNN学习更泛化的特征<br><img src="https://img-blog.csdnimg.cn/20210222185335244.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0phY2tfX19F,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
@@ -623,19 +625,19 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">编译原理</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Django</a>
+                <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">数据库系统</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Django</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -659,11 +661,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">web基础</a>
+                <a href="javascript:void(0)" class="js-tag color5">Java</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Java</a>
+                <a href="javascript:void(0)" class="js-tag color1">web基础</a>
               </li>
              
               <li class="article-tag-list-item">
