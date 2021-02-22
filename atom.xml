@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://yoursite.com/"/>
-  <updated>2021-02-20T13:48:48.703Z</updated>
+  <updated>2021-02-22T11:06:54.931Z</updated>
   <id>https://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>datawhale-语义分割task2数据扩增</title>
+    <link href="https://yoursite.com/2021/02/22/datawhale-%E8%AF%AD%E4%B9%89%E5%88%86%E5%89%B2task2%E6%95%B0%E6%8D%AE%E6%89%A9%E5%A2%9E/"/>
+    <id>https://yoursite.com/2021/02/22/datawhale-%E8%AF%AD%E4%B9%89%E5%88%86%E5%89%B2task2%E6%95%B0%E6%8D%AE%E6%89%A9%E5%A2%9E/</id>
+    <published>2021-02-22T11:04:45.000Z</published>
+    <updated>2021-02-22T11:06:54.931Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="语义分割-Task2-数据扩增"><a href="#语义分割-Task2-数据扩增" class="headerlink" title="语义分割-Task2 数据扩增"></a>语义分割-Task2 数据扩增</h1><p>本章对语义分割任务中常见的数据扩增方法进行介绍，并使用OpenCV和albumentations两个库完成具体的数据扩增操作。<br>干货链接：<br><a href="https://zhuanlan.zhihu.com/p/107399127/" target="_blank" rel="noopener">albumentations 数据增强工具的使用</a><br><a href="https://blog.csdn.net/weixin_38533896/article/details/86028509" target="_blank" rel="noopener">Pytorch：transforms的二十二个方法</a><br><a href="https://blog.csdn.net/zhangyuexiang123/article/details/107705311" target="_blank" rel="noopener">Pytorch使用albumentations实现数据增强</a></p><h2 id="2-数据扩增方法"><a href="#2-数据扩增方法" class="headerlink" title="2 数据扩增方法"></a>2 数据扩增方法</h2><p><strong>简单来说数据扩充主要分成两类，一类是基于图像处理的数据扩增，一类是基于深度学习方法的数据扩充</strong>  这里简单介绍一下<br><strong>基于图像处理的数据扩增—几何变换</strong><br>旋转，缩放，翻转，裁剪，平移，仿射变换<br>作用:几何变换可以有效地对抗数据中存在的位置偏差、视角偏差、尺寸偏差，而且易于实现，非常常用。</p><p><strong>基于图像处理的数据扩增—灰度和彩色空间变换</strong><br>·亮度调整，对比度饱和度调整，颜色空间转换，色彩调整，gamma变换<br>作用：对抗数据中存在的光照，色彩，亮度，对比度偏差</p><p><strong>基于图像处理的数据扩增——添加噪声和滤波</strong><br>添加高斯噪声，椒盐噪声<br>滤波：模糊，锐化，雾化等<br>作用：应对噪声干扰，恶劣环境，成像异常等特殊情况，帮助CNN学习更泛化的特征<br><img src="https://img-blog.csdnimg.cn/20210222185335244.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0phY2tfX19F,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p><p><img src="https://img-blog.csdnimg.cn/20210222185326950.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0phY2tfX19F,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p><p><img src="https://img-blog.csdnimg.cn/20210222184733887.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0phY2tfX19F,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p><p>本章主要内容为数据扩增方法、OpenCV数据扩增、albumentations数据扩增和Pytorch读取赛题数据四个部分组成。</p><h3 id="2-1-学习目标"><a href="#2-1-学习目标" class="headerlink" title="2.1 学习目标"></a>2.1 学习目标</h3><ul><li>理解基础的数据扩增方法</li><li>学习OpenCV和albumentations完成数据扩增</li><li>Pytorch完成赛题读取</li></ul><h3 id="2-2-常见的数据扩增方法"><a href="#2-2-常见的数据扩增方法" class="headerlink" title="2.2 常见的数据扩增方法"></a>2.2 常见的数据扩增方法</h3><p><img src="https://img-blog.csdnimg.cn/20210222184303792.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0phY2tfX19F,size_16,color_FFFFFF,t_70" alt="v"></p><p><img src="https://img-blog.csdnimg.cn/202102221844428.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0phY2tfX19F,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p><p>数据扩增是一种有效的正则化方法，可以防止模型过拟合，在深度学习模型的训练过程中应用广泛。数据扩增的目的是增加数据集中样本的数据量，同时也可以有效增加样本的语义空间。</p><p>需注意：</p><ol><li><p>不同的数据，拥有不同的数据扩增方法；</p></li><li><p>数据扩增方法需要考虑合理性，不要随意使用；</p></li><li><p>数据扩增方法需要与具体任何相结合，同时要考虑到标签的变化；</p></li></ol><p>对于图像分类，数据扩增方法可以分为两类：</p><ol><li>标签不变的数据扩增方法：数据变换之后图像类别不变；</li><li>标签变化的数据扩增方法：数据变换之后图像类别变化；</li></ol><p>而对于语义分割而言，常规的数据扩增方法都会改变图像的标签。如水平翻转、垂直翻转、旋转90%、旋转和随机裁剪，这些常见的数据扩增方法都会改变图像的标签，即会导致地标建筑物的像素发生改变。</p><p><img src="https://img-blog.csdnimg.cn/20210222183636488.jpeg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0phY2tfX19F,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p><h3 id="2-3-OpenCV数据扩增"><a href="#2-3-OpenCV数据扩增" class="headerlink" title="2.3 OpenCV数据扩增"></a>2.3 OpenCV数据扩增</h3><p>OpenCV是计算机视觉必备的库，可以很方便的完成数据读取、图像变化、边缘检测和模式识别等任务。为了加深各位对数据可做的影响，这里首先介绍OpenCV完成数据扩增的操作。<br><img src="https://img-blog.csdnimg.cn/20210222183659950.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0phY2tfX19F,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p><figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 首先读取原始图片</span><br>img = cv2.imread(train_mask[<span class="hljs-string">'name'</span>].iloc[<span class="hljs-number">0</span>])<br>mask = rle_decode(train_mask[<span class="hljs-string">'mask'</span>].iloc[<span class="hljs-number">0</span>])<br><br>plt.figure(figsize=(<span class="hljs-number">16</span>, <span class="hljs-number">8</span>))<br>plt.subplot(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">1</span>)<br>plt.imshow(img)<br><br>plt.subplot(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">2</span>)<br>plt.imshow(mask)<br></code></pre></td></tr></table></figure><figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 垂直翻转</span><br>plt.figure(figsize=(<span class="hljs-number">16</span>, <span class="hljs-number">8</span>))<br>plt.subplot(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">1</span>)<br>plt.imshow(cv2.flip(img, <span class="hljs-number">0</span>))<br><br>plt.subplot(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">2</span>)<br>plt.imshow(cv2.flip(mask, <span class="hljs-number">0</span>))<br></code></pre></td></tr></table></figure><figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 水平翻转</span><br>plt.figure(figsize=(<span class="hljs-number">16</span>, <span class="hljs-number">8</span>))<br>plt.subplot(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">1</span>)<br>plt.imshow(cv2.flip(img, <span class="hljs-number">0</span>))<br><br>plt.subplot(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">2</span>)<br>plt.imshow(cv2.flip(mask, <span class="hljs-number">0</span>))<br></code></pre></td></tr></table></figure><figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 随机裁剪</span><br>x, y = np.random.randint(<span class="hljs-number">0</span>, <span class="hljs-number">256</span>), np.random.randint(<span class="hljs-number">0</span>, <span class="hljs-number">256</span>)<br><br>plt.figure(figsize=(<span class="hljs-number">16</span>, <span class="hljs-number">8</span>))<br>plt.subplot(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">1</span>)<br>plt.imshow(img[x:x+<span class="hljs-number">256</span>, y:y+<span class="hljs-number">256</span>])<br><br>plt.subplot(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">2</span>)<br>plt.imshow(mask[x:x+<span class="hljs-number">256</span>, y:y+<span class="hljs-number">256</span>])<br></code></pre></td></tr></table></figure><h3 id="2-4-albumentations数据扩增"><a href="#2-4-albumentations数据扩增" class="headerlink" title="2.4 albumentations数据扩增"></a>2.4 albumentations数据扩增</h3><p>albumentations是基于OpenCV的快速训练数据增强库，拥有非常简单且强大的可以用于多种任务（分割、检测）的接口，易于定制且添加其他框架非常方便。</p><p>albumentations也是计算机视觉数据竞赛中最常用的库：</p><ul><li>GitHub： <a href="https://link.zhihu.com/?target=https://github.com/albumentations-team/albumentations">https://github.com/albumentations-team/albumentations</a></li><li>示例：<a href="https://link.zhihu.com/?target=https://github.com/albumentations-team/albumentations_examples">https://github.com/albumentations-team/albumentations_examples</a></li></ul><p>与OpenCV相比albumentations具有以下优点：</p><ul><li>albumentations支持的操作更多，使用更加方便；</li><li>albumentations可以与深度学习框架（Keras或Pytorch）配合使用；</li><li>albumentations支持各种任务（图像分流）的数据扩增操作</li></ul><p>albumentations它可以对数据集进行逐像素的转换，如模糊、下采样、高斯造点、高斯模糊、动态模糊、RGB转换、随机雾化等；也可以进行空间转换（同时也会对目标进行转换），如裁剪、翻转、随机裁剪等。</p><figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> albumentations <span class="hljs-keyword">as</span> A<br><br><span class="hljs-comment"># 水平翻转</span><br>augments = A.HorizontalFlip(p=<span class="hljs-number">1</span>)(image=img, mask=mask)<br>img_aug, mask_aug = augments[<span class="hljs-string">'image'</span>], augments[<span class="hljs-string">'mask'</span>]<br><br><span class="hljs-comment"># 随机裁剪</span><br>augments = A.RandomCrop(p=<span class="hljs-number">1</span>, height=<span class="hljs-number">256</span>, width=<span class="hljs-number">256</span>)(image=img, mask=mask)<br>img_aug, mask_aug = augments[<span class="hljs-string">'image'</span>], augments[<span class="hljs-string">'mask'</span>]<br><br><span class="hljs-comment"># 旋转</span><br>augments = A.ShiftScaleRotate(p=<span class="hljs-number">1</span>)(image=img, mask=mask)<br>img_aug, mask_aug = augments[<span class="hljs-string">'image'</span>], augments[<span class="hljs-string">'mask'</span>]<br></code></pre></td></tr></table></figure><p>albumentations还可以组合多个数据扩增操作得到更加复杂的数据扩增操作：</p><figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">trfm = A.Compose([<br>    A.Resize(<span class="hljs-number">256</span>, <span class="hljs-number">256</span>),<br>    A.HorizontalFlip(p=<span class="hljs-number">0.5</span>),<br>    A.VerticalFlip(p=<span class="hljs-number">0.5</span>),<br>    A.RandomRotate90(),<br>])<br><br>augments = trfm(image=img, mask=mask)<br>img_aug, mask_aug = augments[<span class="hljs-string">'image'</span>], augments[<span class="hljs-string">'mask'</span>]<br>plt.figure(figsize=(<span class="hljs-number">16</span>, <span class="hljs-number">8</span>))<br>plt.subplot(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">1</span>)<br>plt.imshow(augments[<span class="hljs-string">'image'</span>])<br><br>plt.subplot(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">2</span>)<br>plt.imshow(augments[<span class="hljs-string">'mask'</span>])aug<br></code></pre></td></tr></table></figure><p>这里是我之前打kaggle的时候用到albumentations的一组增强方法，可以参考参考</p><figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">get_train_transforms</span><span class="hljs-params">()</span>:</span><br>    <span class="hljs-keyword">return</span> Compose([<br>            <span class="hljs-comment">#将给定图像随机裁剪为不同的大小和宽高比，然后缩放所裁剪得到的图像为制定的大小；（即先随机采集，然后对裁剪得到的图像缩放为同一大小）</span><br>            RandomResizedCrop(CFG[<span class="hljs-string">'img_size'</span>], CFG[<span class="hljs-string">'img_size'</span>]),<br>            <span class="hljs-comment"># 转置</span><br>            Transpose(p=<span class="hljs-number">0.5</span>),<br>            HorizontalFlip(p=<span class="hljs-number">0.5</span>), <span class="hljs-comment">#img翻转 </span><br>            VerticalFlip(p=<span class="hljs-number">0.5</span>),<span class="hljs-comment"># 依据概率p对PIL图片进行垂直翻转</span><br>            ShiftScaleRotate(p=<span class="hljs-number">0.5</span>),<span class="hljs-comment"># 随机放射变换（ShiftScaleRotate），该方法可以对图片进行平移（translate）、缩放（scale）和旋转（roatate）</span><br>            <span class="hljs-comment"># 随机改变图片的 HUE、饱和度和值</span><br>            HueSaturationValue(hue_shift_limit=<span class="hljs-number">0.2</span>, sat_shift_limit=<span class="hljs-number">0.2</span>, val_shift_limit=<span class="hljs-number">0.2</span>, p=<span class="hljs-number">0.5</span>),<br>            <span class="hljs-comment">#随机亮度对比度</span><br>            RandomBrightnessContrast(brightness_limit=(<span class="hljs-number">-0.1</span>,<span class="hljs-number">0.1</span>), contrast_limit=(<span class="hljs-number">-0.1</span>, <span class="hljs-number">0.1</span>), p=<span class="hljs-number">0.5</span>),<br>            <span class="hljs-comment">#将像素值除以255 = 2 ** 8 - 1，减去每个通道的平均值并除以每个通道的std</span><br>            Normalize(mean=[<span class="hljs-number">0.485</span>, <span class="hljs-number">0.456</span>, <span class="hljs-number">0.406</span>], std=[<span class="hljs-number">0.229</span>, <span class="hljs-number">0.224</span>, <span class="hljs-number">0.225</span>], max_pixel_value=<span class="hljs-number">255.0</span>, p=<span class="hljs-number">1.0</span>),<br>            <span class="hljs-comment"># 在图像上生成矩形区域。</span><br>            CoarseDropout(p=<span class="hljs-number">0.5</span>),<br>            <span class="hljs-comment"># 在图像中生成正方形区域。</span><br>            Cutout(p=<span class="hljs-number">0.5</span>),<br>            ToTensorV2(p=<span class="hljs-number">1.0</span>),<br>        ], p=<span class="hljs-number">1.</span>)<br></code></pre></td></tr></table></figure><h3 id="2-7-课后作业-添加噪声"><a href="#2-7-课后作业-添加噪声" class="headerlink" title="2.7 课后作业-添加噪声"></a>2.7 课后作业-添加噪声</h3><figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np<br><span class="hljs-keyword">import</span> random<br><span class="hljs-keyword">import</span> cv2<br><br><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">sp_noise</span><span class="hljs-params">(image,prob)</span>:</span><br>    <span class="hljs-string">'''</span><br><span class="hljs-string">    添加椒盐噪声</span><br><span class="hljs-string">    prob:噪声比例 </span><br><span class="hljs-string">    '''</span><br>    output = np.zeros(image.shape,np.uint8)<br>    thres = <span class="hljs-number">1</span> - prob <br>    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(image.shape[<span class="hljs-number">0</span>]):<br>        <span class="hljs-keyword">for</span> j <span class="hljs-keyword">in</span> range(image.shape[<span class="hljs-number">1</span>]):<br>            rdn = random.random()<br>            <span class="hljs-keyword">if</span> rdn &lt; prob:<br>                output[i][j] = <span class="hljs-number">0</span><br>            <span class="hljs-keyword">elif</span> rdn &gt; thres:<br>                output[i][j] = <span class="hljs-number">255</span><br>            <span class="hljs-keyword">else</span>:<br>                output[i][j] = image[i][j]<br>    <span class="hljs-keyword">return</span> output<br><br><br><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">gasuss_noise</span><span class="hljs-params">(image, mean=<span class="hljs-number">0</span>, var=<span class="hljs-number">0.001</span>)</span>:</span><br>    <span class="hljs-string">''' </span><br><span class="hljs-string">        添加高斯噪声</span><br><span class="hljs-string">        mean : 均值 </span><br><span class="hljs-string">        var : 方差</span><br><span class="hljs-string">    '''</span><br>    image = np.array(image/<span class="hljs-number">255</span>, dtype=float)<br>    noise = np.random.normal(mean, var ** <span class="hljs-number">0.5</span>, image.shape)<br>    out = image + noise<br>    <span class="hljs-keyword">if</span> out.min() &lt; <span class="hljs-number">0</span>:<br>        low_clip = <span class="hljs-number">-1.</span><br>    <span class="hljs-keyword">else</span>:<br>        low_clip = <span class="hljs-number">0.</span><br>    out = np.clip(out, low_clip, <span class="hljs-number">1.0</span>)<br>    out = np.uint8(out*<span class="hljs-number">255</span>)<br>    <span class="hljs-comment">#cv.imshow("gasuss", out)</span><br>    <span class="hljs-keyword">return</span> out<br></code></pre></td></tr></table></figure><figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">new_img = sp_noise(img,<span class="hljs-number">0.1</span>)<br>plt.subplot(<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">1</span>)<br>plt.imshow(new_img)<br>new_img = gasuss_noise(img)<br>plt.subplot(<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">2</span>)<br>plt.imshow(new_img)<br>plt.savefig(<span class="hljs-string">'1.png'</span>)<br></code></pre></td></tr></table></figure><p><img src="https://img-blog.csdnimg.cn/20210222184217813.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0phY2tfX19F,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;语义分割-Task2-数据扩增&quot;&gt;&lt;a href=&quot;#语义分割-Task2-数据扩增&quot; class=&quot;headerlink&quot; title=&quot;语义分割-Task2 数据扩增&quot;&gt;&lt;/a&gt;语义分割-Task2 数据扩增&lt;/h1&gt;&lt;p&gt;本章对语义分割任务中常见的数据扩增方
+      
+    
+    </summary>
+    
+    
+    
+      <category term="datawhale" scheme="https://yoursite.com/tags/datawhale/"/>
+    
+      <category term="计算机视觉" scheme="https://yoursite.com/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/"/>
+    
+  </entry>
   
   <entry>
     <title>datawhale阿里云天池语义分割比赛-Task1 赛题理解和baseline代码</title>
@@ -59,9 +85,9 @@
     
     
     
-      <category term="datawhale" scheme="https://yoursite.com/tags/datawhale/"/>
-    
       <category term="pandas" scheme="https://yoursite.com/tags/pandas/"/>
+    
+      <category term="datawhale" scheme="https://yoursite.com/tags/datawhale/"/>
     
   </entry>
   
@@ -84,9 +110,9 @@
     
     
     
-      <category term="datawhale" scheme="https://yoursite.com/tags/datawhale/"/>
-    
       <category term="pandas" scheme="https://yoursite.com/tags/pandas/"/>
+    
+      <category term="datawhale" scheme="https://yoursite.com/tags/datawhale/"/>
     
   </entry>
   
@@ -240,9 +266,9 @@
     
     
     
-      <category term="web基础" scheme="https://yoursite.com/tags/web%E5%9F%BA%E7%A1%80/"/>
-    
       <category term="JavaScript" scheme="https://yoursite.com/tags/JavaScript/"/>
+    
+      <category term="web基础" scheme="https://yoursite.com/tags/web%E5%9F%BA%E7%A1%80/"/>
     
   </entry>
   
@@ -332,9 +358,9 @@
     
     
     
-      <category term="web基础" scheme="https://yoursite.com/tags/web%E5%9F%BA%E7%A1%80/"/>
-    
       <category term="JavaScript" scheme="https://yoursite.com/tags/JavaScript/"/>
+    
+      <category term="web基础" scheme="https://yoursite.com/tags/web%E5%9F%BA%E7%A1%80/"/>
     
   </entry>
   
@@ -355,9 +381,9 @@
     
     
     
-      <category term="web基础" scheme="https://yoursite.com/tags/web%E5%9F%BA%E7%A1%80/"/>
-    
       <category term="JavaScript" scheme="https://yoursite.com/tags/JavaScript/"/>
+    
+      <category term="web基础" scheme="https://yoursite.com/tags/web%E5%9F%BA%E7%A1%80/"/>
     
   </entry>
   
@@ -378,9 +404,9 @@
     
     
     
-      <category term="web基础" scheme="https://yoursite.com/tags/web%E5%9F%BA%E7%A1%80/"/>
-    
       <category term="JavaScript" scheme="https://yoursite.com/tags/JavaScript/"/>
+    
+      <category term="web基础" scheme="https://yoursite.com/tags/web%E5%9F%BA%E7%A1%80/"/>
     
   </entry>
   
@@ -438,27 +464,6 @@
     <summary type="html">
     
       &lt;h2 id=&quot;Business-Intelligence-BI-System介绍&quot;&gt;&lt;a href=&quot;#Business-Intelligence-BI-System介绍&quot; class=&quot;headerlink&quot; title=&quot;Business Intelligence(BI) System介绍&quot;&gt;&lt;/a&gt;Business Intelligence(BI) System介绍&lt;/h2&gt;&lt;p&gt;本文内容笔记摘录自王珊和萨师煊的《数据库系统概论》以及网上写的比较好的博客&lt;a href=&quot;https://www.cnblogs.com/jiesin/archive/2008/06/23/1227694.html&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Business Intelligence&lt;/a&gt;,&lt;a href=&quot;https://blog.csdn.net/ctpq29224/article/details/100273702&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;商务智能系统的组成&lt;/a&gt;,以及百度百科。&lt;/p&gt;
-    
-    </summary>
-    
-    
-    
-      <category term="数据库系统" scheme="https://yoursite.com/tags/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>并发控制机制的必要性</title>
-    <link href="https://yoursite.com/2020/09/11/%E5%B9%B6%E5%8F%91%E6%8E%A7%E5%88%B6%E6%9C%BA%E5%88%B6%E7%9A%84%E5%BF%85%E8%A6%81%E6%80%A7/"/>
-    <id>https://yoursite.com/2020/09/11/%E5%B9%B6%E5%8F%91%E6%8E%A7%E5%88%B6%E6%9C%BA%E5%88%B6%E7%9A%84%E5%BF%85%E8%A6%81%E6%80%A7/</id>
-    <published>2020-09-10T16:01:25.000Z</published>
-    <updated>2021-01-19T04:31:33.136Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="Concurrency-control-mechanisms并发控制机制的必要性"><a href="#Concurrency-control-mechanisms并发控制机制的必要性" class="headerlink" title="Concurrency-control mechanisms并发控制机制的必要性"></a>Concurrency-control mechanisms并发控制机制的必要性</h2><p><strong>事务是并发控制的基本单位</strong>，保证事务的ACID特性是事务处理的重要任务，而事务的 ACID 特性可能遭到破坏的原因之一是多个事务对数据库的并发操作造成的。为了保证事务的隔离性和一致性，数据库管理系统需要对并发操作进行正确。<strong>并发操作带来的数据不一致性包括丢失修改、不可重复读和读“脏”数据。</strong></p><a id="more"></a><p><strong>1. 丢失修改(lost update)</strong><br>两个事务T1和T2,读入同一数据并修改，T2,提交的结果破坏了T1提交的结果，导致T的修改被丢失。<br><strong>2. 不可重复读(non-repeatable read)</strong><br>不可重复读是指事务T读取数据后，事务T执行更新操作，使T无法再现前一次读取结果。<br>具体地讲，不可重复读包括三种情况:  </p><ul><li>事务T1读取某一数据后，事务T2对其进行了修改，当事务T1再次读该数据时，得到与前一次不同的值。</li><li>事务T1按一定条件从数据库中读取了某些数据记录后，事务T2删除了其中部分记录，当T1再次按相同条件读取数据时，发现某些记录神秘地消失了。</li><li>事务T1按一定条件从数据库中读取某些数据记录后，事务T2插入了一些记录，当T1再次按相同条件读取数据时，发现多了一些记录。  </li></ul><p><strong>3. 读“脏”数据（dirty read)</strong><br>读“脏”数据是指事务T1修改某一数据并将其写回磁盘，事务T2读取同一数据后，T1由于某种原因被撤销，这时被T1修改过的数据恢复原值，T2读到的数据就与数据库中的数据不一致，则T:读到的数据就为“脏”数据，即不正确的数据。  </p><p>产生上述三类数据不一致性的主要原因是并发操作破坏了事务的隔离性。<strong>并发控制机制就是要用正确的方式调度并发操作，使一个用户事务的执行不受其他事务的干扰，从而避免造成数据的不一致性。</strong><br>另一方面，对数据库的应用有时允许某些不一致性，例如有些统计工作涉及数据量很大，读到一些“脏”数据对统计精度没什么影响，这时可以降低对一致性的要求以减少系统开销。<br><strong>并发控制的主要技术有封锁（locking)、时间戳（timestamp)、乐观控制法（optimistic<br>scheduler）和多版本并发控制（multi-version concurrency control，MVCC）等。</strong></p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;Concurrency-control-mechanisms并发控制机制的必要性&quot;&gt;&lt;a href=&quot;#Concurrency-control-mechanisms并发控制机制的必要性&quot; class=&quot;headerlink&quot; title=&quot;Concurrency-control mechanisms并发控制机制的必要性&quot;&gt;&lt;/a&gt;Concurrency-control mechanisms并发控制机制的必要性&lt;/h2&gt;&lt;p&gt;&lt;strong&gt;事务是并发控制的基本单位&lt;/strong&gt;，保证事务的ACID特性是事务处理的重要任务，而事务的 ACID 特性可能遭到破坏的原因之一是多个事务对数据库的并发操作造成的。为了保证事务的隔离性和一致性，数据库管理系统需要对并发操作进行正确。&lt;strong&gt;并发操作带来的数据不一致性包括丢失修改、不可重复读和读“脏”数据。&lt;/strong&gt;&lt;/p&gt;
     
     </summary>
     
