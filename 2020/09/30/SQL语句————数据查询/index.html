@@ -8,12 +8,12 @@
   <link rel="dns-prefetch" href="https://yoursite.com">
   <title>SQL语句————数据查询 | ykhblog 一路向北</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="数据查询是数据库最核心的功能，也是我们需要重点掌握的部分，该语句有很多灵活多变的操作值得我们去学习。其一般格式为：（一般格式写的比较复杂，但一般不会这么复杂） SELECT [ALL|DISTINCT] &lt;目标列表达式&gt; [,&lt;目标列表达式&gt;] ...FROM &lt;表名或者视图名&gt; [,&lt;表名或者视图名&gt;...] | (&lt;SELECT 语句&amp;gt">
+  <meta name="description" content="数据查询是数据库最核心的功能，也是我们需要重点掌握的部分，该语句有很多灵活多变的操作值得我们去学习。其一般格式为：（一般格式写的比较复杂，但一般不会这么复杂）SELECT [ALL|DISTINCT] &lt;目标列表达式&gt; [,&lt;目标列表达式&gt;] ...FROM &lt;表名或者视图名&gt; [,&lt;表名或者视图名&gt;...] | (&lt;SELECT 语句&gt;">
 <meta property="og:type" content="article">
 <meta property="og:title" content="SQL语句————数据查询">
 <meta property="og:url" content="https://yoursite.com/2020/09/30/SQL%E8%AF%AD%E5%8F%A5%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E6%95%B0%E6%8D%AE%E6%9F%A5%E8%AF%A2/index.html">
 <meta property="og:site_name" content="ykhblog 一路向北">
-<meta property="og:description" content="数据查询是数据库最核心的功能，也是我们需要重点掌握的部分，该语句有很多灵活多变的操作值得我们去学习。其一般格式为：（一般格式写的比较复杂，但一般不会这么复杂） SELECT [ALL|DISTINCT] &lt;目标列表达式&gt; [,&lt;目标列表达式&gt;] ...FROM &lt;表名或者视图名&gt; [,&lt;表名或者视图名&gt;...] | (&lt;SELECT 语句&amp;gt">
+<meta property="og:description" content="数据查询是数据库最核心的功能，也是我们需要重点掌握的部分，该语句有很多灵活多变的操作值得我们去学习。其一般格式为：（一般格式写的比较复杂，但一般不会这么复杂）SELECT [ALL|DISTINCT] &lt;目标列表达式&gt; [,&lt;目标列表达式&gt;] ...FROM &lt;表名或者视图名&gt; [,&lt;表名或者视图名&gt;...] | (&lt;SELECT 语句&gt;">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-09-29T16:08:03.000Z">
 <meta property="article:modified_time" content="2021-01-19T04:31:33.654Z">
@@ -208,11 +208,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>数据查询是数据库最核心的功能，也是我们需要重点掌握的部分，该语句有很多灵活多变的操作值得我们去学习。<br>其一般格式为：（一般格式写的比较复杂，但一般不会这么复杂）</p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> [<span class="hljs-keyword">ALL</span>|<span class="hljs-keyword">DISTINCT</span>] &lt;目标列表达式&gt; [,&lt;目标列表达式&gt;] ...<br><span class="hljs-keyword">FROM</span> &lt;表名或者视图名&gt; [,&lt;表名或者视图名&gt;...] | (&lt;<span class="hljs-keyword">SELECT</span> 语句&gt; 嵌套) [<span class="hljs-keyword">AS</span>] &lt;别名&gt;<br><span class="hljs-keyword">WHERE</span> &lt;条件表达式&gt; | (&lt;<span class="hljs-keyword">SELECT</span> 语句&gt; 嵌套) <br>[<span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span> &lt;列名<span class="hljs-number">1</span>&gt; [<span class="hljs-keyword">HAVING</span> &lt;条件表达式&gt;]]<br>[<span class="hljs-keyword">ORDER</span> <span class="hljs-keyword">BY</span> &lt;列名<span class="hljs-number">2</span>&gt; [,&lt;列名<span class="hljs-number">3</span>&gt;...] [<span class="hljs-keyword">ASC</span>(升序)|<span class="hljs-keyword">DESC</span>(降序)] ];<br></code></pre></td></tr></table></figure>
-<!--mroe-->
-
-
+        <p>数据查询是数据库最核心的功能，也是我们需要重点掌握的部分，该语句有很多灵活多变的操作值得我们去学习。<br>其一般格式为：（一般格式写的比较复杂，但一般不会这么复杂）<br><figure class="highlight sql"><table><tr><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> [<span class="hljs-keyword">ALL</span>|<span class="hljs-keyword">DISTINCT</span>] &lt;目标列表达式&gt; [,&lt;目标列表达式&gt;] ...<br><span class="hljs-keyword">FROM</span> &lt;表名或者视图名&gt; [,&lt;表名或者视图名&gt;...] | (&lt;<span class="hljs-keyword">SELECT</span> 语句&gt; 嵌套) [<span class="hljs-keyword">AS</span>] &lt;别名&gt;<br><span class="hljs-keyword">WHERE</span> &lt;条件表达式&gt; | (&lt;<span class="hljs-keyword">SELECT</span> 语句&gt; 嵌套) <br>[<span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span> &lt;列名<span class="hljs-number">1</span>&gt; [<span class="hljs-keyword">HAVING</span> &lt;条件表达式&gt;]]<br>[<span class="hljs-keyword">ORDER</span> <span class="hljs-keyword">BY</span> &lt;列名<span class="hljs-number">2</span>&gt; [,&lt;列名<span class="hljs-number">3</span>&gt;...] [<span class="hljs-keyword">ASC</span>(升序)|<span class="hljs-keyword">DESC</span>(降序)] ];<br></code></pre></td></tr></table></figure><br><!--mroe--></p>
 
       
 
@@ -564,15 +560,15 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Django</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">编译原理</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">数据库系统</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Django</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -596,11 +592,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">web基础</a>
+                <a href="javascript:void(0)" class="js-tag color5">Java</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Java</a>
+                <a href="javascript:void(0)" class="js-tag color1">web基础</a>
               </li>
              
               <li class="article-tag-list-item">
