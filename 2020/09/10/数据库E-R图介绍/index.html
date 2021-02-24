@@ -212,8 +212,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>教师节快乐，害，今天听了一整天的新裤子的关于夜晚和失眠的世界，果然我还是喜欢music和乐队还有老歌，9月10号嗯，今天的到来其实也宣告暑假的一切都告一段落了（祝国赛的朋友们都能取得好成绩！），新学期开始了，害又要开始学习了，第一节课老师就来整英语，真难为我，呜呜呜。行吧，正好做作业就写写数据库的东西吧，首先声明这篇博客差不多是一种笔记吧，大部分的文字来源于书本和网上的博客，书本是王珊和萨师煊的《数据库系统概论》，博客的话参考了比较多，这里就挂一两个吧<a href="https://blog.csdn.net/Medran/article/details/78424499" target="_blank" rel="noopener">E-R 图简介</a>,<a href="https://blog.csdn.net/qq_36513534/article/details/82219977" target="_blank" rel="noopener">数据库的设计</a></p>
-<a id="more"></a>
+        <p>教师节快乐，害，今天听了一整天的新裤子的关于夜晚和失眠的世界，果然我还是喜欢music和乐队还有老歌，9月10号嗯，今天的到来其实也宣告暑假的一切都告一段落了（祝国赛的朋友们都能取得好成绩！），新学期开始了，害又要开始学习了，第一节课老师就来整英语，真难为我，呜呜呜。行吧，正好做作业就写写数据库的东西吧，首先声明这篇博客差不多是一种笔记吧，大部分的文字来源于书本和网上的博客，书本是王珊和萨师煊的《数据库系统概论》，博客的话参考了比较多，这里就挂一两个吧<a href="https://blog.csdn.net/Medran/article/details/78424499" target="_blank" rel="noopener">E-R 图简介</a>,<a href="https://blog.csdn.net/qq_36513534/article/details/82219977" target="_blank" rel="noopener">数据库的设计</a><br><a id="more"></a></p>
 <h2 id="数据库E-R图介绍"><a href="#数据库E-R图介绍" class="headerlink" title="数据库E-R图介绍"></a>数据库E-R图介绍</h2><p>E-R模型是指Entity Relationship Diagrams（实体关系模型）<br><strong>E-R图3个要素：实体，属性，关系</strong>。E-R图提供了表示实体型、属性和联系的方法。 </p>
 <ul>
 <li>实体型用矩形表示，矩形框内写明实体名。</li>
@@ -221,20 +220,24 @@
 <li>联系用菱形表示，菱形框内写明联系名，并用无向边分别与有关实体型连接起来，同时在无向边旁标上联系的类型（1:1、1:n或m:n）  </li>
 </ul>
 <p><strong>连线</strong>：实体和属性之间、实体与联系之间、联系与属性之间用直线连接，并在直线上标注联系的类型。（注意：对于1：1的联系，要在两个实体连线方向各写1，1：n关系的，要在一的方向写1，多的方向写N；对于N:M关系的，则要在两个实体连线方向各写N,M）</p>
+<div class="table-container">
 <table>
 <thead>
 <tr>
-<th align="center">1:1联系</th>
-<th align="center">1：n联系</th>
-<th align="center">m:n联系</th>
+<th style="text-align:center">1:1联系</th>
+<th style="text-align:center">1：n联系</th>
+<th style="text-align:center">m:n联系</th>
 </tr>
 </thead>
-<tbody><tr>
-<td align="center">将联系与任意端实体所对应的关系模式合并，加入另一端实体的码和联系的属性。</td>
-<td align="center">将联系与n端实体所对应的关系模式合并，加入1端实体的码和联系的属性。</td>
-<td align="center">将m:n联系转换成一个关系模式。将该联系相连的各实体的码和联系本身的属性转换为关系的属性。</td>
+<tbody>
+<tr>
+<td style="text-align:center">将联系与任意端实体所对应的关系模式合并，加入另一端实体的码和联系的属性。</td>
+<td style="text-align:center">将联系与n端实体所对应的关系模式合并，加入1端实体的码和联系的属性。</td>
+<td style="text-align:center">将m:n联系转换成一个关系模式。将该联系相连的各实体的码和联系本身的属性转换为关系的属性。</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <h2 id="实例——图书借阅管理系统"><a href="#实例——图书借阅管理系统" class="headerlink" title="实例——图书借阅管理系统"></a>实例——图书借阅管理系统</h2><p>数据库要求提供下述服务：</p>
 <ul>
 <li>可随时查询书库中现有书籍的品种、数量与存放位置。所有各类书籍均可由书号惟一标识。</li>
@@ -594,7 +597,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">编译原理</a>
+                <a href="javascript:void(0)" class="js-tag color2">Django</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -602,11 +605,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">youth</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Django</a>
+                <a href="javascript:void(0)" class="js-tag color5">编译原理</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -614,7 +613,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">pandas</a>
+                <a href="javascript:void(0)" class="js-tag color1">youth</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -623,6 +622,10 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">计算机视觉</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">pandas</a>
               </li>
              
               <li class="article-tag-list-item">
