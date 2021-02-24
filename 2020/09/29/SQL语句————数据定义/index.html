@@ -208,8 +208,11 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>SQL又称结构化查询语句（Structed Query Language）是关系数据库的标准语言，也是一个通用的，功能极强的关系数据库语言。<br>SQL集<strong>数据查询、数据操纵、数据定义、数据控制</strong>功能于一体。<br><strong>目前没有一个数据库系统能支持SQL标准的所有概念和特性。但同时许多软件厂商对SQL基本命令集还进行了不同程度的扩充和修改，又可以支持标准以外的一些功能特性。</strong><br><a id="more"></a></p>
-<h2 id="定义模式"><a href="#定义模式" class="headerlink" title="定义模式"></a>定义模式</h2><p>在SQL中，模式定义语句如下：<br><figure class="highlight sql"><table><tr><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">SCHEMA</span> &lt;模式名&gt; AUTHORIZATION &lt;用户名&gt;<br></code></pre></td></tr></table></figure><br>如果没有指定&lt;模式名&gt;，那么&lt;模式名&gt;隐含为&lt;用户名&gt;<br>要创建模式，调用该命令的用户名必需拥有数据库管理员权限，或者获得了数据库管理员授权的CREATE SCHEMA的权限。</p>
+        <p>SQL又称结构化查询语句（Structed Query Language）是关系数据库的标准语言，也是一个通用的，功能极强的关系数据库语言。<br>SQL集<strong>数据查询、数据操纵、数据定义、数据控制</strong>功能于一体。<br><strong>目前没有一个数据库系统能支持SQL标准的所有概念和特性。但同时许多软件厂商对SQL基本命令集还进行了不同程度的扩充和修改，又可以支持标准以外的一些功能特性。</strong></p>
+<a id="more"></a>
+<h2 id="定义模式"><a href="#定义模式" class="headerlink" title="定义模式"></a>定义模式</h2><p>在SQL中，模式定义语句如下：</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">SCHEMA</span> &lt;模式名&gt; AUTHORIZATION &lt;用户名&gt;<br></code></pre></td></tr></table></figure>
+<p>如果没有指定&lt;模式名&gt;，那么&lt;模式名&gt;隐含为&lt;用户名&gt;<br>要创建模式，调用该命令的用户名必需拥有数据库管理员权限，或者获得了数据库管理员授权的CREATE SCHEMA的权限。</p>
 <h2 id="删除模式"><a href="#删除模式" class="headerlink" title="删除模式"></a>删除模式</h2><figure class="highlight sql"><table><tr><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">DROP</span> <span class="hljs-keyword">SCHEMA</span> &lt;模式名&gt; &lt;<span class="hljs-keyword">CASCADE</span>|RESTRICT&gt;<br></code></pre></td></tr></table></figure>
 <p>其中CASCADE|RESTRICT必须二选一，两者有不同的作用。</p>
 <ol>
@@ -217,7 +220,10 @@
 <li>选择了RESTRICT，限制，表示如果该模式中已经定义了下属的数据库对象，则拒绝该删除语句的执行。</li>
 </ol>
 <h2 id="基本表的定义与创建"><a href="#基本表的定义与创建" class="headerlink" title="基本表的定义与创建"></a>基本表的定义与创建</h2><figure class="highlight sql"><table><tr><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TABLE</span> &lt;表名&gt;(<br>    &lt;列名&gt;&lt;数据类型&gt;,[列级完整性约束条件],<br>    &lt;列名&gt;&lt;数据类型&gt;,[列级完整性约束条件],<br>    &lt;列名&gt;&lt;数据类型&gt;,[列级完整性约束条件],<br>    ...<br>);<br></code></pre></td></tr></table></figure>
-<h2 id="修改基本表"><a href="#修改基本表" class="headerlink" title="修改基本表"></a>修改基本表</h2><p>修改语句主要是通过ALERT TABLE来操作<br><figure class="highlight sql"><table><tr><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">ALTER</span> <span class="hljs-keyword">TABLE</span> &lt;表名&gt;<br>[<span class="hljs-keyword">ADD</span> [<span class="hljs-keyword">COLUMN</span>] &lt;新列名&gt;&lt;数据类型&gt; [完整性约束]]<br>[<span class="hljs-keyword">ADD</span> &lt;表级完整性约束&gt;]<br>[<span class="hljs-keyword">DROP</span> [<span class="hljs-keyword">COLUMN</span>] &lt;列名&gt; [<span class="hljs-keyword">CASCADE</span>|RESTRICT] ]<br>[<span class="hljs-keyword">DROP</span> <span class="hljs-keyword">CONSTRAINT</span> &lt;完整性约束名&gt; [<span class="hljs-keyword">CASCADE</span>|RESTRICT]]<br>[ALER <span class="hljs-keyword">COLUMN</span>&lt;列名&gt;&lt;数据类型&gt;];<br></code></pre></td></tr></table></figure></p>
+
+<h2 id="修改基本表"><a href="#修改基本表" class="headerlink" title="修改基本表"></a>修改基本表</h2><p>修改语句主要是通过ALERT TABLE来操作</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">ALTER</span> <span class="hljs-keyword">TABLE</span> &lt;表名&gt;<br>[<span class="hljs-keyword">ADD</span> [<span class="hljs-keyword">COLUMN</span>] &lt;新列名&gt;&lt;数据类型&gt; [完整性约束]]<br>[<span class="hljs-keyword">ADD</span> &lt;表级完整性约束&gt;]<br>[<span class="hljs-keyword">DROP</span> [<span class="hljs-keyword">COLUMN</span>] &lt;列名&gt; [<span class="hljs-keyword">CASCADE</span>|RESTRICT] ]<br>[<span class="hljs-keyword">DROP</span> <span class="hljs-keyword">CONSTRAINT</span> &lt;完整性约束名&gt; [<span class="hljs-keyword">CASCADE</span>|RESTRICT]]<br>[ALER <span class="hljs-keyword">COLUMN</span>&lt;列名&gt;&lt;数据类型&gt;];<br></code></pre></td></tr></table></figure>
+
 <h2 id="删除表"><a href="#删除表" class="headerlink" title="删除表"></a>删除表</h2><figure class="highlight sql"><table><tr><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">DROP</span> <span class="hljs-keyword">TABLE</span> &lt;表名&gt; [RESTRICT|<span class="hljs-keyword">CASCADE</span>]<br></code></pre></td></tr></table></figure>
 
       
@@ -578,11 +584,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Django</a>
+                <a href="javascript:void(0)" class="js-tag color1">youth</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">youth</a>
+                <a href="javascript:void(0)" class="js-tag color2">Django</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -590,7 +596,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">计算机视觉</a>
+                <a href="javascript:void(0)" class="js-tag color2">pandas</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -598,15 +604,19 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">pandas</a>
+                <a href="javascript:void(0)" class="js-tag color1">计算机视觉</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Java</a>
+                <a href="javascript:void(0)" class="js-tag color2">docker</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">web基础</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Java</a>
               </li>
              
               <li class="article-tag-list-item">

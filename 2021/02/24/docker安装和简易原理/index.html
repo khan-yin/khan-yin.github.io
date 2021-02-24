@@ -6,28 +6,31 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://yoursite.com">
-  <title>编译原理第二章——文法分类 | ykhblog 一路向北</title>
+  <title>docker安装和简易原理 | ykhblog 一路向北</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="语言和文法编译原理第二章文法分类，紫书内容和mooc知识总结，重新回顾了4种文法的知识。 文法分类乔姆斯基把语言文法分成4类，0型，1型，2型，3型，这几类文法的差别主要在于对产生式的限制不同，等级越高，限制越严格。 0型文法0型文法是文法限制最弱的一种类型，0型文法的能力又被相当于图灵机模型，或者说任何0型文法都是递归可枚举的，反之，递归可枚举的一定是一个0型语言。">
+  <meta name="description" content="docker安装和简易原理最近参加了阿里云datawhale天池的一个比赛里面需要用docker进行提交，所以借此机会学习了一下docker，b站上有个很好的视频【狂神说Java】Docker最新超详细版教程通俗易懂 docker基本组成">
 <meta property="og:type" content="article">
-<meta property="og:title" content="编译原理第二章——文法分类">
-<meta property="og:url" content="https://yoursite.com/2020/10/02/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86%E7%AC%AC%E4%BA%8C%E7%AB%A0%E2%80%94%E2%80%94%E6%96%87%E6%B3%95%E5%88%86%E7%B1%BB/index.html">
+<meta property="og:title" content="docker安装和简易原理">
+<meta property="og:url" content="https://yoursite.com/2021/02/24/docker%E5%AE%89%E8%A3%85%E5%92%8C%E7%AE%80%E6%98%93%E5%8E%9F%E7%90%86/index.html">
 <meta property="og:site_name" content="ykhblog 一路向北">
-<meta property="og:description" content="语言和文法编译原理第二章文法分类，紫书内容和mooc知识总结，重新回顾了4种文法的知识。 文法分类乔姆斯基把语言文法分成4类，0型，1型，2型，3型，这几类文法的差别主要在于对产生式的限制不同，等级越高，限制越严格。 0型文法0型文法是文法限制最弱的一种类型，0型文法的能力又被相当于图灵机模型，或者说任何0型文法都是递归可枚举的，反之，递归可枚举的一定是一个0型语言。">
+<meta property="og:description" content="docker安装和简易原理最近参加了阿里云datawhale天池的一个比赛里面需要用docker进行提交，所以借此机会学习了一下docker，b站上有个很好的视频【狂神说Java】Docker最新超详细版教程通俗易懂 docker基本组成">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20201002110133143.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0phY2tfX19F,size_16,color_FFFFFF,t_70#pic_center">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20201002111340975.png#pic_center">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20201002111557799.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0phY2tfX19F,size_16,color_FFFFFF,t_70#pic_center">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20201002141025946.png#pic_center">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20201002142059138.png#pic_center">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20201002142509302.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0phY2tfX19F,size_16,color_FFFFFF,t_70#pic_center">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20201002142911916.png#pic_center">
-<meta property="article:published_time" content="2020-10-02T01:35:22.000Z">
-<meta property="article:modified_time" content="2021-01-19T04:31:33.303Z">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210224124633537.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0phY2tfX19F,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210224124854806.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0phY2tfX19F,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/2021022412185923.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0phY2tfX19F,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210224122343176.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0phY2tfX19F,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210224122509960.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210224123245412.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0phY2tfX19F,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210224123453853.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0phY2tfX19F,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210224124010560.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0phY2tfX19F,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210224124320560.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0phY2tfX19F,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210224124350819.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0phY2tfX19F,size_16,color_FFFFFF,t_70">
+<meta property="article:published_time" content="2021-02-24T04:53:00.000Z">
+<meta property="article:modified_time" content="2021-02-24T04:57:02.012Z">
 <meta property="article:author" content="whut ykh">
-<meta property="article:tag" content="编译原理">
+<meta property="article:tag" content="docker">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20201002110133143.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0phY2tfX19F,size_16,color_FFFFFF,t_70#pic_center">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20210224124633537.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0phY2tfX19F,size_16,color_FFFFFF,t_70">
   
   
     <link rel="icon" href="/assets/xxb.jpg">
@@ -196,49 +199,51 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-编译原理第二章——文法分类" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-docker安装和简易原理" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      编译原理第二章——文法分类
+      docker安装和简易原理
     </h1>
   
 
         
-        <a href="/2020/10/02/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86%E7%AC%AC%E4%BA%8C%E7%AB%A0%E2%80%94%E2%80%94%E6%96%87%E6%B3%95%E5%88%86%E7%B1%BB/" class="archive-article-date">
-  	<time datetime="2020-10-02T01:35:22.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-10-02</time>
+        <a href="/2021/02/24/docker%E5%AE%89%E8%A3%85%E5%92%8C%E7%AE%80%E6%98%93%E5%8E%9F%E7%90%86/" class="archive-article-date">
+  	<time datetime="2021-02-24T04:53:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-02-24</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="语言和文法"><a href="#语言和文法" class="headerlink" title="语言和文法"></a>语言和文法</h1><p>编译原理第二章文法分类，紫书内容和mooc知识总结，重新回顾了4种文法的知识。</p>
-<h2 id="文法分类"><a href="#文法分类" class="headerlink" title="文法分类"></a>文法分类</h2><p>乔姆斯基把语言文法分成4类，0型，1型，2型，3型，这几类文法的差别主要在于对产生式的限制不同，等级越高，限制越严格。</p>
-<h4 id="0型文法"><a href="#0型文法" class="headerlink" title="0型文法"></a>0型文法</h4><p>0型文法是文法限制最弱的一种类型，0型文法的能力又被相当于<strong>图灵机</strong>模型，或者说<strong>任何0型文法都是递归可枚举的，反之，递归可枚举的一定是一个0型语言</strong>。</p>
+        <h2 id="docker安装和简易原理"><a href="#docker安装和简易原理" class="headerlink" title="docker安装和简易原理"></a>docker安装和简易原理</h2><p>最近参加了阿里云datawhale天池的一个比赛里面需要用docker进行提交，所以借此机会学习了一下docker，b站上有个很好的视频<a href="https://www.bilibili.com/video/BV1og4y1q7M4?p=6" target="_blank" rel="noopener">【狂神说Java】Docker最新超详细版教程通俗易懂</a></p>
+<h2 id="docker基本组成"><a href="#docker基本组成" class="headerlink" title="docker基本组成"></a>docker基本组成</h2><p><img src="https://img-blog.csdnimg.cn/20210224124633537.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0phY2tfX19F,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
 <a id="more"></a>
-<p><strong>定义：</strong><br>设$G=(V_N,V_T,P,S)$，如果$P$中的每一个产生式$\alpha$-&gt;$\beta$满足条件：</p>
-<ol>
-<li>$\alpha \in (V_N \cup V_T)^*$且至少含有一个非终结符。</li>
-<li>$\beta \in (V_N \cup V_T)^*$</li>
-</ol>
-<p><strong>0型例子：</strong><br><img src="https://img-blog.csdnimg.cn/20201002110133143.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0phY2tfX19F,size_16,color_FFFFFF,t_70#pic_center" alt="0型实例"></p>
-<h4 id="1型文法——上下文有关文法"><a href="#1型文法——上下文有关文法" class="headerlink" title="1型文法——上下文有关文法"></a>1型文法——上下文有关文法</h4><p>1型文法中最主要的限制条件主要是对于产生式P均满足$|\beta| \ge|\alpha|$,仅$S \rightarrow \epsilon$除外。<br><strong>等价定义：</strong><br><img src="https://img-blog.csdnimg.cn/20201002111340975.png#pic_center" alt="1型文法"></p>
-<p><strong>1型例子：</strong><br><img src="https://img-blog.csdnimg.cn/20201002111557799.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0phY2tfX19F,size_16,color_FFFFFF,t_70#pic_center" alt="1型文法"></p>
-<h4 id="2型文法——上下文无关文法"><a href="#2型文法——上下文无关文法" class="headerlink" title="2型文法——上下文无关文法"></a>2型文法——上下文无关文法</h4><p>2型文法对应的是<strong>下推自动机</strong>模型，常用于描述高级语言的<strong>语法规则</strong>。<br><strong>定义：</strong><br>设$G=(V_N,V_T,P,S)$，如果$P$中的每一个产生式$\alpha$-&gt;$\beta$满足条件：</p>
-<ol>
-<li>$\alpha$是<strong>一个</strong>非终结符。</li>
-<li>$\beta \in (V_N \cup V_T)^*$</li>
-</ol>
-<p><strong>2型例子：</strong><br><img src="https://img-blog.csdnimg.cn/20201002141025946.png#pic_center" alt="在这里插入图片描述"></p>
-<h4 id="3型文法——正规文法"><a href="#3型文法——正规文法" class="headerlink" title="3型文法——正规文法"></a>3型文法——正规文法</h4><p>正规文法对应的是有穷自动机，用来描述高级语言的<strong>词法规则</strong><br><strong>定义：</strong><br>设$G=(V_N,V_T,P,S)$，如果$P$中的每一个产生式$\alpha$-&gt;$\beta$都是$A-&gt;aB$或者$A-&gt;a$的形式，其中A，B都是非终结符，$a \in V_T^*$即就是，由一个非终结符推导出一个终结符或者一个终结符+一个非终结符构成的字串。</p>
-<p><img src="https://img-blog.csdnimg.cn/20201002142059138.png#pic_center" alt="3"></p>
-<p><strong>正规文法例子：</strong><br>这里尖括号括起来的是非终结符，其他的是终结符。<br><img src="https://img-blog.csdnimg.cn/20201002142509302.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0phY2tfX19F,size_16,color_FFFFFF,t_70#pic_center" alt="3"></p>
-<p>4种文法的定义的限制是逐步增强的，四种文法是逐步包含的，因此每一种正规文法都是上下文无关的，每一种上下文无关文法都是上下文有关的，每一种上下文有关文法都是0型文法。</p>
-<p><img src="https://img-blog.csdnimg.cn/20201002142911916.png#pic_center" alt="0"></p>
+
+<p><img src="https://img-blog.csdnimg.cn/20210224124854806.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0phY2tfX19F,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h2 id="docker安装"><a href="#docker安装" class="headerlink" title="docker安装"></a>docker安装</h2><p>centos7安装<br>先查看centos版本，新版本的docker都只支持centos7以上</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">(base) [root@iZuf69rye0flkbn4kbxrobZ ~]<span class="hljs-comment"># cat /etc/os-release</span><br>NAME=<span class="hljs-string">"CentOS Linux"</span><br>VERSION=<span class="hljs-string">"7 (Core)"</span><br>ID=<span class="hljs-string">"centos"</span><br>ID_LIKE=<span class="hljs-string">"rhel fedora"</span><br>VERSION_ID=<span class="hljs-string">"7"</span><br>PRETTY_NAME=<span class="hljs-string">"CentOS Linux 7 (Core)"</span><br>ANSI_COLOR=<span class="hljs-string">"0;31"</span><br>CPE_NAME=<span class="hljs-string">"cpe:/o:centos:centos:7"</span><br>HOME_URL=<span class="hljs-string">"https://www.centos.org/"</span><br>BUG_REPORT_URL=<span class="hljs-string">"https://bugs.centos.org/"</span><br><br>CENTOS_MANTISBT_PROJECT=<span class="hljs-string">"CentOS-7"</span><br>CENTOS_MANTISBT_PROJECT_VERSION=<span class="hljs-string">"7"</span><br>REDHAT_SUPPORT_PRODUCT=<span class="hljs-string">"centos"</span><br>REDHAT_SUPPORT_PRODUCT_VERSION=<span class="hljs-string">"7"</span><br></code></pre></td></tr></table></figure>
+
+<p>然后我们的操作均按照帮助文档进行操作即可<br><a href="https://docs.docker.com/engine/install/centos/" target="_blank" rel="noopener">dockerCentos安装</a></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 卸载旧版本</span><br>sudo yum remove docker \<br>                  docker-client \<br>                  docker-client-latest \<br>                  docker-common \<br>                  docker-latest \<br>                  docker-latest-logrotate \<br>                  docker-logrotate \<br>                  docker-engine<br><br><span class="hljs-comment"># 安装</span><br>sudo yum install -y yum-utils<br><br><span class="hljs-comment">#配置镜像，官方是国外的很慢，这里我们使用阿里云镜像</span><br>sudo yum-config-manager \<br>    --add-repo \<br>    https://download.docker.com/linux/centos/docker-ce.repo<br><br><span class="hljs-comment"># 推荐使用这个</span><br>sudo yum-config-manager --add-repo http://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo<br><br><span class="hljs-comment">#更新yum</span><br>yum makecache fast<br><br><span class="hljs-comment"># 安装相关的包</span><br> sudo yum install docker-ce docker-ce-cli containerd.io<br></code></pre></td></tr></table></figure>
+
+<h2 id="Start-Docker"><a href="#Start-Docker" class="headerlink" title="Start Docker"></a>Start Docker</h2><figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">sudo systemctl start docker<br></code></pre></td></tr></table></figure>
+<p>使用<code>docker version</code>查看是否安装成功<br><img src="https://img-blog.csdnimg.cn/2021022412185923.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0phY2tfX19F,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><code>sudo docker run hello-world</code><img src="https://img-blog.csdnimg.cn/20210224122343176.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0phY2tfX19F,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<p>使用<code>docker images</code> 查看所安装的所有镜像<br><img src="https://img-blog.csdnimg.cn/20210224122509960.png" alt="在这里插入图片描述"></p>
+<h2 id="Uninstall-Docker-Engine"><a href="#Uninstall-Docker-Engine" class="headerlink" title="Uninstall Docker Engine"></a>Uninstall Docker Engine</h2><p>1.Uninstall the Docker Engine, CLI, and Containerd packages:</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">sudo yum remove docker-ce docker-ce-cli containerd.io<br></code></pre></td></tr></table></figure>
+<p>2.删除默认工作目录和资源</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">$ sudo rm -rf /var/lib/docker<br></code></pre></td></tr></table></figure>
+
+<h2 id="阿里云镜像加速器"><a href="#阿里云镜像加速器" class="headerlink" title="阿里云镜像加速器"></a>阿里云镜像加速器</h2><p>这一块的话推荐天池的一个<a href="https://tianchi.aliyun.com/competition/entrance/231759/tab/226" target="_blank" rel="noopener">docker学习赛</a><br>登录阿里云找到容器服务，并创建新容器,然后找到里面的镜像加速器对centos进行配置。<br><img src="https://img-blog.csdnimg.cn/20210224123245412.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0phY2tfX19F,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">sudo mkdir -p /etc/docker<br><br>sudo tee /etc/docker/daemon.json &lt;&lt;-<span class="hljs-string">'EOF'</span><br>&#123;<br>  <span class="hljs-string">"registry-mirrors"</span>: [<span class="hljs-string">"https://fdm7vcvf.mirror.aliyuncs.com"</span>]<br>&#125;<br>EOF<br><br>sudo systemctl daemon-reload<br><br>sudo systemctl restart docker<br></code></pre></td></tr></table></figure>
+
+<h2 id="回归Hello-World镜像的运行过程"><a href="#回归Hello-World镜像的运行过程" class="headerlink" title="回归Hello World镜像的运行过程"></a>回归Hello World镜像的运行过程</h2><p><img src="https://img-blog.csdnimg.cn/20210224123453853.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0phY2tfX19F,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h2 id="底层原理"><a href="#底层原理" class="headerlink" title="底层原理"></a>底层原理</h2><p>Docker是什么工作的?<br>Docker是一个Client - Server结构的系统，Docker的守护进行运行在主机上。通过Socket从客户端访问!DockerServer接收到Docker-Client的指令，就会执行这个命令!<br><img src="https://img-blog.csdnimg.cn/20210224124010560.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0phY2tfX19F,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>docker为什么比虚拟机快？<br><a href="https://www.cnblogs.com/fanqisoft/p/10440220.html" target="_blank" rel="noopener">参考链接</a></p>
+<p><img src="https://img-blog.csdnimg.cn/20210224124320560.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0phY2tfX19F,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20210224124350819.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0phY2tfX19F,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
 
       
 
@@ -252,7 +257,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">编译原理</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">docker</a>
         		</li>
       		
 		</ul>
@@ -308,7 +313,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=https://yoursite.com/2020/10/02/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86%E7%AC%AC%E4%BA%8C%E7%AB%A0%E2%80%94%E2%80%94%E6%96%87%E6%B3%95%E5%88%86%E7%B1%BB/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=https://yoursite.com/2021/02/24/docker%E5%AE%89%E8%A3%85%E5%92%8C%E7%AE%80%E6%98%93%E5%8E%9F%E7%90%86/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -322,18 +327,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2020/10/02/js%E5%9F%BA%E7%A1%80%E2%80%94%E2%80%94%E5%85%B3%E4%BA%8E%E5%AF%B9%E8%B1%A1/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          js基础——关于对象
-        
-      </div>
-    </a>
   
-  
-    <a href="/2020/09/30/SQL%E8%AF%AD%E5%8F%A5%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E6%95%B0%E6%8D%AE%E6%9F%A5%E8%AF%A2/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">SQL语句————数据查询</div>
+    <a href="/2021/02/23/datawhale%E8%AF%AD%E4%B9%89%E5%88%86%E5%89%B2-Task4-%E8%AF%84%E4%BB%B7%E5%87%BD%E6%95%B0%E4%B8%8E%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">datawhale语义分割-Task4 评价函数与损失函数</div>
       <i class="icon-circle-right"></i>
     </a>
   
