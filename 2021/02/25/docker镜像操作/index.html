@@ -39,7 +39,7 @@
 <meta property="og:image" content="https://img-blog.csdnimg.cn/20210224232749397.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0phY2tfX19F,size_16,color_FFFFFF,t_70">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/20210224232831852.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0phY2tfX19F,size_16,color_FFFFFF,t_70">
 <meta property="article:published_time" content="2021-02-24T16:03:00.000Z">
-<meta property="article:modified_time" content="2021-02-24T16:05:57.058Z">
+<meta property="article:modified_time" content="2021-02-25T03:39:24.785Z">
 <meta property="article:author" content="whut ykh">
 <meta property="article:tag" content="docker">
 <meta name="twitter:card" content="summary">
@@ -313,8 +313,8 @@
 <figure class="highlight powershell"><table><tr><td class="code"><pre><code class="hljs powershell">mkdir dockerfile<br>cd dockerfile<br>vim mydockerfile<span class="hljs-literal">-centos</span><br></code></pre></td></tr></table></figure>
 <p>编写mydockerfile-centos</p>
 <figure class="highlight powershell"><table><tr><td class="code"><pre><code class="hljs powershell">FROM centos<br>MAINTAINER khan&lt;khany@foxmail.com&gt;<br>ENV MYPATH /usr/local<br>WORKDIR <span class="hljs-variable">$MYPATH</span><br>RUN yum <span class="hljs-literal">-y</span> install vim<br>RUN yum <span class="hljs-literal">-y</span> install net<span class="hljs-literal">-tools</span><br>EXPOSE <span class="hljs-number">80</span><br>CMD echo <span class="hljs-variable">$MYPATH</span><br>CMD echo <span class="hljs-string">"---end---"</span><br>CMD /bin/bash<br></code></pre></td></tr></table></figure>
-<p>然后我们进入docker build</p>
-<figure class="highlight powershell"><table><tr><td class="code"><pre><code class="hljs powershell">docker build <span class="hljs-operator">-f</span> mydockerfile<span class="hljs-literal">-centos</span>  <span class="hljs-literal">-t</span> mycentos:<span class="hljs-number">1.0</span><br></code></pre></td></tr></table></figure>
+<p>然后我们进入<code>docker build</code>,<strong>注意后面一定要有一个.号</strong></p>
+<figure class="highlight powershell"><table><tr><td class="code"><pre><code class="hljs powershell">docker build <span class="hljs-operator">-f</span> mydockerfile<span class="hljs-literal">-centos</span>  <span class="hljs-literal">-t</span> mycentos:<span class="hljs-number">1.0</span> .<br></code></pre></td></tr></table></figure>
 <p>然后我们通过<code>docker run -it mycentos:1.0</code>命令进入我们自己创建的镜像测试运行我们新安装的包和命令是否能正常运行。<br><img src="https://img-blog.csdnimg.cn/20210224220131565.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0phY2tfX19F,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>我们可以通过 <code>docker history +容器名称/容器id</code>看到这个容器的构建过程。<br><img src="https://img-blog.csdnimg.cn/20210224220552645.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0phY2tfX19F,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
 <h2 id="CMD和ENTRYPOINT区别"><a href="#CMD和ENTRYPOINT区别" class="headerlink" title="CMD和ENTRYPOINT区别"></a>CMD和ENTRYPOINT区别</h2><p><img src="https://img-blog.csdnimg.cn/20210224222435489.png" alt="在这里插入图片描述"></p>
 <p>dockerfile-cmd-test：<br><figure class="highlight powershell"><table><tr><td class="code"><pre><code class="hljs powershell">FROM centos<br>CMD [<span class="hljs-string">"ls"</span>,<span class="hljs-string">"-a"</span>]<br></code></pre></td></tr></table></figure><br>dockerfile-entrypoint-test：<br><figure class="highlight powershell"><table><tr><td class="code"><pre><code class="hljs powershell">FROM centos<br>ENTRYPOINT [<span class="hljs-string">"ls"</span>,<span class="hljs-string">"-a"</span>]<br></code></pre></td></tr></table></figure><br>执行命令<code>docker run 容器名称 -l</code>在CMD下会报错，命令会被后面追加的<code>-l</code>替代，而<code>-l</code>并不是有效的linux命令，所以报错，而ENTRYPOINT则是可以追加的则该命令会变为<code>ls -al</code><br><img src="https://img-blog.csdnimg.cn/20210224222324355.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0phY2tfX19F,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
@@ -675,11 +675,15 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">数据库系统</a>
+                <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Hexo</a>
+                <a href="javascript:void(0)" class="js-tag color5">编译原理</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">数据库系统</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -691,7 +695,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">pandas</a>
+                <a href="javascript:void(0)" class="js-tag color5">Hexo</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -703,11 +707,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">docker</a>
+                <a href="javascript:void(0)" class="js-tag color2">pandas</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Java</a>
+                <a href="javascript:void(0)" class="js-tag color2">docker</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -715,7 +719,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
+                <a href="javascript:void(0)" class="js-tag color5">Java</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -724,10 +728,6 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">操作系统</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">编译原理</a>
               </li>
              
               <li class="article-tag-list-item">
