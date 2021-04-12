@@ -285,7 +285,9 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h2 id="commit镜像"><a href="#commit镜像" class="headerlink" title="commit镜像"></a>commit镜像</h2><p><img src="https://img-blog.csdnimg.cn/20210224162521454.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0phY2tfX19F,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
-<h2 id="数据卷操作实战：mysql同步"><a href="#数据卷操作实战：mysql同步" class="headerlink" title="数据卷操作实战：mysql同步"></a>数据卷操作实战：mysql同步</h2><p><strong>mysql运行容器，需要做数据挂载，安装启动mysql是需要配置密码的这一点要注意，所以要去docker hub官方文档上面去看官方配置</strong><br><figure class="highlight powershell"><table><tr><td class="code"><pre><code class="hljs powershell">docker pull mysql:<span class="hljs-number">5.7</span><br></code></pre></td></tr></table></figure></p>
+<h2 id="数据卷操作实战：mysql同步"><a href="#数据卷操作实战：mysql同步" class="headerlink" title="数据卷操作实战：mysql同步"></a>数据卷操作实战：mysql同步</h2><p><strong>mysql运行容器，需要做数据挂载，安装启动mysql是需要配置密码的这一点要注意，所以要去docker hub官方文档上面去看官方配置</strong></p>
+<figure class="highlight powershell"><table><tr><td class="code"><pre><code class="hljs powershell">docker pull mysql:<span class="hljs-number">5.7</span><br></code></pre></td></tr></table></figure>
+
 <p>docker运行，docker run的常用参数这里我们再次回顾一下</p>
 <figure class="highlight powershell"><table><tr><td class="code"><pre><code class="hljs powershell"><span class="hljs-literal">-d</span> 后台运行<br><span class="hljs-literal">-p</span> 端口映射<br><span class="hljs-literal">-v</span> 卷挂载<br><span class="hljs-literal">-e</span> 环境配置<br>-<span class="hljs-literal">-name</span> 环境名字<br></code></pre></td></tr></table></figure>
         
@@ -362,39 +364,36 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h1 id="Docker-常用命令"><a href="#Docker-常用命令" class="headerlink" title="Docker 常用命令"></a>Docker 常用命令</h1><h2 id="帮助命令"><a href="#帮助命令" class="headerlink" title="帮助命令"></a>帮助命令</h2><figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">docker version <span class="hljs-comment">#显示docker版本信息</span><br>docker info <span class="hljs-comment">#显示docker的系统信息，包括镜像和容器的数量</span><br>docker 命令 --<span class="hljs-built_in">help</span> <span class="hljs-comment"># 帮助命令</span><br></code></pre></td></tr></table></figure>
+
 <h2 id="镜像命令"><a href="#镜像命令" class="headerlink" title="镜像命令"></a>镜像命令</h2><p><strong>1.<code>docker images</code>查看所有本地的主机镜像</strong></p>
-<div class="table-container">
 <table>
 <thead>
 <tr>
-<th style="text-align:left">docker images显示字段</th>
-<th style="text-align:left">解释</th>
+<th align="left">docker images显示字段</th>
+<th align="left">解释</th>
 </tr>
 </thead>
-<tbody>
-<tr>
-<td style="text-align:left">REPOSITORY</td>
-<td style="text-align:left">镜像的仓库源</td>
+<tbody><tr>
+<td align="left">REPOSITORY</td>
+<td align="left">镜像的仓库源</td>
 </tr>
 <tr>
-<td style="text-align:left">TAG</td>
-<td style="text-align:left">镜像的标签</td>
+<td align="left">TAG</td>
+<td align="left">镜像的标签</td>
 </tr>
 <tr>
-<td style="text-align:left">IMAGE ID</td>
-<td style="text-align:left">镜像的id</td>
+<td align="left">IMAGE ID</td>
+<td align="left">镜像的id</td>
 </tr>
 <tr>
-<td style="text-align:left">CREATED</td>
-<td style="text-align:left">镜像的创建时间</td>
+<td align="left">CREATED</td>
+<td align="left">镜像的创建时间</td>
 </tr>
 <tr>
-<td style="text-align:left">SIZE</td>
-<td style="text-align:left">镜像的大小</td>
+<td align="left">SIZE</td>
+<td align="left">镜像的大小</td>
 </tr>
-</tbody>
-</table>
-</div>
+</tbody></table>
         
       
 
@@ -610,7 +609,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="datawhale语义分割-Task3-语义分割模型发展"><a href="#datawhale语义分割-Task3-语义分割模型发展" class="headerlink" title="datawhale语义分割-Task3 语义分割模型发展"></a>datawhale语义分割-Task3 语义分割模型发展</h1><p>本章主要讲解的是语义分割网络模型的发展：FCN 、SegNet、Unet、DeepLab、RefineNet、PSPNet、GAN语义分割。<br></p>
+        <h1 id="datawhale语义分割-Task3-语义分割模型发展"><a href="#datawhale语义分割-Task3-语义分割模型发展" class="headerlink" title="datawhale语义分割-Task3 语义分割模型发展"></a>datawhale语义分割-Task3 语义分割模型发展</h1><p>本章主要讲解的是语义分割网络模型的发展：FCN 、SegNet、Unet、DeepLab、RefineNet、PSPNet、GAN语义分割。</p>
         
       
 
@@ -624,11 +623,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">计算机视觉</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">datawhale</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">datawhale</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">计算机视觉</a>
         		</li>
       		
 		</ul>
@@ -688,7 +687,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="语义分割-Task2-数据扩增"><a href="#语义分割-Task2-数据扩增" class="headerlink" title="语义分割-Task2 数据扩增"></a>语义分割-Task2 数据扩增</h1><p>本章对语义分割任务中常见的数据扩增方法进行介绍，并使用OpenCV和albumentations两个库完成具体的数据扩增操作。<br>干货链接：<br><a href="https://zhuanlan.zhihu.com/p/107399127/" target="_blank" rel="noopener">albumentations 数据增强工具的使用</a><br><a href="https://blog.csdn.net/weixin_38533896/article/details/86028509" target="_blank" rel="noopener">Pytorch：transforms的二十二个方法</a><br><a href="https://blog.csdn.net/zhangyuexiang123/article/details/107705311" target="_blank" rel="noopener">Pytorch使用albumentations实现数据增强</a><br></p>
+        <h1 id="语义分割-Task2-数据扩增"><a href="#语义分割-Task2-数据扩增" class="headerlink" title="语义分割-Task2 数据扩增"></a>语义分割-Task2 数据扩增</h1><p>本章对语义分割任务中常见的数据扩增方法进行介绍，并使用OpenCV和albumentations两个库完成具体的数据扩增操作。<br>干货链接：<br><a href="https://zhuanlan.zhihu.com/p/107399127/" target="_blank" rel="noopener">albumentations 数据增强工具的使用</a><br><a href="https://blog.csdn.net/weixin_38533896/article/details/86028509" target="_blank" rel="noopener">Pytorch：transforms的二十二个方法</a><br><a href="https://blog.csdn.net/zhangyuexiang123/article/details/107705311" target="_blank" rel="noopener">Pytorch使用albumentations实现数据增强</a></p>
         
       
 
@@ -702,11 +701,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">计算机视觉</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">datawhale</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">datawhale</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">计算机视觉</a>
         		</li>
       		
 		</ul>
@@ -781,11 +780,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">计算机视觉</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">datawhale</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">datawhale</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">计算机视觉</a>
         		</li>
       		
 		</ul>
@@ -846,7 +845,8 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h1 id="缺失数据"><a href="#缺失数据" class="headerlink" title="缺失数据"></a>缺失数据</h1><figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np<br><span class="hljs-keyword">import</span> pandas <span class="hljs-keyword">as</span> pd<br></code></pre></td></tr></table></figure>
-<h2 id="一、缺失值的统计和删除"><a href="#一、缺失值的统计和删除" class="headerlink" title="一、缺失值的统计和删除"></a>一、缺失值的统计和删除</h2><h2 id="1-缺失信息的统计"><a href="#1-缺失信息的统计" class="headerlink" title="1. 缺失信息的统计"></a>1. 缺失信息的统计</h2><p>缺失数据可以使用 <code>isna</code> 或 <code>isnull</code> （两个函数没有区别）来查看每个单元格是否缺失，结合 <code>mean</code> 可以计算出每列缺失值的比例：<br></p>
+
+<h2 id="一、缺失值的统计和删除"><a href="#一、缺失值的统计和删除" class="headerlink" title="一、缺失值的统计和删除"></a>一、缺失值的统计和删除</h2><h2 id="1-缺失信息的统计"><a href="#1-缺失信息的统计" class="headerlink" title="1. 缺失信息的统计"></a>1. 缺失信息的统计</h2><p>缺失数据可以使用 <code>isna</code> 或 <code>isnull</code> （两个函数没有区别）来查看每个单元格是否缺失，结合 <code>mean</code> 可以计算出每列缺失值的比例：</p>
         
       
 
@@ -925,7 +925,8 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h2 id="datawhale-pandas数据分析预备"><a href="#datawhale-pandas数据分析预备" class="headerlink" title="datawhale-pandas数据分析预备"></a>datawhale-pandas数据分析预备</h2><h2 id="列表推导式"><a href="#列表推导式" class="headerlink" title="列表推导式"></a>列表推导式</h2><figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">my_func</span><span class="hljs-params">(x)</span>:</span><br>    <span class="hljs-keyword">return</span> <span class="hljs-number">2</span>*x<br></code></pre></td></tr></table></figure>
-<h2 id="for-i-in"><a href="#for-i-in" class="headerlink" title="[ for i in ]"></a>[<em> for i in </em>]</h2><p>其中，第一个 <em> 为映射函数，其输入为后面 i 指代的内容，第二个 </em> 表示迭代的对象。<br></p>
+
+<h2 id="for-i-in"><a href="#for-i-in" class="headerlink" title="[* for i in *]"></a>[* for i in *]</h2><p>其中，第一个 * 为映射函数，其输入为后面 i 指代的内容，第二个 * 表示迭代的对象。</p>
         
       
 
@@ -1207,11 +1208,11 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
+                <a href="javascript:void(0)" class="js-tag color5">编译原理</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">编译原理</a>
+                <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1219,7 +1220,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Hexo</a>
+                <a href="javascript:void(0)" class="js-tag color1">youth</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1227,11 +1228,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">youth</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">计算机视觉</a>
+                <a href="javascript:void(0)" class="js-tag color5">Hexo</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1243,15 +1240,19 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">计算机视觉</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">docker</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Java</a>
+                <a href="javascript:void(0)" class="js-tag color1">web基础</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">web基础</a>
+                <a href="javascript:void(0)" class="js-tag color5">Java</a>
               </li>
              
               <li class="article-tag-list-item">
