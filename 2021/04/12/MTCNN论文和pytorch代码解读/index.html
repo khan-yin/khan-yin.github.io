@@ -27,7 +27,7 @@
 <meta property="og:image" content="https://img-blog.csdnimg.cn/20210411214338982.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0phY2tfX19F,size_16,color_FFFFFF,t_70">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/20210411214409844.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0phY2tfX19F,size_16,color_FFFFFF,t_70">
 <meta property="article:published_time" content="2021-04-12T00:39:00.000Z">
-<meta property="article:modified_time" content="2021-04-12T01:16:48.497Z">
+<meta property="article:modified_time" content="2021-04-12T01:20:02.221Z">
 <meta property="article:author" content="whut ykh">
 <meta property="article:tag" content="计算机视觉">
 <meta name="twitter:card" content="summary">
@@ -275,7 +275,7 @@
 <h4 id="total-loss"><a href="#total-loss" class="headerlink" title="total loss"></a>total loss</h4><p>最终我们得到的损失函数是有上述这三部分加权而成<br>$$\min{\sum_{i=1}^{N}{\sum_{j \in {det,box,landmark}} \alpha_j \beta_i^j L_i^j}}$$<br>其中$\alpha_j$表示权重，$\beta_i^j$表示第i个样本的类型，也可以说是第i个样本在任务j中是否需要贡献loss，如果不存在人脸即label为0时则无需计算loss。<br>对于不同的网络我们所设置的权重是不一样的<br><strong>in P-net &amp; R-net(在这两层我们更注重classification的识别)</strong><br>$$alpha_{det}=1, alpha_{box}=0.5,alpha_{landmark}=0.5$$<br><strong>in O-net(在这层我们提高了对于注意关键点的预测精度)</strong><br>$$alpha_{det}=1, alpha_{box}=0.5,alpha_{landmark}=1 $$<br>文中也有提到，采用的是随机梯度下降优化器进行的训练。</p>
 <h2 id="OHEM（Online-Hard-Example-Mining）"><a href="#OHEM（Online-Hard-Example-Mining）" class="headerlink" title="OHEM（Online Hard Example Mining）"></a>OHEM（Online Hard Example Mining）</h2><p>作者对于困难样本的在线预测所做的trick也比较简单，就是挑选损失最大的前70%作为困难样本，在反向传播时仅使用这70%困难样本产生的损失，这样就剔除了很容易预测的easy sample对训练结果的影响，不过在我参考的这两个版本的代码里面似乎没有这么做。</p>
 <h2 id="实验"><a href="#实验" class="headerlink" title="实验"></a>实验</h2><p>实验这块的话也比较充分，验证了每个修改部分对于实验结果的有效性验证，主要是讲述了实验过程对于训练数据集的处理和划分，验证了在线硬样本挖掘的有效性，联合检测和校准的有效性，分别评估了face detection和lanmark的贡献，面部检测评估，面部校准评估以及与SOTA的对比，这一块的话就没有细看了，分享的网站也有详细解释，论文原文也写了。<br><img src="https://img-blog.csdnimg.cn/20210411214338982.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0phY2tfX19F,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20210411214409844.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0phY2tfX19F,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>这篇论文是中科院深圳先进技术研究院的乔宇老师团队所作，2016ECCV，看完这篇文章的话给我的感觉的话就是idea和实现过程包括实验都是很充分的，创新点这块的话主要是挖掘了人脸特征关键点和目标检测的一些联系，结合了人脸检测和对准两个任务来进行人脸检测，相比其他经典的目标检测网络如yolov3,R-CNN系列，在网络和损失函数上的创新确实略有不足，但是也让我收到了一些启发，看似几个简单的model和常见的loss联合，在对数据进行有效处理的基础上也是可以实现达到十分不错的效果的，不过这个方案的话在训练的时候其实是很花费时间的，毕竟需要对于不同scale的图片都进行输入训练，然后就是这种输入输出的结构其实还是存在一些局限性的，对于图像检测框和关键点的映射我个人觉得也比较繁杂或者说浪费了一些时间，毕竟是一篇2016年的论文之后应该会有更好的实现方式这个过程。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>这篇论文是中科院深圳先进技术研究院的乔宇老师团队所作，2016ECCV，看完这篇文章的话给我的感觉的话就是idea和实现过程包括实验都是很充分的，创新点这块的话主要是挖掘了人脸特征关键点和目标检测的一些联系，结合了人脸检测和对准两个任务来进行人脸检测，相比其他经典的目标检测网络如yolov3,R-CNN系列，在网络和损失函数上的创新确实略有不足，但是也让我收到了一些启发，看似几个简单的model和常见的loss联合，在对数据进行有效处理的基础上也是可以实现达到十分不错的效果的，不过这个方案的话在训练的时候其实是很花费时间的，毕竟需要对于不同scale的图片都进行输入训练，然后就是这种输入输出的结构其实还是存在一些局限性的，对于图像检测框和关键点的映射我个人觉得也比较繁杂或者说浪费了一些时间，毕竟是一篇2016年的论文之后应该会有更好的实现方式。</p>
 <h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><blockquote>
 <p>参考链接： <a href="https://zhuanlan.zhihu.com/p/337690783" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/337690783</a><br>参考链接：<a href="https://zhuanlan.zhihu.com/p/60199964?utm_source=qq&utm_medium=social&utm_oi=1221207556791963648" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/60199964?utm_source=qq&amp;utm_medium=social&amp;utm_oi=1221207556791963648</a><br>参考链接： <a href="https://blog.csdn.net/weixin_44791964/article/details/103530206" target="_blank" rel="noopener">https://blog.csdn.net/weixin_44791964/article/details/103530206</a><br>参考链接：<a href="https://blog.csdn.net/qq_34714751/article/details/85536669" target="_blank" rel="noopener">https://blog.csdn.net/qq_34714751/article/details/85536669</a><br>参考链接：<a href="https://www.bilibili.com/video/BV1fJ411C7AJ?from=search&seid=2691296178499711503" target="_blank" rel="noopener">https://www.bilibili.com/video/BV1fJ411C7AJ?from=search&amp;seid=2691296178499711503</a></p>
 </blockquote>
@@ -617,15 +617,11 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">编译原理</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">数据库系统</a>
+                <a href="javascript:void(0)" class="js-tag color5">编译原理</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -633,11 +629,15 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Django</a>
+                <a href="javascript:void(0)" class="js-tag color1">数据库系统</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Hexo</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Django</a>
               </li>
              
               <li class="article-tag-list-item">
