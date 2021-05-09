@@ -187,6 +187,86 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-datawhale-pandas缺失数据处理" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/01/20/datawhale-pandas%E7%BC%BA%E5%A4%B1%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/">datawhale-pandas缺失数据处理</a>
+    </h1>
+  
+
+        
+        <a href="/2021/01/20/datawhale-pandas%E7%BC%BA%E5%A4%B1%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/" class="archive-article-date">
+  	<time datetime="2021-01-20T12:55:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-01-20</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="缺失数据"><a href="#缺失数据" class="headerlink" title="缺失数据"></a>缺失数据</h1><figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np<br><span class="hljs-keyword">import</span> pandas <span class="hljs-keyword">as</span> pd<br></code></pre></td></tr></table></figure>
+
+<h2 id="一、缺失值的统计和删除"><a href="#一、缺失值的统计和删除" class="headerlink" title="一、缺失值的统计和删除"></a>一、缺失值的统计和删除</h2><h2 id="1-缺失信息的统计"><a href="#1-缺失信息的统计" class="headerlink" title="1. 缺失信息的统计"></a>1. 缺失信息的统计</h2><p>缺失数据可以使用 <code>isna</code> 或 <code>isnull</code> （两个函数没有区别）来查看每个单元格是否缺失，结合 <code>mean</code> 可以计算出每列缺失值的比例：</p>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">datawhale</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">pandas</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/01/20/datawhale-pandas%E7%BC%BA%E5%A4%B1%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-datawhale-pandas数据分析预备" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -870,87 +950,9 @@
 
 
   
-    <article id="post-SQL语句————数据查询" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/09/30/SQL%E8%AF%AD%E5%8F%A5%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E6%95%B0%E6%8D%AE%E6%9F%A5%E8%AF%A2/">SQL语句————数据查询</a>
-    </h1>
-  
-
-        
-        <a href="/2020/09/30/SQL%E8%AF%AD%E5%8F%A5%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E6%95%B0%E6%8D%AE%E6%9F%A5%E8%AF%A2/" class="archive-article-date">
-  	<time datetime="2020-09-29T16:08:03.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-09-30</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>数据查询是数据库最核心的功能，也是我们需要重点掌握的部分，该语句有很多灵活多变的操作值得我们去学习。<br>其一般格式为：（一般格式写的比较复杂，但一般不会这么复杂）</p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> [<span class="hljs-keyword">ALL</span>|<span class="hljs-keyword">DISTINCT</span>] &lt;目标列表达式&gt; [,&lt;目标列表达式&gt;] ...<br><span class="hljs-keyword">FROM</span> &lt;表名或者视图名&gt; [,&lt;表名或者视图名&gt;...] | (&lt;<span class="hljs-keyword">SELECT</span> 语句&gt; 嵌套) [<span class="hljs-keyword">AS</span>] &lt;别名&gt;<br><span class="hljs-keyword">WHERE</span> &lt;条件表达式&gt; | (&lt;<span class="hljs-keyword">SELECT</span> 语句&gt; 嵌套) <br>[<span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span> &lt;列名<span class="hljs-number">1</span>&gt; [<span class="hljs-keyword">HAVING</span> &lt;条件表达式&gt;]]<br>[<span class="hljs-keyword">ORDER</span> <span class="hljs-keyword">BY</span> &lt;列名<span class="hljs-number">2</span>&gt; [,&lt;列名<span class="hljs-number">3</span>&gt;...] [<span class="hljs-keyword">ASC</span>(升序)|<span class="hljs-keyword">DESC</span>(降序)] ];<br></code></pre></td></tr></table></figure>
-<!--mroe-->
-
-
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">数据库系统</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/09/30/SQL%E8%AF%AD%E5%8F%A5%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E6%95%B0%E6%8D%AE%E6%9F%A5%E8%AF%A2/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/">&amp;laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/3/">Next &amp;raquo;</a>
+      <a class="extend prev" rel="prev" href="/">&amp;laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/3/">Next &amp;raquo;</a>
     </nav>
   
 
@@ -1176,10 +1178,6 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">计算机视觉</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">编译原理</a>
               </li>
              
@@ -1188,15 +1186,19 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">计算机视觉</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">youth</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Django</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Hexo</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">youth</a>
               </li>
              
               <li class="article-tag-list-item">
