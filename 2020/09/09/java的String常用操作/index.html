@@ -209,17 +209,11 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h2 id="java的String类常用操作"><a href="#java的String类常用操作" class="headerlink" title="java的String类常用操作"></a>java的String类常用操作</h2><p>最近在准备蓝桥杯，补题目，顺便也是稍微缓一下暑假自闭，主要还是不想浪费300，顺便回顾一下java的基本语法，java的String类这一块感觉还是挺多操作的，字符串的不可变性也使得其操作和c++存在一些差别。这里需要推荐一个十分好的博客就是<a href="https://www.liaoxuefeng.com/wiki/1252599548343744" target="_blank" rel="noopener">廖雪峰的java教程</a>,其实<a href="https://www.runoob.com/java/java-string.html" target="_blank" rel="noopener">菜鸟教程</a>也不错的。</p>
-<p>Java字符串的一个重要特点就是字符串不可变。这种不可变性是通过内部的<code>private final char[]</code>字段，以及没有任何修改<code>char[]</code>的方法实现的。</p>
-<a id="more"></a>
-<h3 id="创建字符串"><a href="#创建字符串" class="headerlink" title="创建字符串"></a>创建字符串</h3><p>创建字符串主要是两种常用方法吧，一个是new还有一个就是直接定义，毕竟已经是一个关键字了。</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java"><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Main</span> </span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>&#123;<br>        String a=<span class="hljs-string">"hello"</span>;<br>        a+=<span class="hljs-string">"121"</span>;<span class="hljs-comment">//Strin的+操作</span><br>        <span class="hljs-keyword">char</span>[] helloArray = &#123; <span class="hljs-string">'r'</span>, <span class="hljs-string">'u'</span>, <span class="hljs-string">'n'</span>, <span class="hljs-string">'o'</span>, <span class="hljs-string">'o'</span>, <span class="hljs-string">'b'</span>&#125;;<br>        String helloString = <span class="hljs-keyword">new</span> String(helloArray);<br>        System.out.println(a);<br>        System.out.println(helloString);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
-<p>当然如果需要对字符串转换成char数组的话也是封装好了函数的<code>toCharArray()</code></p>
-<figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Main</span> </span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>&#123;<br>        str=<span class="hljs-string">"Hello"</span>;<br>        <span class="hljs-keyword">char</span>[] lisc = str.toCharArray();<br>        String s = <span class="hljs-keyword">new</span> String(lisc);<br>        System.out.println(s);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>Java字符串的一个重要特点就是字符串不可变。这种不可变性是通过内部的<code>private final char[]</code>字段，以及没有任何修改<code>char[]</code>的方法实现的。<br><a id="more"></a></p>
+<h3 id="创建字符串"><a href="#创建字符串" class="headerlink" title="创建字符串"></a>创建字符串</h3><p>创建字符串主要是两种常用方法吧，一个是new还有一个就是直接定义，毕竟已经是一个关键字了。<br><figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java"><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Main</span> </span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>&#123;<br>        String a=<span class="hljs-string">"hello"</span>;<br>        a+=<span class="hljs-string">"121"</span>;<span class="hljs-comment">//Strin的+操作</span><br>        <span class="hljs-keyword">char</span>[] helloArray = &#123; <span class="hljs-string">'r'</span>, <span class="hljs-string">'u'</span>, <span class="hljs-string">'n'</span>, <span class="hljs-string">'o'</span>, <span class="hljs-string">'o'</span>, <span class="hljs-string">'b'</span>&#125;;<br>        String helloString = <span class="hljs-keyword">new</span> String(helloArray);<br>        System.out.println(a);<br>        System.out.println(helloString);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure><br>当然如果需要对字符串转换成char数组的话也是封装好了函数的<code>toCharArray()</code><br><figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Main</span> </span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>&#123;<br>        str=<span class="hljs-string">"Hello"</span>;<br>        <span class="hljs-keyword">char</span>[] lisc = str.toCharArray();<br>        String s = <span class="hljs-keyword">new</span> String(lisc);<br>        System.out.println(s);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure></p>
 <h3 id="String的长度——length"><a href="#String的长度——length" class="headerlink" title="String的长度——length()"></a>String的长度——length()</h3><figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Main</span> </span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>&#123;<br>        String str = <span class="hljs-string">"abcde"</span>;<br>        <span class="hljs-keyword">int</span> len = str.length();<br>        System.out.println(<span class="hljs-string">"len="</span>+len);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
-
 <h3 id="字符串比较"><a href="#字符串比较" class="headerlink" title="字符串比较"></a>字符串比较</h3><p>当我们想要比较两个字符串是否相同时，要特别注意，<strong>我们实际上是想比较字符串的内容是否相同</strong>。必须使用<code>equals()</code>方法而不能用<code>==</code>。<code>==</code>比较的是两个变量是否指向同一个字符串对象。可以看一下下面两个结果，有什么不同。</p>
 <figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Main</span> </span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>&#123;<br>        String s1 = <span class="hljs-string">"hello"</span>;<br>        String s2 = <span class="hljs-string">"HELLO"</span>.toLowerCase();<br>        System.out.println(s1 == s2);<br>        System.out.println(s1.equals(s2));<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
-
 <p>这里还有一个用于比较java的字符串方法的<code>compareTo()</code>方法  </p>
 <p><code>compareTo()</code>方法用于两种方式的比较：</p>
 <ul>
@@ -233,16 +227,10 @@
 <li>如果此字符串大于字符串参数，则返回一个大于 0 的值。</li>
 </ul>
 <figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">compareTo</span><span class="hljs-params">(Object o)</span></span><br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">compareTo</span><span class="hljs-params">(String anotherString)</span></span><br></code></pre></td></tr></table></figure>
-
-<p>下面是一个demo</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Test</span> </span>&#123;<br> <br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String args[])</span> </span>&#123;<br>        System.out.println(<span class="hljs-string">"Hello World!"</span>);<br>        String str1 = <span class="hljs-string">"Strings"</span>;<br>        String str2 = <span class="hljs-string">"Strings"</span>;<br>        String str3 = <span class="hljs-string">"Strin1212"</span>;<br>        String str4 = <span class="hljs-string">"Stringr"</span>;<br><br>        <span class="hljs-keyword">int</span> result = str1.compareTo( str2 );<br>        System.out.println(result);<br><br>        result = str2.compareTo( str3 );<br>        System.out.println(result);<br><br>        result = str3.compareTo( str1 );<br>        System.out.println(result);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
-
+<p>下面是一个demo<br><figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Test</span> </span>&#123;<br> <br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String args[])</span> </span>&#123;<br>        System.out.println(<span class="hljs-string">"Hello World!"</span>);<br>        String str1 = <span class="hljs-string">"Strings"</span>;<br>        String str2 = <span class="hljs-string">"Strings"</span>;<br>        String str3 = <span class="hljs-string">"Strin1212"</span>;<br>        String str4 = <span class="hljs-string">"Stringr"</span>;<br><br>        <span class="hljs-keyword">int</span> result = str1.compareTo( str2 );<br>        System.out.println(result);<br><br>        result = str2.compareTo( str3 );<br>        System.out.println(result);<br><br>        result = str3.compareTo( str1 );<br>        System.out.println(result);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure></p>
 <h3 id="String遍历——charAt-方法"><a href="#String遍历——charAt-方法" class="headerlink" title="String遍历——charAt() 方法"></a>String遍历——charAt() 方法</h3><p>charAt() 方法用于返回指定索引处的字符。索引范围为从 0 到 length() - 1。</p>
 <figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Test</span> </span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String args[])</span> </span>&#123;<br>        String first=<span class="hljs-string">"hello"</span>;<br>        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">0</span>;i&lt;len1;i++)<br>            &#123;<br>                <span class="hljs-keyword">char</span> c1 = first.charAt(i);<br>            &#125;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
-
-<p>如果已经变成了char[]了，不同于普通循环，你还能使用for each来循环,类似python的操作。</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">char</span>[] charlist=&#123;<span class="hljs-string">'a'</span>,<span class="hljs-string">'b'</span>,<span class="hljs-string">'c'</span>&#125;;<br><span class="hljs-keyword">for</span>(<span class="hljs-keyword">char</span> c: charlist)<br>&#123;<br>    System.out.println(c);<br>&#125;<br></code></pre></td></tr></table></figure>
-
+<p>如果已经变成了char[]了，不同于普通循环，你还能使用for each来循环,类似python的操作。<br><figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">char</span>[] charlist=&#123;<span class="hljs-string">'a'</span>,<span class="hljs-string">'b'</span>,<span class="hljs-string">'c'</span>&#125;;<br><span class="hljs-keyword">for</span>(<span class="hljs-keyword">char</span> c: charlist)<br>&#123;<br>    System.out.println(c);<br>&#125;<br></code></pre></td></tr></table></figure></p>
 <h3 id="去除首尾空白字符"><a href="#去除首尾空白字符" class="headerlink" title="去除首尾空白字符"></a>去除首尾空白字符</h3><p>其实用的不太多，具体可以看廖雪峰的教程，一般就是<code>trim()</code>方法,截去字符串两端的空格，但对于中间的空格不处理。</p>
 <h3 id="查找indexOf"><a href="#查找indexOf" class="headerlink" title="查找indexOf()"></a>查找indexOf()</h3><p>这个菜鸟教程讲的挺细的可以看看。<code>indexOf()</code> 方法有以下四种形式：</p>
 <ul>
@@ -256,24 +244,14 @@
 </li>
 </ul>
 <figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">indexOf</span><span class="hljs-params">(<span class="hljs-keyword">int</span> ch )</span></span><br><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">indexOf</span><span class="hljs-params">(<span class="hljs-keyword">int</span> ch, <span class="hljs-keyword">int</span> fromIndex)</span></span><br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">indexOf</span><span class="hljs-params">(String str)</span></span><br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">indexOf</span><span class="hljs-params">(String str, <span class="hljs-keyword">int</span> fromIndex)</span></span><br></code></pre></td></tr></table></figure>
-
-
-
 <p><code>lastIndexOf()</code> 则差不多，进行反向搜索<br>还有<code>startsWith(),endsWith()</code></p>
 <h3 id="字串提取"><a href="#字串提取" class="headerlink" title="字串提取"></a>字串提取</h3><p><code>contains()</code>可以判断给定字串是否存在于原string当中</p>
 <figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java">String str = <span class="hljs-string">"abcde"</span>;<br><span class="hljs-keyword">int</span> index = str.indexOf(“bcd”); <br><span class="hljs-comment">//判断是否包含指定字符串，包含则返回第一次出现该字符串的索引，不包含则返回-1</span><br><span class="hljs-keyword">boolean</span> b2 = str.contains(<span class="hljs-string">"bcd"</span>);<br><span class="hljs-comment">//判断是否包含指定字符串，包含返回true，不包含返回false</span><br></code></pre></td></tr></table></figure>
-
-<p>substring()方法,索引从 0 开始。返回一个新字符串。  </p>
-<figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">substring</span><span class="hljs-params">(<span class="hljs-keyword">int</span> beginIndex)</span></span><br><span class="hljs-function"></span><br><span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">substring</span><span class="hljs-params">(<span class="hljs-keyword">int</span> beginIndex, <span class="hljs-keyword">int</span> endIndex)</span></span><br></code></pre></td></tr></table></figure>
-
+<p>substring()方法,索引从 0 开始。返回一个新字符串。<br><figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">substring</span><span class="hljs-params">(<span class="hljs-keyword">int</span> beginIndex)</span></span><br><span class="hljs-function"></span><br><span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">substring</span><span class="hljs-params">(<span class="hljs-keyword">int</span> beginIndex, <span class="hljs-keyword">int</span> endIndex)</span></span><br></code></pre></td></tr></table></figure></p>
 <figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Test</span> </span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String args[])</span> </span>&#123;<br>        String Str = <span class="hljs-keyword">new</span> String(<span class="hljs-string">"12345678908868"</span>);<br> <br>        System.out.print(<span class="hljs-string">"返回值 :"</span> );<br>        System.out.println(Str.substring(<span class="hljs-number">4</span>) );<br> <br>        System.out.print(<span class="hljs-string">"返回值 :"</span> );<br>        System.out.println(Str.substring(<span class="hljs-number">4</span>, <span class="hljs-number">10</span>) );<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
-
-<h3 id="替换子串replace"><a href="#替换子串replace" class="headerlink" title="替换子串replace()"></a>替换子串replace()</h3><p>要在字符串中替换子串，有两种方法即根据字符或字符串替换<code>replace()</code></p>
-<figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java">String s = <span class="hljs-string">"hello"</span>;<br>s.replace(<span class="hljs-string">'l'</span>, <span class="hljs-string">'w'</span>); <br>s.replace(<span class="hljs-string">"ll"</span>, <span class="hljs-string">"~~"</span>);<br></code></pre></td></tr></table></figure>
-
+<h3 id="替换子串replace"><a href="#替换子串replace" class="headerlink" title="替换子串replace()"></a>替换子串replace()</h3><p>要在字符串中替换子串，有两种方法即根据字符或字符串替换<code>replace()</code><br><figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java">String s = <span class="hljs-string">"hello"</span>;<br>s.replace(<span class="hljs-string">'l'</span>, <span class="hljs-string">'w'</span>); <br>s.replace(<span class="hljs-string">"ll"</span>, <span class="hljs-string">"~~"</span>);<br></code></pre></td></tr></table></figure></p>
 <h3 id="分割字符串split"><a href="#分割字符串split" class="headerlink" title="分割字符串split()"></a>分割字符串split()</h3><p><code>split()</code>方法，里面可以用正则表达式  </p>
 <figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java">String s = <span class="hljs-string">"A,B,C,D"</span>;<br>String[] ss = s.split(<span class="hljs-string">"\\,"</span>);<br></code></pre></td></tr></table></figure>
-
 <h3 id="valueOf-NaN"><a href="#valueOf-NaN" class="headerlink" title="valueOf()"></a>valueOf()</h3><p>做题的话感觉，主要用于char[]，其他数字类型的转换，当让也能用之前new的方法操作。</p>
 <figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Test</span> </span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String args[])</span> </span>&#123;<br>        <span class="hljs-keyword">double</span> d = <span class="hljs-number">1100.00</span>;<br>        <span class="hljs-keyword">boolean</span> b = <span class="hljs-keyword">true</span>;<br>        <span class="hljs-keyword">long</span> l = <span class="hljs-number">1234567890</span>;<br>        <span class="hljs-keyword">char</span>[] arr = &#123;<span class="hljs-string">'r'</span>, <span class="hljs-string">'u'</span>, <span class="hljs-string">'n'</span>, <span class="hljs-string">'o'</span>, <span class="hljs-string">'o'</span>, <span class="hljs-string">'b'</span> &#125;;<br><br>        System.out.println(<span class="hljs-string">"返回值 : "</span> + String.valueOf(d) );<br>        System.out.println(<span class="hljs-string">"返回值 : "</span> + String.valueOf(b) );<br>        System.out.println(<span class="hljs-string">"返回值 : "</span> + String.valueOf(l) );<br>        System.out.println(<span class="hljs-string">"返回值 : "</span> + String.valueOf(arr) );<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
       
@@ -622,7 +600,7 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
+                <a href="javascript:void(0)" class="js-tag color1">数据库系统</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -630,15 +608,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">数据库系统</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">计算机视觉</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">youth</a>
+                <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -650,11 +620,19 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">datawhale</a>
+                <a href="javascript:void(0)" class="js-tag color1">计算机视觉</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">youth</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">pandas</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">datawhale</a>
               </li>
              
               <li class="article-tag-list-item">

@@ -214,8 +214,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>操作系统比较硬核，不过最近发现了<a href="https://www.bilibili.com/video/BV1YE411D7nH?p=6" target="_blank" rel="noopener">王道考研</a>这个比较好的课程。这里是一些学习笔记总结。</p>
-<a id="more"></a>
+        <p>操作系统比较硬核，不过最近发现了<a href="https://www.bilibili.com/video/BV1YE411D7nH?p=6" target="_blank" rel="noopener">王道考研</a>这个比较好的课程。这里是一些学习笔记总结。<br><a id="more"></a></p>
 <h2 id="主要功能模块"><a href="#主要功能模块" class="headerlink" title="主要功能模块"></a>主要功能模块</h2><p>操作系统核心的主要功能模块介绍如下：<br><strong>系统初始化模块</strong>：准备系统运行环境，最后为每个终端创建一个进程，运行命令解释程序。</p>
 <p><strong>进程管理模块</strong>：处理进程类系统调用（如进程创建/结束等）和进程调度。</p>
 <p><strong>存储管理模块</strong>：配合进程管理，分配进程空间；处理存储类系统调用（如动态增加进程空间）；在虚存系统缺页异常时调入页面进行处理。</p>
@@ -232,26 +231,30 @@
 </ol>
 <h2 id="两种程序"><a href="#两种程序" class="headerlink" title="两种程序"></a>两种程序</h2><p><img src="https://img-blog.csdnimg.cn/20201003214352505.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0phY2tfX19F,size_16,color_FFFFFF,t_70#pic_center" alt="3"></p>
 <h2 id="操作系统的内核"><a href="#操作系统的内核" class="headerlink" title="操作系统的内核"></a>操作系统的内核</h2><p><strong>内核</strong>是计算机上配置的底层软件，是操作系统最基本、最核心的部分。实现操作系统内核功能的那些程序就是<strong>内核程序</strong>。<br>这里其实还确实了一种，我们常说的操作系统四大模块是指，<strong>进程管理，存储管理，设备管理和文件系统管理。</strong><br><img src="https://img-blog.csdnimg.cn/20201003214807141.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0phY2tfX19F,size_16,color_FFFFFF,t_70#pic_center" alt="4"><br>由此引出了我们操作系统的两种内核：<strong>大内核和微内核。</strong></p>
+<div class="table-container">
 <table>
 <thead>
 <tr>
-<th align="center">大内核</th>
-<th align="center">微内核</th>
+<th style="text-align:center">大内核</th>
+<th style="text-align:center">微内核</th>
 </tr>
 </thead>
-<tbody><tr>
-<td align="center">将操作系统的主要功能都作为系统内核，运行在核心态</td>
-<td align="center">只把最基本的功能保留</td>
+<tbody>
+<tr>
+<td style="text-align:center">将操作系统的主要功能都作为系统内核，运行在核心态</td>
+<td style="text-align:center">只把最基本的功能保留</td>
 </tr>
 <tr>
-<td align="center">优点：高性能</td>
-<td align="center">优点：内核功能少，结构清晰，方便维护</td>
+<td style="text-align:center">优点：高性能</td>
+<td style="text-align:center">优点：内核功能少，结构清晰，方便维护</td>
 </tr>
 <tr>
-<td align="center">缺点：内核代码庞大，结构混乱，难以维护</td>
-<td align="center">缺点：需要频繁地在用户态和核心态之间切换，性能低</td>
+<td style="text-align:center">缺点：内核代码庞大，结构混乱，难以维护</td>
+<td style="text-align:center">缺点：需要频繁地在用户态和核心态之间切换，性能低</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <p><img src="https://img-blog.csdnimg.cn/20201003215121301.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0phY2tfX19F,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p>
 
       
@@ -600,7 +603,7 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
+                <a href="javascript:void(0)" class="js-tag color1">数据库系统</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -608,15 +611,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">数据库系统</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">计算机视觉</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">youth</a>
+                <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -628,11 +623,19 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">datawhale</a>
+                <a href="javascript:void(0)" class="js-tag color1">计算机视觉</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">youth</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">pandas</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">datawhale</a>
               </li>
              
               <li class="article-tag-list-item">
