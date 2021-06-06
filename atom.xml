@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://yoursite.com/"/>
-  <updated>2021-05-09T09:48:07.744Z</updated>
+  <updated>2021-06-06T12:36:15.240Z</updated>
   <id>https://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,27 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>数据结构与算法基础——快速排序与归并排序</title>
+    <link href="https://yoursite.com/2021/06/06/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E5%9F%BA%E7%A1%80%E2%80%94%E2%80%94%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F%E4%B8%8E%E5%BD%92%E5%B9%B6%E6%8E%92%E5%BA%8F/"/>
+    <id>https://yoursite.com/2021/06/06/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E5%9F%BA%E7%A1%80%E2%80%94%E2%80%94%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F%E4%B8%8E%E5%BD%92%E5%B9%B6%E6%8E%92%E5%BA%8F/</id>
+    <published>2021-06-06T12:33:00.000Z</published>
+    <updated>2021-06-06T12:36:15.240Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>最近在复习数据结构，顺便整理之前刷题的一些模板和技巧，希望对大家都有帮助，博客会侧重讲解的是OJ代码实现，理论部分偏少但也会写一些自己的理解。<br>在之前大二上数据结构的时候我也有写过一个关于排序的专题介绍<a href="https://blog.csdn.net/Jack___E/article/details/102875285?spm=1001.2014.3001.5502" target="_blank" rel="noopener">数据结构复习——内部排序</a></p><a id="more"></a><h2 id="快速排序"><a href="#快速排序" class="headerlink" title="快速排序"></a>快速排序</h2><p>快速排序主要就是通过选取一个基准点，将一个区间内的数分成大于和小于两个部分，然后对左右区间再进行上述操作，直到子区间的长度为空为止。<strong>快速排序是不稳定的排序，如果需要变成稳定排序通过双关键字排序即可，通过下标控制绝对大小就能得到稳定的排序结果。</strong><br>快速排序分三步走：</p><ul><li>确定分界点</li><li>调整左右区间</li><li>递归处理左右子区间</li></ul><p>在代码实现当中，我们一般选取中间分位点会比较好，这样划分的区间比较平均。在遍历的过程当中每次调整区间的时间是$O(n)$，而区间递归的深度类似二叉树是$O(logn)$<br>在最好情况下，对于递归型的算法，我们利用<strong>主定理公式</strong>来计算快速排序时间复杂度得到$O(nlogn)$<br>$$<br>T(n) = 2 T\left(\frac{n}{2}\right)+\Theta(n)<br>$$<br>当然在最坏情况下，也就是数组是有序或者逆序的情况下，我们如果选择左右端点作为基准点，那么整个算法就相当于冒泡排序，递归的层数也就变成了$n$，则最坏时间复杂度为$O(n^2)$</p><h4 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h4><figure class="highlight cpp"><table><tr><td class="code"><pre><code class="hljs cpp"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">quick_sort</span><span class="hljs-params">(<span class="hljs-keyword">int</span>[] q,<span class="hljs-keyword">int</span> l,<span class="hljs-keyword">int</span> r)</span></span><br><span class="hljs-function"></span>&#123;<br><span class="hljs-keyword">if</span>(l&gt;=r) <span class="hljs-keyword">return</span>;<br><span class="hljs-comment">// 1.确定分界点</span><br>    <span class="hljs-keyword">int</span> i = l - <span class="hljs-number">1</span>, j = r + <span class="hljs-number">1</span>, mid = q[l + r &gt;&gt; <span class="hljs-number">1</span>];<br>    <span class="hljs-comment">// 2.调整左右区间</span><br><span class="hljs-keyword">while</span>(i&lt;j)<br>&#123;<br><span class="hljs-keyword">do</span> i++; <span class="hljs-keyword">while</span>(q[i]&lt;mid);<br><span class="hljs-keyword">do</span> j--; <span class="hljs-keyword">while</span>(q[j]&gt;mid);<br><span class="hljs-keyword">if</span>(i&lt;j) swap(q[i],q[j]);<br>&#125;<br><span class="hljs-comment">//3.递归处理左右子区间</span><br>quick_sort(l,j);<br>quick_sort(j+<span class="hljs-number">1</span>,r);<br>&#125;<br></code></pre></td></tr></table></figure><h4 id="经典例题"><a href="#经典例题" class="headerlink" title="经典例题"></a>经典例题</h4><p><a href="https://www.luogu.com.cn/problem/P1177" target="_blank" rel="noopener">洛谷P1177 【模板】快速排序</a></p><h2 id="归并排序"><a href="#归并排序" class="headerlink" title="归并排序"></a>归并排序</h2><p>归并排序也是基于分治的思想，每次将区间对半分，逐步递归合并有序化子区间，最终实现所有的左右区间的有序归并，但是跟快速排序不同的是，我们需要开一个辅助数组来存储有序的部分，所以时间复杂度为$O(nlogn)$。归并排序是<strong>稳定</strong>的排序，在元素相等情况下我们总是放入数组下标较小的元素。<br>归并排序分三步走：</p><ul><li>确定分界点</li><li>递归处理子序列</li><li>合并有序序列</li></ul><p><img src="https://img-blog.csdnimg.cn/20210606160649607.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0phY2tfX19F,size_16,color_FFFFFF,t_70" alt="olor_FFFFFF,t_70)"></p><h4 id="代码实现-1"><a href="#代码实现-1" class="headerlink" title="代码实现"></a>代码实现</h4><figure class="highlight cpp"><table><tr><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> N=<span class="hljs-number">100010</span>;<br><span class="hljs-keyword">int</span> a[N],tmp[N];<br><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">merge_sort</span><span class="hljs-params">(<span class="hljs-keyword">int</span> q[],<span class="hljs-keyword">int</span> l,<span class="hljs-keyword">int</span> r)</span></span><br><span class="hljs-function"></span>&#123;<br>    <span class="hljs-keyword">if</span>(l&gt;=r)<br>        <span class="hljs-keyword">return</span>;<br>    <span class="hljs-comment">//确定分界点</span><br>    <span class="hljs-keyword">int</span> mid = l + r &gt;&gt; <span class="hljs-number">1</span>;<br><br>    <span class="hljs-comment">//递归处理子序列</span><br>    merge_sort(q,l,mid);<br>    merge_sort(q,mid+<span class="hljs-number">1</span>,r);<br><br>    <span class="hljs-comment">//合并有序序列</span><br>    <span class="hljs-keyword">int</span> k = l,i = l,j = mid + <span class="hljs-number">1</span>;<br>    <span class="hljs-keyword">while</span>(i &lt;= mid &amp;&amp; j &lt;= r)<br>    &#123;<br>        <span class="hljs-keyword">if</span>(q[i]&lt;=q[j])<span class="hljs-comment">// 取等号，保证归并排序的稳定性</span><br>            tmp[k++]=q[i++];<br>        <span class="hljs-keyword">else</span><br>            tmp[k++]=q[j++];<br>    &#125;<br><br>    <span class="hljs-keyword">while</span>(i&lt;=mid) <br>        tmp[k++]=q[i++];<br>    <span class="hljs-keyword">while</span>(j&lt;=r) <br>        tmp[k++]=q[j++];<br><br>    <span class="hljs-keyword">for</span>(i=l;i&lt;=r;i++)<br>        q[i]=tmp[i];<br>&#125;<br></code></pre></td></tr></table></figure><h4 id="经典例题-1"><a href="#经典例题-1" class="headerlink" title="经典例题"></a>经典例题</h4><p><a href="https://www.acwing.com/activity/content/problem/content/821/1/" target="_blank" rel="noopener">AcWing 787. 归并排序</a><br><a href="https://www.acwing.com/activity/content/problem/content/822/1/" target="_blank" rel="noopener">AcWing 788. 逆序对的数量</a></p><h2 id="排序相关时间复杂度整理"><a href="#排序相关时间复杂度整理" class="headerlink" title="排序相关时间复杂度整理"></a>排序相关时间复杂度整理</h2><p><img src="https://img-blog.csdnimg.cn/20210606164025501.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0phY2tfX19F,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h2&gt;&lt;p&gt;最近在复习数据结构，顺便整理之前刷题的一些模板和技巧，希望对大家都有帮助，博客会侧重讲解的是OJ代码实现，理论部分偏少但也会写一些自己的理解。&lt;br&gt;在之前大二上数据结构的时候我也有写过一个关于排序的专题介绍&lt;a href=&quot;https://blog.csdn.net/Jack___E/article/details/102875285?spm=1001.2014.3001.5502&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;数据结构复习——内部排序&lt;/a&gt;&lt;/p&gt;
+    
+    </summary>
+    
+    
+    
+      <category term="数据结构" scheme="https://yoursite.com/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"/>
+    
+  </entry>
   
   <entry>
     <title>EfficientNet论文解读和pytorch代码实现</title>
@@ -374,31 +395,6 @@
   </entry>
   
   <entry>
-    <title>词法分析</title>
-    <link href="https://yoursite.com/2020/10/15/%E8%AF%8D%E6%B3%95%E5%88%86%E6%9E%90/"/>
-    <id>https://yoursite.com/2020/10/15/%E8%AF%8D%E6%B3%95%E5%88%86%E6%9E%90/</id>
-    <published>2020-10-15T08:43:51.000Z</published>
-    <updated>2021-01-19T04:31:32.997Z</updated>
-    
-    <content type="html"><![CDATA[<p><strong>词法分析是编译的第一个阶段，它的主要任务是从左到右逐个字符地对源程序进行扫描，产生一个个单词序列，用于语法分析。</strong><br>单词符号一般分为5类：关键字，标识符，常数，运算符，界符。</p><h2 id="正规文法"><a href="#正规文法" class="headerlink" title="正规文法"></a>正规文法</h2><p>正规文法也称三型文法$G=(V_N,V_T,S,P)$，其P中的每一条规则都有下面的形式：$A \rightarrow aB$或者$A \rightarrow a$,其中$A,B \in V_N , a \in V_T^*$关键字也是一种单词，一般关键字都是由字母构成的。</p><p>正规式又称正则表达式</p><h2 id="DFA——确定的有穷自动机"><a href="#DFA——确定的有穷自动机" class="headerlink" title="DFA——确定的有穷自动机"></a>DFA——确定的有穷自动机</h2><h2 id="NFA——不确定的有穷自动机"><a href="#NFA——不确定的有穷自动机" class="headerlink" title="NFA——不确定的有穷自动机"></a>NFA——不确定的有穷自动机</h2>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;&lt;strong&gt;词法分析是编译的第一个阶段，它的主要任务是从左到右逐个字符地对源程序进行扫描，产生一个个单词序列，用于语法分析。&lt;/strong&gt;&lt;br&gt;单词符号一般分为5类：关键字，标识符，常数，运算符，界符。&lt;/p&gt;
-&lt;h2 id=&quot;正规文法&quot;&gt;&lt;a href=&quot;#正规
-      
-    
-    </summary>
-    
-    
-    
-      <category term="编译原理" scheme="https://yoursite.com/tags/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/"/>
-    
-  </entry>
-  
-  <entry>
     <title>人人都是产品经理读后感</title>
     <link href="https://yoursite.com/2020/10/13/%E4%BA%BA%E4%BA%BA%E9%83%BD%E6%98%AF%E4%BA%A7%E5%93%81%E7%BB%8F%E7%90%86%E8%AF%BB%E5%90%8E%E6%84%9F/"/>
     <id>https://yoursite.com/2020/10/13/%E4%BA%BA%E4%BA%BA%E9%83%BD%E6%98%AF%E4%BA%A7%E5%93%81%E7%BB%8F%E7%90%86%E8%AF%BB%E5%90%8E%E6%84%9F/</id>
@@ -481,9 +477,9 @@
     
     
     
-      <category term="JavaScript" scheme="https://yoursite.com/tags/JavaScript/"/>
-    
       <category term="web基础" scheme="https://yoursite.com/tags/web%E5%9F%BA%E7%A1%80/"/>
+    
+      <category term="JavaScript" scheme="https://yoursite.com/tags/JavaScript/"/>
     
   </entry>
   

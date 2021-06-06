@@ -6,17 +6,23 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://yoursite.com">
-  <title>Category: Django | ykhblog 一路向北</title>
+  <title>数据结构与算法基础——快速排序与归并排序 | ykhblog 一路向北</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="2020努力成为大佬">
-<meta property="og:type" content="website">
-<meta property="og:title" content="ykhblog 一路向北">
-<meta property="og:url" content="https://yoursite.com/categories/Django/index.html">
+  <meta name="description" content="前言最近在复习数据结构，顺便整理之前刷题的一些模板和技巧，希望对大家都有帮助，博客会侧重讲解的是OJ代码实现，理论部分偏少但也会写一些自己的理解。在之前大二上数据结构的时候我也有写过一个关于排序的专题介绍数据结构复习——内部排序">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数据结构与算法基础——快速排序与归并排序">
+<meta property="og:url" content="https://yoursite.com/2021/06/06/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E5%9F%BA%E7%A1%80%E2%80%94%E2%80%94%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F%E4%B8%8E%E5%BD%92%E5%B9%B6%E6%8E%92%E5%BA%8F/index.html">
 <meta property="og:site_name" content="ykhblog 一路向北">
-<meta property="og:description" content="2020努力成为大佬">
+<meta property="og:description" content="前言最近在复习数据结构，顺便整理之前刷题的一些模板和技巧，希望对大家都有帮助，博客会侧重讲解的是OJ代码实现，理论部分偏少但也会写一些自己的理解。在之前大二上数据结构的时候我也有写过一个关于排序的专题介绍数据结构复习——内部排序">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210606160649607.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0phY2tfX19F,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210606164025501.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0phY2tfX19F,size_16,color_FFFFFF,t_70">
+<meta property="article:published_time" content="2021-06-06T12:33:00.000Z">
+<meta property="article:modified_time" content="2021-06-06T12:36:15.240Z">
 <meta property="article:author" content="whut ykh">
+<meta property="article:tag" content="数据结构">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20210606160649607.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0phY2tfX19F,size_16,color_FFFFFF,t_70">
   
   
     <link rel="icon" href="/assets/xxb.jpg">
@@ -185,71 +191,166 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-数据结构与算法基础——快速排序与归并排序" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2020" class="archive-year">2020</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/07/08/Django%E9%A1%B9%E7%9B%AE%E5%88%9B%E5%BB%BA%E5%92%8C%E7%AE%80%E6%98%93%E9%85%8D%E7%BD%AE/" class="archive-article-date">
-  	<time datetime="2020-07-08T15:10:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-08</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/07/08/Django%E9%A1%B9%E7%9B%AE%E5%88%9B%E5%BB%BA%E5%92%8C%E7%AE%80%E6%98%93%E9%85%8D%E7%BD%AE/">Django项目创建和简易配置</a>
+    <h1 class="article-title" itemprop="name">
+      数据结构与算法基础——快速排序与归并排序
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2021/06/06/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E5%9F%BA%E7%A1%80%E2%80%94%E2%80%94%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F%E4%B8%8E%E5%BD%92%E5%B9%B6%E6%8E%92%E5%BA%8F/" class="archive-article-date">
+  	<time datetime="2021-06-06T12:33:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-06-06</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>最近在复习数据结构，顺便整理之前刷题的一些模板和技巧，希望对大家都有帮助，博客会侧重讲解的是OJ代码实现，理论部分偏少但也会写一些自己的理解。<br>在之前大二上数据结构的时候我也有写过一个关于排序的专题介绍<a href="https://blog.csdn.net/Jack___E/article/details/102875285?spm=1001.2014.3001.5502" target="_blank" rel="noopener">数据结构复习——内部排序</a></p>
+<a id="more"></a>
+<h2 id="快速排序"><a href="#快速排序" class="headerlink" title="快速排序"></a>快速排序</h2><p>快速排序主要就是通过选取一个基准点，将一个区间内的数分成大于和小于两个部分，然后对左右区间再进行上述操作，直到子区间的长度为空为止。<strong>快速排序是不稳定的排序，如果需要变成稳定排序通过双关键字排序即可，通过下标控制绝对大小就能得到稳定的排序结果。</strong><br>快速排序分三步走：</p>
+<ul>
+<li>确定分界点</li>
+<li>调整左右区间</li>
+<li>递归处理左右子区间</li>
+</ul>
+<p>在代码实现当中，我们一般选取中间分位点会比较好，这样划分的区间比较平均。在遍历的过程当中每次调整区间的时间是$O(n)$，而区间递归的深度类似二叉树是$O(logn)$<br>在最好情况下，对于递归型的算法，我们利用<strong>主定理公式</strong>来计算快速排序时间复杂度得到$O(nlogn)$<br>$$<br>T(n) = 2 T\left(\frac{n}{2}\right)+\Theta(n)<br>$$<br>当然在最坏情况下，也就是数组是有序或者逆序的情况下，我们如果选择左右端点作为基准点，那么整个算法就相当于冒泡排序，递归的层数也就变成了$n$，则最坏时间复杂度为$O(n^2)$</p>
+<h4 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h4><figure class="highlight cpp"><table><tr><td class="code"><pre><code class="hljs cpp"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">quick_sort</span><span class="hljs-params">(<span class="hljs-keyword">int</span>[] q,<span class="hljs-keyword">int</span> l,<span class="hljs-keyword">int</span> r)</span></span><br><span class="hljs-function"></span>&#123;<br>	<span class="hljs-keyword">if</span>(l&gt;=r) <span class="hljs-keyword">return</span>;<br>	<span class="hljs-comment">// 1.确定分界点</span><br>    <span class="hljs-keyword">int</span> i = l - <span class="hljs-number">1</span>, j = r + <span class="hljs-number">1</span>, mid = q[l + r &gt;&gt; <span class="hljs-number">1</span>];<br>    <span class="hljs-comment">// 2.调整左右区间</span><br>	<span class="hljs-keyword">while</span>(i&lt;j)<br>	&#123;<br>		<span class="hljs-keyword">do</span> i++; <span class="hljs-keyword">while</span>(q[i]&lt;mid);<br>		<span class="hljs-keyword">do</span> j--; <span class="hljs-keyword">while</span>(q[j]&gt;mid);<br>		<span class="hljs-keyword">if</span>(i&lt;j) swap(q[i],q[j]);<br>	&#125;<br>	<span class="hljs-comment">//3.递归处理左右子区间</span><br>	quick_sort(l,j);<br>	quick_sort(j+<span class="hljs-number">1</span>,r);<br>&#125;<br></code></pre></td></tr></table></figure>
+<h4 id="经典例题"><a href="#经典例题" class="headerlink" title="经典例题"></a>经典例题</h4><p><a href="https://www.luogu.com.cn/problem/P1177" target="_blank" rel="noopener">洛谷P1177 【模板】快速排序</a></p>
+<h2 id="归并排序"><a href="#归并排序" class="headerlink" title="归并排序"></a>归并排序</h2><p>归并排序也是基于分治的思想，每次将区间对半分，逐步递归合并有序化子区间，最终实现所有的左右区间的有序归并，但是跟快速排序不同的是，我们需要开一个辅助数组来存储有序的部分，所以时间复杂度为$O(nlogn)$。归并排序是<strong>稳定</strong>的排序，在元素相等情况下我们总是放入数组下标较小的元素。<br>归并排序分三步走：</p>
+<ul>
+<li>确定分界点</li>
+<li>递归处理子序列</li>
+<li>合并有序序列</li>
+</ul>
+<p><img src="https://img-blog.csdnimg.cn/20210606160649607.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0phY2tfX19F,size_16,color_FFFFFF,t_70" alt="olor_FFFFFF,t_70)"></p>
+<h4 id="代码实现-1"><a href="#代码实现-1" class="headerlink" title="代码实现"></a>代码实现</h4><figure class="highlight cpp"><table><tr><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> N=<span class="hljs-number">100010</span>;<br><span class="hljs-keyword">int</span> a[N],tmp[N];<br><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">merge_sort</span><span class="hljs-params">(<span class="hljs-keyword">int</span> q[],<span class="hljs-keyword">int</span> l,<span class="hljs-keyword">int</span> r)</span></span><br><span class="hljs-function"></span>&#123;<br>    <span class="hljs-keyword">if</span>(l&gt;=r)<br>        <span class="hljs-keyword">return</span>;<br>    <span class="hljs-comment">//确定分界点</span><br>    <span class="hljs-keyword">int</span> mid = l + r &gt;&gt; <span class="hljs-number">1</span>;<br><br>    <span class="hljs-comment">//递归处理子序列</span><br>    merge_sort(q,l,mid);<br>    merge_sort(q,mid+<span class="hljs-number">1</span>,r);<br><br>    <span class="hljs-comment">//合并有序序列</span><br>    <span class="hljs-keyword">int</span> k = l,i = l,j = mid + <span class="hljs-number">1</span>;<br>    <span class="hljs-keyword">while</span>(i &lt;= mid &amp;&amp; j &lt;= r)<br>    &#123;<br>        <span class="hljs-keyword">if</span>(q[i]&lt;=q[j])<span class="hljs-comment">// 取等号，保证归并排序的稳定性</span><br>            tmp[k++]=q[i++];<br>        <span class="hljs-keyword">else</span><br>            tmp[k++]=q[j++];<br>    &#125;<br><br>    <span class="hljs-keyword">while</span>(i&lt;=mid) <br>        tmp[k++]=q[i++];<br>    <span class="hljs-keyword">while</span>(j&lt;=r) <br>        tmp[k++]=q[j++];<br><br>    <span class="hljs-keyword">for</span>(i=l;i&lt;=r;i++)<br>        q[i]=tmp[i];<br>&#125;<br></code></pre></td></tr></table></figure>
+<h4 id="经典例题-1"><a href="#经典例题-1" class="headerlink" title="经典例题"></a>经典例题</h4><p><a href="https://www.acwing.com/activity/content/problem/content/821/1/" target="_blank" rel="noopener">AcWing 787. 归并排序</a><br><a href="https://www.acwing.com/activity/content/problem/content/822/1/" target="_blank" rel="noopener">AcWing 788. 逆序对的数量</a></p>
+<h2 id="排序相关时间复杂度整理"><a href="#排序相关时间复杂度整理" class="headerlink" title="排序相关时间复杂度整理"></a>排序相关时间复杂度整理</h2><p><img src="https://img-blog.csdnimg.cn/20210606164025501.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0phY2tfX19F,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Django</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">数据结构</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/Django//" class="article-tag-list-link color2">Django</a>
-        		</li>
-      		
-		</ul>
-	</div>
+      
 
+      
 
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=https://yoursite.com/2021/06/06/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E5%9F%BA%E7%A1%80%E2%80%94%E2%80%94%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F%E4%B8%8E%E5%BD%92%E5%B9%B6%E6%8E%92%E5%BA%8F/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
   
   
-    </div></section>
+    <a href="/2021/05/09/EfficientNet%E8%AE%BA%E6%96%87%E8%A7%A3%E8%AF%BB%E5%92%8Cpytorch%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">EfficientNet论文解读和pytorch代码实现</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+  
+  
   
 
-    
+  
+
+  
+
+  
 
 
           </div>
@@ -331,10 +432,10 @@ MathJax.Hub.Queue(function() {
 	var yiliaConfig = {
 		mathjax: true,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
-		isCategory: true,
+		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,
 		root: "/",
@@ -469,23 +570,7 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">编译原理</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">数据库系统</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Hexo</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">计算机视觉</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -493,7 +578,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Django</a>
+                <a href="javascript:void(0)" class="js-tag color1">计算机视觉</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -505,11 +590,19 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Hexo</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">docker</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">web基础</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -525,7 +618,15 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">数据结构</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">计算机组成原理</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">编译原理</a>
               </li>
             
             <div class="clearfix"></div>
