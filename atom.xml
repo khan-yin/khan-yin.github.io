@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://yoursite.com/"/>
-  <updated>2021-06-06T12:36:15.240Z</updated>
+  <updated>2021-06-13T07:53:19.858Z</updated>
   <id>https://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,27 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>数据结构与刷题——链表</title>
+    <link href="https://yoursite.com/2021/06/13/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E5%88%B7%E9%A2%98%E2%80%94%E2%80%94%E9%93%BE%E8%A1%A8/"/>
+    <id>https://yoursite.com/2021/06/13/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E5%88%B7%E9%A2%98%E2%80%94%E2%80%94%E9%93%BE%E8%A1%A8/</id>
+    <published>2021-06-13T07:49:00.000Z</published>
+    <updated>2021-06-13T07:53:19.858Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="数据结构与刷题——链表"><a href="#数据结构与刷题——链表" class="headerlink" title="数据结构与刷题——链表"></a>数据结构与刷题——链表</h2><p><img src="https://img-blog.csdnimg.cn/20210607085716429.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0phY2tfX19F,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p><a id="more"></a><p><img src="https://img-blog.csdnimg.cn/20210607090224384.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0phY2tfX19F,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p><h2 id="单链表代码模板"><a href="#单链表代码模板" class="headerlink" title="单链表代码模板"></a>单链表代码模板</h2><p>代码实现单链表的方法有很多种，但是对于acm刷题来说，我们通常使用的是静态链表的方式，这样代码运行速度更快，防止被卡时间。</p><figure class="highlight cpp"><table><tr><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> N = <span class="hljs-number">100010</span>;<br><span class="hljs-keyword">int</span> head; <span class="hljs-comment">// 头指针</span><br><span class="hljs-keyword">int</span> e[N]; <span class="hljs-comment">// e[i]表示第i个节点的</span><br><span class="hljs-keyword">int</span> ne[N];<span class="hljs-comment">// 第i个节点的next指针，表示当前节点的直接后继的节点编号</span><br><span class="hljs-keyword">int</span> idx;<span class="hljs-comment">//记录已经存储了多少个节点</span><br><br><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">init</span><span class="hljs-params">()</span></span><br><span class="hljs-function"></span>&#123;<br>head = <span class="hljs-number">-1</span>;<span class="hljs-comment">//用-1表示空节点</span><br>idx = <span class="hljs-number">0</span>;<br>&#125;<br><br><span class="hljs-comment">//在第k个节点后面插入一个新节点，节点的值为x</span><br><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">insert</span><span class="hljs-params">(<span class="hljs-keyword">int</span> k,<span class="hljs-keyword">int</span> x)</span></span><br><span class="hljs-function"></span>&#123;<br>e[idx] = x;<br>ne[idx] = ne[k];<br>ne[k] = idx++; <br>&#125;<br><br><span class="hljs-comment">// 删除第k+1个节点,即将将该节点的指针指向他的下一个元素</span><br><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">delete_node</span><span class="hljs-params">(<span class="hljs-keyword">int</span> k)</span></span><br><span class="hljs-function"></span>&#123;<br>ne[k] = ne[ne[k]];<br>&#125;<br><br><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">delete_head</span><span class="hljs-params">()</span></span><br><span class="hljs-function"></span>&#123;<br>head = ne[head];<br>&#125;<br><br><span class="hljs-comment">//遍历过程</span><br><span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = head; i!=<span class="hljs-number">-1</span>;i = ne[i])<br>&#123;<br><span class="hljs-built_in">cout</span>&lt;&lt;e[i]&lt;&lt;<span class="hljs-built_in">endl</span>;<br>&#125;<br></code></pre></td></tr></table></figure><h2 id="双链表"><a href="#双链表" class="headerlink" title="双链表"></a>双链表</h2><p>在实际的代码编写过程当中，我们也是直接使用静态链表来设置双链表，我们首先设置0号点和1号点为左右边界head，tail。之后我们就只需要在这两者之间插入节点构造双链表。<br><img src="https://img-blog.csdnimg.cn/20210613150500543.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0phY2tfX19F,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20210613151354570.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0phY2tfX19F,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p><p><img src="https://img-blog.csdnimg.cn/20210613151720314.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0phY2tfX19F,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p><figure class="highlight cpp"><table><tr><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> N = <span class="hljs-number">100010</span>;<br><span class="hljs-keyword">int</span> e[N];<br><span class="hljs-keyword">int</span> l[N];<br><span class="hljs-keyword">int</span> r[N];<br><span class="hljs-keyword">int</span> idx;<br><br><span class="hljs-comment">//初始化直接初始化出左右端点的下标，从而避免边界问题</span><br><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">init</span><span class="hljs-params">()</span></span><br><span class="hljs-function"></span>&#123;<br>    <span class="hljs-comment">//初始化的左右别搞反了</span><br>    r[<span class="hljs-number">0</span>] = <span class="hljs-number">1</span>;<br>    l[<span class="hljs-number">1</span>] = <span class="hljs-number">0</span>;<br>    idx =<span class="hljs-number">2</span>;<br>&#125;<br><br><span class="hljs-comment">// 在k节点的右侧插入一个x,其实也相当于左侧插入节点</span><br><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">add</span><span class="hljs-params">(<span class="hljs-keyword">int</span> k,<span class="hljs-keyword">int</span> x)</span></span><br><span class="hljs-function"></span>&#123;<br>    e[idx] = x;<br>    <span class="hljs-comment">//操作新节点的左右指针</span><br>    r[idx] = r[k];<br>    l[idx] = k;<br>    <span class="hljs-comment">//再操作原数组的节点</span><br>    l[r[k]] = idx;<br>    r[k] = idx++;<br>&#125;<br><br><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">remove</span><span class="hljs-params">(<span class="hljs-keyword">int</span> k)</span></span><br><span class="hljs-function"></span>&#123;<br>    l[r[k]] = l[k]; <span class="hljs-comment">//右节点的左侧，指向左节点</span><br>    r[l[k]] = r[k]; <span class="hljs-comment">//左节点的右侧，指向右节点</span><br>&#125;<br></code></pre></td></tr></table></figure><h2 id="经典例题"><a href="#经典例题" class="headerlink" title="经典例题"></a>经典例题</h2><p>以上两种实现方式都是通过静态链表实现的，主要是来自y总的AcWing经典例题。<br><a href="https://www.acwing.com/problem/content/828/" target="_blank" rel="noopener">AcWing826. 单链表</a><br><a href="https://www.acwing.com/problem/content/829/" target="_blank" rel="noopener">AcWing827. 双链表</a><br>使用指针的实现方式，在leetcode当中用的比较多，这里给大家补充一些leetcode中出现的链表类型的题目，<strong>主要涉及到链表的遍历，双指针算法，和一些小技巧，高阶一点的题目会涉及到树和递归的问题。</strong><br>我做的主要是leetcode上程序员面试经典和剑指offer的例题，不过个人感觉这些题也大部分涵盖了链表题型的大部分考法，而且题解也十分详细。<br><img src="https://img-blog.csdnimg.cn/20210613154244776.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0phY2tfX19F,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20210613154325296.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0phY2tfX19F,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;数据结构与刷题——链表&quot;&gt;&lt;a href=&quot;#数据结构与刷题——链表&quot; class=&quot;headerlink&quot; title=&quot;数据结构与刷题——链表&quot;&gt;&lt;/a&gt;数据结构与刷题——链表&lt;/h2&gt;&lt;p&gt;&lt;img src=&quot;https://img-blog.csdnimg.cn/20210607085716429.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0phY2tfX19F,size_16,color_FFFFFF,t_70&quot; alt=&quot;在这里插入图片描述&quot;&gt;&lt;/p&gt;
+    
+    </summary>
+    
+    
+    
+      <category term="数据结构" scheme="https://yoursite.com/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"/>
+    
+  </entry>
   
   <entry>
     <title>数据结构与算法基础——快速排序与归并排序</title>
@@ -477,32 +498,9 @@
     
     
     
-      <category term="web基础" scheme="https://yoursite.com/tags/web%E5%9F%BA%E7%A1%80/"/>
-    
       <category term="JavaScript" scheme="https://yoursite.com/tags/JavaScript/"/>
     
-  </entry>
-  
-  <entry>
-    <title>编译原理第二章——文法分类</title>
-    <link href="https://yoursite.com/2020/10/02/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86%E7%AC%AC%E4%BA%8C%E7%AB%A0%E2%80%94%E2%80%94%E6%96%87%E6%B3%95%E5%88%86%E7%B1%BB/"/>
-    <id>https://yoursite.com/2020/10/02/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86%E7%AC%AC%E4%BA%8C%E7%AB%A0%E2%80%94%E2%80%94%E6%96%87%E6%B3%95%E5%88%86%E7%B1%BB/</id>
-    <published>2020-10-02T01:35:22.000Z</published>
-    <updated>2021-01-19T04:31:33.303Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="语言和文法"><a href="#语言和文法" class="headerlink" title="语言和文法"></a>语言和文法</h1><p>编译原理第二章文法分类，紫书内容和mooc知识总结，重新回顾了4种文法的知识。</p><h2 id="文法分类"><a href="#文法分类" class="headerlink" title="文法分类"></a>文法分类</h2><p>乔姆斯基把语言文法分成4类，0型，1型，2型，3型，这几类文法的差别主要在于对产生式的限制不同，等级越高，限制越严格。</p><h4 id="0型文法"><a href="#0型文法" class="headerlink" title="0型文法"></a>0型文法</h4><p>0型文法是文法限制最弱的一种类型，0型文法的能力又被相当于<strong>图灵机</strong>模型，或者说<strong>任何0型文法都是递归可枚举的，反之，递归可枚举的一定是一个0型语言</strong>。</p><a id="more"></a><p><strong>定义：</strong><br>设$G=(V_N,V_T,P,S)$，如果$P$中的每一个产生式$\alpha$-&gt;$\beta$满足条件：</p><ol><li>$\alpha \in (V_N \cup V_T)^*$且至少含有一个非终结符。</li><li>$\beta \in (V_N \cup V_T)^*$</li></ol><p><strong>0型例子：</strong><br><img src="https://img-blog.csdnimg.cn/20201002110133143.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0phY2tfX19F,size_16,color_FFFFFF,t_70#pic_center" alt="0型实例"></p><h4 id="1型文法——上下文有关文法"><a href="#1型文法——上下文有关文法" class="headerlink" title="1型文法——上下文有关文法"></a>1型文法——上下文有关文法</h4><p>1型文法中最主要的限制条件主要是对于产生式P均满足$|\beta| \ge|\alpha|$,仅$S \rightarrow \epsilon$除外。<br><strong>等价定义：</strong><br><img src="https://img-blog.csdnimg.cn/20201002111340975.png#pic_center" alt="1型文法"></p><p><strong>1型例子：</strong><br><img src="https://img-blog.csdnimg.cn/20201002111557799.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0phY2tfX19F,size_16,color_FFFFFF,t_70#pic_center" alt="1型文法"></p><h4 id="2型文法——上下文无关文法"><a href="#2型文法——上下文无关文法" class="headerlink" title="2型文法——上下文无关文法"></a>2型文法——上下文无关文法</h4><p>2型文法对应的是<strong>下推自动机</strong>模型，常用于描述高级语言的<strong>语法规则</strong>。<br><strong>定义：</strong><br>设$G=(V_N,V_T,P,S)$，如果$P$中的每一个产生式$\alpha$-&gt;$\beta$满足条件：</p><ol><li>$\alpha$是<strong>一个</strong>非终结符。</li><li>$\beta \in (V_N \cup V_T)^*$</li></ol><p><strong>2型例子：</strong><br><img src="https://img-blog.csdnimg.cn/20201002141025946.png#pic_center" alt="在这里插入图片描述"></p><h4 id="3型文法——正规文法"><a href="#3型文法——正规文法" class="headerlink" title="3型文法——正规文法"></a>3型文法——正规文法</h4><p>正规文法对应的是有穷自动机，用来描述高级语言的<strong>词法规则</strong><br><strong>定义：</strong><br>设$G=(V_N,V_T,P,S)$，如果$P$中的每一个产生式$\alpha$-&gt;$\beta$都是$A-&gt;aB$或者$A-&gt;a$的形式，其中A，B都是非终结符，$a \in V_T^*$即就是，由一个非终结符推导出一个终结符或者一个终结符+一个非终结符构成的字串。</p><p><img src="https://img-blog.csdnimg.cn/20201002142059138.png#pic_center" alt="3"></p><p><strong>正规文法例子：</strong><br>这里尖括号括起来的是非终结符，其他的是终结符。<br><img src="https://img-blog.csdnimg.cn/20201002142509302.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0phY2tfX19F,size_16,color_FFFFFF,t_70#pic_center" alt="3"></p><p>4种文法的定义的限制是逐步增强的，四种文法是逐步包含的，因此每一种正规文法都是上下文无关的，每一种上下文无关文法都是上下文有关的，每一种上下文有关文法都是0型文法。</p><p><img src="https://img-blog.csdnimg.cn/20201002142911916.png#pic_center" alt="0"></p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;语言和文法&quot;&gt;&lt;a href=&quot;#语言和文法&quot; class=&quot;headerlink&quot; title=&quot;语言和文法&quot;&gt;&lt;/a&gt;语言和文法&lt;/h1&gt;&lt;p&gt;编译原理第二章文法分类，紫书内容和mooc知识总结，重新回顾了4种文法的知识。&lt;/p&gt;
-&lt;h2 id=&quot;文法分类&quot;&gt;&lt;a href=&quot;#文法分类&quot; class=&quot;headerlink&quot; title=&quot;文法分类&quot;&gt;&lt;/a&gt;文法分类&lt;/h2&gt;&lt;p&gt;乔姆斯基把语言文法分成4类，0型，1型，2型，3型，这几类文法的差别主要在于对产生式的限制不同，等级越高，限制越严格。&lt;/p&gt;
-&lt;h4 id=&quot;0型文法&quot;&gt;&lt;a href=&quot;#0型文法&quot; class=&quot;headerlink&quot; title=&quot;0型文法&quot;&gt;&lt;/a&gt;0型文法&lt;/h4&gt;&lt;p&gt;0型文法是文法限制最弱的一种类型，0型文法的能力又被相当于&lt;strong&gt;图灵机&lt;/strong&gt;模型，或者说&lt;strong&gt;任何0型文法都是递归可枚举的，反之，递归可枚举的一定是一个0型语言&lt;/strong&gt;。&lt;/p&gt;
-    
-    </summary>
-    
-    
-    
-      <category term="编译原理" scheme="https://yoursite.com/tags/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/"/>
+      <category term="web基础" scheme="https://yoursite.com/tags/web%E5%9F%BA%E7%A1%80/"/>
     
   </entry>
   
