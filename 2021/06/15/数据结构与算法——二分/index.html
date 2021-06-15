@@ -6,17 +6,24 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://yoursite.com">
-  <title>Archives: 2021 | ykhblog 一路向北</title>
+  <title>数据结构与算法——二分 | ykhblog 一路向北</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="2020努力成为大佬">
-<meta property="og:type" content="website">
-<meta property="og:title" content="ykhblog 一路向北">
-<meta property="og:url" content="https://yoursite.com/archives/2021/index.html">
+  <meta name="description" content="数据结构与算法——二分最近leetcode每日一题经常出二分的题目，正好对前段时间学过的二分进行一些总结，首先这里要明确的一点是，二分的本质并不是单调性，而是通过某种条件将整个区间划分成满足条件和不满足条件的两端即可进行二分查找。在二分这个专题，主要有两种类型的划分方式，一种是整数划分，一种是浮点数划分，前一种一般是我们最熟悉的二分查找的题型，也是出题比较灵活考的比较多的一种，后一种主要是为控制实">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数据结构与算法——二分">
+<meta property="og:url" content="https://yoursite.com/2021/06/15/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E2%80%94%E2%80%94%E4%BA%8C%E5%88%86/index.html">
 <meta property="og:site_name" content="ykhblog 一路向北">
-<meta property="og:description" content="2020努力成为大佬">
+<meta property="og:description" content="数据结构与算法——二分最近leetcode每日一题经常出二分的题目，正好对前段时间学过的二分进行一些总结，首先这里要明确的一点是，二分的本质并不是单调性，而是通过某种条件将整个区间划分成满足条件和不满足条件的两端即可进行二分查找。在二分这个专题，主要有两种类型的划分方式，一种是整数划分，一种是浮点数划分，前一种一般是我们最熟悉的二分查找的题型，也是出题比较灵活考的比较多的一种，后一种主要是为控制实">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210615210034299.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0phY2tfX19F,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210615214228227.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0phY2tfX19F,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210615214427955.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0phY2tfX19F,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210615213845614.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0phY2tfX19F,size_16,color_FFFFFF,t_70">
+<meta property="article:published_time" content="2021-06-15T13:48:28.000Z">
+<meta property="article:modified_time" content="2021-06-15T13:49:09.185Z">
 <meta property="article:author" content="whut ykh">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20210615210034299.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0phY2tfX19F,size_16,color_FFFFFF,t_70">
   
   
     <link rel="icon" href="/assets/xxb.jpg">
@@ -185,398 +192,162 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
+            <article id="post-数据结构与算法——二分" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
   
+    <h1 class="article-title" itemprop="name">
+      数据结构与算法——二分
+    </h1>
   
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2021" class="archive-year">2021</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/06/15/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E2%80%94%E2%80%94%E4%BA%8C%E5%88%86/" class="archive-article-date">
+
+        
+        <a href="/2021/06/15/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E2%80%94%E2%80%94%E4%BA%8C%E5%88%86/" class="archive-article-date">
   	<time datetime="2021-06-15T13:48:28.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-06-15</time>
 </a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/06/15/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E2%80%94%E2%80%94%E4%BA%8C%E5%88%86/">数据结构与算法——二分</a>
-    </h1>
-  
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="数据结构与算法——二分"><a href="#数据结构与算法——二分" class="headerlink" title="数据结构与算法——二分"></a>数据结构与算法——二分</h2><p>最近leetcode每日一题经常出二分的题目，正好对前段时间学过的二分进行一些总结，首先这里要明确的一点是，<strong>二分的本质并不是单调性，而是通过某种条件将整个区间划分成满足条件和不满足条件的两端即可进行二分查找。</strong><br>在二分这个专题，主要有两种类型的划分方式，一种是整数划分，一种是浮点数划分，前一种一般是我们最熟悉的二分查找的题型，也是出题比较灵活考的比较多的一种，后一种主要是为控制实数精度而设置的浮点数二分法（建议用<code>double</code>，<code>float</code>有时候会出现精度丢失）。</p>
+<a id="more"></a>
+<h2 id="整数二分"><a href="#整数二分" class="headerlink" title="整数二分"></a>整数二分</h2><p>这里我们拿一道经典例题来给出我们二分的两个十分精妙的模板。<a href="https://www.acwing.com/problem/content/791/" target="_blank" rel="noopener">AcWing789. 数的范围</a></p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><code class="hljs cpp"><span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">check</span><span class="hljs-params">(<span class="hljs-keyword">int</span> x)</span> </span>&#123;<span class="hljs-comment">/* ... */</span>&#125; <span class="hljs-comment">// 检查x是否满足某种性质</span><br><br><span class="hljs-comment">// 区间[l, r]被划分成[l, mid]和[mid + 1, r]时使用：</span><br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">bsearch_1</span><span class="hljs-params">(<span class="hljs-keyword">int</span> l, <span class="hljs-keyword">int</span> r)</span></span><br><span class="hljs-function"></span>&#123;<br>    <span class="hljs-keyword">while</span>(l &lt; r)<br>    &#123;<br>    	<span class="hljs-keyword">int</span> mid = l + r &gt;&gt; <span class="hljs-number">1</span>; <span class="hljs-comment">// 如果写r=mid则这里不需要+1</span><br>    	<span class="hljs-keyword">if</span>(check(mid)) r = mid; <span class="hljs-comment">// check()判断mid是否满足性质</span><br>    	<span class="hljs-keyword">else</span> l = mid + <span class="hljs-number">1</span>;<br>    &#125;<br>    <span class="hljs-keyword">return</span> l; <span class="hljs-comment">//退出时 l与r相等</span><br>&#125;<br><span class="hljs-comment">// 区间[l, r]被划分成[l, mid - 1]和[mid, r]时使用：</span><br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">bsearch_2</span><span class="hljs-params">(<span class="hljs-keyword">int</span> l, <span class="hljs-keyword">int</span> r)</span></span><br><span class="hljs-function"></span>&#123;<br>    <span class="hljs-keyword">while</span>(l &lt; r)<br>    &#123;<br>    	<span class="hljs-keyword">int</span> mid = l + r + <span class="hljs-number">1</span> &gt;&gt; <span class="hljs-number">1</span>;<br>    	<span class="hljs-keyword">if</span>(check(mid)) l = mid;<br>    	<span class="hljs-keyword">else</span>  r = mid - <span class="hljs-number">1</span>;<br>    &#125;<br>    <span class="hljs-keyword">return</span> l;<br>&#125;<br></code></pre></td></tr></table></figure>
 
-        <div class="article-info info-on-right">
-          
-          
+<h2 id="浮点数二分"><a href="#浮点数二分" class="headerlink" title="浮点数二分"></a>浮点数二分</h2><p>浮点数二分考的比较少，主要是实现对于高精度答案的控制。<a href="https://www.acwing.com/problem/content/792/" target="_blank" rel="noopener">AcWing 790. 数的三次方根</a><br><strong>这里有个小bug需要提醒一下</strong>，<strong>我们以求二次方根为例</strong>，我们可以知道，$x=0.01$时，$\sqrt{x}=0.1&gt;x$，所以当我们把二分的区间设置成$[0,x]$时，我们则无法找到答案，所以设置区间的时候我们最好可以设置大一点的区间，或者设置成$[0,\max(1,x)]$<br><img src="https://img-blog.csdnimg.cn/20210615210034299.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0phY2tfX19F,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><code class="hljs cpp"><span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">check</span><span class="hljs-params">(<span class="hljs-keyword">double</span> x)</span> </span>&#123;<span class="hljs-comment">/* ... */</span>&#125; <span class="hljs-comment">// 检查x是否满足某种性质</span><br><br><span class="hljs-function"><span class="hljs-keyword">double</span> <span class="hljs-title">bsearch_3</span><span class="hljs-params">(<span class="hljs-keyword">double</span> l, <span class="hljs-keyword">double</span> r)</span></span><br><span class="hljs-function"></span>&#123;<br>    <span class="hljs-keyword">const</span> <span class="hljs-keyword">double</span> eps = <span class="hljs-number">1e-8</span>;   <span class="hljs-comment">// eps 表示精度，取决于题目对精度的要求</span><br>    <span class="hljs-keyword">while</span>(r - l &gt; eps)<br>    &#123;<br>    	<span class="hljs-keyword">double</span> mid = (l + r) / <span class="hljs-number">2</span>; <span class="hljs-comment">// 对于浮点数二分则不需要考虑+1的问题</span><br>    	<span class="hljs-keyword">if</span>(check(mid)) r = mid;<br>    	<span class="hljs-keyword">else</span> l = mid;<br>	&#125;<br>	<span class="hljs-keyword">return</span> l;<br>&#125;<br></code></pre></td></tr></table></figure>
 
+<h2 id="STL"><a href="#STL" class="headerlink" title="STL"></a>STL</h2><p>做题当中手写二分的题其实比较少，基本上记忆上述模板就能解决所以的问题，同时我们在日常做题的时候，为了方便，我们通常是使用STL当中的函数来实现二分，且支持vector，map，set等操作，还有结构体大小比较，这里就有三个一定要记住的API。头文件引入：<code>#include&lt;algorithm&gt;</code><br><code>binary_search</code><br>功能：二分查找某个元素是否出现。<br>返回值：在数组中以二分法检索的方式查找，若在数组(<strong>要求数组元素非递减</strong>)中查找到indx元素则真，若查找不到则返回值为假。<br>用法实例：<br>a.数组用法</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">int</span> a[<span class="hljs-number">100</span>]= &#123;<span class="hljs-number">4</span>,<span class="hljs-number">10</span>,<span class="hljs-number">11</span>,<span class="hljs-number">30</span>,<span class="hljs-number">69</span>,<span class="hljs-number">70</span>,<span class="hljs-number">96</span>,<span class="hljs-number">100</span>&#125;;<br><span class="hljs-keyword">int</span> b=binary_search(a,a+<span class="hljs-number">9</span>,<span class="hljs-number">4</span>);<span class="hljs-comment">//查找成功，返回1</span><br><span class="hljs-built_in">cout</span>&lt;&lt;<span class="hljs-string">"在数组中查找元素4，结果为："</span>&lt;&lt;b&lt;&lt;<span class="hljs-built_in">endl</span>;<br></code></pre></td></tr></table></figure>
+<p>b.vector用法</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><code class="hljs cpp"><span class="hljs-built_in">vector</span>&lt;<span class="hljs-keyword">int</span>&gt; res = &#123;<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>&#125;;<br><span class="hljs-built_in">cout</span>&lt;&lt;binary_search(res.begin(),res.end(),<span class="hljs-number">3</span>)&lt;&lt;<span class="hljs-built_in">endl</span>;<br></code></pre></td></tr></table></figure>
+<p><code>lower_bound</code><br>功能：查找非递减序列[first,last) 内第一个<strong>大于或等于</strong>某个元素的位置。<br>返回值：如果找到返回找到元素的地址否则返回<strong>数组边界的下一个元素的地址</strong>。（这样不注意的话会越界，小心）<br>用法实例：</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">int</span> a[<span class="hljs-number">100</span>]= &#123;<span class="hljs-number">4</span>,<span class="hljs-number">10</span>,<span class="hljs-number">11</span>,<span class="hljs-number">30</span>,<span class="hljs-number">69</span>,<span class="hljs-number">70</span>,<span class="hljs-number">96</span>,<span class="hljs-number">100</span>&#125;;<br><span class="hljs-keyword">int</span> d=lower_bound(a,a+<span class="hljs-number">9</span>,<span class="hljs-number">10</span>)-a;<br><span class="hljs-built_in">cout</span>&lt;&lt;<span class="hljs-string">"在数组中查找第一个大于等于10的元素位置，结果为："</span>&lt;&lt;d&lt;&lt;<span class="hljs-built_in">endl</span>;<br><span class="hljs-keyword">int</span> e=lower_bound(a,a+<span class="hljs-number">9</span>,<span class="hljs-number">101</span>)-a;<br><span class="hljs-built_in">cout</span>&lt;&lt;<span class="hljs-string">"在数组中查找第一个大于等于101的元素位置，结果为："</span>&lt;&lt;e&lt;&lt;<span class="hljs-built_in">endl</span>;<br></code></pre></td></tr></table></figure>
+<p>b.vector用法</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><code class="hljs cpp"><span class="hljs-built_in">vector</span>&lt;<span class="hljs-keyword">int</span>&gt; res = &#123;<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>&#125;;<br><span class="hljs-built_in">vector</span>&lt;<span class="hljs-keyword">int</span>&gt;::iterator it =  lower_bound(res.begin(),res.end(),<span class="hljs-number">3</span>);<span class="hljs-comment">//返回迭代器的位置</span><br><span class="hljs-comment">//如果不存在，迭代器的位置会返回res.end()</span><br><span class="hljs-keyword">if</span>(it==res.end()) <span class="hljs-built_in">cout</span>&lt;&lt;<span class="hljs-string">"不存在"</span>&lt;&lt;<span class="hljs-built_in">endl</span>;<br><span class="hljs-keyword">else</span> <span class="hljs-built_in">cout</span>&lt;&lt;<span class="hljs-string">"求出下标:"</span>&lt;&lt;(it - res.begin())&lt;&lt;<span class="hljs-built_in">endl</span>;<br><span class="hljs-comment">//也可以添加偏移量</span><br><span class="hljs-built_in">vector</span>&lt;<span class="hljs-keyword">int</span>&gt;::iterator it =  lower_bound(res.begin()+<span class="hljs-number">1</span>,res.end(),<span class="hljs-number">3</span>);<br></code></pre></td></tr></table></figure>
+
+<p><code>upper_bound</code></p>
+<p>功能：查找非递减序列[first,last) 内第一个<strong>大于</strong>某个元素的位置。</p>
+<p>返回值：如果找到返回找到元素的地址，否则返回<strong>数组边界的下一个元素的地址</strong>。（同样这样不注意的话会越界，小心）<br>用法实例：</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">int</span> a[<span class="hljs-number">100</span>]= &#123;<span class="hljs-number">4</span>,<span class="hljs-number">10</span>,<span class="hljs-number">11</span>,<span class="hljs-number">30</span>,<span class="hljs-number">69</span>,<span class="hljs-number">70</span>,<span class="hljs-number">96</span>,<span class="hljs-number">100</span>&#125;;<br><span class="hljs-keyword">int</span> d=upper_bound(a,a+<span class="hljs-number">9</span>,<span class="hljs-number">10</span>)-a;<br><span class="hljs-built_in">cout</span>&lt;&lt;<span class="hljs-string">"在数组中查找第一个大于等于10的元素位置，结果为："</span>&lt;&lt;d&lt;&lt;<span class="hljs-built_in">endl</span>;<br><span class="hljs-keyword">int</span> e=upper_bound(a,a+<span class="hljs-number">9</span>,<span class="hljs-number">101</span>)-a;<br><span class="hljs-built_in">cout</span>&lt;&lt;<span class="hljs-string">"在数组中查找第一个大于等于101的元素位置，结果为："</span>&lt;&lt;e&lt;&lt;<span class="hljs-built_in">endl</span>;<br></code></pre></td></tr></table></figure>
+<p>b.vector用法</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><code class="hljs cpp"><span class="hljs-built_in">vector</span>&lt;<span class="hljs-keyword">int</span>&gt; res = &#123;<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>&#125;;<br><span class="hljs-built_in">vector</span>&lt;<span class="hljs-keyword">int</span>&gt;::iterator it =  upper_bound(res.begin(),res.end(),<span class="hljs-number">3</span>);<span class="hljs-comment">//返回迭代器的位置</span><br><span class="hljs-comment">//如果不存在，迭代器的位置会返回res.end()</span><br><span class="hljs-keyword">if</span>(it==res.end()) <span class="hljs-built_in">cout</span>&lt;&lt;<span class="hljs-string">"不存在"</span>&lt;&lt;<span class="hljs-built_in">endl</span>;<br><span class="hljs-keyword">else</span> <span class="hljs-built_in">cout</span>&lt;&lt;<span class="hljs-string">"求出下标:"</span>&lt;&lt;(it - res.begin())&lt;&lt;<span class="hljs-built_in">endl</span>;<br><span class="hljs-comment">//也可以添加偏移量</span><br><span class="hljs-built_in">vector</span>&lt;<span class="hljs-keyword">int</span>&gt;::iterator it =  upper_bound(res.begin()+<span class="hljs-number">1</span>,res.end(),<span class="hljs-number">3</span>);<br></code></pre></td></tr></table></figure>
+
+<h2 id="经典例题"><a href="#经典例题" class="headerlink" title="经典例题"></a>经典例题</h2><p>这里我顺便给出这两天的每日一题的解题方案，里面还涉及到了一个<strong>防止溢出</strong>的二分处理trick。<br><a href="https://leetcode-cn.com/problems/guess-number-higher-or-lower/" target="_blank" rel="noopener">猜数字大小</a><br><img src="https://img-blog.csdnimg.cn/20210615214228227.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0phY2tfX19F,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><code class="hljs cpp"><span class="hljs-comment">/** </span><br><span class="hljs-comment"> * Forward declaration of guess API.</span><br><span class="hljs-comment"> * @param  num   your guess</span><br><span class="hljs-comment"> * @return 	     -1 if num is lower than the guess number</span><br><span class="hljs-comment"> *			      1 if num is higher than the guess number</span><br><span class="hljs-comment"> *               otherwise return 0</span><br><span class="hljs-comment"> * int guess(int num);</span><br><span class="hljs-comment"> */</span><br><br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> &#123;</span><br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">guessNumber</span><span class="hljs-params">(<span class="hljs-keyword">int</span> n)</span> </span>&#123;<br>        <span class="hljs-keyword">int</span> l = <span class="hljs-number">1</span>;<br>        <span class="hljs-keyword">int</span> r = n;<br>        <span class="hljs-keyword">while</span>(l&lt;r)<br>        &#123;<br>            <span class="hljs-keyword">int</span> mid = l + (r - l &gt;&gt; <span class="hljs-number">1</span>);<span class="hljs-comment">//防止溢出</span><br>            <span class="hljs-keyword">if</span>(guess(mid)&lt;=<span class="hljs-number">0</span>) <br>                r = mid;<br>            <span class="hljs-keyword">else</span> <br>                l = mid + <span class="hljs-number">1</span>;<br>        &#125;<br>        <span class="hljs-keyword">return</span> r;<br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
+<p><a href="https://leetcode-cn.com/problems/peak-index-in-a-mountain-array/" target="_blank" rel="noopener"> 山脉数组的峰顶索引</a><br><img src="https://img-blog.csdnimg.cn/20210615214427955.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0phY2tfX19F,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><code class="hljs cpp"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> &#123;</span><br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">peakIndexInMountainArray</span><span class="hljs-params">(<span class="hljs-built_in">vector</span>&lt;<span class="hljs-keyword">int</span>&gt;&amp; arr)</span> </span>&#123;<br>        <span class="hljs-keyword">int</span> l = <span class="hljs-number">0</span>;<br>        <span class="hljs-keyword">int</span> r = arr.size() - <span class="hljs-number">1</span>;<br>        <span class="hljs-keyword">while</span>(l&lt;r)<br>        &#123;<br>            <span class="hljs-keyword">int</span> mid = l + r &gt;&gt; <span class="hljs-number">1</span>;<br>            <span class="hljs-keyword">if</span>(arr[mid]&gt;arr[mid+<span class="hljs-number">1</span>]) r = mid;<br>            <span class="hljs-keyword">else</span> l = mid+<span class="hljs-number">1</span>;<br>        &#125;<br>        <span class="hljs-keyword">return</span> l;<br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
+<p>这是<a href="https://leetcode-cn.com/problems/peak-index-in-a-mountain-array/solution/gong-shui-san-xie-er-fen-san-fen-cha-zhi-5gfv/" target="_blank" rel="noopener">三叶姐姐</a>的二分经典题型汇总，大家也可以参考一下。<br><img src="https://img-blog.csdnimg.cn/20210615213845614.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0phY2tfX19F,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=https://yoursite.com/2021/06/15/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E2%80%94%E2%80%94%E4%BA%8C%E5%88%86/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/06/13/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E5%88%B7%E9%A2%98%E2%80%94%E2%80%94%E9%93%BE%E8%A1%A8/" class="archive-article-date">
-  	<time datetime="2021-06-13T07:49:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-06-13</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2021/06/13/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E5%88%B7%E9%A2%98%E2%80%94%E2%80%94%E9%93%BE%E8%A1%A8/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">数据结构与刷题——链表</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/06/13/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E5%88%B7%E9%A2%98%E2%80%94%E2%80%94%E9%93%BE%E8%A1%A8/">数据结构与刷题——链表</a>
-    </h1>
+  
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">数据结构</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/06/06/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E5%9F%BA%E7%A1%80%E2%80%94%E2%80%94%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F%E4%B8%8E%E5%BD%92%E5%B9%B6%E6%8E%92%E5%BA%8F/" class="archive-article-date">
-  	<time datetime="2021-06-06T12:33:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-06-06</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/06/06/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E5%9F%BA%E7%A1%80%E2%80%94%E2%80%94%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F%E4%B8%8E%E5%BD%92%E5%B9%B6%E6%8E%92%E5%BA%8F/">数据结构与算法基础——快速排序与归并排序</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">数据结构</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/05/09/EfficientNet%E8%AE%BA%E6%96%87%E8%A7%A3%E8%AF%BB%E5%92%8Cpytorch%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0/" class="archive-article-date">
-  	<time datetime="2021-05-09T09:44:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-05-09</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/05/09/EfficientNet%E8%AE%BA%E6%96%87%E8%A7%A3%E8%AF%BB%E5%92%8Cpytorch%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0/">EfficientNet论文解读和pytorch代码实现</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">计算机视觉</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/04/22/yolov1-3%E8%AE%BA%E6%96%87%E8%A7%A3%E6%9E%90/" class="archive-article-date">
-  	<time datetime="2021-04-22T02:20:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-04-22</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/04/22/yolov1-3%E8%AE%BA%E6%96%87%E8%A7%A3%E6%9E%90/">yolov1-3论文解析</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">计算机视觉</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/04/12/MTCNN%E8%AE%BA%E6%96%87%E5%92%8Cpytorch%E4%BB%A3%E7%A0%81%E8%A7%A3%E8%AF%BB/" class="archive-article-date">
-  	<time datetime="2021-04-12T00:39:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-04-12</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/04/12/MTCNN%E8%AE%BA%E6%96%87%E5%92%8Cpytorch%E4%BB%A3%E7%A0%81%E8%A7%A3%E8%AF%BB/">MTCNN论文和pytorch代码解读</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">计算机视觉</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/02/25/docker%E9%95%9C%E5%83%8F%E6%93%8D%E4%BD%9C/" class="archive-article-date">
-  	<time datetime="2021-02-24T16:03:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-02-25</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/02/25/docker%E9%95%9C%E5%83%8F%E6%93%8D%E4%BD%9C/">docker镜像操作</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">docker</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/02/24/docker%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/" class="archive-article-date">
-  	<time datetime="2021-02-24T07:30:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-02-24</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/02/24/docker%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/">docker常用命令</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">docker</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/02/24/docker%E5%AE%89%E8%A3%85%E5%92%8C%E7%AE%80%E6%98%93%E5%8E%9F%E7%90%86/" class="archive-article-date">
-  	<time datetime="2021-02-24T04:53:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-02-24</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/02/24/docker%E5%AE%89%E8%A3%85%E5%92%8C%E7%AE%80%E6%98%93%E5%8E%9F%E7%90%86/">docker安装和简易原理</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">docker</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/02/23/datawhale%E8%AF%AD%E4%B9%89%E5%88%86%E5%89%B2-Task4-%E8%AF%84%E4%BB%B7%E5%87%BD%E6%95%B0%E4%B8%8E%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0/" class="archive-article-date">
-  	<time datetime="2021-02-23T06:55:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-02-23</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/02/23/datawhale%E8%AF%AD%E4%B9%89%E5%88%86%E5%89%B2-Task4-%E8%AF%84%E4%BB%B7%E5%87%BD%E6%95%B0%E4%B8%8E%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0/">datawhale语义分割-Task4 评价函数与损失函数</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">计算机视觉</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">datawhale</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
-    <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/archives/2021/page/2/">2</a><a class="extend next" rel="next" href="/archives/2021/page/2/">Next &amp;raquo;</a>
-    </nav>
   
 
 
@@ -659,8 +430,8 @@ MathJax.Hub.Queue(function() {
 	var yiliaConfig = {
 		mathjax: true,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
