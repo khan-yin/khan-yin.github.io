@@ -8,12 +8,12 @@
   <link rel="dns-prefetch" href="https://yoursite.com">
   <title>datawhale-pandas缺失数据处理 | ykhblog 一路向北</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="缺失数据import numpy as npimport pandas as pd 一、缺失值的统计和删除1. 缺失信息的统计缺失数据可以使用 isna 或 isnull （两个函数没有区别）来查看每个单元格是否缺失，结合 mean 可以计算出每列缺失值的比例：">
+  <meta name="description" content="缺失数据import numpy as npimport pandas as pd  一、缺失值的统计和删除1. 缺失信息的统计缺失数据可以使用 isna 或 isnull （两个函数没有区别）来查看每个单元格是否缺失，结合 mean 可以计算出每列缺失值的比例：">
 <meta property="og:type" content="article">
 <meta property="og:title" content="datawhale-pandas缺失数据处理">
 <meta property="og:url" content="https://yoursite.com/2021/01/20/datawhale-pandas%E7%BC%BA%E5%A4%B1%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/index.html">
 <meta property="og:site_name" content="ykhblog 一路向北">
-<meta property="og:description" content="缺失数据import numpy as npimport pandas as pd 一、缺失值的统计和删除1. 缺失信息的统计缺失数据可以使用 isna 或 isnull （两个函数没有区别）来查看每个单元格是否缺失，结合 mean 可以计算出每列缺失值的比例：">
+<meta property="og:description" content="缺失数据import numpy as npimport pandas as pd  一、缺失值的统计和删除1. 缺失信息的统计缺失数据可以使用 isna 或 isnull （两个函数没有区别）来查看每个单元格是否缺失，结合 mean 可以计算出每列缺失值的比例：">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://inter.joyfulpandas.datawhale.club/_images/ch7_ex.png">
 <meta property="article:published_time" content="2021-01-20T12:55:00.000Z">
@@ -212,122 +212,271 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h1 id="缺失数据"><a href="#缺失数据" class="headerlink" title="缺失数据"></a>缺失数据</h1><figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np<br><span class="hljs-keyword">import</span> pandas <span class="hljs-keyword">as</span> pd<br></code></pre></td></tr></table></figure>
-<h2 id="一、缺失值的统计和删除"><a href="#一、缺失值的统计和删除" class="headerlink" title="一、缺失值的统计和删除"></a>一、缺失值的统计和删除</h2><h2 id="1-缺失信息的统计"><a href="#1-缺失信息的统计" class="headerlink" title="1. 缺失信息的统计"></a>1. 缺失信息的统计</h2><p>缺失数据可以使用 <code>isna</code> 或 <code>isnull</code> （两个函数没有区别）来查看每个单元格是否缺失，结合 <code>mean</code> 可以计算出每列缺失值的比例：<br><a id="more"></a></p>
+
+<h2 id="一、缺失值的统计和删除"><a href="#一、缺失值的统计和删除" class="headerlink" title="一、缺失值的统计和删除"></a>一、缺失值的统计和删除</h2><h2 id="1-缺失信息的统计"><a href="#1-缺失信息的统计" class="headerlink" title="1. 缺失信息的统计"></a>1. 缺失信息的统计</h2><p>缺失数据可以使用 <code>isna</code> 或 <code>isnull</code> （两个函数没有区别）来查看每个单元格是否缺失，结合 <code>mean</code> 可以计算出每列缺失值的比例：</p>
+<a id="more"></a>
+
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">df =pd.read_csv(<span class="hljs-string">'data/learn_pandas.csv'</span>,<br>               usecols=[<span class="hljs-string">'Grade'</span>,<span class="hljs-string">'Name'</span>,<span class="hljs-string">'Gender'</span>,<span class="hljs-string">'Height'</span>,<span class="hljs-string">'Weight'</span>,<span class="hljs-string">'Transfer'</span>])<br></code></pre></td></tr></table></figure>
+
+
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">df.isna().head()<br></code></pre></td></tr></table></figure>
+
+
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">df.isna().mean()<span class="hljs-comment">#查看缺失的比例</span><br></code></pre></td></tr></table></figure>
+
 <p>如果想要查看某一列缺失或者非缺失的行，可以利用<code>Serires</code>上的<code>isna</code>或者<code>notna</code>进行布尔索引，例如，查看身高缺失的行：</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">df[df.Height.isna()].head()<br></code></pre></td></tr></table></figure>
+
+
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">sub_set=df[[<span class="hljs-string">'Height'</span>,<span class="hljs-string">'Weight'</span>,<span class="hljs-string">'Transfer'</span>]]<br>df[sub_set.isna().all(axis=<span class="hljs-number">1</span>)]<span class="hljs-comment"># 全部缺失</span><br></code></pre></td></tr></table></figure>
+
+
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">df[sub_set.isna().any(<span class="hljs-number">1</span>)].head()<br></code></pre></td></tr></table></figure>
+
 <h2 id="缺失信息的删除"><a href="#缺失信息的删除" class="headerlink" title="缺失信息的删除"></a>缺失信息的删除</h2><p>数据处理中经常需要根据缺失值的大小、比例或其他特征来进行行样本或列特征的删除，<code>pandas</code>中提供了<code>dropna</code>函数来进行操作。</p>
 <p><code>dropna</code>的主要参数为轴方向<code>axis</code>（默认为0，即删除行），删除方式<code>how</code>，删除的非缺失值格式阈值<code>thresh</code>（非缺失值没有到达这个数量的相应维度会被删除），备选的删除子集<code>subset</code>，其中<code>how</code>主要有<code>any</code>和<code>all</code>两种参数可以选择</p>
 <p>例如，删除身高体重至少有一个缺失的行</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">res=df.dropna(how=<span class="hljs-string">'any'</span>,subset=[<span class="hljs-string">'Height'</span>,<span class="hljs-string">'Weight'</span>])<br>res.shape<br></code></pre></td></tr></table></figure>
+
 <p>例如删除超过15个缺失值的列</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">res=df.dropna(axis=<span class="hljs-number">1</span>,thresh=df.shape[<span class="hljs-number">0</span>]<span class="hljs-number">-15</span>)<br></code></pre></td></tr></table></figure>
+
+
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">res.head()<br></code></pre></td></tr></table></figure>
+
 <p>当然，不用 <code>dropna</code> 同样是可行的，例如上述的两个操作，也可以使用布尔索引来完成：</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">res=df.loc[df[[<span class="hljs-string">'Height'</span>,<span class="hljs-string">'Weight'</span>]].notna().all(<span class="hljs-number">1</span>)]<br></code></pre></td></tr></table></figure>
+
+
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">res.shape<br></code></pre></td></tr></table></figure>
+
+
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">res=df.loc[:,~(df.isna().sum()&gt;<span class="hljs-number">15</span>)]<br></code></pre></td></tr></table></figure>
+
+
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">res.head()<br></code></pre></td></tr></table></figure>
+
 <h2 id="二、缺失值的填充和插值"><a href="#二、缺失值的填充和插值" class="headerlink" title="二、缺失值的填充和插值"></a>二、缺失值的填充和插值</h2><h2 id="1-利用fillna进行填充"><a href="#1-利用fillna进行填充" class="headerlink" title="1. 利用fillna进行填充"></a>1. 利用fillna进行填充</h2><p>在<code>fillna</code>中有三个参数是常用的：<code>value,method,limit</code>其中<code>value</code>为填充值，可以是标量，也可以是索引到元素的字典映射，<code>method</code>为填充方法，有用前面的元素填充<code>ffill</code>和用后面的元素填充<code>bfill</code>两种类型，<code>limit</code>参数表示连续缺失值的最大填充次数</p>
 <p>下面构造一个简单的<code>Series</code>来说明用法</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">s=pd.Series([np.nan,<span class="hljs-number">1</span>,np.nan,np.nan,<span class="hljs-number">2</span>,np.nan],<br>           list(<span class="hljs-string">'aaabcd'</span>))<br></code></pre></td></tr></table></figure>
+
+
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">s<br></code></pre></td></tr></table></figure>
+
+
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">s.fillna(method=<span class="hljs-string">'ffill'</span>) <span class="hljs-comment"># 用前面的值填充</span><br></code></pre></td></tr></table></figure>
+
+
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">s.fillna(method=<span class="hljs-string">'bfill'</span>)<br></code></pre></td></tr></table></figure>
+
+
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">s.fillna(method=<span class="hljs-string">'ffill'</span>, limit=<span class="hljs-number">1</span>) <span class="hljs-comment"># 连续出现的缺失，最多填充一次</span><br></code></pre></td></tr></table></figure>
+
+
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">s.fillna(s.mean())<span class="hljs-comment"># 均值填充</span><br></code></pre></td></tr></table></figure>
+
+
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">s.fillna(&#123;<span class="hljs-string">'a'</span>:<span class="hljs-number">100</span>,<span class="hljs-string">'d'</span>:<span class="hljs-number">200</span>&#125;)<span class="hljs-comment"># 通过索引映射填充的值</span><br></code></pre></td></tr></table></figure>
+
 <p>有时为了更加合理地填充，需要先进行分组后再操作。例如，根据年级进行身高的均值填充：</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">df.groupby(<span class="hljs-string">'Grade'</span>)[<span class="hljs-string">'Height'</span>].transform(<br>                        <span class="hljs-keyword">lambda</span> x:x.fillna(x.mean())).head()<br></code></pre></td></tr></table></figure>
+
 <h2 id="练一练"><a href="#练一练" class="headerlink" title="练一练"></a>练一练</h2><p>对一个序列以如下规则填充缺失值：如果单独出现的缺失值，就用前后均值填充，如果连续出现的缺失值就不填充，即序列[1, NaN, 3, NaN, NaN]填充后为[1, 2, 3, NaN, NaN]，请利用 fillna 函数实现。（提示：利用 limit 参数）</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">s = pd.Series([<span class="hljs-number">1</span>,np.nan,<span class="hljs-number">3</span>, np.nan, np.nan])<br>s1 = s.fillna(method=<span class="hljs-string">'ffill'</span>,limit=<span class="hljs-number">1</span>)<br>s2 = s.fillna(method=<span class="hljs-string">'bfill'</span>,limit=<span class="hljs-number">1</span>)<br>s = pd.Series(list(map(<span class="hljs-keyword">lambda</span> x,y: (x+y)/<span class="hljs-number">2</span> <span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span> np.isnan(x) <span class="hljs-keyword">and</span> <span class="hljs-keyword">not</span> np.isnan(y) <span class="hljs-keyword">else</span> np.nan, s1,s2)))<br>s<br></code></pre></td></tr></table></figure>
+
 <h2 id="2-插值函数"><a href="#2-插值函数" class="headerlink" title="2.插值函数"></a>2.插值函数</h2><p>在关于 <code>interpolate</code> 函数的 文档 描述中，列举了许多插值法，包括了大量 <code>Scipy</code> 中的方法。由于很多插值方法涉及到比较复杂的数学知识，因此这里只讨论比较常用且简单的三类情况，即线性插值、最近邻插值和索引插值。</p>
-<p>对于 <code>interpolate</code> 而言，除了插值方法（默认为 <code>linear</code> 线性插值）之外，有与 <code>fillna</code> 类似的两个常用参数，一个是控制方向的 <code>limit_direction</code> ，另一个是控制最大连续缺失值插值个数的 <code>limit</code> 。其中，限制插值的方向默认为 <code>forward</code> ，这与 <code>fillna</code> 的 <code>method</code>中的 <code>ffill</code> 是类似的，若想要后向限制插值或者双向限制插值可以指定为 <code>backward</code> 或 <code>both</code> 。</p>
+<p>对于 <code>interpolate</code> 而言，除了插值方法（默认为 <code>linear</code> 线性插值）之外，有与 <code>fillna</code> 类似的两个常用参数，一个是控制方向的 <code>limit_direction</code> ，另一个是控制最大连续缺失值插值个数的 <code>limit</code> 。其中，限制插值的方向默认为 <code>forward</code> ，这与 <code>fillna</code> 的 <code>method </code>中的 <code>ffill</code> 是类似的，若想要后向限制插值或者双向限制插值可以指定为 <code>backward</code> 或 <code>both</code> 。</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">s = pd.Series([np.nan, np.nan, <span class="hljs-number">1</span>,<br>  ....:                np.nan, np.nan, np.nan,<br>  ....:                <span class="hljs-number">2</span>, np.nan, np.nan])<br>  ....:<br></code></pre></td></tr></table></figure>
+
+
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">s.values<br></code></pre></td></tr></table></figure>
+
 <p>例如，在默认线性插值法下分别进行 <code>backward</code> 和双向限制插值，同时限制最大连续条数为1：</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">res=s.interpolate(limit_direction=<span class="hljs-string">'backward'</span>,limit=<span class="hljs-number">1</span>)<br></code></pre></td></tr></table></figure>
+
+
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">res.values<br></code></pre></td></tr></table></figure>
+
+
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">res=s.interpolate(limit_direction=<span class="hljs-string">'both'</span>,limit=<span class="hljs-number">1</span>)<br></code></pre></td></tr></table></figure>
+
+
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">res.values<br></code></pre></td></tr></table></figure>
+
 <p>第二种常见的插值是最近邻插补，即缺失值的元素和离它最近的非缺失值元素一样：</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">s.interpolate(<span class="hljs-string">'nearest'</span>).values<br></code></pre></td></tr></table></figure>
+
 <p>最后来介绍索引插值，即根据索引大小进行线性插值。例如，构造不等间距的索引进行演示：</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">s=pd.Series([<span class="hljs-number">0</span>,np.nan,<span class="hljs-number">10</span>],index=[<span class="hljs-number">0</span>,<span class="hljs-number">1</span>,<span class="hljs-number">10</span>])<br></code></pre></td></tr></table></figure>
+
+
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">s<br></code></pre></td></tr></table></figure>
+
+
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">s.interpolate()<span class="hljs-comment">#默认的线性插值，等价于计算中点的值</span><br></code></pre></td></tr></table></figure>
+
+
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">s.interpolate(method=<span class="hljs-string">'index'</span>)<span class="hljs-comment">#和索引有关的线性插值，计算相应的索引对应的值</span><br></code></pre></td></tr></table></figure>
+
 <p>同时，这种方法对于时间戳索引也是可以使用的，有关时间序列的其他话题会在第十章进行讨论，这里举一个简单的例子：</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">s=pd.Series([<span class="hljs-number">0</span>,np.nan,<span class="hljs-number">10</span>],<br>           index=pd.to_datetime([<span class="hljs-string">'20200101'</span>,<br>                                <span class="hljs-string">'20200102'</span>,<br>                                <span class="hljs-string">'20200111'</span>]))<br></code></pre></td></tr></table></figure>
+
+
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">s<br></code></pre></td></tr></table></figure>
+
+
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">s.interpolate()<br></code></pre></td></tr></table></figure>
+
+
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">s.interpolate(method=<span class="hljs-string">'index'</span>)<br></code></pre></td></tr></table></figure>
-<h2 id="关于polynomial和spline插值的注意事项"><a href="#关于polynomial和spline插值的注意事项" class="headerlink" title="关于polynomial和spline插值的注意事项"></a>关于polynomial和spline插值的注意事项</h2><p>在 <code>interpolate</code> 中如果选用 <code>polynomial</code> 的插值方法，它内部调用的是 <code>scipy.interpolate.interp1d(*,*,kind=order)</code> ，这个函数内部调用的是 <code>make_interp_spline</code> 方法，因此其实是样条插值而不是类似于<code>numpy</code> 中的 <code>polyfit</code> 多项式拟合插值；而当选用 <code>spline</code> 方法时， <code>pandas</code>调用的是 <code>scipy.interpolate.UnivariateSpline</code> 而不是普通的样条插值。这一部分的文档描述比较混乱，而且这种参数的设计也是不合理的，当使用这两类插值方法时，用户一定要小心谨慎地根据自己的实际需求选取恰当的插值方法。</p>
+
+<h2 id="关于polynomial和spline插值的注意事项"><a href="#关于polynomial和spline插值的注意事项" class="headerlink" title="关于polynomial和spline插值的注意事项"></a>关于polynomial和spline插值的注意事项</h2><p>在 <code>interpolate</code> 中如果选用 <code>polynomial</code> 的插值方法，它内部调用的是 <code>scipy.interpolate.interp1d(*,*,kind=order)</code> ，这个函数内部调用的是 <code>make_interp_spline</code> 方法，因此其实是样条插值而不是类似于<code> numpy</code> 中的 <code>polyfit</code> 多项式拟合插值；而当选用 <code>spline</code> 方法时， <code>pandas </code>调用的是 <code>scipy.interpolate.UnivariateSpline</code> 而不是普通的样条插值。这一部分的文档描述比较混乱，而且这种参数的设计也是不合理的，当使用这两类插值方法时，用户一定要小心谨慎地根据自己的实际需求选取恰当的插值方法。</p>
 <h2 id="Nullable类型"><a href="#Nullable类型" class="headerlink" title="Nullable类型"></a>Nullable类型</h2><h2 id="1-缺失记号及其缺陷"><a href="#1-缺失记号及其缺陷" class="headerlink" title="1. 缺失记号及其缺陷"></a>1. 缺失记号及其缺陷</h2><p>在 <code>python</code> 中的缺失值用 <code>None</code> 表示，该元素除了等于自己本身之外，与其他任何元素不相等：</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python"><span class="hljs-literal">None</span>==<span class="hljs-literal">None</span><br></code></pre></td></tr></table></figure>
-<pre><code>True
-</code></pre><figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python"><span class="hljs-literal">None</span>==<span class="hljs-literal">False</span><br></code></pre></td></tr></table></figure>
-<pre><code>False
-</code></pre><figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python"><span class="hljs-literal">None</span>==[]<br></code></pre></td></tr></table></figure>
-<pre><code>False
-</code></pre><figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python"><span class="hljs-literal">None</span>==<span class="hljs-string">''</span><br></code></pre></td></tr></table></figure>
-<pre><code>False
-</code></pre><p>在<code>numpy</code> 中利用 <code>np.nan</code> 来表示缺失值，该元素除了不和其他任何元素相等之外，和自身的比较结果也返回<code>False</code> ：</p>
+
+
+
+
+<pre><code>True</code></pre>
+<figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python"><span class="hljs-literal">None</span>==<span class="hljs-literal">False</span><br></code></pre></td></tr></table></figure>
+
+
+
+
+<pre><code>False</code></pre>
+<figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python"><span class="hljs-literal">None</span>==[]<br></code></pre></td></tr></table></figure>
+
+
+
+
+<pre><code>False</code></pre>
+<figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python"><span class="hljs-literal">None</span>==<span class="hljs-string">''</span><br></code></pre></td></tr></table></figure>
+
+
+
+
+<pre><code>False</code></pre>
+<p>在<code> numpy</code> 中利用 <code>np.nan</code> 来表示缺失值，该元素除了不和其他任何元素相等之外，和自身的比较结果也返回<code> False</code> ：</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">np.nan==np.nan<br></code></pre></td></tr></table></figure>
-<pre><code>False
-</code></pre><figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">np.nan==<span class="hljs-literal">None</span><br></code></pre></td></tr></table></figure>
-<pre><code>False
-</code></pre><figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">np.nan==<span class="hljs-literal">False</span><br></code></pre></td></tr></table></figure>
-<pre><code>False
-</code></pre><p>值得注意的是，虽然在对缺失序列或表格的元素进行比较操作的时候， <code>np.nan</code> 的对应位置会返回 <code>False</code><br><strong>但是在使用 <code>equals</code> 函数进行两张表或两个序列的相同性检验时，会自动跳过两侧表都是缺失值的位置，直接返回 <code>True</code> :</strong></p>
+
+
+
+
+<pre><code>False</code></pre>
+<figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">np.nan==<span class="hljs-literal">None</span><br></code></pre></td></tr></table></figure>
+
+
+
+
+<pre><code>False</code></pre>
+<figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">np.nan==<span class="hljs-literal">False</span><br></code></pre></td></tr></table></figure>
+
+
+
+
+<pre><code>False</code></pre>
+<p>值得注意的是，虽然在对缺失序列或表格的元素进行比较操作的时候， <code>np.nan</code> 的对应位置会返回 <code>False</code><br><strong>但是在使用 <code>equals</code> 函数进行两张表或两个序列的相同性检验时，会自动跳过两侧表都是缺失值的位置，直接返回 <code>True</code> :</strong></p>
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">s1=pd.Series([<span class="hljs-number">1</span>,np.nan])<br></code></pre></td></tr></table></figure>
+
+
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">s2=pd.Series([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>])<br></code></pre></td></tr></table></figure>
+
+
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">s3=pd.Series([<span class="hljs-number">1</span>,np.nan])<br></code></pre></td></tr></table></figure>
+
+
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">s1==<span class="hljs-number">1</span><br></code></pre></td></tr></table></figure>
+
+
+
+
 <pre><code>0     True
 1    False
-dtype: bool
-</code></pre><figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">s1.equals(s2)<br></code></pre></td></tr></table></figure>
-<pre><code>False
-</code></pre><figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">s1.equals(s3)<br></code></pre></td></tr></table></figure>
-<pre><code>True
-</code></pre><p>在<strong>时间序列的对象</strong>中， <code>pandas</code> 利用 <code>pd.NaT</code> 来指代缺失值，它的作用和 <code>np.nan</code> 是一致的（时间序列的对象和构造将在第十章讨论）：</p>
+dtype: bool</code></pre>
+<figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">s1.equals(s2)<br></code></pre></td></tr></table></figure>
+
+
+
+
+<pre><code>False</code></pre>
+<figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">s1.equals(s3)<br></code></pre></td></tr></table></figure>
+
+
+
+
+<pre><code>True</code></pre>
+<p>在<strong>时间序列的对象</strong>中， <code>pandas</code> 利用 <code>pd.NaT</code> 来指代缺失值，它的作用和 <code>np.nan</code> 是一致的（时间序列的对象和构造将在第十章讨论）：</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">pd.to_timedelta([<span class="hljs-string">'30s'</span>,np.nan])<span class="hljs-comment">#Timedelta 中的NaT</span><br></code></pre></td></tr></table></figure>
-<pre><code>TimedeltaIndex([&#39;0 days 00:00:30&#39;, NaT], dtype=&#39;timedelta64[ns]&#39;, freq=None)
-</code></pre><figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">pd.to_datetime([<span class="hljs-string">'20200101'</span>,np.nan])<span class="hljs-comment">#Datetime中的NaT</span><br></code></pre></td></tr></table></figure>
-<pre><code>DatetimeIndex([&#39;2020-01-01&#39;, &#39;NaT&#39;], dtype=&#39;datetime64[ns]&#39;, freq=None)
-</code></pre><p>那么为什么要引入 <code>pd.NaT</code> 来表示时间对象中的缺失呢？仍然以 <code>np.nan</code> 的形式存放会有什么问题？在 <code>pandas</code> 中可以看到 <code>object</code> 类型的对象，而 <code>object</code> 是一种混杂对象类型，如果出现了多个类型的元素同时存储在 <code>Series</code> 中，它的类型就会变成 <code>object</code> 。例如，同时存放整数和字符串的列表：</p>
+
+
+
+
+<pre><code>TimedeltaIndex([&#39;0 days 00:00:30&#39;, NaT], dtype=&#39;timedelta64[ns]&#39;, freq=None)</code></pre>
+<figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">pd.to_datetime([<span class="hljs-string">'20200101'</span>,np.nan])<span class="hljs-comment">#Datetime中的NaT</span><br></code></pre></td></tr></table></figure>
+
+
+
+
+<pre><code>DatetimeIndex([&#39;2020-01-01&#39;, &#39;NaT&#39;], dtype=&#39;datetime64[ns]&#39;, freq=None)</code></pre>
+<p>那么为什么要引入 <code>pd.NaT</code> 来表示时间对象中的缺失呢？仍然以 <code>np.nan</code> 的形式存放会有什么问题？在 <code>pandas</code> 中可以看到 <code>object</code> 类型的对象，而 <code>object</code> 是一种混杂对象类型，如果出现了多个类型的元素同时存储在 <code>Series</code> 中，它的类型就会变成 <code>object</code> 。例如，同时存放整数和字符串的列表：</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">pd.Series([<span class="hljs-number">1</span>,<span class="hljs-string">'two'</span>])<br></code></pre></td></tr></table></figure>
+
+
+
+
 <pre><code>0      1
 1    two
-dtype: object
-</code></pre><p><strong><code>NaT</code> 问题的根源来自于 <code>np.nan</code> 的本身是一种浮点类型</strong>，而如果浮点和时间类型混合存储，如果不设计新的内置缺失类型来处理，就会变成含糊不清的 <code>object</code>类型，这显然是不希望看到的</p>
+dtype: object</code></pre>
+<p><strong><code>NaT</code> 问题的根源来自于 <code>np.nan</code> 的本身是一种浮点类型</strong>，而如果浮点和时间类型混合存储，如果不设计新的内置缺失类型来处理，就会变成含糊不清的 <code>object </code>类型，这显然是不希望看到的</p>
 <p><strong>同时，由于 np.nan 的浮点性质，如果在一个整数的 Series 中出现缺失，那么其类型会转变为 float64 ；</strong>  </p>
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">pd.Series([<span class="hljs-number">1</span>,np.nan]).dtype<br></code></pre></td></tr></table></figure>
-<pre><code>dtype(&#39;float64&#39;)
-</code></pre><p><strong>而如果在一个布尔类型的序列中出现缺失，那么其类型就会转为 object 而不是 bool ：</strong></p>
+
+
+
+
+<pre><code>dtype(&#39;float64&#39;)</code></pre>
+<p><strong>而如果在一个布尔类型的序列中出现缺失，那么其类型就会转为 object 而不是 bool ：</strong></p>
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">pd.Series([<span class="hljs-literal">True</span>,<span class="hljs-literal">False</span>,np.nan]).dtype<br></code></pre></td></tr></table></figure>
-<pre><code>dtype(&#39;O&#39;)
-</code></pre><p>因此，在进入 <code>1.0.0</code>版本后， <code>pandas</code> 尝试设计了一种新的缺失类型 <code>pd.NA</code> 以及三种 <code>Nullable</code> 序列类型来应对这些缺陷，它们分别是 <code>Int, boolean</code> 和 <code>string</code> 。</p>
+
+
+
+
+<pre><code>dtype(&#39;O&#39;)</code></pre>
+<p>因此，在进入 <code>1.0.0 </code>版本后， <code>pandas</code> 尝试设计了一种新的缺失类型 <code>pd.NA</code> 以及三种 <code>Nullable</code> 序列类型来应对这些缺陷，它们分别是 <code>Int, boolean</code> 和 <code>string</code> 。</p>
 <h2 id="2-Nullable类型的性质"><a href="#2-Nullable类型的性质" class="headerlink" title="2. Nullable类型的性质"></a>2. Nullable类型的性质</h2><p>从字面意义上看 <code>Nullable</code> 就是可空的，言下之意就是序列类型不受缺失值的影响。例如，在上述三个 <code>Nullable</code> 类型中存储缺失值，都会转为 <code>pandas</code> 内置的 <code>pd.NA</code> ：</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">pd.Series([np.nan,<span class="hljs-number">1</span>],dtype=<span class="hljs-string">'Int64'</span>)<br></code></pre></td></tr></table></figure>
+
+
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">pd.Series([np.nan,<span class="hljs-literal">True</span>],dtype=<span class="hljs-string">'boolean'</span>)<br></code></pre></td></tr></table></figure>
+
+
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">pd.Series([np.nan,<span class="hljs-string">'my_str'</span>],dtype=<span class="hljs-string">'string'</span>)<br></code></pre></td></tr></table></figure>
+
 <p>在 <code>Int</code> 的序列中，返回的结果会尽可能地成为 <code>Nullable</code> 的类型：</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">pd.Series([np.nan,<span class="hljs-number">0</span>],dtype=<span class="hljs-string">'Int64'</span>)+<span class="hljs-number">1</span><br></code></pre></td></tr></table></figure>
+
+
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">pd.Series([np.nan,<span class="hljs-number">0</span>],dtype=<span class="hljs-string">'Int64'</span>)==<span class="hljs-number">0</span><br></code></pre></td></tr></table></figure>
+
+
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">pd.Series([np.nan,<span class="hljs-number">0</span>],dtype=<span class="hljs-string">'Int64'</span>)*<span class="hljs-number">0.5</span><br></code></pre></td></tr></table></figure>
+
 <p>对于<code>boolean</code>类型的序列而言，其和 <code>bool</code> 序列的行为主要有两点区别：</p>
 <p><strong>第一点是带有缺失的布尔列表无法进行索引器中的选择，而 <code>boolean</code> 会把缺失值看作 <code>False</code> ：</strong></p>
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">s=pd.Series([<span class="hljs-string">'a'</span>,<span class="hljs-string">'b'</span>])<br></code></pre></td></tr></table></figure>
+
+
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">s_bool=pd.Series([<span class="hljs-literal">True</span>,np.nan])<br></code></pre></td></tr></table></figure>
+
+
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">s_boolean=pd.Series([<span class="hljs-literal">True</span>,np.nan]).astype(<span class="hljs-string">'boolean'</span>)<br></code></pre></td></tr></table></figure>
+
+
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">s[s_bool] <span class="hljs-comment">#报错</span><br></code></pre></td></tr></table></figure>
+
+
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">s[s_boolean]<br></code></pre></td></tr></table></figure>
+
 <p><strong>第二点是在进行逻辑运算时， bool 类型在缺失处返回的永远是 False ，而 boolean 会根据逻辑运算是否能确定唯一结果来返回相应的值。</strong><br>那什么叫能否确定唯一结果呢？<br>举个简单例子：   </p>
 <ul>
 <li>True | pd.NA 中无论缺失值为什么值，必然返回 True </li>
@@ -335,75 +484,165 @@ dtype: object
 <li>False &amp; pd.NA 中无论缺失值为什么值，必然返回 False 。 </li>
 </ul>
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">s_boolean &amp; <span class="hljs-literal">True</span><br></code></pre></td></tr></table></figure>
+
+
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">s_boolean | <span class="hljs-literal">True</span><br></code></pre></td></tr></table></figure>
+
+
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">~s_boolean<span class="hljs-comment"># 取反操作同样是无法唯一地判断缺失结果</span><br></code></pre></td></tr></table></figure>
+
 <p>关于 <code>string</code> 类型的具体性质将在下一章文本数据中进行讨论。<br>一般在实际数据处理时，可以在数据集读入后，先通过 <code>convert_dtypes</code> 转为 <code>Nullable</code> 类型：</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">df = pd.read_csv(<span class="hljs-string">'data/learn_pandas.csv'</span>)<br></code></pre></td></tr></table></figure>
+
+
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">df=df.convert_dtypes()<br></code></pre></td></tr></table></figure>
+
+
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">df.dtypes<br></code></pre></td></tr></table></figure>
+
 <h2 id="3-缺失数据的计算和分组"><a href="#3-缺失数据的计算和分组" class="headerlink" title="3. 缺失数据的计算和分组"></a>3. 缺失数据的计算和分组</h2><p>当调用函数<code>sum,prod</code>使用加法和乘法的时候，缺失数据等价于被分别视作0和1，即不改变原来的计算结果</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">s=pd.Series([<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,np.nan,<span class="hljs-number">4</span>,<span class="hljs-number">5</span>])<br></code></pre></td></tr></table></figure>
+
+
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">s.sum(),s.prod()<br></code></pre></td></tr></table></figure>
+
 <p>当使用累计函数的时候，会自动跳过缺失值所处的位置</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">s.cumsum()<br></code></pre></td></tr></table></figure>
-<p>当进行单个标量运算的时候，除了 <code>np.nan ** 0</code>和 <code>1 ** np.nan</code> 这两种情况为确定的值之外，所有运算结果全为缺失（ <code>pd.NA</code> 的行为与此一致 ），并且 <code>np.nan</code> 在比较操作时一定返回 <code>False</code> ，而 <code>pd.NA</code> 返回 <code>pd.NA</code> </p>
+
+<p>当进行单个标量运算的时候，除了 <code>np.nan ** 0 </code>和 <code>1 ** np.nan</code> 这两种情况为确定的值之外，所有运算结果全为缺失（ <code>pd.NA</code> 的行为与此一致 ），并且 <code>np.nan</code> 在比较操作时一定返回 <code>False</code> ，而 <code>pd.NA</code> 返回 <code>pd.NA</code> </p>
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">np.nan==<span class="hljs-number">0</span><br></code></pre></td></tr></table></figure>
+
+
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">pd.NA==<span class="hljs-number">0</span><br></code></pre></td></tr></table></figure>
+
+
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">np.nan&gt;<span class="hljs-number">0</span><br></code></pre></td></tr></table></figure>
+
+
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">pd.NA&gt;<span class="hljs-number">0</span><br></code></pre></td></tr></table></figure>
+
+
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">np.nan+<span class="hljs-number">1</span><br></code></pre></td></tr></table></figure>
+
+
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">np.log(np.nan)<br></code></pre></td></tr></table></figure>
+
+
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">np.add(np.nan,<span class="hljs-number">1</span>)<br></code></pre></td></tr></table></figure>
+
+
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">np.nan**<span class="hljs-number">0</span><br></code></pre></td></tr></table></figure>
+
+
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">pd.NA**<span class="hljs-number">0</span><br></code></pre></td></tr></table></figure>
+
+
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python"><span class="hljs-number">1</span>**np.nan<br></code></pre></td></tr></table></figure>
+
+
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python"><span class="hljs-number">1</span>**pd.NA<br></code></pre></td></tr></table></figure>
+
+
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">s.diff()<br></code></pre></td></tr></table></figure>
+
+
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">s.pct_change()<br></code></pre></td></tr></table></figure>
+
 <p>对于一些函数而言，<strong>缺失可以作为一个类别处理</strong>，例如在 <code>groupby, get_dummies</code> 中可以设置相应的参数来进行增加缺失类别:</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">df_nan=pd.DataFrame(&#123;<span class="hljs-string">'category'</span>:[<span class="hljs-string">'a'</span>,<span class="hljs-string">'a'</span>,<span class="hljs-string">'b'</span>,np.nan,np.nan],<br>                    <span class="hljs-string">'value'</span>:[<span class="hljs-number">1</span>,<span class="hljs-number">3</span>,<span class="hljs-number">5</span>,<span class="hljs-number">7</span>,<span class="hljs-number">9</span>]&#125;)<br></code></pre></td></tr></table></figure>
+
+
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">df_nan<br></code></pre></td></tr></table></figure>
+
+
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">df_nan.groupby(<span class="hljs-string">'category'</span>,dropna=<span class="hljs-literal">False</span>)[<span class="hljs-string">'value'</span>].mean()<br></code></pre></td></tr></table></figure>
+
+
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">pd.get_dummies(df_nan.category,dummy_na=<span class="hljs-literal">True</span>)<br></code></pre></td></tr></table></figure>
+
 <h2 id="Ex1：缺失值与类别的相关性检验"><a href="#Ex1：缺失值与类别的相关性检验" class="headerlink" title="Ex1：缺失值与类别的相关性检验"></a>Ex1：缺失值与类别的相关性检验</h2><p><strong>在数据处理中，含有过多缺失值的列往往会被删除，除非缺失情况与标签强相关。</strong>下面有一份关于二分类问题的数据集，其中 X_1, X_2 为特征变量， y 为二分类标签</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">df=pd.read_csv(<span class="hljs-string">'data/missing_chi.csv'</span>)<br></code></pre></td></tr></table></figure>
+
+
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">df.head()<br></code></pre></td></tr></table></figure>
+
+
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">df.isna().mean()<br></code></pre></td></tr></table></figure>
+
+
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">df.y.value_counts(normalize=<span class="hljs-literal">True</span>)<br></code></pre></td></tr></table></figure>
+
 <p>事实上，有时缺失值出现或者不出现本身就是一种特征，并且在一些场合下可能与标签的正负是相关的。<strong>关于缺失出现与否和标签的正负性</strong>，在统计学中可以利用<strong>卡方检验</strong>来断言它们是否存在相关性。  </p>
 <p>按照<strong>特征缺失的正例、特征缺失的负例、特征不缺失的正例、特征不缺失的负例，可以分为四种情况</strong>，设它们分别对应的样例数为 <code>n11,n10,n01,n00</code> 。</p>
 <p>假若它们是不相关的，那么特征缺失中正例的理论值，就应该接近于特征缺失总数 × 总体正例的比例，即：</p>
-<script type="math/tex; mode=display">E_{11} = n_{11} \approx (n_{11}+n_{10}) \times \frac{n_{11}+n_{01}}{n_{11}+n_{10}+n_{01}+n_{00}} = F_{11}</script><p>其他的三种情况同理，现将实际值和理论值分别记作$E<em>{ij},F</em>{ij}$,那么希望下面的统计量越小越好，即代表实际值接近不相关情况的理论值：</p>
-<script type="math/tex; mode=display">S = \sum_{i \in \{ 0,1\} } \sum_{ j \in \{0,1\}} \frac{(E_{ij} - F_{ij})^2}{F_{ij}}</script><p>可以证明上面的统计量近似服从自由度为 1 的卡方分布，即$S\overset{\cdot}{\sim} \chi^2(1) $因此，可通过计算 $P(\chi^2(1)&gt;S)$的概率来进行相关性的判别，一般认为当此概率小于 0.05 时缺失情况与标签正负存在相关关系，即不相关条件下的理论值与实际值相差较大。</p>
+<p>$$ E_{11} = n_{11} \approx (n_{11}+n_{10}) \times \frac{n_{11}+n_{01}}{n_{11}+n_{10}+n_{01}+n_{00}} = F_{11}$$</p>
+<p>其他的三种情况同理，现将实际值和理论值分别记作$E_{ij},F_{ij}$,那么希望下面的统计量越小越好，即代表实际值接近不相关情况的理论值：</p>
+<p>$$S = \sum_{i \in { 0,1} } \sum_{ j \in {0,1}} \frac{(E_{ij} - F_{ij})^2}{F_{ij}} $$</p>
+<p>可以证明上面的统计量近似服从自由度为 1 的卡方分布，即$S\overset{\cdot}{\sim} \chi^2(1) $因此，可通过计算 $P(\chi^2(1)&gt;S)$的概率来进行相关性的判别，一般认为当此概率小于 0.05 时缺失情况与标签正负存在相关关系，即不相关条件下的理论值与实际值相差较大。</p>
 <p>上面所说的概率即为统计学上关于 $2\times 2 $列联表检验问题的 p 值， 它可以通过 <code>scipy.stats.chi2.sf(S, 1)</code> 得到。请根据上面的材料，分别对 X_1, X_2 列进行检验。</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">df=pd.read_csv(<span class="hljs-string">'data/missing_chi.csv'</span>)<br></code></pre></td></tr></table></figure>
+
+
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">cat_1 = df.X_1.fillna(<span class="hljs-string">'NaN'</span>).mask(df.X_1.notna()).fillna(<span class="hljs-string">"NotNaN"</span>)<br>cat_2 = df.X_2.fillna(<span class="hljs-string">'NaN'</span>).mask(df.X_2.notna()).fillna(<span class="hljs-string">"NotNaN"</span>)<br></code></pre></td></tr></table></figure>
+
 <p>交叉表(crossTab)<br>交叉表是用于<strong>统计分组频率</strong>的特殊透视表</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">df_1 = pd.crosstab(cat_1, df.y, margins=<span class="hljs-literal">True</span>)<br>df_2 = pd.crosstab(cat_2, df.y, margins=<span class="hljs-literal">True</span>)<br></code></pre></td></tr></table></figure>
+
+
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">compute_S</span><span class="hljs-params">(my_df)</span>:</span><br>    S = []<br>    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(<span class="hljs-number">2</span>):<br>        <span class="hljs-keyword">for</span> j <span class="hljs-keyword">in</span> range(<span class="hljs-number">2</span>):<br>            E = my_df.iat[i, j]<br>            F = my_df.iat[i, <span class="hljs-number">2</span>]*my_df.iat[<span class="hljs-number">2</span>, j]/my_df.iat[<span class="hljs-number">2</span>,<span class="hljs-number">2</span>]<br>            S.append((E-F)**<span class="hljs-number">2</span>/F)<br>    <span class="hljs-keyword">return</span> sum(S)<br></code></pre></td></tr></table></figure>
+
+
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">res1 = compute_S(df_1)<br>res2 = compute_S(df_2)<br><span class="hljs-keyword">from</span> scipy.stats <span class="hljs-keyword">import</span> chi2<br>chi2.sf(res1, <span class="hljs-number">1</span>) <span class="hljs-comment"># X_1检验的p值 # 不能认为相关，剔除</span><br></code></pre></td></tr></table></figure>
+
+
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">chi2.sf(res2,<span class="hljs-number">1</span>)<br></code></pre></td></tr></table></figure>
-<h2 id="Ex2：用回归模型解决分类问题"><a href="#Ex2：用回归模型解决分类问题" class="headerlink" title="Ex2：用回归模型解决分类问题"></a>Ex2：用回归模型解决分类问题</h2><p><code>KNN</code> 是一种监督式学习模型，既可以解决回归问题，又可以解决分类问题。对于分类变量，利用 <code>KNN</code> 分类模型可以实现其缺失值的插补，思路是度量缺失样本的特征与所有其他样本特征的距离，当给定了模型参数 <code>n_neighbors=n</code> 时，计算离该样本距离最近的 <code>n</code>个样本点中最多的那个类别，并把这个类别作为该样本的缺失预测类别，具体如下图所示，未知的类别被预测为黄色：</p>
+
+<h2 id="Ex2：用回归模型解决分类问题"><a href="#Ex2：用回归模型解决分类问题" class="headerlink" title="Ex2：用回归模型解决分类问题"></a>Ex2：用回归模型解决分类问题</h2><p><code>KNN</code> 是一种监督式学习模型，既可以解决回归问题，又可以解决分类问题。对于分类变量，利用 <code>KNN</code> 分类模型可以实现其缺失值的插补，思路是度量缺失样本的特征与所有其他样本特征的距离，当给定了模型参数 <code>n_neighbors=n</code> 时，计算离该样本距离最近的 <code>n </code>个样本点中最多的那个类别，并把这个类别作为该样本的缺失预测类别，具体如下图所示，未知的类别被预测为黄色：</p>
 <p><img src="http://inter.joyfulpandas.datawhale.club/_images/ch7_ex.png" alt="img"></p>
 <p>上面有色点的特征数据提供如下：</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">df=pd.read_excel(<span class="hljs-string">'data/color.xlsx'</span>)<br></code></pre></td></tr></table></figure>
+
+
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">df.head(<span class="hljs-number">3</span>)<br></code></pre></td></tr></table></figure>
+
 <p>已知待预测的样本点为 $X_1=0.8,X_2=−0.2$ ，那么预测类别可以如下写出</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> sklearn.neighbors <span class="hljs-keyword">import</span> KNeighborsClassifier<br></code></pre></td></tr></table></figure>
+
+
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">clf=KNeighborsClassifier(n_neighbors=<span class="hljs-number">6</span>)<br></code></pre></td></tr></table></figure>
+
+
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">clf.fit(df.iloc[:,:<span class="hljs-number">2</span>],df.Color)<br></code></pre></td></tr></table></figure>
+
+
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">clf.predict([[<span class="hljs-number">0.8</span>,<span class="hljs-number">-0.2</span>]])<br></code></pre></td></tr></table></figure>
+
 <p>1.对于回归问题而言，需要得到的是一个具体的数值，因此预测值由最近的 n 个样本对应的平均值获得。请把上面的这个分类问题转化为回归问题，仅使用 KNeighborsRegressor 来完成上述的 KNeighborsClassifier 功能。</p>
 <h2 id="标准答案"><a href="#标准答案" class="headerlink" title="标准答案"></a>标准答案</h2><figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> sklearn.neighbors <span class="hljs-keyword">import</span> KNeighborsRegressor<br>df = pd.read_excel(<span class="hljs-string">'../data/color.xlsx'</span>)<br>df_dummies = pd.get_dummies(df.Color)<br>stack_list = []<br><span class="hljs-keyword">for</span> col <span class="hljs-keyword">in</span> df_dummies.columns:<br>    clf = KNeighborsRegressor(n_neighbors=<span class="hljs-number">6</span>)<br>    clf.fit(df.iloc[:,:<span class="hljs-number">2</span>], df_dummies[col])<br>    res = clf.predict([[<span class="hljs-number">0.8</span>, <span class="hljs-number">-0.2</span>]]).reshape(<span class="hljs-number">-1</span>,<span class="hljs-number">1</span>)<br>    stack_list.append(res)<br>code_res = pd.Series(np.hstack(stack_list).argmax(<span class="hljs-number">1</span>))<br>df_dummies.columns[code_res[<span class="hljs-number">0</span>]]<br></code></pre></td></tr></table></figure>
+
+
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> sklearn.neighbors <span class="hljs-keyword">import</span> KNeighborsRegressor<br>df=pd.read_excel(<span class="hljs-string">'data/color.xlsx'</span>)<br>df_dummies=pd.get_dummies(df.Color)<br></code></pre></td></tr></table></figure>
+
+
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">df_dummies.head()<span class="hljs-comment">#转换成one-hot编码模式</span><br></code></pre></td></tr></table></figure>
+
+
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">stack_list = []<br><span class="hljs-keyword">for</span> col <span class="hljs-keyword">in</span> df_dummies.columns:<br>    print(col)<br>    clf = KNeighborsRegressor(n_neighbors=<span class="hljs-number">6</span>)<br>    clf.fit(df.iloc[:,:<span class="hljs-number">2</span>], df_dummies[col])<br>    res = clf.predict([[<span class="hljs-number">0.8</span>, <span class="hljs-number">-0.2</span>]]).reshape(<span class="hljs-number">-1</span>,<span class="hljs-number">1</span>)<br>    print(res)<br>    stack_list.append(res)<br></code></pre></td></tr></table></figure>
+
+
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">np.hstack(stack_list).argmax(<span class="hljs-number">1</span>)<br></code></pre></td></tr></table></figure>
+
+
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">code_res = pd.Series(np.hstack(stack_list).argmax(<span class="hljs-number">1</span>))<br>df_dummies.columns[code_res[<span class="hljs-number">0</span>]]<br></code></pre></td></tr></table></figure>
-<p>2.请根据第1问中的方法，对 <code>audit</code>数据集中的 <code>Employment</code> 变量进行缺失值插补。</p>
+
+<p>2.请根据第1问中的方法，对 <code>audit </code>数据集中的 <code>Employment</code> 变量进行缺失值插补。</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">df = pd.read_csv(<span class="hljs-string">'data/audit.csv'</span>)<br>pd.get_dummies(df[[<span class="hljs-string">'Marital'</span>, <span class="hljs-string">'Gender'</span>]])<br></code></pre></td></tr></table></figure>
+
+
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> sklearn.neighbors <span class="hljs-keyword">import</span> KNeighborsRegressor<br>df = pd.read_csv(<span class="hljs-string">'data/audit.csv'</span>)<br>res_df = df.copy()<br>res_df2 = df.copy()<br><span class="hljs-comment">#数据处理加归一化这句写的很妙</span><br>df = pd.concat([pd.get_dummies(df[[<span class="hljs-string">'Marital'</span>, <span class="hljs-string">'Gender'</span>]]), df[[<span class="hljs-string">'Age'</span>,<span class="hljs-string">'Income'</span>,<span class="hljs-string">'Hours'</span>]].apply(<span class="hljs-keyword">lambda</span> x:(x-x.min())/(x.max()-x.min())), df.Employment],<span class="hljs-number">1</span>)<br>df.head()<br></code></pre></td></tr></table></figure>
+
 <h2 id="使用KNN分类法"><a href="#使用KNN分类法" class="headerlink" title="使用KNN分类法"></a>使用KNN分类法</h2><figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> sklearn.neighbors <span class="hljs-keyword">import</span> KNeighborsClassifier<br>clf=KNeighborsClassifier(n_neighbors=<span class="hljs-number">6</span>)<br>train=df[df.Employment.notna()]<br>test=df[df.Employment.isna()]<br>clf.fit(train.iloc[:,:<span class="hljs-number">-1</span>],train.Employment)<br>predict=clf.predict(test.iloc[:,:<span class="hljs-number">-1</span>])<br>res_df2.loc[res_df.Employment.isna(), <span class="hljs-string">'Employment'</span>] = predict<br>res_df2.isna().sum()<br></code></pre></td></tr></table></figure>
+
 <h2 id="使用KNN分类树"><a href="#使用KNN分类树" class="headerlink" title="使用KNN分类树"></a>使用KNN分类树</h2><figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">X_train = df[df.Employment.notna()]<br>X_test = df[df.Employment.isna()]<br>df_dummies = pd.get_dummies(X_train.Employment)<br>stack_list = []<br><span class="hljs-keyword">for</span> col <span class="hljs-keyword">in</span> df_dummies.columns:<br>    clf = KNeighborsRegressor(n_neighbors=<span class="hljs-number">6</span>)<br>    clf.fit(X_train.iloc[:,:<span class="hljs-number">-1</span>], df_dummies[col])<br>    res = clf.predict(X_test.iloc[:,:<span class="hljs-number">-1</span>]).reshape(<span class="hljs-number">-1</span>,<span class="hljs-number">1</span>)<br>    stack_list.append(res)<br>code_res = pd.Series(np.hstack(stack_list).argmax(<span class="hljs-number">1</span>))<br>cat_res = code_res.replace(dict(zip(list(range(df_dummies.shape[<span class="hljs-number">0</span>])),df_dummies.columns)))<br>res_df.loc[res_df.Employment.isna(), <span class="hljs-string">'Employment'</span>] = cat_res.values<br>res_df.isna().sum()<br></code></pre></td></tr></table></figure>
       
 
@@ -759,15 +998,23 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">youth</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">编译原理</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Hexo</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">计算机视觉</a>
+                <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">youth</a>
+                <a href="javascript:void(0)" class="js-tag color1">计算机视觉</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -787,10 +1034,6 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Java</a>
               </li>
              
@@ -807,11 +1050,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">编译原理</a>
+                <a href="javascript:void(0)" class="js-tag color3">计算机组成原理</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">计算机组成原理</a>
+                <a href="javascript:void(0)" class="js-tag color5">机器学习</a>
               </li>
             
             <div class="clearfix"></div>

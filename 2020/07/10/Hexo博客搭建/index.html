@@ -217,7 +217,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="Hexo博客搭建"><a href="#Hexo博客搭建" class="headerlink" title="Hexo博客搭建"></a>Hexo博客搭建</h1><p>鸽了半年的hexo博客搭建，阿里云都快过了半年了，把自己的一些踩坑和修改写一下吧，首先放一下我hexo博客搭建的时候的一些参考吧，这几个链接应该按道理没有很多踩坑的地方，我使用的主题是yilia主题所以说下面几个链接主要是关于<code>yilia</code>的，不过其实hexo博客框架的那个js和css名字都一样，配置文件的语法和格式也是一致的，所以说还是可以提供到一些帮助的，而且我自己在搭建一些操作的时候也学习了其他主题的一些方法。<br>从0开始搭建一个hexo博客无坑教程，是真的无坑版本，一切顺利（这里需要感谢一位b站的良心up主codesheep，他其他的视频也不错哦）：<br><a href="https://www.bilibili.com/video/BV1Yb411a7ty?from=search&amp;seid=15936694823282570499" target="_blank" rel="noopener">手把手教你从0开始搭建自己的个人博客 |无坑版视频教程| hexo</a><br>美化相关链接：</p>
+        <h1 id="Hexo博客搭建"><a href="#Hexo博客搭建" class="headerlink" title="Hexo博客搭建"></a>Hexo博客搭建</h1><p>鸽了半年的hexo博客搭建，阿里云都快过了半年了，把自己的一些踩坑和修改写一下吧，首先放一下我hexo博客搭建的时候的一些参考吧，这几个链接应该按道理没有很多踩坑的地方，我使用的主题是yilia主题所以说下面几个链接主要是关于<code>yilia</code>的，不过其实hexo博客框架的那个js和css名字都一样，配置文件的语法和格式也是一致的，所以说还是可以提供到一些帮助的，而且我自己在搭建一些操作的时候也学习了其他主题的一些方法。<br>从0开始搭建一个hexo博客无坑教程，是真的无坑版本，一切顺利（这里需要感谢一位b站的良心up主codesheep，他其他的视频也不错哦）：<br><a href="https://www.bilibili.com/video/BV1Yb411a7ty?from=search&seid=15936694823282570499" target="_blank" rel="noopener">手把手教你从0开始搭建自己的个人博客 |无坑版视频教程| hexo</a><br>美化相关链接：</p>
 <ol>
 <li><a href="https://zhousiwei.gitee.io/" target="_blank" rel="noopener">参考链接1</a></li>
 <li><a href="https://blog.zscself.com/posts/70677220/" target="_blank" rel="noopener">参考链接2</a></li>
@@ -225,10 +225,18 @@
 </ol>
 <p>好了说完了这些现在开始讲我搭建我的博客的过程<a id="more"></a></p>
 <h2 id="安装git，nodejs"><a href="#安装git，nodejs" class="headerlink" title="安装git，nodejs"></a>安装git，nodejs</h2><p>安装git和nodejs这个我就不过多介绍了，大家去csdn找找最新的相关安装教程就行了，在codesheep的视频里面也有教大家怎么做，记得切换一下node源到淘宝镜像cnpm，有的时候npm下载特别慢或者是报错。</p>
-<h2 id="官网下载hexo博客框架"><a href="#官网下载hexo博客框架" class="headerlink" title="官网下载hexo博客框架"></a>官网下载hexo博客框架</h2><p><a href="https://hexo.io/" target="_blank" rel="noopener">hexo官网</a>，如果在hexo的使用过程有什么问题也可以去看hexo的官方文档<br><img src="https://img-blog.csdnimg.cn/20200710212314229.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0phY2tfX19F,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>在git或者cmd下面都可以使用该命令完成hexo博客的安装<br><figure class="highlight shell"><table><tr><td class="code"><pre><code class="hljs shell">npm install -g hexo-cli#建议用这个全局安装<br></code></pre></td></tr></table></figure><br>高级用户可能更喜欢安装和使用hexo软件包。<br><figure class="highlight shell"><table><tr><td class="code"><pre><code class="hljs shell">npm install hexo<br></code></pre></td></tr></table></figure></p>
-<h2 id="初始化hexo博客"><a href="#初始化hexo博客" class="headerlink" title="初始化hexo博客"></a>初始化hexo博客</h2><p>安装Hexo后，输入以下命令以创建一个新文件夹初始化Hexo，注意这个文件夹就是我们的以后存放博客等各种主题等配置文件的文件夹了，如果配置过程博客出了问题，重新建一个新文件夹就行了，问题不大，注意信息备份。<br><figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">hexo init &lt;folder&gt;<br><span class="hljs-built_in">cd</span> &lt;folder&gt;<br>npm install<br></code></pre></td></tr></table></figure><br>npm instal以后目录中会出现这些文件</p>
+<h2 id="官网下载hexo博客框架"><a href="#官网下载hexo博客框架" class="headerlink" title="官网下载hexo博客框架"></a>官网下载hexo博客框架</h2><p><a href="https://hexo.io/" target="_blank" rel="noopener">hexo官网</a>，如果在hexo的使用过程有什么问题也可以去看hexo的官方文档<br><img src="https://img-blog.csdnimg.cn/20200710212314229.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0phY2tfX19F,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>在git或者cmd下面都可以使用该命令完成hexo博客的安装</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><code class="hljs shell">npm install -g hexo-cli#建议用这个全局安装<br></code></pre></td></tr></table></figure>
+<p>高级用户可能更喜欢安装和使用hexo软件包。</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><code class="hljs shell">npm install hexo<br></code></pre></td></tr></table></figure>
+<h2 id="初始化hexo博客"><a href="#初始化hexo博客" class="headerlink" title="初始化hexo博客"></a>初始化hexo博客</h2><p>安装Hexo后，输入以下命令以创建一个新文件夹初始化Hexo，注意这个文件夹就是我们的以后存放博客等各种主题等配置文件的文件夹了，如果配置过程博客出了问题，重新建一个新文件夹就行了，问题不大，注意信息备份。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">hexo init &lt;folder&gt;<br><span class="hljs-built_in">cd</span> &lt;folder&gt;<br>npm install<br></code></pre></td></tr></table></figure>
+<p>npm instal以后目录中会出现这些文件</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">├── _config.yml  最重要的配置文件<br>├── package.json<br>├── scaffolds<br>├── <span class="hljs-built_in">source</span> 这里会存放你的博客文件<br>|   ├── _drafts<br>|   └── _posts<br>└── themes 这里存放各种主题<br></code></pre></td></tr></table></figure>
-<p>这样完了以后其实我们的博客就已经搭建完成了，你可以在你初始化后的博客目录下输入一下命令，然后就会开启hexo服务，在浏览器输入<a href="http://localhost:4000" target="_blank" rel="noopener">http://localhost:4000</a><br>就可以看到你生成的博客了，默认情况下hexo博客主题是<code>landspace</code><br><figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">hexo s<br></code></pre></td></tr></table></figure><br><img src="https://img-blog.csdnimg.cn/20200710214046575.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0phY2tfX19F,size_16,color_FFFFFF,t_70" alt="开启hexo"><br><img src="https://img-blog.csdnimg.cn/20200710214711645.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0phY2tfX19F,size_16,color_FFFFFF,t_70" alt="默认主题"></p>
+
+<p>这样完了以后其实我们的博客就已经搭建完成了，你可以在你初始化后的博客目录下输入一下命令，然后就会开启hexo服务，在浏览器输入<a href="http://localhost:4000/" target="_blank" rel="noopener">http://localhost:4000</a><br>就可以看到你生成的博客了，默认情况下hexo博客主题是<code>landspace</code></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">hexo s<br></code></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/20200710214046575.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0phY2tfX19F,size_16,color_FFFFFF,t_70" alt="开启hexo"><br><img src="https://img-blog.csdnimg.cn/20200710214711645.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0phY2tfX19F,size_16,color_FFFFFF,t_70" alt="默认主题"></p>
 <h2 id="github部署"><a href="#github部署" class="headerlink" title="github部署"></a>github部署</h2><p>对于github上进行部署的话我们首先需要新建一个repo，<strong>并且必须命名为：你的github账户名.github.io</strong>，建议大家最好配置好ssh这样就不用每次输入密码了<br>然后我们需要在博客根目录下npm一个用于部署的模块<code>deploy-git</code> </p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">npm install hexo-deployer-git --save<br></code></pre></td></tr></table></figure>
 <p>github对于hexo博客的部署是非常方便的，只需要在主配置文件<code>_config.yml</code>下添加一项配置就可以了，配置到服务器上也是如此<br>这里我直接将github和服务器都配置好了提交，你如果没有服务器端的配置就直接删掉那一行就行。</p>
@@ -236,7 +244,9 @@
 <p>配置好以后我们使用</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash"><span class="hljs-comment">#建议每次提交都执行这三个命令，</span><br><span class="hljs-comment">#当然了你也可以在直接写成bat文件或者sh文件，就不用每次自己手动输入了</span><br>hexo clean<br>hexo g<br>hexo d<br></code></pre></td></tr></table></figure>
 <p>他就会自动将我们所写的博客和所需要展示的内容转成htmlcssjs等文件push到我们的github上去,所以说大家如果有配置和修改自己选择的主题的话，可能你需要备份一下，不然到时候就没了，在部署的网页上这些npmmodules和你修改的样式都是直接打包好了的，你的源代码是不会提交上去的。</p>
-<h2 id="常用操作"><a href="#常用操作" class="headerlink" title="常用操作"></a>常用操作</h2><p>好了其实到这里我们的博客搭建就已经完成了，这里我们介绍几个常用的命令和操作吧，<br><figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">hexo clean 清除生成的文件<br>hexo g 重新生成博客的文件<br>hexo s 开启hexo服务，我们可以预览自己新写的博客在网页上的样子<br>hexo d 提交部署到服务器上包括github<br><br>hexo new <span class="hljs-string">"my first blog"</span> 新建一个名为my first blog的博客，会显示在你的博客根目录的`<span class="hljs-built_in">source</span>/_posts`下面<br></code></pre></td></tr></table></figure><br><img src="https://img-blog.csdnimg.cn/20200710221527596.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0phY2tfX19F,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>大家可能会注意到我这里好像不仅生成了文件还生成了一个同名的文件夹，这个文件夹是用于引入同名博客的图片的。<br>当然了其实我建议最好在csdn上写好自己的博客发表以后就变成网图了，然后直接复制csdn的博文在commit到hexo上面这样就不用存图片啥的，不过这里还是介绍一下本地图片引入吧</p>
+<h2 id="常用操作"><a href="#常用操作" class="headerlink" title="常用操作"></a>常用操作</h2><p>好了其实到这里我们的博客搭建就已经完成了，这里我们介绍几个常用的命令和操作吧，</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">hexo clean 清除生成的文件<br>hexo g 重新生成博客的文件<br>hexo s 开启hexo服务，我们可以预览自己新写的博客在网页上的样子<br>hexo d 提交部署到服务器上包括github<br><br>hexo new <span class="hljs-string">"my first blog"</span> 新建一个名为my first blog的博客，会显示在你的博客根目录的`<span class="hljs-built_in">source</span>/_posts`下面<br></code></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/20200710221527596.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0phY2tfX19F,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>大家可能会注意到我这里好像不仅生成了文件还生成了一个同名的文件夹，这个文件夹是用于引入同名博客的图片的。<br>当然了其实我建议最好在csdn上写好自己的博客发表以后就变成网图了，然后直接复制csdn的博文在commit到hexo上面这样就不用存图片啥的，不过这里还是介绍一下本地图片引入吧</p>
 <ol>
 <li>把主页配置文件<code>_config.yml</code> 里的<code>post_asset_folder:</code>这个选项设置为true</li>
 <li>在你的hexo目录下执行这样一句话<code>npm install hexo-asset-image --save</code>，这是下载安装一个可以上传本地图片的插件</li>
@@ -595,15 +605,23 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">youth</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">编译原理</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Hexo</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">计算机视觉</a>
+                <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">youth</a>
+                <a href="javascript:void(0)" class="js-tag color1">计算机视觉</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -623,10 +641,6 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Java</a>
               </li>
              
@@ -643,11 +657,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">编译原理</a>
+                <a href="javascript:void(0)" class="js-tag color3">计算机组成原理</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">计算机组成原理</a>
+                <a href="javascript:void(0)" class="js-tag color5">机器学习</a>
               </li>
             
             <div class="clearfix"></div>
