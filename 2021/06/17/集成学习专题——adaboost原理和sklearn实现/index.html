@@ -16,9 +16,11 @@
 <meta property="og:description" content="1. 导论在前面的学习中，我们探讨了一系列简单而实用的回归和分类模型，同时也探讨了如何使用集成学习家族中的Bagging思想去优化最终的模型。Bagging思想的实质是：通过Bootstrap 的方式对全样本数据集进行抽样得到抽样子集，对不同的子集使用同一种基本模型进行拟合，然后投票得出最终的预测。我们也从前面的探讨知道：Bagging主要通过降低方差的方式减少预测误差。那么，本章介绍的Boost">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/20210617231136412.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0phY2tfX19F,size_16,color_FFFFFF,t_70#pic_center">
-<meta property="article:published_time" content="2021-06-17T15:15:27.000Z">
-<meta property="article:modified_time" content="2021-06-17T15:41:26.377Z">
+<meta property="article:published_time" content="2021-06-17T15:15:00.000Z">
+<meta property="article:modified_time" content="2021-06-17T16:01:28.435Z">
 <meta property="article:author" content="whut ykh">
+<meta property="article:tag" content="datawhale">
+<meta property="article:tag" content="机器学习">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://img-blog.csdnimg.cn/20210617231136412.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0phY2tfX19F,size_16,color_FFFFFF,t_70#pic_center">
   
@@ -202,7 +204,7 @@
 
         
         <a href="/2021/06/17/%E9%9B%86%E6%88%90%E5%AD%A6%E4%B9%A0%E4%B8%93%E9%A2%98%E2%80%94%E2%80%94adaboost%E5%8E%9F%E7%90%86%E5%92%8Csklearn%E5%AE%9E%E7%8E%B0/" class="archive-article-date">
-  	<time datetime="2021-06-17T15:15:27.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-06-17</time>
+  	<time datetime="2021-06-17T15:15:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-06-17</time>
 </a>
         
       </header>
@@ -330,6 +332,21 @@
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">datawhale</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">机器学习</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
 
       
@@ -393,6 +410,15 @@
 
   
 <nav id="article-nav">
+  
+    <a href="/2021/06/17/%E9%9B%86%E6%88%90%E5%AD%A6%E4%B9%A0%E4%B8%93%E9%A2%98%E2%80%94%E2%80%94GBDT/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          集成学习专题——GBDT
+        
+      </div>
+    </a>
   
   
     <a href="/2021/06/16/%E9%9B%86%E6%88%90%E5%AD%A6%E4%B9%A0%E4%B8%93%E9%A2%98%E2%80%94%E2%80%94voting-bagging/" id="article-nav-older" class="article-nav-link-wrap">
@@ -649,27 +675,19 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">youth</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">数据库系统</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
+                <a href="javascript:void(0)" class="js-tag color1">计算机视觉</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">youth</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Hexo</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">编译原理</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">计算机视觉</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -689,6 +707,10 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">web基础</a>
               </li>
              
@@ -705,11 +727,15 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">机器学习</a>
+                <a href="javascript:void(0)" class="js-tag color3">计算机组成原理</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">计算机组成原理</a>
+                <a href="javascript:void(0)" class="js-tag color5">编译原理</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">机器学习</a>
               </li>
             
             <div class="clearfix"></div>
