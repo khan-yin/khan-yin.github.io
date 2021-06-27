@@ -8,12 +8,12 @@
   <link rel="dns-prefetch" href="https://yoursite.com">
   <title>docker常用命令 | ykhblog 一路向北</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Docker 常用命令帮助命令docker version #显示docker版本信息docker info #显示docker的系统信息，包括镜像和容器的数量docker 命令 --help # 帮助命令 镜像命令1.docker images查看所有本地的主机镜像     docker images显示字段 解释     REPOSITORY 镜像的仓库源   TAG 镜像的标签   IMAG">
+  <meta name="description" content="Docker 常用命令帮助命令docker version #显示docker版本信息docker info #显示docker的系统信息，包括镜像和容器的数量docker 命令 --help # 帮助命令  镜像命令1.docker images查看所有本地的主机镜像    docker images显示字段 解释    REPOSITORY 镜像的仓库源   TAG 镜像的标签   IMAGE">
 <meta property="og:type" content="article">
 <meta property="og:title" content="docker常用命令">
 <meta property="og:url" content="https://yoursite.com/2021/02/24/docker%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/index.html">
 <meta property="og:site_name" content="ykhblog 一路向北">
-<meta property="og:description" content="Docker 常用命令帮助命令docker version #显示docker版本信息docker info #显示docker的系统信息，包括镜像和容器的数量docker 命令 --help # 帮助命令 镜像命令1.docker images查看所有本地的主机镜像     docker images显示字段 解释     REPOSITORY 镜像的仓库源   TAG 镜像的标签   IMAG">
+<meta property="og:description" content="Docker 常用命令帮助命令docker version #显示docker版本信息docker info #显示docker的系统信息，包括镜像和容器的数量docker 命令 --help # 帮助命令  镜像命令1.docker images查看所有本地的主机镜像    docker images显示字段 解释    REPOSITORY 镜像的仓库源   TAG 镜像的标签   IMAGE">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/20210224130929333.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0phY2tfX19F,size_16,color_FFFFFF,t_70">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/20210224131759589.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0phY2tfX19F,size_16,color_FFFFFF,t_70">
@@ -232,61 +232,65 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h1 id="Docker-常用命令"><a href="#Docker-常用命令" class="headerlink" title="Docker 常用命令"></a>Docker 常用命令</h1><h2 id="帮助命令"><a href="#帮助命令" class="headerlink" title="帮助命令"></a>帮助命令</h2><figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">docker version <span class="hljs-comment">#显示docker版本信息</span><br>docker info <span class="hljs-comment">#显示docker的系统信息，包括镜像和容器的数量</span><br>docker 命令 --<span class="hljs-built_in">help</span> <span class="hljs-comment"># 帮助命令</span><br></code></pre></td></tr></table></figure>
+
 <h2 id="镜像命令"><a href="#镜像命令" class="headerlink" title="镜像命令"></a>镜像命令</h2><p><strong>1.<code>docker images</code>查看所有本地的主机镜像</strong></p>
-<div class="table-container">
 <table>
 <thead>
 <tr>
-<th style="text-align:left">docker images显示字段</th>
-<th style="text-align:left">解释</th>
+<th align="left">docker images显示字段</th>
+<th align="left">解释</th>
 </tr>
 </thead>
-<tbody>
-<tr>
-<td style="text-align:left">REPOSITORY</td>
-<td style="text-align:left">镜像的仓库源</td>
+<tbody><tr>
+<td align="left">REPOSITORY</td>
+<td align="left">镜像的仓库源</td>
 </tr>
 <tr>
-<td style="text-align:left">TAG</td>
-<td style="text-align:left">镜像的标签</td>
+<td align="left">TAG</td>
+<td align="left">镜像的标签</td>
 </tr>
 <tr>
-<td style="text-align:left">IMAGE ID</td>
-<td style="text-align:left">镜像的id</td>
+<td align="left">IMAGE ID</td>
+<td align="left">镜像的id</td>
 </tr>
 <tr>
-<td style="text-align:left">CREATED</td>
-<td style="text-align:left">镜像的创建时间</td>
+<td align="left">CREATED</td>
+<td align="left">镜像的创建时间</td>
 </tr>
 <tr>
-<td style="text-align:left">SIZE</td>
-<td style="text-align:left">镜像的大小</td>
+<td align="left">SIZE</td>
+<td align="left">镜像的大小</td>
 </tr>
-</tbody>
-</table>
-</div>
+</tbody></table>
 <a id="more"></a>
 <figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">(base) [root@iZuf69rye0flkbn4kbxrobZ ~]<span class="hljs-comment"># docker images</span><br>REPOSITORY    TAG       IMAGE ID       CREATED         SIZE<br>hello-world   latest    bf756fb1ae65   13 months ago   13.3kB<br>(base) [root@iZuf69rye0flkbn4kbxrobZ ~]<span class="hljs-comment"># docker images --help</span><br><br>Usage:  docker images [OPTIONS] [REPOSITORY[:TAG]]<br><br>List images<br><br>Options:<br>  -a, --all             Show all images <br>  -q, --quiet           Only show image IDs<br></code></pre></td></tr></table></figure>
+
 <p><img src="https://img-blog.csdnimg.cn/20210224130929333.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0phY2tfX19F,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><strong>2.<code>docker search</code>命令搜索镜像</strong><br>搜索镜像可以去docker hub网站上直接搜索，也可以通过命令行来搜索，通过万能帮助命令能更快的看到他的一些用法，这两种方法结果是一样的<br><img src="https://img-blog.csdnimg.cn/20210224131759589.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0phY2tfX19F,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20210224131506578.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0phY2tfX19F,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
 <p>我们也可以通过<code>--filter</code>来进行条件筛选<br>比如<code>docker search mysql --filter=STARS=3000</code></p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">(base) [root@iZuf69rye0flkbn4kbxrobZ ~]<span class="hljs-comment"># docker search mysql --filter=STARS=3000</span><br>NAME      DESCRIPTION                                     STARS     OFFICIAL   AUTOMATED<br>mysql     MySQL is a widely used, open-source relation…   10538     [OK]       <br>mariadb   MariaDB is a community-developed fork of MyS…   3935      [OK]<br></code></pre></td></tr></table></figure>
+
 <p><strong>3.<code>docker pull</code>下载镜像</strong><br><strong>这个命令其实信息量很大，这也是docker高明的地方，关于指定版本下载一定要是docker hub官网上面支持和提供的版本</strong><br><img src="https://img-blog.csdnimg.cn/2021022413252511.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0phY2tfX19F,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>我这里使用了</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">docker pull mysql<br>docker pull mysql:5.7<br></code></pre></td></tr></table></figure>
+
 <p><img src="https://img-blog.csdnimg.cn/20210224132844566.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0phY2tfX19F,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><strong>4.<code>docker rmi</code>删除镜像</strong><br>删除可以通过<code>REPOSITORY</code>来删，也可以通过<code>IMAGE ID</code>来删除<br><img src="https://img-blog.csdnimg.cn/20210224133232500.png" alt="在这里插入图片描述"></p>
-<h2 id="容器命令"><a href="#容器命令" class="headerlink" title="容器命令"></a>容器命令</h2><p><strong>说明：我们有了镜像才可以创建容器，linux，下载一个centos镜像来测试学习</strong><br><figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">docker pull centos<br></code></pre></td></tr></table></figure><br><strong>1.新建容器并启动</strong><br>通过<code>docker run</code>命令进入下载的centos容器里面后我们可以发现的是，我们的rootname不一样了<br><img src="https://img-blog.csdnimg.cn/20210224134041815.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0phY2tfX19F,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><img src="https://img-blog.csdnimg.cn/20210224134219210.png" alt="在这里插入图片描述"></p>
+<h2 id="容器命令"><a href="#容器命令" class="headerlink" title="容器命令"></a>容器命令</h2><p><strong>说明：我们有了镜像才可以创建容器，linux，下载一个centos镜像来测试学习</strong></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">docker pull centos<br></code></pre></td></tr></table></figure>
+<p><strong>1.新建容器并启动</strong><br>通过<code>docker run</code>命令进入下载的centos容器里面后我们可以发现的是，我们的rootname不一样了<br><img src="https://img-blog.csdnimg.cn/20210224134041815.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0phY2tfX19F,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><img src="https://img-blog.csdnimg.cn/20210224134219210.png" alt="在这里插入图片描述"></p>
 <p><strong>2.列出所有运行的容器</strong><br><code>docker ps</code>命令<br><img src="https://img-blog.csdnimg.cn/2021022413511697.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0phY2tfX19F,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><strong>3.<code>exit</code>退出命令</strong></p>
 <figure class="highlight powershell"><table><tr><td class="code"><pre><code class="hljs powershell"><span class="hljs-keyword">exit</span> <span class="hljs-comment">#直接容器停止并退出</span><br>Ctrl + P + Q  <span class="hljs-comment">#容器不停止并退出</span><br></code></pre></td></tr></table></figure>
 <p>在执行exit命令后，我们看到rootname又变回来了<br><img src="https://img-blog.csdnimg.cn/20210224134531160.png" alt="在这里插入图片描述"></p>
 <p><strong>4.删除容器</strong></p>
 <figure class="highlight powershell"><table><tr><td class="code"><pre><code class="hljs powershell">docker rm 容器id <span class="hljs-comment">#删除指定的容器，不能删除正在运行的容器，如果要强制删除，需要使用 rm -f</span><br>docker rm <span class="hljs-variable">$</span>(docker ps <span class="hljs-literal">-aq</span>) <span class="hljs-comment">#删除全部的容器</span><br>docker ps <span class="hljs-literal">-a</span> <span class="hljs-literal">-q</span>|xargs docker rm <span class="hljs-comment">#删除全部容器</span><br></code></pre></td></tr></table></figure>
 <p><strong>5.启动和停止容器</strong><br><img src="https://img-blog.csdnimg.cn/20210224135856699.png" alt="在这里插入图片描述"></p>
-<h2 id="日志元数据进程查看"><a href="#日志元数据进程查看" class="headerlink" title="日志元数据进程查看"></a>日志元数据进程查看</h2><p><img src="https://img-blog.csdnimg.cn/20210224141011643.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0phY2tfX19F,size_16,color_FFFFFF,t_70" alt><br><img src="https://img-blog.csdnimg.cn/20210224141603263.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0phY2tfX19F,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><strong>1.<code>docker top 容器id</code>查看容器中的进程</strong></p>
+<h2 id="日志元数据进程查看"><a href="#日志元数据进程查看" class="headerlink" title="日志元数据进程查看"></a>日志元数据进程查看</h2><p><img src="https://img-blog.csdnimg.cn/20210224141011643.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0phY2tfX19F,size_16,color_FFFFFF,t_70"><br><img src="https://img-blog.csdnimg.cn/20210224141603263.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0phY2tfX19F,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><strong>1.<code>docker top 容器id</code>查看容器中的进程</strong></p>
 <p><img src="https://img-blog.csdnimg.cn/20210224141846922.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0phY2tfX19F,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><strong>2.<code>docker inspect 容器id</code>查看元数据</strong></p>
 <p><strong>3.进入当前正在运行的容器</strong></p>
-<p>方式1： <code>docker exec -it 容器id bashshell</code>并可通过<code>ps -ef</code>查看容器当中的进程<br><img src="https://img-blog.csdnimg.cn/20210224143749283.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0phY2tfX19F,size_16,color_FFFFFF,t_70" alt></p>
+<p>方式1： <code>docker exec -it 容器id bashshell</code>并可通过<code>ps -ef</code>查看容器当中的进程<br><img src="https://img-blog.csdnimg.cn/20210224143749283.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0phY2tfX19F,size_16,color_FFFFFF,t_70"></p>
 <p>方式2：<code>docker attach 容器id</code>进入容器，如果当前有正在执行的容器则会直接进入到当前正在执行的进程当中</p>
 <p><img src="https://img-blog.csdnimg.cn/20210224142610940.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0phY2tfX19F,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
-<h2 id="从容器内拷贝到主机上"><a href="#从容器内拷贝到主机上" class="headerlink" title="从容器内拷贝到主机上"></a>从容器内拷贝到主机上</h2><p>即使容器已经停止也是可以进行拷贝的<br><figure class="highlight powershell"><table><tr><td class="code"><pre><code class="hljs powershell">docker cp 容器id:容器内路径 目的主机路径<br></code></pre></td></tr></table></figure><br><img src="https://img-blog.csdnimg.cn/20210224144038919.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0phY2tfX19F,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h2 id="从容器内拷贝到主机上"><a href="#从容器内拷贝到主机上" class="headerlink" title="从容器内拷贝到主机上"></a>从容器内拷贝到主机上</h2><p>即使容器已经停止也是可以进行拷贝的</p>
+<figure class="highlight powershell"><table><tr><td class="code"><pre><code class="hljs powershell">docker cp 容器id:容器内路径 目的主机路径<br></code></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/20210224144038919.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0phY2tfX19F,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
 <h2 id="docker部署nginx"><a href="#docker部署nginx" class="headerlink" title="docker部署nginx"></a>docker部署nginx</h2><figure class="highlight powershell"><table><tr><td class="code"><pre><code class="hljs powershell"><span class="hljs-variable">$</span> docker search nginx<br><span class="hljs-variable">$</span> docker pull nginx<br><span class="hljs-variable">$</span> docker run <span class="hljs-literal">-d</span> -<span class="hljs-literal">-name</span> nginx01 <span class="hljs-literal">-p</span> <span class="hljs-number">8083</span>:<span class="hljs-number">80</span> nginx<br><span class="hljs-variable">$</span> docker ps<br><span class="hljs-variable">$</span> curl localhost:<span class="hljs-number">8083</span><br></code></pre></td></tr></table></figure>
 <p><code>docker stop</code> 后则无法再访问<br><img src="https://img-blog.csdnimg.cn/20210224145948506.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0phY2tfX19F,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20210224150019256.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0phY2tfX19F,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20210224144959653.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0phY2tfX19F,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
 <h2 id="portainer可视化管理"><a href="#portainer可视化管理" class="headerlink" title="portainer可视化管理"></a>portainer可视化管理</h2><figure class="highlight powershell"><table><tr><td class="code"><pre><code class="hljs powershell">docker run <span class="hljs-literal">-d</span> <span class="hljs-literal">-p</span> <span class="hljs-number">8088</span>:<span class="hljs-number">9000</span> -<span class="hljs-literal">-restart</span>=always <span class="hljs-literal">-v</span> /var/run/docker.sock:/var/run/docker.sock -<span class="hljs-literal">-privileged</span>=true portainer/portainer<br></code></pre></td></tr></table></figure>
@@ -642,19 +646,19 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">数据库系统</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Hexo</a>
+                <a href="javascript:void(0)" class="js-tag color5">编译原理</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">编译原理</a>
+                <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Hexo</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -674,11 +678,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">web基础</a>
+                <a href="javascript:void(0)" class="js-tag color5">Java</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Java</a>
+                <a href="javascript:void(0)" class="js-tag color1">web基础</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -694,11 +698,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">计算机组成原理</a>
+                <a href="javascript:void(0)" class="js-tag color5">机器学习</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">机器学习</a>
+                <a href="javascript:void(0)" class="js-tag color3">计算机组成原理</a>
               </li>
             
             <div class="clearfix"></div>

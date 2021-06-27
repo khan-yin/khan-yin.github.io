@@ -221,13 +221,22 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>时隔半年，我又重回微分方程的学习了，现在学确实挺难搞的，很多知识和理论思路都忘了，数学还是很重要啊，其实一个蛮简单的东西我看了很久很久才慢慢的又懂了，话不多说，直接写文。<br>首先要明确的一点就是，我们求微分方程的时候，要注意有解析解和数值解，解析解又有通解和特解，这在我们编写代码的时候可以通过初始点的值来获得特解。其实今天老师讲的还挺不错的，举出了很多的例子，基本上与物理有关，<strong>其实要说这一个模块最稳妥的办法其实是如果能够求出通解，一般最好手动进行微分方程的求解，然后用计算机检验，用计算机求微分方程的情况大多数是求数值解。所以说这一部分的话，其实对建模的要求更高，求解我们到时候可以看到matlab调用函数就可以了</strong><br><a id="more"></a></p>
+        <p>时隔半年，我又重回微分方程的学习了，现在学确实挺难搞的，很多知识和理论思路都忘了，数学还是很重要啊，其实一个蛮简单的东西我看了很久很久才慢慢的又懂了，话不多说，直接写文。<br>首先要明确的一点就是，我们求微分方程的时候，要注意有解析解和数值解，解析解又有通解和特解，这在我们编写代码的时候可以通过初始点的值来获得特解。其实今天老师讲的还挺不错的，举出了很多的例子，基本上与物理有关，<strong>其实要说这一个模块最稳妥的办法其实是如果能够求出通解，一般最好手动进行微分方程的求解，然后用计算机检验，用计算机求微分方程的情况大多数是求数值解。所以说这一部分的话，其实对建模的要求更高，求解我们到时候可以看到matlab调用函数就可以了</strong></p>
+<a id="more"></a>
 <h2 id="dsolve函数的妙用"><a href="#dsolve函数的妙用" class="headerlink" title="dsolve函数的妙用"></a>dsolve函数的妙用</h2><p><img src="https://img-blog.csdnimg.cn/20200716225724889.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0phY2tfX19F,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/2020071622590399.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0phY2tfX19F,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p>
-<h4 id="求解常微分方程通解"><a href="#求解常微分方程通解" class="headerlink" title="求解常微分方程通解"></a>求解常微分方程通解</h4><p>$求微分方程\frac{du}{dx}=1+u^2和x^2+y+(x-2y)y’的通解$<br><figure class="highlight matlab"><table><tr><td class="code"><pre><code class="hljs matlab">dsolve(<span class="hljs-string">'Du=1+u^2'</span>,<span class="hljs-string">'t'</span>);<br>dsolve(<span class="hljs-string">'x^2+y+(x-2*y)*Dy=0'</span>,<span class="hljs-string">'x'</span>);<br></code></pre></td></tr></table></figure></p>
-<h4 id="求解常微分方程特解"><a href="#求解常微分方程特解" class="headerlink" title="求解常微分方程特解"></a>求解常微分方程特解</h4><p>$求y’’’-y’’=x，y(1)=8，y’(1)=7，y’’(2)=4的特解$<br><figure class="highlight matlab"><table><tr><td class="code"><pre><code class="hljs matlab">y=dsolve(<span class="hljs-string">'D3y-D2y=x'</span>,<span class="hljs-string">'y(1)=8'</span>,<span class="hljs-string">'Dy(1)=7'</span>,<span class="hljs-string">'D2y(2)=4'</span>,<span class="hljs-string">'x'</span>);<br></code></pre></td></tr></table></figure><br><figure class="highlight js"><table><tr><td class="code"><pre><code class="hljs js"><span class="hljs-string">``</span><span class="hljs-string">`</span><br><span class="hljs-string">#### 求解微分方程组</span><br><span class="hljs-string">![在这里插入图片描述](https://img-blog.csdnimg.cn/20200716230752510.png#pic_center)</span><br><span class="hljs-string">`</span><span class="hljs-string">``</span>matlab<br>[x,y,z]=dsolve(<span class="hljs-string">'Dx=2*x-3*y+3*z'</span>,<span class="hljs-string">'Dy=4*x-5*y+3*z'</span>,<span class="hljs-string">'Dz=4*x-4*y+2*z'</span>,<span class="hljs-string">'t'</span>);<br>x=simplify(x);%化简<br>y=simplify(y);<br>z=simplify(z);<br></code></pre></td></tr></table></figure><br><img src="https://img-blog.csdnimg.cn/20200716230944302.png#pic_center" alt="在这里插入图片描述"></p>
+<h4 id="求解常微分方程通解"><a href="#求解常微分方程通解" class="headerlink" title="求解常微分方程通解"></a>求解常微分方程通解</h4><p>$求微分方程\frac{du}{dx}=1+u^2和x^2+y+(x-2y)y’的通解$</p>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><code class="hljs matlab">dsolve(<span class="hljs-string">'Du=1+u^2'</span>,<span class="hljs-string">'t'</span>);<br>dsolve(<span class="hljs-string">'x^2+y+(x-2*y)*Dy=0'</span>,<span class="hljs-string">'x'</span>);<br></code></pre></td></tr></table></figure>
+<h4 id="求解常微分方程特解"><a href="#求解常微分方程特解" class="headerlink" title="求解常微分方程特解"></a>求解常微分方程特解</h4><p>$求y’’’-y’’=x，y(1)=8，y’(1)=7，y’’(2)=4的特解$</p>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><code class="hljs matlab">y=dsolve(<span class="hljs-string">'D3y-D2y=x'</span>,<span class="hljs-string">'y(1)=8'</span>,<span class="hljs-string">'Dy(1)=7'</span>,<span class="hljs-string">'D2y(2)=4'</span>,<span class="hljs-string">'x'</span>);<br></code></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="code"><pre><code class="hljs js"><span class="hljs-string">``</span><span class="hljs-string">`</span><br><span class="hljs-string">#### 求解微分方程组</span><br><span class="hljs-string">![在这里插入图片描述](https://img-blog.csdnimg.cn/20200716230752510.png#pic_center)</span><br><span class="hljs-string">`</span><span class="hljs-string">``</span>matlab<br>[x,y,z]=dsolve(<span class="hljs-string">'Dx=2*x-3*y+3*z'</span>,<span class="hljs-string">'Dy=4*x-5*y+3*z'</span>,<span class="hljs-string">'Dz=4*x-4*y+2*z'</span>,<span class="hljs-string">'t'</span>);<br>x=simplify(x);%化简<br>y=simplify(y);<br>z=simplify(z);<br></code></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/20200716230944302.png#pic_center" alt="在这里插入图片描述"></p>
 <figure class="highlight matlab"><table><tr><td class="code"><pre><code class="hljs matlab">equ1=<span class="hljs-string">'D2f+3*g=sin(x)'</span>;<br>equ2=<span class="hljs-string">'Dg+Df=cos(x)'</span>;<br>[general_f,general_g]=dsolve(equ1,equ2,<span class="hljs-string">'x'</span>);  <span class="hljs-comment">%通解</span><br>[f,g]=dsolve(equ1,equ2,<span class="hljs-string">'Df(2)=0,f(3)=3,g(5)=1'</span>,<span class="hljs-string">'x'</span>);<br></code></pre></td></tr></table></figure>
 <h2 id="龙哥库塔求数值解"><a href="#龙哥库塔求数值解" class="headerlink" title="龙哥库塔求数值解"></a>龙哥库塔求数值解</h2><p>在介绍龙哥库塔求数值解的时候，我们先要介绍一下这个刚性方程组的定义<br><img src="https://img-blog.csdnimg.cn/20200716231241550.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0phY2tfX19F,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"><br>然后matlab里面提供了几个非常好的解刚性常微分方程的功能函数如<code>ode15s,ode45,ode113,ode23,ode23s,ode23t,ode23tb,</code><br><img src="https://img-blog.csdnimg.cn/20200716231441765.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0phY2tfX19F,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"><br>然后在介绍求解的知识之前，我需要先让你对这个过程做一个了解，以至于你写的时候不会觉得很晕，其实很简单的，估计我是忘了老师怎么教的了，看了半天我才慢慢明白。<br>其实他的思路就是，用当前可以得到的函数值和自变量来导出我们所需要的求得微分变量，如果出现了高阶得情况，则将每一个高阶都逐一替换成导数用函数值表示的公式，前几阶导数完全可以嵌套定义表示出来，可能你还是没用很懂，不过等你看到我下面的分析的时候，你应该就懂了，而且通过我的发现，基本上告诉你几个初始值，一般你就要求多少阶的导数。</p>
-<h4 id="简单的一阶方程初值问题"><a href="#简单的一阶方程初值问题" class="headerlink" title="简单的一阶方程初值问题"></a>简单的一阶方程初值问题</h4><p><img src="https://img-blog.csdnimg.cn/20200716232119387.png#pic_center" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20200716232057499.png#pic_center" alt="在这里插入图片描述"><br>F2.m<br><figure class="highlight matlab"><table><tr><td class="code"><pre><code class="hljs matlab"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">dy</span> = <span class="hljs-title">F2</span><span class="hljs-params">(t,y)</span></span><br><span class="hljs-comment">%F2 此处显示有关此函数的摘要</span><br><span class="hljs-comment">%   此处显示详细说明</span><br>dy=<span class="hljs-number">-2</span>*y+<span class="hljs-number">2</span>*t^<span class="hljs-number">2</span>+<span class="hljs-number">2</span>*t;<br><span class="hljs-keyword">end</span><br></code></pre></td></tr></table></figure><br>main.m<br><figure class="highlight matlab"><table><tr><td class="code"><pre><code class="hljs matlab">[T,Y]=ode45(<span class="hljs-string">'F2'</span>,[<span class="hljs-number">0</span>,<span class="hljs-number">500</span>],[<span class="hljs-number">1</span>]);<br><span class="hljs-built_in">plot</span>(T,Y(:,<span class="hljs-number">1</span>),<span class="hljs-string">'-'</span>);<br></code></pre></td></tr></table></figure><br><img src="https://img-blog.csdnimg.cn/20200716232314803.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0phY2tfX19F,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p>
+<h4 id="简单的一阶方程初值问题"><a href="#简单的一阶方程初值问题" class="headerlink" title="简单的一阶方程初值问题"></a>简单的一阶方程初值问题</h4><p><img src="https://img-blog.csdnimg.cn/20200716232119387.png#pic_center" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20200716232057499.png#pic_center" alt="在这里插入图片描述"><br>F2.m</p>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><code class="hljs matlab"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">dy</span> = <span class="hljs-title">F2</span><span class="hljs-params">(t,y)</span></span><br><span class="hljs-comment">%F2 此处显示有关此函数的摘要</span><br><span class="hljs-comment">%   此处显示详细说明</span><br>dy=<span class="hljs-number">-2</span>*y+<span class="hljs-number">2</span>*t^<span class="hljs-number">2</span>+<span class="hljs-number">2</span>*t;<br><span class="hljs-keyword">end</span><br></code></pre></td></tr></table></figure>
+<p>main.m</p>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><code class="hljs matlab">[T,Y]=ode45(<span class="hljs-string">'F2'</span>,[<span class="hljs-number">0</span>,<span class="hljs-number">500</span>],[<span class="hljs-number">1</span>]);<br><span class="hljs-built_in">plot</span>(T,Y(:,<span class="hljs-number">1</span>),<span class="hljs-string">'-'</span>);<br></code></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/20200716232314803.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0phY2tfX19F,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p>
 <h4 id="高阶微分方程"><a href="#高阶微分方程" class="headerlink" title="高阶微分方程"></a>高阶微分方程</h4><p>做变量替换，转化成多个一阶微分方程<br><img src="https://img-blog.csdnimg.cn/20200716232648679.png#pic_center" alt="在这里插入图片描述"><br>F.m</p>
 <figure class="highlight matlab"><table><tr><td class="code"><pre><code class="hljs matlab"><span class="hljs-comment">%y1=y</span><br><span class="hljs-comment">%y2=y1'=y'</span><br><span class="hljs-comment">%y2'=y''</span><br><span class="hljs-comment">%y0=2,y1=0</span><br><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">dy</span>=<span class="hljs-title">F</span><span class="hljs-params">(t,y)</span>%虽然这里我们没用上自变量但是这个参数还是要加，毕竟是调库函数所以说还是得按他的规矩</span><br>dy=<span class="hljs-built_in">zeros</span>(<span class="hljs-number">2</span>,<span class="hljs-number">1</span>);<br>dy(<span class="hljs-number">1</span>)=y(<span class="hljs-number">2</span>);<br>dy(<span class="hljs-number">2</span>)=<span class="hljs-number">1000</span>*(<span class="hljs-number">1</span>-y(<span class="hljs-number">1</span>)^<span class="hljs-number">2</span>)*y(<span class="hljs-number">2</span>)-y(<span class="hljs-number">1</span>);<br></code></pre></td></tr></table></figure>
 <p>main.m</p>
@@ -584,19 +593,19 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">数据库系统</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Hexo</a>
+                <a href="javascript:void(0)" class="js-tag color5">编译原理</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">编译原理</a>
+                <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Hexo</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -616,11 +625,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">web基础</a>
+                <a href="javascript:void(0)" class="js-tag color5">Java</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Java</a>
+                <a href="javascript:void(0)" class="js-tag color1">web基础</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -636,11 +645,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">计算机组成原理</a>
+                <a href="javascript:void(0)" class="js-tag color5">机器学习</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">机器学习</a>
+                <a href="javascript:void(0)" class="js-tag color3">计算机组成原理</a>
               </li>
             
             <div class="clearfix"></div>
