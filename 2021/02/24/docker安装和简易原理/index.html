@@ -222,14 +222,11 @@
         <h2 id="docker安装和简易原理"><a href="#docker安装和简易原理" class="headerlink" title="docker安装和简易原理"></a>docker安装和简易原理</h2><p>最近参加了阿里云datawhale天池的一个比赛里面需要用docker进行提交，所以借此机会学习了一下docker，b站上有个很好的视频<a href="https://www.bilibili.com/video/BV1og4y1q7M4?p=6" target="_blank" rel="noopener">【狂神说Java】Docker最新超详细版教程通俗易懂</a></p>
 <h2 id="docker基本组成"><a href="#docker基本组成" class="headerlink" title="docker基本组成"></a>docker基本组成</h2><p><img src="https://img-blog.csdnimg.cn/20210224124633537.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0phY2tfX19F,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
 <a id="more"></a>
-
 <p><img src="https://img-blog.csdnimg.cn/20210224124854806.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0phY2tfX19F,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
 <h2 id="docker安装"><a href="#docker安装" class="headerlink" title="docker安装"></a>docker安装</h2><p>centos7安装<br>先查看centos版本，新版本的docker都只支持centos7以上</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">(base) [root@iZuf69rye0flkbn4kbxrobZ ~]<span class="hljs-comment"># cat /etc/os-release</span><br>NAME=<span class="hljs-string">"CentOS Linux"</span><br>VERSION=<span class="hljs-string">"7 (Core)"</span><br>ID=<span class="hljs-string">"centos"</span><br>ID_LIKE=<span class="hljs-string">"rhel fedora"</span><br>VERSION_ID=<span class="hljs-string">"7"</span><br>PRETTY_NAME=<span class="hljs-string">"CentOS Linux 7 (Core)"</span><br>ANSI_COLOR=<span class="hljs-string">"0;31"</span><br>CPE_NAME=<span class="hljs-string">"cpe:/o:centos:centos:7"</span><br>HOME_URL=<span class="hljs-string">"https://www.centos.org/"</span><br>BUG_REPORT_URL=<span class="hljs-string">"https://bugs.centos.org/"</span><br><br>CENTOS_MANTISBT_PROJECT=<span class="hljs-string">"CentOS-7"</span><br>CENTOS_MANTISBT_PROJECT_VERSION=<span class="hljs-string">"7"</span><br>REDHAT_SUPPORT_PRODUCT=<span class="hljs-string">"centos"</span><br>REDHAT_SUPPORT_PRODUCT_VERSION=<span class="hljs-string">"7"</span><br></code></pre></td></tr></table></figure>
-
 <p>然后我们的操作均按照帮助文档进行操作即可<br><a href="https://docs.docker.com/engine/install/centos/" target="_blank" rel="noopener">dockerCentos安装</a></p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 卸载旧版本</span><br>sudo yum remove docker \<br>                  docker-client \<br>                  docker-client-latest \<br>                  docker-common \<br>                  docker-latest \<br>                  docker-latest-logrotate \<br>                  docker-logrotate \<br>                  docker-engine<br><br><span class="hljs-comment"># 安装</span><br>sudo yum install -y yum-utils<br><br><span class="hljs-comment">#配置镜像，官方是国外的很慢，这里我们使用阿里云镜像</span><br>sudo yum-config-manager \<br>    --add-repo \<br>    https://download.docker.com/linux/centos/docker-ce.repo<br><br><span class="hljs-comment"># 推荐使用这个</span><br>sudo yum-config-manager --add-repo http://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo<br><br><span class="hljs-comment">#更新yum</span><br>yum makecache fast<br><br><span class="hljs-comment"># 安装相关的包</span><br> sudo yum install docker-ce docker-ce-cli containerd.io<br></code></pre></td></tr></table></figure>
-
 <h2 id="Start-Docker"><a href="#Start-Docker" class="headerlink" title="Start Docker"></a>Start Docker</h2><figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">sudo systemctl start docker<br></code></pre></td></tr></table></figure>
 <p>使用<code>docker version</code>查看是否安装成功<br><img src="https://img-blog.csdnimg.cn/2021022412185923.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0phY2tfX19F,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><code>sudo docker run hello-world</code><img src="https://img-blog.csdnimg.cn/20210224122343176.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0phY2tfX19F,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
 <p>使用<code>docker images</code> 查看所安装的所有镜像<br><img src="https://img-blog.csdnimg.cn/20210224122509960.png" alt="在这里插入图片描述"></p>
@@ -237,10 +234,8 @@
 <figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">sudo yum remove docker-ce docker-ce-cli containerd.io<br></code></pre></td></tr></table></figure>
 <p>2.删除默认工作目录和资源</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">$ sudo rm -rf /var/lib/docker<br></code></pre></td></tr></table></figure>
-
 <h2 id="阿里云镜像加速器"><a href="#阿里云镜像加速器" class="headerlink" title="阿里云镜像加速器"></a>阿里云镜像加速器</h2><p>这一块的话推荐天池的一个<a href="https://tianchi.aliyun.com/competition/entrance/231759/tab/226" target="_blank" rel="noopener">docker学习赛</a><br>登录阿里云找到容器服务，并创建新容器,然后找到里面的镜像加速器对centos进行配置。<br><img src="https://img-blog.csdnimg.cn/20210224123245412.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0phY2tfX19F,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">sudo mkdir -p /etc/docker<br><br>sudo tee /etc/docker/daemon.json &lt;&lt;-<span class="hljs-string">'EOF'</span><br>&#123;<br>  <span class="hljs-string">"registry-mirrors"</span>: [<span class="hljs-string">"https://fdm7vcvf.mirror.aliyuncs.com"</span>]<br>&#125;<br>EOF<br><br>sudo systemctl daemon-reload<br><br>sudo systemctl restart docker<br></code></pre></td></tr></table></figure>
-
 <h2 id="回归Hello-World镜像的运行过程"><a href="#回归Hello-World镜像的运行过程" class="headerlink" title="回归Hello World镜像的运行过程"></a>回归Hello World镜像的运行过程</h2><p><img src="https://img-blog.csdnimg.cn/20210224123453853.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0phY2tfX19F,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
 <h2 id="底层原理"><a href="#底层原理" class="headerlink" title="底层原理"></a>底层原理</h2><p>Docker是什么工作的?<br>Docker是一个Client - Server结构的系统，Docker的守护进行运行在主机上。通过Socket从客户端访问!DockerServer接收到Docker-Client的指令，就会执行这个命令!<br><img src="https://img-blog.csdnimg.cn/20210224124010560.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0phY2tfX19F,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>docker为什么比虚拟机快？<br><a href="https://www.cnblogs.com/fanqisoft/p/10440220.html" target="_blank" rel="noopener">参考链接</a></p>
 <p><img src="https://img-blog.csdnimg.cn/20210224124320560.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0phY2tfX19F,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20210224124350819.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0phY2tfX19F,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
@@ -595,7 +590,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Hexo</a>
+                <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -603,7 +598,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
+                <a href="javascript:void(0)" class="js-tag color5">Hexo</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -615,11 +610,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">pandas</a>
+                <a href="javascript:void(0)" class="js-tag color5">datawhale</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">datawhale</a>
+                <a href="javascript:void(0)" class="js-tag color2">pandas</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -627,11 +622,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Java</a>
+                <a href="javascript:void(0)" class="js-tag color1">web基础</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">web基础</a>
+                <a href="javascript:void(0)" class="js-tag color5">Java</a>
               </li>
              
               <li class="article-tag-list-item">

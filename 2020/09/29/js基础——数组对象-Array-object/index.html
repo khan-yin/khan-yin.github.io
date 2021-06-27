@@ -211,43 +211,22 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>这次要介绍的是js的数组对象，其实在js里面他本质上是一种object对象（他的原型），创建和使用方法和python有点类似,最重要的一点数组里面的数据类型可以是各种类型。</p>
-<a id="more"></a>
-<h2 id="创建数组对象"><a href="#创建数组对象" class="headerlink" title="创建数组对象"></a>创建数组对象</h2><p>使用<code>Array()</code>的方式或者直接用<code>[]</code>来创建一个数组。</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">var</span> arr = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Array</span>(element0, element1, ..., elementN);<br><span class="hljs-keyword">var</span> arr = <span class="hljs-built_in">Array</span>(element0, element1, ..., elementN);<br><span class="hljs-keyword">var</span> arr = [element0, element1, ..., elementN];<br><br><span class="hljs-comment">// 译者注: var arr=[4] 和 var arr=new Array(4)是不等效的，</span><br><span class="hljs-comment">// 后者4指数组长度，所以使用字面值(literal)的方式应该不仅仅是便捷，同时也不易踩坑</span><br></code></pre></td></tr></table></figure>
-
-<p>为了创建一个长度不为0，但是又没有任何元素的数组，可选以下任何一种方式：</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">var</span> arr = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Array</span>(arrayLength);<br><span class="hljs-keyword">var</span> arr = <span class="hljs-built_in">Array</span>(arrayLength);<br><br><span class="hljs-comment">// 这样有同样的效果</span><br><span class="hljs-keyword">var</span> arr = [];<br>arr.length = arrayLength;<br></code></pre></td></tr></table></figure>
-
-<p>这里还有一些特殊情况需要进行说明</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">let</span> a=[,<span class="hljs-string">"12"</span>,,<span class="hljs-number">3</span>];<span class="hljs-comment">//这样的数组也是成立的，这种逗号法省略的部分为undefined</span><br><span class="hljs-keyword">let</span> b=[<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,,];<span class="hljs-comment">//这里数组最后一个逗号是忽略的，也就是这里只有一个undefined</span><br></code></pre></td></tr></table></figure>
-<p>结果测试：<br><img src="/2020/09/29/js%E5%9F%BA%E7%A1%80%E2%80%94%E2%80%94%E6%95%B0%E7%BB%84%E5%AF%B9%E8%B1%A1-Array-object/1.png" alt="测试结果"></p>
-<h2 id="填充数组"><a href="#填充数组" class="headerlink" title="填充数组"></a>填充数组</h2><p>可以使用类似赋值操作的方法来填充元素，如果你在以上代码中给数组操作符的是一个<strong>非整形数值</strong>，那么将作为一个代表数组的对象的属性(property)创建，而非作为数组的元素。</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">var</span> emp = [];<br>emp[<span class="hljs-number">0</span>] = <span class="hljs-string">"Casey Jones"</span>;<br>emp[<span class="hljs-number">1</span>] = <span class="hljs-string">"Phil Lesh"</span>;<br>emp[<span class="hljs-number">2</span>] = <span class="hljs-string">"August West"</span>;<br></code></pre></td></tr></table></figure>
-
+        <p>这次要介绍的是js的数组对象，其实在js里面他本质上是一种object对象（他的原型），创建和使用方法和python有点类似,最重要的一点数组里面的数据类型可以是各种类型。<br><a id="more"></a></p>
+<h2 id="创建数组对象"><a href="#创建数组对象" class="headerlink" title="创建数组对象"></a>创建数组对象</h2><p>使用<code>Array()</code>的方式或者直接用<code>[]</code>来创建一个数组。<br><figure class="highlight js"><table><tr><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">var</span> arr = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Array</span>(element0, element1, ..., elementN);<br><span class="hljs-keyword">var</span> arr = <span class="hljs-built_in">Array</span>(element0, element1, ..., elementN);<br><span class="hljs-keyword">var</span> arr = [element0, element1, ..., elementN];<br><br><span class="hljs-comment">// 译者注: var arr=[4] 和 var arr=new Array(4)是不等效的，</span><br><span class="hljs-comment">// 后者4指数组长度，所以使用字面值(literal)的方式应该不仅仅是便捷，同时也不易踩坑</span><br></code></pre></td></tr></table></figure></p>
+<p>为了创建一个长度不为0，但是又没有任何元素的数组，可选以下任何一种方式：<br><figure class="highlight js"><table><tr><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">var</span> arr = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Array</span>(arrayLength);<br><span class="hljs-keyword">var</span> arr = <span class="hljs-built_in">Array</span>(arrayLength);<br><br><span class="hljs-comment">// 这样有同样的效果</span><br><span class="hljs-keyword">var</span> arr = [];<br>arr.length = arrayLength;<br></code></pre></td></tr></table></figure></p>
+<p>这里还有一些特殊情况需要进行说明<br><figure class="highlight js"><table><tr><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">let</span> a=[,<span class="hljs-string">"12"</span>,,<span class="hljs-number">3</span>];<span class="hljs-comment">//这样的数组也是成立的，这种逗号法省略的部分为undefined</span><br><span class="hljs-keyword">let</span> b=[<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,,];<span class="hljs-comment">//这里数组最后一个逗号是忽略的，也就是这里只有一个undefined</span><br></code></pre></td></tr></table></figure><br>结果测试：<br><img src="/2020/09/29/js%E5%9F%BA%E7%A1%80%E2%80%94%E2%80%94%E6%95%B0%E7%BB%84%E5%AF%B9%E8%B1%A1-Array-object/1.png" alt="测试结果"></p>
+<h2 id="填充数组"><a href="#填充数组" class="headerlink" title="填充数组"></a>填充数组</h2><p>可以使用类似赋值操作的方法来填充元素，如果你在以上代码中给数组操作符的是一个<strong>非整形数值</strong>，那么将作为一个代表数组的对象的属性(property)创建，而非作为数组的元素。<br><figure class="highlight js"><table><tr><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">var</span> emp = [];<br>emp[<span class="hljs-number">0</span>] = <span class="hljs-string">"Casey Jones"</span>;<br>emp[<span class="hljs-number">1</span>] = <span class="hljs-string">"Phil Lesh"</span>;<br>emp[<span class="hljs-number">2</span>] = <span class="hljs-string">"August West"</span>;<br></code></pre></td></tr></table></figure></p>
 <h2 id="数组方法"><a href="#数组方法" class="headerlink" title="数组方法"></a>数组方法</h2><p>关于数组的方法其实很多，这里我们不会一一详细介绍，大概就给一些常用的函数。<br><code>concat()</code> 连接两个数组并返回一个新的数组。<br><code>join(deliminator = &#39;,&#39;)</code> 将数组的所有元素连接成一个字符串。<br><code>push()</code> 在数组末尾添加一个或多个元素，并返回数组操作后的长度。<br><code>sort()</code> 给数组元素排序。<br><code>pop()</code> 从数组移出最后一个元素，并返回该元素。<br><code>slice(start_index, upto_index)</code> 从数组提取一个片段，并作为一个新数组返回。</p>
-<p><code>map(callback[, thisObject])</code> 在数组的每个单元项上执行<code>callback</code>函数，并把返回包含回调函数返回值的新数组（译者注：也就是遍历数组，并通过callback对数组元素进行操作，并将所有操作结果放入数组中并返回该数组）。</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">var</span> a1 = [<span class="hljs-string">'a'</span>, <span class="hljs-string">'b'</span>, <span class="hljs-string">'c'</span>];<br><span class="hljs-keyword">var</span> a2 = a1.map(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">item</span>) </span>&#123; <span class="hljs-keyword">return</span> item.toUpperCase(); &#125;);<br><span class="hljs-built_in">console</span>.log(a2); <span class="hljs-comment">// logs A,B,C</span><br></code></pre></td></tr></table></figure>
-
-
-<p><code>filter(callback[, thisObject])</code> 返回一个包含所有在回调函数上返回为true的元素的新数组（译者注：callback在这里担任的是过滤器的角色，当元素符合条件，过滤器就返回true，而filter则会返回所有符合过滤条件的元素）。</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">var</span> a1 = [<span class="hljs-string">'a'</span>, <span class="hljs-number">10</span>, <span class="hljs-string">'b'</span>, <span class="hljs-number">20</span>, <span class="hljs-string">'c'</span>, <span class="hljs-number">30</span>];<br><span class="hljs-keyword">var</span> a2 = a1.filter(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">item</span>) </span>&#123; <span class="hljs-keyword">return</span> <span class="hljs-keyword">typeof</span> item == <span class="hljs-string">'number'</span>; &#125;);<br><span class="hljs-built_in">console</span>.log(a2); <span class="hljs-comment">// logs 10,20,30</span><br></code></pre></td></tr></table></figure>
-
-
-<p><code>every(callback[, thisObject])</code> 当数组中每一个元素在<code>callback</code>上被返回true时就返回true（译者注：同上，every其实类似<code>filter</code>，只不过它的功能是判断是不是数组中的所有元素都符合条件，并且返回的是布尔值）。</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">isNumber</span>(<span class="hljs-params">value</span>)</span>&#123;<br>  <span class="hljs-keyword">return</span> <span class="hljs-keyword">typeof</span> value == <span class="hljs-string">'number'</span>;<br>&#125;<br><span class="hljs-keyword">var</span> a1 = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>];<br><span class="hljs-built_in">console</span>.log(a1.every(isNumber)); <span class="hljs-comment">// logs true</span><br><span class="hljs-keyword">var</span> a2 = [<span class="hljs-number">1</span>, <span class="hljs-string">'2'</span>, <span class="hljs-number">3</span>];<br><span class="hljs-built_in">console</span>.log(a2.every(isNumber)); <span class="hljs-comment">// logs false</span><br></code></pre></td></tr></table></figure>
-
-<p><code>some(callback[, thisObject])</code> 只要数组中有一项在callback上被返回true，就返回true（译者注：同上，类似every，不过前者要求都符合筛选条件才返回true，后者只要有符合条件的就返回true）。</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">isNumber</span>(<span class="hljs-params">value</span>)</span>&#123;<br>  <span class="hljs-keyword">return</span> <span class="hljs-keyword">typeof</span> value == <span class="hljs-string">'number'</span>;<br>&#125;<br><span class="hljs-keyword">var</span> a1 = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>];<br><span class="hljs-built_in">console</span>.log(a1.some(isNumber)); <span class="hljs-comment">// logs true</span><br><span class="hljs-keyword">var</span> a2 = [<span class="hljs-number">1</span>, <span class="hljs-string">'2'</span>, <span class="hljs-number">3</span>];<br><span class="hljs-built_in">console</span>.log(a2.some(isNumber)); <span class="hljs-comment">// logs true</span><br><span class="hljs-keyword">var</span> a3 = [<span class="hljs-string">'1'</span>, <span class="hljs-string">'2'</span>, <span class="hljs-string">'3'</span>];<br><span class="hljs-built_in">console</span>.log(a3.some(isNumber)); <span class="hljs-comment">// logs false</span><br></code></pre></td></tr></table></figure>
-
+<p><code>map(callback[, thisObject])</code> 在数组的每个单元项上执行<code>callback</code>函数，并把返回包含回调函数返回值的新数组（译者注：也就是遍历数组，并通过callback对数组元素进行操作，并将所有操作结果放入数组中并返回该数组）。<br><figure class="highlight js"><table><tr><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">var</span> a1 = [<span class="hljs-string">'a'</span>, <span class="hljs-string">'b'</span>, <span class="hljs-string">'c'</span>];<br><span class="hljs-keyword">var</span> a2 = a1.map(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">item</span>) </span>&#123; <span class="hljs-keyword">return</span> item.toUpperCase(); &#125;);<br><span class="hljs-built_in">console</span>.log(a2); <span class="hljs-comment">// logs A,B,C</span><br></code></pre></td></tr></table></figure></p>
+<p><code>filter(callback[, thisObject])</code> 返回一个包含所有在回调函数上返回为true的元素的新数组（译者注：callback在这里担任的是过滤器的角色，当元素符合条件，过滤器就返回true，而filter则会返回所有符合过滤条件的元素）。<br><figure class="highlight js"><table><tr><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">var</span> a1 = [<span class="hljs-string">'a'</span>, <span class="hljs-number">10</span>, <span class="hljs-string">'b'</span>, <span class="hljs-number">20</span>, <span class="hljs-string">'c'</span>, <span class="hljs-number">30</span>];<br><span class="hljs-keyword">var</span> a2 = a1.filter(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">item</span>) </span>&#123; <span class="hljs-keyword">return</span> <span class="hljs-keyword">typeof</span> item == <span class="hljs-string">'number'</span>; &#125;);<br><span class="hljs-built_in">console</span>.log(a2); <span class="hljs-comment">// logs 10,20,30</span><br></code></pre></td></tr></table></figure></p>
+<p><code>every(callback[, thisObject])</code> 当数组中每一个元素在<code>callback</code>上被返回true时就返回true（译者注：同上，every其实类似<code>filter</code>，只不过它的功能是判断是不是数组中的所有元素都符合条件，并且返回的是布尔值）。<br><figure class="highlight js"><table><tr><td class="code"><pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">isNumber</span>(<span class="hljs-params">value</span>)</span>&#123;<br>  <span class="hljs-keyword">return</span> <span class="hljs-keyword">typeof</span> value == <span class="hljs-string">'number'</span>;<br>&#125;<br><span class="hljs-keyword">var</span> a1 = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>];<br><span class="hljs-built_in">console</span>.log(a1.every(isNumber)); <span class="hljs-comment">// logs true</span><br><span class="hljs-keyword">var</span> a2 = [<span class="hljs-number">1</span>, <span class="hljs-string">'2'</span>, <span class="hljs-number">3</span>];<br><span class="hljs-built_in">console</span>.log(a2.every(isNumber)); <span class="hljs-comment">// logs false</span><br></code></pre></td></tr></table></figure></p>
+<p><code>some(callback[, thisObject])</code> 只要数组中有一项在callback上被返回true，就返回true（译者注：同上，类似every，不过前者要求都符合筛选条件才返回true，后者只要有符合条件的就返回true）。<br><figure class="highlight js"><table><tr><td class="code"><pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">isNumber</span>(<span class="hljs-params">value</span>)</span>&#123;<br>  <span class="hljs-keyword">return</span> <span class="hljs-keyword">typeof</span> value == <span class="hljs-string">'number'</span>;<br>&#125;<br><span class="hljs-keyword">var</span> a1 = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>];<br><span class="hljs-built_in">console</span>.log(a1.some(isNumber)); <span class="hljs-comment">// logs true</span><br><span class="hljs-keyword">var</span> a2 = [<span class="hljs-number">1</span>, <span class="hljs-string">'2'</span>, <span class="hljs-number">3</span>];<br><span class="hljs-built_in">console</span>.log(a2.some(isNumber)); <span class="hljs-comment">// logs true</span><br><span class="hljs-keyword">var</span> a3 = [<span class="hljs-string">'1'</span>, <span class="hljs-string">'2'</span>, <span class="hljs-string">'3'</span>];<br><span class="hljs-built_in">console</span>.log(a3.some(isNumber)); <span class="hljs-comment">// logs false</span><br></code></pre></td></tr></table></figure></p>
 <h2 id="数组推导式"><a href="#数组推导式" class="headerlink" title="数组推导式"></a>数组推导式</h2><p>这个其实有点类似于python里面的列表推导式或者列表条件筛选操作，主要还是对上面的map()和filter()做了一些改进吧，让他的使用更方便了。</p>
 <figure class="highlight js"><table><tr><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">var</span> numbers = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>];<br><span class="hljs-keyword">var</span> doubled = [<span class="hljs-keyword">for</span> (i <span class="hljs-keyword">of</span> numbers) i * <span class="hljs-number">2</span>];<br><span class="hljs-built_in">console</span>.log(doubled); <span class="hljs-comment">// logs 2,4,6,8</span><br></code></pre></td></tr></table></figure>
-<p>这种方法等价于map函数</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">var</span> doubled = numbers.map(fuction(i)&#123;<span class="hljs-keyword">return</span> i*<span class="hljs-number">2</span>&#125;;);<br></code></pre></td></tr></table></figure>
-
+<p>这种方法等价于map函数<br><figure class="highlight js"><table><tr><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">var</span> doubled = numbers.map(fuction(i)&#123;<span class="hljs-keyword">return</span> i*<span class="hljs-number">2</span>&#125;;);<br></code></pre></td></tr></table></figure></p>
 <figure class="highlight js"><table><tr><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">var</span> numbers = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">21</span>, <span class="hljs-number">22</span>, <span class="hljs-number">30</span>];<br><span class="hljs-keyword">var</span> evens = [i <span class="hljs-keyword">for</span> (i <span class="hljs-keyword">of</span> numbers) <span class="hljs-keyword">if</span> (i % <span class="hljs-number">2</span> === <span class="hljs-number">0</span>)];<br><span class="hljs-built_in">console</span>.log(evens); <span class="hljs-comment">// logs 2,22,30</span><br></code></pre></td></tr></table></figure>
-<p>这种方法等价于filter函数</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">var</span> events=numbers.filter(fuction(i)&#123;<span class="hljs-keyword">return</span> i%<span class="hljs-number">2</span>==<span class="hljs-number">0</span>;&#125;);<br></code></pre></td></tr></table></figure>
+<p>这种方法等价于filter函数<br><figure class="highlight js"><table><tr><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">var</span> events=numbers.filter(fuction(i)&#123;<span class="hljs-keyword">return</span> i%<span class="hljs-number">2</span>==<span class="hljs-number">0</span>;&#125;);<br></code></pre></td></tr></table></figure></p>
+
       
 
       
@@ -602,7 +581,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Hexo</a>
+                <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -610,7 +589,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
+                <a href="javascript:void(0)" class="js-tag color5">Hexo</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -622,11 +601,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">pandas</a>
+                <a href="javascript:void(0)" class="js-tag color5">datawhale</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">datawhale</a>
+                <a href="javascript:void(0)" class="js-tag color2">pandas</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -634,11 +613,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Java</a>
+                <a href="javascript:void(0)" class="js-tag color1">web基础</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">web基础</a>
+                <a href="javascript:void(0)" class="js-tag color5">Java</a>
               </li>
              
               <li class="article-tag-list-item">

@@ -8,12 +8,12 @@
   <link rel="dns-prefetch" href="https://yoursite.com">
   <title>docker镜像操作 | ykhblog 一路向北</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="commit镜像 数据卷操作实战：mysql同步mysql运行容器，需要做数据挂载，安装启动mysql是需要配置密码的这一点要注意，所以要去docker hub官方文档上面去看官方配置 docker pull mysql:5.7  docker运行，docker run的常用参数这里我们再次回顾一下 -d 后台运行-p 端口映射-v 卷挂载-e 环境配置--name 环境名字">
+  <meta name="description" content="commit镜像 数据卷操作实战：mysql同步mysql运行容器，需要做数据挂载，安装启动mysql是需要配置密码的这一点要注意，所以要去docker hub官方文档上面去看官方配置docker pull mysql:5.7 docker运行，docker run的常用参数这里我们再次回顾一下 -d 后台运行-p 端口映射-v 卷挂载-e 环境配置--name 环境名字">
 <meta property="og:type" content="article">
 <meta property="og:title" content="docker镜像操作">
 <meta property="og:url" content="https://yoursite.com/2021/02/25/docker%E9%95%9C%E5%83%8F%E6%93%8D%E4%BD%9C/index.html">
 <meta property="og:site_name" content="ykhblog 一路向北">
-<meta property="og:description" content="commit镜像 数据卷操作实战：mysql同步mysql运行容器，需要做数据挂载，安装启动mysql是需要配置密码的这一点要注意，所以要去docker hub官方文档上面去看官方配置 docker pull mysql:5.7  docker运行，docker run的常用参数这里我们再次回顾一下 -d 后台运行-p 端口映射-v 卷挂载-e 环境配置--name 环境名字">
+<meta property="og:description" content="commit镜像 数据卷操作实战：mysql同步mysql运行容器，需要做数据挂载，安装启动mysql是需要配置密码的这一点要注意，所以要去docker hub官方文档上面去看官方配置docker pull mysql:5.7 docker运行，docker run的常用参数这里我们再次回顾一下 -d 后台运行-p 端口映射-v 卷挂载-e 环境配置--name 环境名字">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/20210224162521454.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0phY2tfX19F,size_16,color_FFFFFF,t_70">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/20210224233439169.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0phY2tfX19F,size_16,color_FFFFFF,t_70">
@@ -233,41 +233,35 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h2 id="commit镜像"><a href="#commit镜像" class="headerlink" title="commit镜像"></a>commit镜像</h2><p><img src="https://img-blog.csdnimg.cn/20210224162521454.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0phY2tfX19F,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
-<h2 id="数据卷操作实战：mysql同步"><a href="#数据卷操作实战：mysql同步" class="headerlink" title="数据卷操作实战：mysql同步"></a>数据卷操作实战：mysql同步</h2><p><strong>mysql运行容器，需要做数据挂载，安装启动mysql是需要配置密码的这一点要注意，所以要去docker hub官方文档上面去看官方配置</strong></p>
-<figure class="highlight powershell"><table><tr><td class="code"><pre><code class="hljs powershell">docker pull mysql:<span class="hljs-number">5.7</span><br></code></pre></td></tr></table></figure>
-
+<h2 id="数据卷操作实战：mysql同步"><a href="#数据卷操作实战：mysql同步" class="headerlink" title="数据卷操作实战：mysql同步"></a>数据卷操作实战：mysql同步</h2><p><strong>mysql运行容器，需要做数据挂载，安装启动mysql是需要配置密码的这一点要注意，所以要去docker hub官方文档上面去看官方配置</strong><br><figure class="highlight powershell"><table><tr><td class="code"><pre><code class="hljs powershell">docker pull mysql:<span class="hljs-number">5.7</span><br></code></pre></td></tr></table></figure></p>
 <p>docker运行，docker run的常用参数这里我们再次回顾一下</p>
 <figure class="highlight powershell"><table><tr><td class="code"><pre><code class="hljs powershell"><span class="hljs-literal">-d</span> 后台运行<br><span class="hljs-literal">-p</span> 端口映射<br><span class="hljs-literal">-v</span> 卷挂载<br><span class="hljs-literal">-e</span> 环境配置<br>-<span class="hljs-literal">-name</span> 环境名字<br></code></pre></td></tr></table></figure>
 <a id="more"></a>
-
 <p>通过docker hub我们找到了官方的命令：<code>docker run --name some-mysql -e MYSQL_ROOT_PASSWORD=my-secret-pw -d mysql:tag</code>，在修改一下得到我们最终的输入命令</p>
 <figure class="highlight powershell"><table><tr><td class="code"><pre><code class="hljs powershell">docker run <span class="hljs-literal">-d</span> <span class="hljs-literal">-p</span> <span class="hljs-number">3310</span>:<span class="hljs-number">3306</span> <span class="hljs-literal">-v</span> /home/mysql/conf:/etc/mysql/conf.d <span class="hljs-literal">-v</span> /home/mysql/<span class="hljs-keyword">data</span>:/var/lib/mysql <span class="hljs-literal">-e</span> MYSQL_ROOT_PASSWORD=<span class="hljs-number">12345678</span> -<span class="hljs-literal">-name</span> mysql01 mysql:<span class="hljs-number">5.7</span><br></code></pre></td></tr></table></figure>
-
 <figure class="highlight sql"><table><tr><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">DATABASE</span> test_db;<br></code></pre></td></tr></table></figure>
-
 <p><img src="https://img-blog.csdnimg.cn/20210224233439169.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0phY2tfX19F,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
 <p><img src="https://img-blog.csdnimg.cn/20210224171410273.png" alt="在这里插入图片描述"><br>删除这个镜像后数据则依旧保存下来了<br><img src="https://img-blog.csdnimg.cn/20210224171612792.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0phY2tfX19F,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
 <h2 id="具名-匿名挂载"><a href="#具名-匿名挂载" class="headerlink" title="具名/匿名挂载"></a>具名/匿名挂载</h2><p><img src="https://img-blog.csdnimg.cn/20210224172157943.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0phY2tfX19F,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20210224172227379.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0phY2tfX19F,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20210224172304119.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0phY2tfX19F,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>大多数情况下，为了方便，我们会使用具名挂载<br><img src="https://img-blog.csdnimg.cn/20210224172628376.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0phY2tfX19F,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
 <h2 id="Dockerfile"><a href="#Dockerfile" class="headerlink" title="Dockerfile"></a>Dockerfile</h2><p>Dockerfile就是用来构建docker镜像的文件，命令脚本，通过这个脚本可以生成镜像。<br>构建步骤</p>
 <ol>
-<li><p>编写一个Dockerfile</p>
-</li>
-<li><p>docker build 构建成为一个镜像</p>
-</li>
-<li><p>docker run 运行镜像</p>
-</li>
+<li>编写一个Dockerfile</li>
+<li>docker build 构建成为一个镜像</li>
+<li>docker run 运行镜像</li>
 <li><p>docker push 发布镜像(DockerHub，阿里云镜像)</p>
 <p>这里我们可以先看看Docker Hub官方是怎么做的<br><img src="https://img-blog.csdnimg.cn/20210224203344446.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0phY2tfX19F,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20210224203405252.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0phY2tfX19F,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>官方镜像是比较基础的，有很多命令和功能都省去了，所以我们通常需要在基础的镜像上来构建我们自己的镜像<br><img src="https://img-blog.csdnimg.cn/20210224203837702.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0phY2tfX19F,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
 </li>
 </ol>
-<h2 id="Dockerfile命令"><a href="#Dockerfile命令" class="headerlink" title="Dockerfile命令"></a>Dockerfile命令</h2><table>
+<h2 id="Dockerfile命令"><a href="#Dockerfile命令" class="headerlink" title="Dockerfile命令"></a>Dockerfile命令</h2><div class="table-container">
+<table>
 <thead>
 <tr>
 <th>常用命令</th>
 <th>用法</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td>FROM</td>
 <td>基础镜像，一切从这开始构建</td>
 </tr>
@@ -311,7 +305,9 @@
 <td>ENV</td>
 <td>构建的时候设置环境变量</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <p><img src="https://img-blog.csdnimg.cn/20210224204049431.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0phY2tfX19F,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
 <h2 id="创建一个自己的centos"><a href="#创建一个自己的centos" class="headerlink" title="创建一个自己的centos"></a>创建一个自己的centos</h2><p>Dockerfile中99%的镜像都来自于这个scratch镜像，然后配置需要的软件和配置来进行构建。</p>
 <figure class="highlight powershell"><table><tr><td class="code"><pre><code class="hljs powershell">mkdir dockerfile<br>cd dockerfile<br>vim mydockerfile<span class="hljs-literal">-centos</span><br></code></pre></td></tr></table></figure>
@@ -319,13 +315,9 @@
 <figure class="highlight powershell"><table><tr><td class="code"><pre><code class="hljs powershell">FROM centos<br>MAINTAINER khan&lt;khany@foxmail.com&gt;<br>ENV MYPATH /usr/local<br>WORKDIR <span class="hljs-variable">$MYPATH</span><br>RUN yum <span class="hljs-literal">-y</span> install vim<br>RUN yum <span class="hljs-literal">-y</span> install net<span class="hljs-literal">-tools</span><br>EXPOSE <span class="hljs-number">80</span><br>CMD echo <span class="hljs-variable">$MYPATH</span><br>CMD echo <span class="hljs-string">"---end---"</span><br>CMD /bin/bash<br></code></pre></td></tr></table></figure>
 <p>然后我们进入<code>docker build</code>,<strong>注意后面一定要有一个.号</strong></p>
 <figure class="highlight powershell"><table><tr><td class="code"><pre><code class="hljs powershell">docker build <span class="hljs-operator">-f</span> mydockerfile<span class="hljs-literal">-centos</span>  <span class="hljs-literal">-t</span> mycentos:<span class="hljs-number">1.0</span> .<br></code></pre></td></tr></table></figure>
-<p>然后我们通过<code>docker run -it mycentos:1.0 </code>命令进入我们自己创建的镜像测试运行我们新安装的包和命令是否能正常运行。<br><img src="https://img-blog.csdnimg.cn/20210224220131565.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0phY2tfX19F,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>我们可以通过 <code>docker history +容器名称/容器id</code>看到这个容器的构建过程。<br><img src="https://img-blog.csdnimg.cn/20210224220552645.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0phY2tfX19F,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<p>然后我们通过<code>docker run -it mycentos:1.0</code>命令进入我们自己创建的镜像测试运行我们新安装的包和命令是否能正常运行。<br><img src="https://img-blog.csdnimg.cn/20210224220131565.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0phY2tfX19F,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>我们可以通过 <code>docker history +容器名称/容器id</code>看到这个容器的构建过程。<br><img src="https://img-blog.csdnimg.cn/20210224220552645.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0phY2tfX19F,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
 <h2 id="CMD和ENTRYPOINT区别"><a href="#CMD和ENTRYPOINT区别" class="headerlink" title="CMD和ENTRYPOINT区别"></a>CMD和ENTRYPOINT区别</h2><p><img src="https://img-blog.csdnimg.cn/20210224222435489.png" alt="在这里插入图片描述"></p>
-<p>dockerfile-cmd-test：</p>
-<figure class="highlight powershell"><table><tr><td class="code"><pre><code class="hljs powershell">FROM centos<br>CMD [<span class="hljs-string">"ls"</span>,<span class="hljs-string">"-a"</span>]<br></code></pre></td></tr></table></figure>
-<p>dockerfile-entrypoint-test：</p>
-<figure class="highlight powershell"><table><tr><td class="code"><pre><code class="hljs powershell">FROM centos<br>ENTRYPOINT [<span class="hljs-string">"ls"</span>,<span class="hljs-string">"-a"</span>]<br></code></pre></td></tr></table></figure>
-<p>执行命令<code> docker run 容器名称 -l</code>在CMD下会报错，命令会被后面追加的<code>-l</code>替代，而<code>-l</code>并不是有效的linux命令，所以报错，而ENTRYPOINT则是可以追加的则该命令会变为<code>ls -al</code><br><img src="https://img-blog.csdnimg.cn/20210224222324355.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0phY2tfX19F,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<p>dockerfile-cmd-test：<br><figure class="highlight powershell"><table><tr><td class="code"><pre><code class="hljs powershell">FROM centos<br>CMD [<span class="hljs-string">"ls"</span>,<span class="hljs-string">"-a"</span>]<br></code></pre></td></tr></table></figure><br>dockerfile-entrypoint-test：<br><figure class="highlight powershell"><table><tr><td class="code"><pre><code class="hljs powershell">FROM centos<br>ENTRYPOINT [<span class="hljs-string">"ls"</span>,<span class="hljs-string">"-a"</span>]<br></code></pre></td></tr></table></figure><br>执行命令<code>docker run 容器名称 -l</code>在CMD下会报错，命令会被后面追加的<code>-l</code>替代，而<code>-l</code>并不是有效的linux命令，所以报错，而ENTRYPOINT则是可以追加的则该命令会变为<code>ls -al</code><br><img src="https://img-blog.csdnimg.cn/20210224222324355.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0phY2tfX19F,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
 <h2 id="发布镜像"><a href="#发布镜像" class="headerlink" title="发布镜像"></a>发布镜像</h2><blockquote>
 <p>发布到Docker Hub</p>
 </blockquote>
@@ -333,9 +325,8 @@
 <li>地址 <a href="https://hub.docker.com/" target="_blank" rel="noopener">https://hub.docker.com/</a> 注册自己的账号</li>
 <li>确定这个账号可以登录</li>
 <li>在我们服务器上提交自己的镜像</li>
-<li>登录成功，通过<code>push</code>命令提交镜像,<strong>记得注意添加版本号</strong><br><img src="https://img-blog.csdnimg.cn/20210224223425131.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0phY2tfX19F,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>这里出了一点小问题：</li>
+<li>登录成功，通过<code>push</code>命令提交镜像,<strong>记得注意添加版本号</strong><br><img src="https://img-blog.csdnimg.cn/20210224223425131.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0phY2tfX19F,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>这里出了一点小问题：<br><strong>在build自己的镜像的时候添加tag时必须在前面加上自己的dockerhub的username，然后再push就可以了</strong><br><img src="https://img-blog.csdnimg.cn/20210224230121332.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0phY2tfX19F,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></li>
 </ol>
-<p><strong>在build自己的镜像的时候添加tag时必须在前面加上自己的dockerhub的username，然后再push就可以了</strong><br><img src="https://img-blog.csdnimg.cn/20210224230121332.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0phY2tfX19F,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
 <figure class="highlight powershell"><table><tr><td class="code"><pre><code class="hljs powershell">docker tag 镜像id YOUR_DOCKERHUB_NAME/firstimage<br>docker push YOUR_DOCKERHUB_NAME/firstimage<br></code></pre></td></tr></table></figure>
 <p><img src="https://img-blog.csdnimg.cn/20210224231803691.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0phY2tfX19F,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>提交成功，可以在docker hub上找到你提交的镜像<br><img src="https://img-blog.csdnimg.cn/20210224232108402.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0phY2tfX19F,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
 <blockquote>
@@ -344,7 +335,7 @@
 <p>在阿里云的容器镜像服务里面，创建一个新的镜像仓库，然后就会有详细的教学，做法与docker hub基本一致，提交成功能在镜像版本当中查看到，这里就不再重复讲解了。<br><img src="https://img-blog.csdnimg.cn/202102242325274.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0phY2tfX19F,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
 <h2 id="Docker镜像操作过程总结"><a href="#Docker镜像操作过程总结" class="headerlink" title="Docker镜像操作过程总结"></a>Docker镜像操作过程总结</h2><p><img src="https://img-blog.csdnimg.cn/20210224232749397.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0phY2tfX19F,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20210224232831852.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0phY2tfX19F,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
 <blockquote>
-<p>参考链接：<a href="https://www.bilibili.com/video/BV1og4y1q7M4?t=201&p=33" target="_blank" rel="noopener">【狂神说Java】Docker最新超详细版教程通俗易懂</a></p>
+<p>参考链接：<a href="https://www.bilibili.com/video/BV1og4y1q7M4?t=201&amp;p=33" target="_blank" rel="noopener">【狂神说Java】Docker最新超详细版教程通俗易懂</a></p>
 </blockquote>
 
       
@@ -697,7 +688,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Hexo</a>
+                <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -705,7 +696,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
+                <a href="javascript:void(0)" class="js-tag color5">Hexo</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -717,11 +708,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">pandas</a>
+                <a href="javascript:void(0)" class="js-tag color5">datawhale</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">datawhale</a>
+                <a href="javascript:void(0)" class="js-tag color2">pandas</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -729,11 +720,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Java</a>
+                <a href="javascript:void(0)" class="js-tag color1">web基础</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">web基础</a>
+                <a href="javascript:void(0)" class="js-tag color5">Java</a>
               </li>
              
               <li class="article-tag-list-item">
