@@ -26,7 +26,7 @@
 <meta property="og:image" content="https://img-blog.csdnimg.cn/9ce67d5dee3e4719aa4e38ca85de9564.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0phY2tfX19F,size_16,color_FFFFFF,t_70">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/49c9da0165364f10bde9df685f02be67.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0phY2tfX19F,size_16,color_FFFFFF,t_70">
 <meta property="article:published_time" content="2021-10-16T06:19:00.000Z">
-<meta property="article:modified_time" content="2021-10-16T06:28:36.751Z">
+<meta property="article:modified_time" content="2021-10-16T06:31:18.401Z">
 <meta property="article:author" content="whut ykh">
 <meta property="article:tag" content="数据结构">
 <meta name="twitter:card" content="summary">
@@ -298,8 +298,10 @@
 <li>根节点是黑色。</li>
 <li>所有叶子都是黑色。（叶子是 NULL节点）</li>
 <li>每个红色节点的两个子节点都是黑色。</li>
-<li>从任一节点到其每个叶子的所有路径都包含相同数目的黑色节点。<br><img src="https://img-blog.csdnimg.cn/19db0e5df72e4c66bcee2a26990e9b6d.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0phY2tfX19F,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><h2 id="图论相关"><a href="#图论相关" class="headerlink" title="图论相关"></a>图论相关</h2><h4 id="并查集"><a href="#并查集" class="headerlink" title="并查集"></a>并查集</h4>经典例题：<a href="https://www.acwing.com/problem/content/838/" target="_blank" rel="noopener">AcWing 836. 合并集合</a><figure class="highlight cpp"><table><tr><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;cstring&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;algorithm&gt;</span></span><br><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> <span class="hljs-built_in">std</span>;<br><br><span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> N = <span class="hljs-number">100010</span>;<br><br><span class="hljs-keyword">int</span> p[N];<br><br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">find</span><span class="hljs-params">(<span class="hljs-keyword">int</span> x)</span> <span class="hljs-comment">// 查找x的祖先节点，并在回溯的过程当中进行路径压缩，将各节点直接指向根节点</span></span><br><span class="hljs-function"></span>&#123;<br>    <span class="hljs-keyword">if</span>(x!=p[x]) p[x] = find(p[x]); <span class="hljs-comment">// x和p[x]不相等，则继续向上找父节点的父节点</span><br>    <span class="hljs-keyword">return</span> p[x];<br>&#125;<br><br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span><br><span class="hljs-function"></span>&#123;<br>    <span class="hljs-keyword">int</span> n;<br>    <span class="hljs-keyword">int</span> m;<br>    <span class="hljs-built_in">scanf</span>(<span class="hljs-string">"%d%d"</span>, &amp;n, &amp;m);<br><br>    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">1</span>;i&lt;=n;i++) <br>        p[i]=i;<br><br>    <span class="hljs-keyword">while</span> (m -- )<br>    &#123;<br>        <span class="hljs-keyword">char</span> op[<span class="hljs-number">2</span>];<br>        <span class="hljs-keyword">int</span> a,b;<br>        <span class="hljs-built_in">scanf</span>(<span class="hljs-string">"%s%d%d"</span>, op,&amp;a,&amp;b);<br>        <span class="hljs-keyword">int</span> roota = find(a);<br>        <span class="hljs-keyword">int</span> rootb = find(b);<br>        <span class="hljs-keyword">if</span>(op[<span class="hljs-number">0</span>]==<span class="hljs-string">'M'</span>)<br>        &#123;<br><br>            <span class="hljs-keyword">if</span>(roota == rootb) <span class="hljs-keyword">continue</span>;<br>            p[roota] = rootb; <span class="hljs-comment">// root merge</span><br>        &#125;<br>        <span class="hljs-keyword">else</span><br>        &#123;<br>            <span class="hljs-built_in">cout</span>&lt;&lt; (roota==rootb ? <span class="hljs-string">"Yes"</span>:<span class="hljs-string">"No"</span>)&lt;&lt;<span class="hljs-built_in">endl</span>;<br>        &#125;<br><br>    &#125;<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
-<h4 id="dijstra算法"><a href="#dijstra算法" class="headerlink" title="dijstra算法"></a>dijstra算法</h4></li>
+<li>从任一节点到其每个叶子的所有路径都包含相同数目的黑色节点。<br><img src="https://img-blog.csdnimg.cn/19db0e5df72e4c66bcee2a26990e9b6d.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0phY2tfX19F,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><h2 id="图论相关"><a href="#图论相关" class="headerlink" title="图论相关"></a>图论相关</h2><h4 id="并查集"><a href="#并查集" class="headerlink" title="并查集"></a>并查集</h4>经典例题：<a href="https://www.acwing.com/problem/content/838/" target="_blank" rel="noopener">AcWing 836. 合并集合</a></li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;cstring&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;algorithm&gt;</span></span><br><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> <span class="hljs-built_in">std</span>;<br><br><span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> N = <span class="hljs-number">100010</span>;<br><br><span class="hljs-keyword">int</span> p[N];<br><br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">find</span><span class="hljs-params">(<span class="hljs-keyword">int</span> x)</span> <span class="hljs-comment">// 查找x的祖先节点，并在回溯的过程当中进行路径压缩，将各节点直接指向根节点</span></span><br><span class="hljs-function"></span>&#123;<br>    <span class="hljs-keyword">if</span>(x!=p[x]) p[x] = find(p[x]); <span class="hljs-comment">// x和p[x]不相等，则继续向上找父节点的父节点</span><br>    <span class="hljs-keyword">return</span> p[x];<br>&#125;<br><br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span><br><span class="hljs-function"></span>&#123;<br>    <span class="hljs-keyword">int</span> n;<br>    <span class="hljs-keyword">int</span> m;<br>    <span class="hljs-built_in">scanf</span>(<span class="hljs-string">"%d%d"</span>, &amp;n, &amp;m);<br><br>    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">1</span>;i&lt;=n;i++) <br>        p[i]=i;<br><br>    <span class="hljs-keyword">while</span> (m -- )<br>    &#123;<br>        <span class="hljs-keyword">char</span> op[<span class="hljs-number">2</span>];<br>        <span class="hljs-keyword">int</span> a,b;<br>        <span class="hljs-built_in">scanf</span>(<span class="hljs-string">"%s%d%d"</span>, op,&amp;a,&amp;b);<br>        <span class="hljs-keyword">int</span> roota = find(a);<br>        <span class="hljs-keyword">int</span> rootb = find(b);<br>        <span class="hljs-keyword">if</span>(op[<span class="hljs-number">0</span>]==<span class="hljs-string">'M'</span>)<br>        &#123;<br><br>            <span class="hljs-keyword">if</span>(roota == rootb) <span class="hljs-keyword">continue</span>;<br>            p[roota] = rootb; <span class="hljs-comment">// root merge</span><br>        &#125;<br>        <span class="hljs-keyword">else</span><br>        &#123;<br>            <span class="hljs-built_in">cout</span>&lt;&lt; (roota==rootb ? <span class="hljs-string">"Yes"</span>:<span class="hljs-string">"No"</span>)&lt;&lt;<span class="hljs-built_in">endl</span>;<br>        &#125;<br><br>    &#125;<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h4 id="dijstra算法"><a href="#dijstra算法" class="headerlink" title="dijstra算法"></a>dijstra算法</h4><ul>
 <li>临接矩阵形式，适用于点的数量$N &lt; 1000$的情形，朴素算法即可解决</li>
 <li>邻接表形式，当$N&gt;10000$，需要添加堆优化<br>一般来说堆优化版本的考试用的不多，这里就只介绍了朴素版本。<br><a href="https://www.acwing.com/problem/content/851/" target="_blank" rel="noopener">Dijkstra求最短路 I</a></li>
 </ul>
@@ -665,7 +667,11 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">youth</a>
+                <a href="javascript:void(0)" class="js-tag color1">数据库系统</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">计算机视觉</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -673,19 +679,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">数据库系统</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">编译原理</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">计算机视觉</a>
+                <a href="javascript:void(0)" class="js-tag color1">youth</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -709,6 +703,10 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">数学建模</a>
               </li>
              
@@ -722,6 +720,10 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">计算机组成原理</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">编译原理</a>
               </li>
              
               <li class="article-tag-list-item">
