@@ -8,12 +8,12 @@
   <link rel="dns-prefetch" href="https://yoursite.com">
   <title>datawhale-pandas数据分析预备 | ykhblog 一路向北</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="datawhale-pandas数据分析预备列表推导式def my_func(x):    return 2*x  [* for i in *]其中，第一个 * 为映射函数，其输入为后面 i 指代的内容，第二个 * 表示迭代的对象。">
+  <meta name="description" content="datawhale-pandas数据分析预备列表推导式def my_func(x):    return 2*x [ for i in ]其中，第一个  为映射函数，其输入为后面 i 指代的内容，第二个  表示迭代的对象。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="datawhale-pandas数据分析预备">
 <meta property="og:url" content="https://yoursite.com/2020/12/21/datawhale-pandas%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E9%A2%84%E5%A4%87/index.html">
 <meta property="og:site_name" content="ykhblog 一路向北">
-<meta property="og:description" content="datawhale-pandas数据分析预备列表推导式def my_func(x):    return 2*x  [* for i in *]其中，第一个 * 为映射函数，其输入为后面 i 指代的内容，第二个 * 表示迭代的对象。">
+<meta property="og:description" content="datawhale-pandas数据分析预备列表推导式def my_func(x):    return 2*x [ for i in ]其中，第一个  为映射函数，其输入为后面 i 指代的内容，第二个  表示迭代的对象。">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/20201221120439843.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0phY2tfX19F,size_16,color_FFFFFF,t_70">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/20201221120104121.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0phY2tfX19F,size_16,color_FFFFFF,t_70">
@@ -21,8 +21,8 @@
 <meta property="article:published_time" content="2020-12-21T04:40:31.000Z">
 <meta property="article:modified_time" content="2021-02-20T13:45:38.203Z">
 <meta property="article:author" content="whut ykh">
-<meta property="article:tag" content="datawhale">
 <meta property="article:tag" content="pandas">
+<meta property="article:tag" content="datawhale">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://img-blog.csdnimg.cn/20201221120439843.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0phY2tfX19F,size_16,color_FFFFFF,t_70">
   
@@ -214,31 +214,22 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h2 id="datawhale-pandas数据分析预备"><a href="#datawhale-pandas数据分析预备" class="headerlink" title="datawhale-pandas数据分析预备"></a>datawhale-pandas数据分析预备</h2><h2 id="列表推导式"><a href="#列表推导式" class="headerlink" title="列表推导式"></a>列表推导式</h2><figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">my_func</span><span class="hljs-params">(x)</span>:</span><br>    <span class="hljs-keyword">return</span> <span class="hljs-number">2</span>*x<br></code></pre></td></tr></table></figure>
-
-<h2 id="for-i-in"><a href="#for-i-in" class="headerlink" title="[* for i in *]"></a>[* for i in *]</h2><p>其中，第一个 * 为映射函数，其输入为后面 i 指代的内容，第二个 * 表示迭代的对象。</p>
-<a id="more"></a>
-
+<h2 id="for-i-in"><a href="#for-i-in" class="headerlink" title="[ for i in ]"></a>[<em> for i in </em>]</h2><p>其中，第一个 <em> 为映射函数，其输入为后面 i 指代的内容，第二个 </em> 表示迭代的对象。<br><a id="more"></a></p>
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">[my_func(i) <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(<span class="hljs-number">5</span>)]<br></code></pre></td></tr></table></figure>
 <p>out:[0, 2, 4, 6, 8]</p>
 <p>列表表达式支持多层嵌套</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">[m+<span class="hljs-string">'_'</span>+n <span class="hljs-keyword">for</span> m <span class="hljs-keyword">in</span>[<span class="hljs-string">'a'</span>,<span class="hljs-string">'b'</span>] <span class="hljs-keyword">for</span> n <span class="hljs-keyword">in</span>[<span class="hljs-string">'c'</span>,<span class="hljs-string">'d'</span>]]<br></code></pre></td></tr></table></figure>
 <p>out:[‘a_c’, ‘a_d’, ‘b_c’, ‘b_d’]</p>
 <h2 id="条件赋值"><a href="#条件赋值" class="headerlink" title="条件赋值"></a>条件赋值</h2><h2 id="value-a-if-condition-else-b-："><a href="#value-a-if-condition-else-b-：" class="headerlink" title="value = a if condition else b ："></a>value = a if condition else b ：</h2><figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">value = <span class="hljs-string">'cat'</span> <span class="hljs-keyword">if</span> <span class="hljs-number">2</span>&gt;<span class="hljs-number">1</span> <span class="hljs-keyword">else</span> <span class="hljs-string">'dog'</span><br></code></pre></td></tr></table></figure>
-
-
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">value<br></code></pre></td></tr></table></figure>
 <p>out:’cat’</p>
 <p>下面举一个例子，截断列表中超过5的元素，即超过5的用5代替，小于5的保留原来的值：</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">L=[<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>,<span class="hljs-number">5</span>,<span class="hljs-number">6</span>,<span class="hljs-number">7</span>]<br><br>[i <span class="hljs-keyword">if</span> i&lt;=<span class="hljs-number">5</span> <span class="hljs-keyword">else</span> <span class="hljs-number">5</span> <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> L]<br></code></pre></td></tr></table></figure>
 <p>out:[1, 2, 3, 4, 5, 5, 5]</p>
 <h2 id="lambda"><a href="#lambda" class="headerlink" title="lambda"></a>lambda</h2><figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">my_func=<span class="hljs-keyword">lambda</span> x:<span class="hljs-number">2</span>*x<br></code></pre></td></tr></table></figure>
-
-
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">my_func(<span class="hljs-number">2</span>)<br></code></pre></td></tr></table></figure>
 <p>out:4</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">f2=<span class="hljs-keyword">lambda</span> a,b:a+b<br></code></pre></td></tr></table></figure>
-
-
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">f2(<span class="hljs-number">1</span>,<span class="hljs-number">2</span>)<br></code></pre></td></tr></table></figure>
 <p>out:3</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">[ (<span class="hljs-keyword">lambda</span> i:<span class="hljs-number">2</span>*i)(x) <span class="hljs-keyword">for</span> x <span class="hljs-keyword">in</span> range(<span class="hljs-number">5</span>)]<br></code></pre></td></tr></table></figure>
@@ -251,8 +242,6 @@
 <p> [‘0_a’, ‘1_b’, ‘2_c’, ‘3_d’, ‘4_e’]</p>
 <h2 id="zip"><a href="#zip" class="headerlink" title="zip"></a>zip</h2><p>zip函数能够把多个可迭代对象打包成一个元组构成的可迭代对象，它返回了一个 zip 对象，通过 tuple, list 可以得到相应的打包结果：</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">L1, L2, L3 = list(<span class="hljs-string">'abc'</span>), list(<span class="hljs-string">'def'</span>), list(<span class="hljs-string">'hij'</span>)<br></code></pre></td></tr></table></figure>
-
-
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">list(zip(L1, L2, L3))<br></code></pre></td></tr></table></figure>
 <p>[(‘a’, ‘d’, ‘h’), (‘b’, ‘e’, ‘i’), (‘c’, ‘f’, ‘j’)]</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">tuple(zip(L1, L2, L3))<br></code></pre></td></tr></table></figure>
@@ -261,8 +250,6 @@
 <p>a d h<br>b e i<br>c f j</p>
 <h2 id="enumerate"><a href="#enumerate" class="headerlink" title="enumerate"></a>enumerate</h2><p><code>enumerate</code> 是一种特殊的打包，它可以在迭代时绑定迭代元素的遍历序号：</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">L = list(<span class="hljs-string">'abcd'</span>)<br></code></pre></td></tr></table></figure>
-
-
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">for</span> index, value <span class="hljs-keyword">in</span> enumerate(L):<br>    print(index, value)<br></code></pre></td></tr></table></figure>
 <p>0 a<br>1 b<br>2 c<br>3 d</p>
 <p>用zip实现这个功能</p>
@@ -274,15 +261,11 @@
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">dict(zip(L1,L2))<br></code></pre></td></tr></table></figure>
 <p>{‘a’: ‘d’, ‘b’: ‘e’, ‘c’: ‘f’}</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">zipped = list(zip(L1, L2, L3))<br></code></pre></td></tr></table></figure>
-
-
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">zipped<br></code></pre></td></tr></table></figure>
 <p>[(‘a’, ‘d’, ‘h’), (‘b’, ‘e’, ‘i’), (‘c’, ‘f’, ‘j’)]</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">list(zip(*zipped))<br></code></pre></td></tr></table></figure>
-
 <p>[(‘a’, ‘b’, ‘c’), (‘d’, ‘e’, ‘f’), (‘h’, ‘i’, ‘j’)]</p>
 <h2 id="numpy回顾"><a href="#numpy回顾" class="headerlink" title="numpy回顾"></a>numpy回顾</h2><h2 id="1-np数组的构造"><a href="#1-np数组的构造" class="headerlink" title="1. np数组的构造"></a>1. np数组的构造</h2><figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np<br></code></pre></td></tr></table></figure>
-
 <p>最一般的方法是通过 array 来构造：</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">np.array([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>])<br></code></pre></td></tr></table></figure>
 <p>array([1, 2, 3])</p>
@@ -307,6 +290,7 @@
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">np.full((<span class="hljs-number">2</span>,<span class="hljs-number">3</span>), [<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>]) <span class="hljs-comment"># 每行填入相同的列表</span><br></code></pre></td></tr></table></figure>
 <p>array([[1, 2, 3],<br>        [1, 2, 3]])</p>
 <p>随机矩阵: <code>np.random</code></p>
+<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -314,7 +298,8 @@
 <th>含义</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td><code>np.random.rand</code></td>
 <td>0-1均匀分布的随机数组</td>
 </tr>
@@ -330,820 +315,349 @@
 <td><code>np.random.choice</code></td>
 <td>随机列表抽样</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <h2 id="np-random-rand"><a href="#np-random-rand" class="headerlink" title="np.random.rand"></a><code>np.random.rand</code></h2><figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">np.random.rand(<span class="hljs-number">3</span>)<span class="hljs-comment"># 生成服从0-1均匀分布的三个随机数</span><br></code></pre></td></tr></table></figure>
-
 <p>array([0.25659368, 0.37802498, 0.62494881])</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">np.random.rand(<span class="hljs-number">3</span>,<span class="hljs-number">3</span>)<span class="hljs-comment"># 生成服从0-1均匀分布的三个随机数</span><br></code></pre></td></tr></table></figure>
 <p>array([[0.64676496, 0.59502481, 0.61343668],<br>        [0.16019992, 0.49285208, 0.96761024],<br>        [0.94030055, 0.48943744, 0.1143115 ]])</p>
 <p>对于服从区间 a 到 b 上的均匀分布可以如下生成：</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">a, b = <span class="hljs-number">5</span>, <span class="hljs-number">15</span><br></code></pre></td></tr></table></figure>
-
-
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">(b - a) * np.random.rand(<span class="hljs-number">3</span>) + a<br></code></pre></td></tr></table></figure>
-
 <p>array([ 8.84499261, 10.21774591,  8.16028516])</p>
 <p><strong>一般的，可以选择已有的库函数：</strong></p>
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">np.random.uniform(<span class="hljs-number">5</span>, <span class="hljs-number">15</span>, <span class="hljs-number">3</span>)<br></code></pre></td></tr></table></figure>
-
 <p>array([8.86348101, 9.14266299, 8.60513876])</p>
 <h2 id="np-random-randn"><a href="#np-random-randn" class="headerlink" title="np.random.randn"></a><code>np.random.randn</code></h2><p><code>randn</code> 生成了 $N(0,I)$ 的标准正态分布：</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">np.random.randn(<span class="hljs-number">3</span>)<br></code></pre></td></tr></table></figure>
-
 <p>array([ 1.41288442, -0.73967664, -0.23529916])</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">np.random.randn(<span class="hljs-number">2</span>, <span class="hljs-number">2</span>)<br></code></pre></td></tr></table></figure>
 <p>array([[ 0.85735525, -0.17674214],<br>        [-0.28607067,  1.49904315]])</p>
 <p>对于服从$N(\mu, \sigma^2)$的一元正态分布则有</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">mu,sigma=<span class="hljs-number">3</span>,<span class="hljs-number">2.5</span><br>mu+np.random.randn(<span class="hljs-number">3</span>)*sigma<br></code></pre></td></tr></table></figure>
-
 <p>array([-0.26367497,  1.87383756,  2.81701976])</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">np.random.normal(<span class="hljs-number">3</span>,<span class="hljs-number">2.5</span>,<span class="hljs-number">3</span>)<br></code></pre></td></tr></table></figure>
-
 <p>array([6.40062933, 3.28135583, 0.65048172])</p>
 <p><code>randint</code> 可以指定生成<strong>随机整数</strong>最大值（不包含）和维度大小：</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">low, high, size = <span class="hljs-number">5</span>, <span class="hljs-number">15</span>, (<span class="hljs-number">2</span>,<span class="hljs-number">2</span>) <span class="hljs-comment"># 生成5到14的随机整数</span><br></code></pre></td></tr></table></figure>
-
-
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">np.random.randint(low, high, size)<br></code></pre></td></tr></table></figure>
-
 <p>array([[13, 14],<br>        [ 7, 10]])</p>
 <p><code>choice</code> 可以从给定的列表中，以一定概率和方式抽取结果，当不指定概率时为均匀采样，默认抽取方式为有放回抽样：</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">my_list = [<span class="hljs-string">'a'</span>, <span class="hljs-string">'b'</span>, <span class="hljs-string">'c'</span>, <span class="hljs-string">'d'</span>]<br></code></pre></td></tr></table></figure>
-
-
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">np.random.choice(my_list, <span class="hljs-number">2</span>, replace=<span class="hljs-literal">False</span>, p=[<span class="hljs-number">0.1</span>, <span class="hljs-number">0.7</span>, <span class="hljs-number">0.1</span> ,<span class="hljs-number">0.1</span>])<br></code></pre></td></tr></table></figure>
-
 <p>array([‘a’, ‘b’], dtype=’&lt;U1’)</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">np.random.choice(my_list, (<span class="hljs-number">2</span>,<span class="hljs-number">2</span>), replace=<span class="hljs-literal">True</span>, p=[<span class="hljs-number">0.1</span>, <span class="hljs-number">0.7</span>, <span class="hljs-number">0.1</span> ,<span class="hljs-number">0.1</span>])<br></code></pre></td></tr></table></figure>
-
 <p>array([[‘d’, ‘b’],<br>        [‘b’, ‘b’]], dtype=’&lt;U1’)</p>
-<p><img src="https://img-blog.csdnimg.cn/20201221120439843.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0phY2tfX19F,size_16,color_FFFFFF,t_70" alt="[外链图片转存失败,源站可能有防盗链机制,建议将图片保存下来直接上传(img-tyytLsj8-1608522933090)(attachment:image.png)]"></p>
+<p><img src="https://img-blog.csdnimg.cn/20201221120439843.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0phY2tfX19F,size_16,color_FFFFFF,t_70" alt="\[外链图片转存失败,源站可能有防盗链机制,建议将图片保存下来直接上传(img-tyytLsj8-1608522933090)(attachment:image.png)\]"></p>
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">np.random.choice(my_list, (<span class="hljs-number">3</span>,<span class="hljs-number">3</span>))<br></code></pre></td></tr></table></figure>
-
 <p>array([[‘d’, ‘c’, ‘c’],<br>        [‘d’, ‘a’, ‘c’],<br>        [‘d’, ‘b’, ‘b’]], dtype=’&lt;U1’)</p>
 <p>当返回的元素个数与原列表相同时，不放回抽样等价于使用 <code>permutation</code> 函数，即打散原列表：</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">np.random.permutation(my_list)<br></code></pre></td></tr></table></figure>
-
-
 <p>array([‘d’, ‘b’, ‘c’, ‘a’], dtype=’&lt;U1’)</p>
 <p>最后，需要提到的是随机种子，它能够固定随机数的输出结果：</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">np.random.seed(<span class="hljs-number">0</span>)<br></code></pre></td></tr></table></figure>
-
-
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">np.random.rand()<br></code></pre></td></tr></table></figure>
-
 <p>0.5488135039273248</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">np.random.rand(<span class="hljs-number">0</span>)<br></code></pre></td></tr></table></figure>
-
-
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">np.random.rand()<br></code></pre></td></tr></table></figure>
-
 <p>0.5488135039273248</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">np.random.rand()<br></code></pre></td></tr></table></figure>
-
 <p>0.6027633760716439</p>
 <h2 id="2-np数组的变形与合并"><a href="#2-np数组的变形与合并" class="headerlink" title="2. np数组的变形与合并"></a>2. np数组的变形与合并</h2><p>转置</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">np.zeros((<span class="hljs-number">2</span>,<span class="hljs-number">3</span>)).T<br></code></pre></td></tr></table></figure>
-
 <p>array([[0., 0.],<br>        [0., 0.],<br>        [0., 0.]])</p>
 <p>合并操作</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">np.r_[np.zeros((<span class="hljs-number">2</span>,<span class="hljs-number">3</span>)),np.zeros((<span class="hljs-number">2</span>,<span class="hljs-number">3</span>))] <span class="hljs-comment">#上下合并</span><br></code></pre></td></tr></table></figure>
 <p>array([[0., 0., 0.],<br>        [0., 0., 0.],<br>        [0., 0., 0.],<br>        [0., 0., 0.]])</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">np.c_[np.zeros((<span class="hljs-number">2</span>,<span class="hljs-number">3</span>)),np.zeros((<span class="hljs-number">2</span>,<span class="hljs-number">3</span>))] <span class="hljs-comment">#左右合并</span><br></code></pre></td></tr></table></figure>
-
 <p>array([[0., 0., 0., 0., 0., 0.],<br>        [0., 0., 0., 0., 0., 0.]])</p>
 <p>一维数组和二维数组进行合并时，应当把其视作列向量，在长度匹配的情况下只能够使用左右合并的 c_ 操作：</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">try</span>:<br>    np.r_[np.array([<span class="hljs-number">0</span>,<span class="hljs-number">0</span>]),np.zeros((<span class="hljs-number">2</span>,<span class="hljs-number">1</span>))]<br><span class="hljs-keyword">except</span> Exception <span class="hljs-keyword">as</span> e:<br>    Err_Msg=e<br></code></pre></td></tr></table></figure>
-
-
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">Err_Msg<br></code></pre></td></tr></table></figure>
-
-
 <p>ValueError(‘all the input arrays must have same number of dimensions, but the array at index 0 has 1 dimension(s) and the array at index 1 has 2 dimension(s)’)</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">np.r_[np.array([<span class="hljs-number">0</span>,<span class="hljs-number">0</span>]),np.zeros(<span class="hljs-number">2</span>)]<br></code></pre></td></tr></table></figure>
-
 <p>array([0., 0., 0., 0.])</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">np.c_[np.array([<span class="hljs-number">0</span>,<span class="hljs-number">0</span>]),np.zeros((<span class="hljs-number">2</span>,<span class="hljs-number">3</span>))]<br></code></pre></td></tr></table></figure>
-
-
 <p>array([[0., 0., 0., 0.],<br>         [0., 0., 0., 0.]])</p>
 <p>维度变换: <code>reshape</code></p>
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">target = np.arange(<span class="hljs-number">8</span>).reshape(<span class="hljs-number">2</span>,<span class="hljs-number">4</span>)<br></code></pre></td></tr></table></figure>
-
-
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">target<br></code></pre></td></tr></table></figure>
 <p>array([[0, 1, 2, 3],<br>           [4, 5, 6, 7]])</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">target.reshape((<span class="hljs-number">4</span>,<span class="hljs-number">2</span>), order=<span class="hljs-string">'C'</span>) <span class="hljs-comment"># 按照行读取和填充</span><br></code></pre></td></tr></table></figure>
-
-
-
-
 <p>array([[0, 1],<br>           [2, 3],<br>           [4, 5],<br>           [6, 7]])</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">target.reshape((<span class="hljs-number">4</span>,<span class="hljs-number">2</span>), order=<span class="hljs-string">'F'</span>) <span class="hljs-comment"># 按照列读取和填充</span><br></code></pre></td></tr></table></figure>
-
-
-
-
 <p>array([[0, 2],<br>           [4, 6],<br>           [1, 3],<br>           [5, 7]])</p>
 <p>特别地，由于被调用数组的大小是确定的， reshape 允许有一个维度存在空缺，此时只需填充-1即可：</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">target.reshape((<span class="hljs-number">4</span>,<span class="hljs-number">-1</span>))<br></code></pre></td></tr></table></figure>
-
-
-
-
 <p>array([[0, 1],<br>           [2, 3],<br>           [4, 5],<br>           [6, 7]])</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">target = np.ones((<span class="hljs-number">3</span>,<span class="hljs-number">1</span>))<br></code></pre></td></tr></table></figure>
-
-
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">target<br></code></pre></td></tr></table></figure>
-
-
-
-
 <p>array([[1.],<br>           [1.],<br>           [1.]])</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">target.reshape(<span class="hljs-number">-1</span>)<br></code></pre></td></tr></table></figure>
-
-
-
-
 <p>array([1., 1., 1.])</p>
 <h2 id="3-np数组的切片与索引"><a href="#3-np数组的切片与索引" class="headerlink" title="3. np数组的切片与索引"></a>3. np数组的切片与索引</h2><p>数组的切片模式支持使用 <code>slice</code> 类型的 <code>start:end:step</code> 切片，还可以直接传入列表指定某个维度的索引进行切片：</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">target = np.arange(<span class="hljs-number">9</span>).reshape(<span class="hljs-number">3</span>,<span class="hljs-number">3</span>)<br></code></pre></td></tr></table></figure>
-
-
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">target<br></code></pre></td></tr></table></figure>
-
-
-
-
 <p>array([[0, 1, 2],<br>           [3, 4, 5],<br>           [6, 7, 8]])</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">target[:<span class="hljs-number">-1</span>, [<span class="hljs-number">0</span>,<span class="hljs-number">2</span>]]<br></code></pre></td></tr></table></figure>
-
-
-
-
 <p>array([[0, 2],<br>           [3, 5]])</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">target[<span class="hljs-number">0</span>:<span class="hljs-number">1</span>,:]<br></code></pre></td></tr></table></figure>
-
-
-
-
 <p>array([[0, 1, 2]])</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">target[<span class="hljs-number">0</span>:<span class="hljs-number">-1</span>,[<span class="hljs-number">0</span>]]<br></code></pre></td></tr></table></figure>
-
-
-
-
 <p>array([[0],<br>           [3]])</p>
 <p>此外，还可以利用 <code>np.ix_</code> 在对应的维度上使用布尔索引，但此时不能使用 <code>slice</code> 切片：</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">target[np.ix_([<span class="hljs-literal">True</span>, <span class="hljs-literal">False</span>, <span class="hljs-literal">True</span>], [<span class="hljs-literal">True</span>, <span class="hljs-literal">False</span>, <span class="hljs-literal">True</span>])]<br></code></pre></td></tr></table></figure>
-
-
-
-
 <p>array([[0, 2],<br>           [6, 8]])</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">target[np.ix_([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>], [<span class="hljs-literal">True</span>, <span class="hljs-literal">False</span>, <span class="hljs-literal">True</span>])]<br></code></pre></td></tr></table></figure>
-
-
-
-
 <p>array([[3, 5],<br>           [6, 8]])</p>
-<p>当数组维度为1维时，可以直接进行布尔索引，而无需 <code>np.ix_ </code>：</p>
+<p>当数组维度为1维时，可以直接进行布尔索引，而无需 <code>np.ix_</code>：</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">new = target.reshape(<span class="hljs-number">-1</span>)<br></code></pre></td></tr></table></figure>
-
-
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">new[new%<span class="hljs-number">2</span>==<span class="hljs-number">0</span>]<br></code></pre></td></tr></table></figure>
-
-
-
-
 <p>array([0, 2, 4, 6, 8])</p>
 <h2 id="常用函数"><a href="#常用函数" class="headerlink" title="常用函数"></a>常用函数</h2><p><code>where</code> 是一种条件函数，可以指定满足条件与不满足条件位置对应的填充值：</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">a = np.array([<span class="hljs-number">-1</span>,<span class="hljs-number">1</span>,<span class="hljs-number">-1</span>,<span class="hljs-number">0</span>])<br></code></pre></td></tr></table></figure>
-
-
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">np.where(a&gt;<span class="hljs-number">0</span>, a, <span class="hljs-number">5</span>) <span class="hljs-comment"># 对应位置为True时填充a对应元素，否则填充5</span><br></code></pre></td></tr></table></figure>
-
-
-
-
 <p>array([5, 1, 5, 5])</p>
 <p><code>nonzero, argmax, argmin</code></p>
 <p>这三个函数返回的都是索引， <code>nonzero</code> 返回非零数的索引， <code>argmax, argmin</code> 分别返回最大和最小数的索引：</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">a = np.array([<span class="hljs-number">-2</span>,<span class="hljs-number">-5</span>,<span class="hljs-number">0</span>,<span class="hljs-number">1</span>,<span class="hljs-number">3</span>,<span class="hljs-number">-1</span>])<br></code></pre></td></tr></table></figure>
-
-
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">np.nonzero(a)<br></code></pre></td></tr></table></figure>
-
-
-
-
 <p>(array([0, 1, 3, 4, 5], dtype=int64),)</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">a.argmax()<br></code></pre></td></tr></table></figure>
-
-
-
-
-<pre><code>4</code></pre>
-<figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">a.argmin()<br></code></pre></td></tr></table></figure>
-
-
-
-
+<pre><code>4
+</code></pre><figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">a.argmin()<br></code></pre></td></tr></table></figure>
 <p>1</p>
 <p>any 指当序列<strong>至少</strong> 存在一个 True 或非零元素时返回 True ，否则返回 False</p>
 <p>all 指当序列元素 <strong>全为</strong> True 或非零元素时返回 True ，否则返回 False</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">a = np.array([<span class="hljs-number">0</span>,<span class="hljs-number">1</span>])<br></code></pre></td></tr></table></figure>
-
-
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">a.any()<br></code></pre></td></tr></table></figure>
-
-
-
-
 <p>True</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">a.all()<br></code></pre></td></tr></table></figure>
-
-
-
-
 <p>False</p>
 <p><code>cumprod, cumsum</code> 分别表示累乘和累加函数，返回同长度的数组， <code>diff</code> 表示和前一个元素做差，由于第一个元素为缺失值，因此在默认参数情况下，返回长度是原数组减1</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">a = np.array([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>])<br></code></pre></td></tr></table></figure>
-
-
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">a.cumsum()<br></code></pre></td></tr></table></figure>
-
-
-
-
 <p>array([1, 3, 6], dtype=int32)</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">a.cumprod()<br></code></pre></td></tr></table></figure>
-
-
-
-
 <p>array([1, 2, 6], dtype=int32)</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">np.diff(a)<br></code></pre></td></tr></table></figure>
-
-
-
-
 <p>array([1, 1])</p>
 <h2 id="统计函数"><a href="#统计函数" class="headerlink" title="统计函数"></a>统计函数</h2><p>常用的统计函数包括 <code>max, min, mean, median, std, var, sum, quantile</code> ，其中分位数计算是全局方法，因此不能通过 <code>array.quantile</code> 的方法调用：</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">target = np.arange(<span class="hljs-number">5</span>)<br></code></pre></td></tr></table></figure>
-
-
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">target<br></code></pre></td></tr></table></figure>
-
-
-
-
 <p>array([0, 1, 2, 3, 4])</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">target.max()<br></code></pre></td></tr></table></figure>
-
-
-
-
 <p>4</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">np.quantile(target, <span class="hljs-number">0.15</span>) <span class="hljs-comment"># 0.5分位数</span><br></code></pre></td></tr></table></figure>
-
-
-
-
 <p>0.6</p>
 <p>但是对于含有缺失值的数组，它们返回的结果也是缺失值，如果需要略过缺失值，必须使用 <code>nan*</code> 类型的函数，上述的几个统计函数都有对应的 <code>nan*</code> 函数。</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">target = np.array([<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, np.nan])<br></code></pre></td></tr></table></figure>
-
-
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">target<br></code></pre></td></tr></table></figure>
-
-
-
-
 <p>array([ 1.,  2., nan])</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">target.max()<br></code></pre></td></tr></table></figure>
-
-
-
-
 <p>nan</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">np.nanmax(target)<br></code></pre></td></tr></table></figure>
-
-
-
-
 <p>2.0</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">np.nanquantile(target, <span class="hljs-number">0.5</span>)<br></code></pre></td></tr></table></figure>
-
-
-
-
 <p>1.5</p>
-<p>对于协方差和相关系数分别可以利用 <code>cov, corrcoef </code>如下计算：</p>
+<p>对于协方差和相关系数分别可以利用 <code>cov, corrcoef</code>如下计算：</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">target1 = np.array([<span class="hljs-number">1</span>,<span class="hljs-number">3</span>,<span class="hljs-number">5</span>,<span class="hljs-number">9</span>])<br></code></pre></td></tr></table></figure>
-
-
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">target2 = np.array([<span class="hljs-number">1</span>,<span class="hljs-number">5</span>,<span class="hljs-number">3</span>,<span class="hljs-number">-9</span>])<br></code></pre></td></tr></table></figure>
-
-
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">np.cov(target1, target2)<br></code></pre></td></tr></table></figure>
-
-
-
-
 <p>array([[ 11.66666667, -16.66666667],<br>           [-16.66666667,  38.66666667]])</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">np.corrcoef(target1, target2)<br></code></pre></td></tr></table></figure>
-
-
-
-
 <p>array([[ 1.        , -0.78470603],<br>           [-0.78470603,  1.        ]])</p>
 <p>最后，需要说明二维 <code>Numpy</code> 数组中统计函数的 <code>axis</code> 参数，它能够进行某一个维度下的统计特征计算，当 <code>axis=0</code> 时结果为列的统计指标，当 <code>axis=1</code>时结果为行的统计指标：</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">target = np.arange(<span class="hljs-number">1</span>,<span class="hljs-number">10</span>).reshape(<span class="hljs-number">3</span>,<span class="hljs-number">-1</span>)<br></code></pre></td></tr></table></figure>
-
-
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">target<br></code></pre></td></tr></table></figure>
-
-
-
-
 <p>array([[1, 2, 3],<br>           [4, 5, 6],<br>           [7, 8, 9]])</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">target.sum(<span class="hljs-number">0</span>)<br></code></pre></td></tr></table></figure>
-
-
-
-
 <p>array([12, 15, 18])</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">target.sum(<span class="hljs-number">1</span>)<br></code></pre></td></tr></table></figure>
-
-
-
-
 <p>array([ 6, 15, 24])</p>
 <h2 id="广播机制"><a href="#广播机制" class="headerlink" title="广播机制"></a>广播机制</h2><p>标量和数组的操作<br>当一个标量和数组进行运算时，标量会自动把大小扩充为数组大小，之后进行逐元素操作：</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">res = <span class="hljs-number">3</span> * np.ones((<span class="hljs-number">2</span>,<span class="hljs-number">2</span>)) + <span class="hljs-number">1</span><br></code></pre></td></tr></table></figure>
-
-
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">res<br></code></pre></td></tr></table></figure>
-
-
-
-
 <p>array([[4., 4.],<br>           [4., 4.]])</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">res = <span class="hljs-number">1</span> / res<br></code></pre></td></tr></table></figure>
-
-
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">res<br></code></pre></td></tr></table></figure>
-
-
-
-
 <p>array([[0.25, 0.25],<br>           [0.25, 0.25]])</p>
 <p>二维数组之间的操作</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">res = np.ones((<span class="hljs-number">3</span>,<span class="hljs-number">2</span>))<br></code></pre></td></tr></table></figure>
-
-
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">res * np.array([[<span class="hljs-number">2</span>,<span class="hljs-number">3</span>]]) <span class="hljs-comment"># 第二个数组扩充第一维度为3</span><br></code></pre></td></tr></table></figure>
-
-
-
-
 <p>array([[2., 3.],<br>           [2., 3.],<br>           [2., 3.]])</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">res * np.array([[<span class="hljs-number">2</span>],[<span class="hljs-number">3</span>],[<span class="hljs-number">4</span>]]) <span class="hljs-comment"># 第二个数组扩充第二维度为2</span><br></code></pre></td></tr></table></figure>
-
-
-
-
 <p>array([[2., 2.],<br>           [3., 3.],<br>           [4., 4.]])</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">res * np.array([[<span class="hljs-number">2</span>]]) <span class="hljs-comment"># 等价于两次扩充，第二个数组两个维度分别扩充为3和2</span><br></code></pre></td></tr></table></figure>
-
-
-
-
 <p>array([[2., 2.],<br>           [2., 2.],<br>           [2., 2.]])</p>
 <p>一维数组与二维数组的操作</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">np.ones(<span class="hljs-number">3</span>) + np.ones((<span class="hljs-number">2</span>,<span class="hljs-number">3</span>))<br></code></pre></td></tr></table></figure>
-
-
-
-
 <p>array([[2., 2., 2.],<br>           [2., 2., 2.]])</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">np.ones(<span class="hljs-number">3</span>) + np.ones((<span class="hljs-number">2</span>,<span class="hljs-number">1</span>))<br></code></pre></td></tr></table></figure>
-
-
-
-
 <p>array([[2., 2., 2.],<br>           [2., 2., 2.]])</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">np.ones(<span class="hljs-number">1</span>) + np.ones((<span class="hljs-number">2</span>,<span class="hljs-number">3</span>))<br></code></pre></td></tr></table></figure>
-
-
-
-
 <p>array([[2., 2., 2.],<br>           [2., 2., 2.]])</p>
 <h2 id="向量与矩阵的计算"><a href="#向量与矩阵的计算" class="headerlink" title="向量与矩阵的计算"></a>向量与矩阵的计算</h2><p>向量内积：<code>dot</code></p>
-<p>$$ a · b = \Sigma_i{a_ib_i}$$</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">a = np.array([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>])<br></code></pre></td></tr></table></figure>
-
-
+<script type="math/tex; mode=display">a · b = \Sigma_i{a_ib_i}</script><figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">a = np.array([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>])<br></code></pre></td></tr></table></figure>
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">b = np.array([<span class="hljs-number">1</span>,<span class="hljs-number">3</span>,<span class="hljs-number">5</span>])<br></code></pre></td></tr></table></figure>
-
-
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">a.dot(b)<br></code></pre></td></tr></table></figure>
-
-
-
-
 <p>22</p>
 <p>向量范数和矩阵范数: <code>np.linalg.norm</code></p>
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">matrix_target =  np.arange(<span class="hljs-number">4</span>).reshape(<span class="hljs-number">-1</span>,<span class="hljs-number">2</span>)<br></code></pre></td></tr></table></figure>
-
-
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">matrix_target<br></code></pre></td></tr></table></figure>
-
-
-
-
 <p>array([[0, 1],<br>           [2, 3]])</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">np.linalg.norm(matrix_target, <span class="hljs-string">'fro'</span>)<br></code></pre></td></tr></table></figure>
-
-
-
-
 <p>3.7416573867739413</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">np.linalg.norm(matrix_target, np.inf)<br></code></pre></td></tr></table></figure>
-
-
-
-
 <p>5.0</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">np.linalg.norm(matrix_target, <span class="hljs-number">2</span>)<br></code></pre></td></tr></table></figure>
-
-
-
-
 <p>3.702459173643833</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">vector_target =  np.arange(<span class="hljs-number">4</span>)<br></code></pre></td></tr></table></figure>
-
-
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">vector_target<br></code></pre></td></tr></table></figure>
-
-
-
-
 <p>array([0, 1, 2, 3])</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">np.linalg.norm(vector_target, np.inf)<br></code></pre></td></tr></table></figure>
-
-
-
-
 <p>3.0</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">np.linalg.norm(vector_target, <span class="hljs-number">2</span>)<br></code></pre></td></tr></table></figure>
-
-
-
-
 <p>3.7416573867739413</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">np.linalg.norm(vector_target, <span class="hljs-number">3</span>)<br></code></pre></td></tr></table></figure>
-
-
-
-
 <p>3.3019272488946263</p>
 <p>矩阵乘法</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">a = np.arange(<span class="hljs-number">4</span>).reshape(<span class="hljs-number">-1</span>,<span class="hljs-number">2</span>)<br></code></pre></td></tr></table></figure>
-
-
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">b = np.arange(<span class="hljs-number">-4</span>,<span class="hljs-number">0</span>).reshape(<span class="hljs-number">-1</span>,<span class="hljs-number">2</span>)<br></code></pre></td></tr></table></figure>
-
-
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">a<br></code></pre></td></tr></table></figure>
-
-
-
-
 <p>array([[0, 1],<br>           [2, 3]])</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">b<br></code></pre></td></tr></table></figure>
-
-
-
-
 <p>array([[-4, -3],<br>           [-2, -1]])</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">a@b<br></code></pre></td></tr></table></figure>
-
-
-
-
 <p>array([[ -2,  -1],<br>           [-14,  -9]])</p>
 <h2 id="Ex1：利用列表推导式写矩阵乘法"><a href="#Ex1：利用列表推导式写矩阵乘法" class="headerlink" title="Ex1：利用列表推导式写矩阵乘法"></a>Ex1：利用列表推导式写矩阵乘法</h2><h2 id="方法1"><a href="#方法1" class="headerlink" title="方法1"></a>方法1</h2><figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">M1 = np.random.rand(<span class="hljs-number">2</span>,<span class="hljs-number">3</span>)<br></code></pre></td></tr></table></figure>
-
-
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">M2 = np.random.rand(<span class="hljs-number">3</span>,<span class="hljs-number">4</span>)<br></code></pre></td></tr></table></figure>
-
-
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">res = np.zeros((M1.shape[<span class="hljs-number">0</span>],M2.shape[<span class="hljs-number">1</span>]))<br></code></pre></td></tr></table></figure>
-
-
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">res.shape<br></code></pre></td></tr></table></figure>
-
-
-
-
 <p>(2, 4)</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">res<br></code></pre></td></tr></table></figure>
-
-
-
-
 <p>array([[0., 0., 0., 0.],<br>           [0., 0., 0., 0.]])</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">i=<span class="hljs-number">0</span><br></code></pre></td></tr></table></figure>
-
-
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">multifuc</span><span class="hljs-params">(i,j,k)</span>:</span><br>    res[i][j]+=M1[i][k] * M2[k][j]<br>    <span class="hljs-keyword">return</span> res[i][j]<br></code></pre></td></tr></table></figure>
-
-
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">%timeit -n <span class="hljs-number">30</span> [ multifuc(i,j,k)  <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(M1.shape[<span class="hljs-number">0</span>])  <span class="hljs-keyword">for</span> j <span class="hljs-keyword">in</span> range(M2.shape[<span class="hljs-number">1</span>]) <span class="hljs-keyword">for</span> k <span class="hljs-keyword">in</span> range(M1.shape[<span class="hljs-number">1</span>])]<br></code></pre></td></tr></table></figure>
-
 <p>83.3 µs ± 33.6 µs per loop (mean ± std. dev. of 7 runs, 30 loops each)</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">(np.abs((M1@M2 - res) &lt; <span class="hljs-number">1e-15</span>)).all()<br></code></pre></td></tr></table></figure>
-
-
-
-
 <p>True</p>
 <h2 id="方法2"><a href="#方法2" class="headerlink" title="方法2"></a>方法2</h2><figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">i=<span class="hljs-number">0</span><br></code></pre></td></tr></table></figure>
-
-
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">sum([M1[i][k] * M2[k][j] <span class="hljs-keyword">for</span> j <span class="hljs-keyword">in</span> range(M2.shape[<span class="hljs-number">1</span>]) <span class="hljs-keyword">for</span> k <span class="hljs-keyword">in</span> range(M1.shape[<span class="hljs-number">1</span>])])<br></code></pre></td></tr></table></figure>
-
-
-
-
 <p>3.745920492921166</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">%timeit -n <span class="hljs-number">30</span> [sum([M1[i][k] * M2[k][j] <span class="hljs-keyword">for</span> j <span class="hljs-keyword">in</span> range(M2.shape[<span class="hljs-number">1</span>]) <span class="hljs-keyword">for</span> k <span class="hljs-keyword">in</span> range(M1.shape[<span class="hljs-number">1</span>])]) <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(M1.shape[<span class="hljs-number">0</span>])  <span class="hljs-keyword">for</span> j <span class="hljs-keyword">in</span> range(M2.shape[<span class="hljs-number">1</span>]) ]<br></code></pre></td></tr></table></figure>
-
 <p>203 µs ± 33.3 µs per loop (mean ± std. dev. of 7 runs, 30 loops each)</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">(np.abs((M1@M2 - res) &lt; <span class="hljs-number">1e-15</span>)).all()<br></code></pre></td></tr></table></figure>
-
-
-
-
 <p>True</p>
 <p>很明显第一种方法会比datawhale官方的要少一个循环，虽然这样确实有点取巧</p>
-<h2 id="Ex2：更新矩阵"><a href="#Ex2：更新矩阵" class="headerlink" title="Ex2：更新矩阵"></a>Ex2：更新矩阵</h2><h3 id="Ex2：更新矩阵-1"><a href="#Ex2：更新矩阵-1" class="headerlink" title="Ex2：更新矩阵"></a>Ex2：更新矩阵</h3><p>设矩阵 $A_{m×n}$ ，现在对 $A$ 中的每一个元素进行更新生成矩阵 $B$ ，更新方法是 $B_{ij}=A_{ij}\sum_{k=1}^n\frac{1}{A_{ik}}$ ，例如下面的矩阵为 $A$ ，则 $B_{2,2}=5\times(\frac{1}{4}+\frac{1}{5}+\frac{1}{6})=\frac{37}{12}$ ，请利用 <code>Numpy</code> 高效实现。<br>$$<br> A=\left[<br> \begin{matrix}<br>   1 &amp; 2 &amp; 3 \<br>   4 &amp; 5 &amp; 6 \<br>   7 &amp; 8 &amp; 9<br>  \end{matrix}<br>  \right]<br>$$</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np<br></code></pre></td></tr></table></figure>
-
-
+<h2 id="Ex2：更新矩阵"><a href="#Ex2：更新矩阵" class="headerlink" title="Ex2：更新矩阵"></a>Ex2：更新矩阵</h2><h3 id="Ex2：更新矩阵-1"><a href="#Ex2：更新矩阵-1" class="headerlink" title="Ex2：更新矩阵"></a>Ex2：更新矩阵</h3><p>设矩阵 $A<em>{m×n}$ ，现在对 $A$ 中的每一个元素进行更新生成矩阵 $B$ ，更新方法是 $B</em>{ij}=A<em>{ij}\sum</em>{k=1}^n\frac{1}{A<em>{ik}}$ ，例如下面的矩阵为 $A$ ，则 $B</em>{2,2}=5\times(\frac{1}{4}+\frac{1}{5}+\frac{1}{6})=\frac{37}{12}$ ，请利用 <code>Numpy</code> 高效实现。</p>
+<script type="math/tex; mode=display">
+ A=\left[
+ \begin{matrix}
+   1 & 2 & 3 \\
+   4 & 5 & 6 \\
+   7 & 8 & 9
+  \end{matrix}
+  \right]</script><figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np<br></code></pre></td></tr></table></figure>
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">A=np.arange(<span class="hljs-number">1</span>,<span class="hljs-number">10</span>).reshape(<span class="hljs-number">3</span>,<span class="hljs-number">-1</span>)<span class="hljs-comment">#start从0开始，默认不包含end</span><br></code></pre></td></tr></table></figure>
-
-
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">A<br></code></pre></td></tr></table></figure>
-
-
-
-
 <p>array([[1, 2, 3],<br>           [4, 5, 6],<br>           [7, 8, 9]])</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">A_reverse = <span class="hljs-number">1</span>/A<br></code></pre></td></tr></table></figure>
-
-
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">A_reverse<br></code></pre></td></tr></table></figure>
-
-
-
-
 <p>array([[1.        , 0.5       , 0.33333333],<br>           [0.25      , 0.2       , 0.16666667],<br>           [0.14285714, 0.125     , 0.11111111]])</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">A_reverse.sum(axis=<span class="hljs-number">1</span>).reshape(<span class="hljs-number">3</span>,<span class="hljs-number">-1</span>)<br></code></pre></td></tr></table></figure>
-
-
-
-
 <p>array([[1.83333333],<br>           [0.61666667],<br>           [0.37896825]])</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">res =A*(A_reverse.sum(axis=<span class="hljs-number">1</span>).reshape(<span class="hljs-number">3</span>,<span class="hljs-number">-1</span>))<br></code></pre></td></tr></table></figure>
-
-
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">res<br></code></pre></td></tr></table></figure>
-
-
-
-
 <p>array([[1.83333333, 3.66666667, 5.5       ],<br>           [2.46666667, 3.08333333, 3.7       ],<br>           [2.65277778, 3.03174603, 3.41071429]])</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">res.shape<br></code></pre></td></tr></table></figure>
-
-
-
-
 <p>(3, 3)</p>
-<h2 id="Ex3：卡方统计量"><a href="#Ex3：卡方统计量" class="headerlink" title="Ex3：卡方统计量"></a>Ex3：卡方统计量</h2><p>设矩阵$A_{m\times n}$，记$B_{ij} = \frac{(\sum_{i=1}^mA_{ij})\times (\sum_{j=1}^nA_{ij})}{\sum_{i=1}^m\sum_{j=1}^nA_{ij}}$，定义卡方值如下：<br>$$\chi^2 = \sum_{i=1}^m\sum_{j=1}^n\frac{(A_{ij}-B_{ij})^2}{B_{ij}}$$<br>请利用<code>Numpy</code>对给定的矩阵$A$计算$\chi^2$ </p>
-<p>$(\sum_{i=1}^mA_{ij})\times (\sum_{j=1}^nA_{ij}) shape (8 \times 1) \times(1 \times 5)$ </p>
+<h2 id="Ex3：卡方统计量"><a href="#Ex3：卡方统计量" class="headerlink" title="Ex3：卡方统计量"></a>Ex3：卡方统计量</h2><p>设矩阵$A<em>{m\times n}$，记$B</em>{ij} = \frac{(\sum<em>{i=1}^mA</em>{ij})\times (\sum<em>{j=1}^nA</em>{ij})}{\sum<em>{i=1}^m\sum</em>{j=1}^nA_{ij}}$，定义卡方值如下：</p>
+<script type="math/tex; mode=display">\chi^2 = \sum_{i=1}^m\sum_{j=1}^n\frac{(A_{ij}-B_{ij})^2}{B_{ij}}</script><p>请利用<code>Numpy</code>对给定的矩阵$A$计算$\chi^2$ </p>
+<p>$(\sum<em>{i=1}^mA</em>{ij})\times (\sum<em>{j=1}^nA</em>{ij}) shape (8 \times 1) \times(1 \times 5)$ </p>
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">np.random.seed(<span class="hljs-number">0</span>)<br></code></pre></td></tr></table></figure>
-
-
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">A = np.random.randint(<span class="hljs-number">10</span>, <span class="hljs-number">20</span>, (<span class="hljs-number">8</span>, <span class="hljs-number">5</span>))<br></code></pre></td></tr></table></figure>
-
 <p>通过分析我们可以看出其实矩阵$B$就是矩阵$A$通过对行和列求和再叉乘，然后除以所有元素的和</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">A_rowsum=A.sum(axis=<span class="hljs-number">0</span>).reshape(<span class="hljs-number">1</span>,<span class="hljs-number">-1</span>)<br></code></pre></td></tr></table></figure>
-
-
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">A_columnsum=A.sum(axis=<span class="hljs-number">1</span>).reshape(<span class="hljs-number">-1</span>,<span class="hljs-number">1</span>)<br></code></pre></td></tr></table></figure>
-
-
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">A_columnsum.shape,A_rowsum.shape<br></code></pre></td></tr></table></figure>
-
-
-
-
 <p>((8, 1), (1, 5))</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">A_rowsum*A_columnsum <span class="hljs-comment">#有点离谱</span><br><span class="hljs-comment">#主要是*号对应数组用数组乘法，矩阵用矩阵乘法</span><br></code></pre></td></tr></table></figure>
-
-
-
 <p>array([[ 8160,  7548,  8772,  7888,  6868],<br>           [ 8760,  8103,  9417,  8468,  7373],<br>           [ 9600,  8880, 10320,  9280,  8080],<br>           [ 9480,  8769, 10191,  9164,  7979],<br>           [10200,  9435, 10965,  9860,  8585],<br>           [ 7320,  6771,  7869,  7076,  6161],<br>           [ 8040,  7437,  8643,  7772,  6767],<br>           [ 7680,  7104,  8256,  7424,  6464]])</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">(A_rowsum*A_columnsum).shape<br></code></pre></td></tr></table></figure>
-
-
-
-
 <p>(8, 5)</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">A_columnsum@A_rowsum <span class="hljs-comment">#比较推荐这种</span><br></code></pre></td></tr></table></figure>
-
-
-
-
 <p>array([[ 8160,  7548,  8772,  7888,  6868],<br>           [ 8760,  8103,  9417,  8468,  7373],<br>           [ 9600,  8880, 10320,  9280,  8080],<br>           [ 9480,  8769, 10191,  9164,  7979],<br>           [10200,  9435, 10965,  9860,  8585],<br>           [ 7320,  6771,  7869,  7076,  6161],<br>           [ 8040,  7437,  8643,  7772,  6767],<br>           [ 7680,  7104,  8256,  7424,  6464]])</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">B=(A_columnsum@A_rowsum)/A.sum()<br></code></pre></td></tr></table></figure>
-
-
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">B.shape==A.shape<br></code></pre></td></tr></table></figure>
-
-
-
-
 <p>True</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">res = ((A-B)**<span class="hljs-number">2</span>/B).sum()<br>res<br></code></pre></td></tr></table></figure>
-
-
-
-
 <p>11.842696601945802</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">np.random.seed(<span class="hljs-number">0</span>)<br>A = np.random.randint(<span class="hljs-number">10</span>, <span class="hljs-number">20</span>, (<span class="hljs-number">8</span>, <span class="hljs-number">5</span>))<br>B = A.sum(<span class="hljs-number">0</span>)*A.sum(<span class="hljs-number">1</span>).reshape(<span class="hljs-number">-1</span>, <span class="hljs-number">1</span>)/A.sum() <span class="hljs-comment">#个人认为这样写其实会误导初学者</span><br>res = ((A-B)**<span class="hljs-number">2</span>/B).sum()<br>res<br></code></pre></td></tr></table></figure>
-
-
-
-
 <p>11.842696601945802</p>
-<h2 id="Ex4：改进矩阵计算的性能"><a href="#Ex4：改进矩阵计算的性能" class="headerlink" title="Ex4：改进矩阵计算的性能"></a>Ex4：改进矩阵计算的性能</h2><h3 id="原方法"><a href="#原方法" class="headerlink" title="原方法"></a>原方法</h3><p><img src="https://img-blog.csdnimg.cn/20201221120104121.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0phY2tfX19F,size_16,color_FFFFFF,t_70" alt="[外链图片转存失败,源站可能有防盗链机制,建议将图片保存下来直接上传(img-eDkWiRZe-1608522933099)(attachment:image.png)]"></p>
+<h2 id="Ex4：改进矩阵计算的性能"><a href="#Ex4：改进矩阵计算的性能" class="headerlink" title="Ex4：改进矩阵计算的性能"></a>Ex4：改进矩阵计算的性能</h2><h3 id="原方法"><a href="#原方法" class="headerlink" title="原方法"></a>原方法</h3><p><img src="https://img-blog.csdnimg.cn/20201221120104121.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0phY2tfX19F,size_16,color_FFFFFF,t_70" alt="\[外链图片转存失败,源站可能有防盗链机制,建议将图片保存下来直接上传(img-eDkWiRZe-1608522933099)(attachment:image.png)\]"></p>
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np<br></code></pre></td></tr></table></figure>
-
-
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">np.random.seed(<span class="hljs-number">0</span>)<br>m,n,p=<span class="hljs-number">100</span>,<span class="hljs-number">80</span>,<span class="hljs-number">50</span><br>B=np.random.randint(<span class="hljs-number">0</span>,<span class="hljs-number">2</span>,(m,p))<br>U=np.random.randint(<span class="hljs-number">0</span>,<span class="hljs-number">2</span>,(p,n))<br>Z=np.random.randint(<span class="hljs-number">0</span>,<span class="hljs-number">2</span>,(m,n))<br></code></pre></td></tr></table></figure>
-
-
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">solution</span><span class="hljs-params">(B=B, U=U, Z=Z)</span>:</span><br>    L_res = []<br>    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(m):<br>        <span class="hljs-keyword">for</span> j <span class="hljs-keyword">in</span> range(n):<br>            norm_value = ((B[i]-U[:,j])**<span class="hljs-number">2</span>).sum()<br>            L_res.append(norm_value*Z[i][j])<br>    <span class="hljs-keyword">return</span> sum(L_res)<br></code></pre></td></tr></table></figure>
-
-
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">solution(B, U, Z)<br></code></pre></td></tr></table></figure>
-
-
-
-
 <p>100566</p>
 <p><img src="https://img-blog.csdnimg.cn/20201221120126404.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0phY2tfX19F,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
 <p>从上式可以看出，第一第二项分别为$B$的行平方和与$U$的列平方和，第三项是两倍的内积。因此，$Y$矩阵可以写为三个部分，第一个部分是$m×n$的全$1$矩阵每行乘以$B$对应行的行平方和，第二个部分是相同大小的全$1$矩阵每列乘以$U$对应列的列平方和，第三个部分恰为$B$矩阵与$U$矩阵乘积的两倍。从而结果如下：</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">B[<span class="hljs-number">1</span>].shape<br></code></pre></td></tr></table></figure>
-
-
-
-
 <p>(50,)</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">U[:,<span class="hljs-number">1</span>].shape<br></code></pre></td></tr></table></figure>
-
-
-
-
 <p>(50,)</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">(((B**<span class="hljs-number">2</span>).sum(axis=<span class="hljs-number">1</span>).reshape(<span class="hljs-number">-1</span>,<span class="hljs-number">1</span>)+(U**<span class="hljs-number">2</span>).sum(axis=<span class="hljs-number">0</span>)<span class="hljs-number">-2</span>*B@U)*Z).sum()<br></code></pre></td></tr></table></figure>
-
-
-
-
 <p>100566</p>
 <h2 id="连续整数的最大长度"><a href="#连续整数的最大长度" class="headerlink" title="连续整数的最大长度"></a>连续整数的最大长度</h2><p>输入一个整数的 <code>Numpy</code> 数组，返回其中严格递增连续整数子数组的最大长度。例如，输入 [1,2,5,6,7]，[5,6,7]为具有最大长度的递增连续整数子数组，因此输出3；输入[3,2,1,2,3,4,6]，[1,2,3,4]为具有最大长度的递增连续整数子数组，因此输出4。请充分利用 Numpy 的内置函数完成。（提示：考虑使用 <code>nonzero, diff</code> 函数）</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">f = <span class="hljs-keyword">lambda</span> x:np.diff(np.nonzero(np.r_[<span class="hljs-number">1</span>,np.diff(x)!=<span class="hljs-number">1</span>,<span class="hljs-number">1</span>])).max()<br>f([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">5</span>,<span class="hljs-number">6</span>,<span class="hljs-number">7</span>])<br>f([<span class="hljs-number">3</span>,<span class="hljs-number">2</span>,<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>,<span class="hljs-number">6</span>])<br></code></pre></td></tr></table></figure>
-
-
-
 <p>4</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">x=[<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">5</span>,<span class="hljs-number">6</span>,<span class="hljs-number">7</span>]<br></code></pre></td></tr></table></figure>
-
-
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">np.diff(x)<br></code></pre></td></tr></table></figure>
-
-
-
-
 <p>array([1, 3, 1, 1])</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">np.diff(x)!=<span class="hljs-number">1</span><br></code></pre></td></tr></table></figure>
-
-
-
-
 <p>array([False,  True, False, False])</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">np.r_[<span class="hljs-number">1</span>,np.diff(x)!=<span class="hljs-number">1</span>,<span class="hljs-number">1</span>]<br></code></pre></td></tr></table></figure>
-
-
-
-
 <p>array([1, 0, 1, 0, 0, 1], dtype=int32)</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">np.nonzero(np.r_[<span class="hljs-number">1</span>,np.diff(x)!=<span class="hljs-number">1</span>,<span class="hljs-number">1</span>])<br></code></pre></td></tr></table></figure>
-
-
-
-
 <p>(array([0, 2, 5], dtype=int64),)</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">np.diff(np.nonzero(np.r_[<span class="hljs-number">1</span>,np.diff(x)!=<span class="hljs-number">1</span>,<span class="hljs-number">1</span>])).max()<br></code></pre></td></tr></table></figure>
-
-
-
-
 <p>3</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python"><br><br></code></pre></td></tr></table></figure>
 <p>1.842696601945802</p>
 <h2 id="Ex4：改进矩阵计算的性能-1"><a href="#Ex4：改进矩阵计算的性能-1" class="headerlink" title="Ex4：改进矩阵计算的性能"></a>Ex4：改进矩阵计算的性能</h2><h3 id="原方法-1"><a href="#原方法-1" class="headerlink" title="原方法"></a>原方法</h3><p>[外链图片转存中…(img-eDkWiRZe-1608522933099)]</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np<br></code></pre></td></tr></table></figure>
-
-
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">np.random.seed(<span class="hljs-number">0</span>)<br>m,n,p=<span class="hljs-number">100</span>,<span class="hljs-number">80</span>,<span class="hljs-number">50</span><br>B=np.random.randint(<span class="hljs-number">0</span>,<span class="hljs-number">2</span>,(m,p))<br>U=np.random.randint(<span class="hljs-number">0</span>,<span class="hljs-number">2</span>,(p,n))<br>Z=np.random.randint(<span class="hljs-number">0</span>,<span class="hljs-number">2</span>,(m,n))<br></code></pre></td></tr></table></figure>
-
-
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">solution</span><span class="hljs-params">(B=B, U=U, Z=Z)</span>:</span><br>    L_res = []<br>    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(m):<br>        <span class="hljs-keyword">for</span> j <span class="hljs-keyword">in</span> range(n):<br>            norm_value = ((B[i]-U[:,j])**<span class="hljs-number">2</span>).sum()<br>            L_res.append(norm_value*Z[i][j])<br>    <span class="hljs-keyword">return</span> sum(L_res)<br></code></pre></td></tr></table></figure>
-
-
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">solution(B, U, Z)<br></code></pre></td></tr></table></figure>
-
-
-
-
 <p>100566</p>
 <p>改进方法：</p>
-<p>令$Y_{ij} = |B_i-U_j|<em>2^2$，则$\displaystyle R=\sum</em>{i=1}^m\sum_{j=1}^n Y_{ij}Z_{ij}$，这在<code>Numpy</code>中可以用逐元素的乘法后求和实现，因此问题转化为了如何构造<code>Y</code>矩阵。</p>
-<p>$$<br>\begin{split}Y_{ij} &amp;= |B_i-U_j|<em>2^2\<br>&amp;=\sum</em>{k=1}^p(B_{ik}-U_{kj})^2\<br>&amp;=\sum_{k=1}^p B_{ik}^2+\sum_{k=1}^p U_{kj}^2-2\sum_{k=1}^p B_{ik}U_{kj}\\end{split}<br>$$</p>
-<p>从上式可以看出，第一第二项分别为$B$的行平方和与$U$的列平方和，第三项是两倍的内积。因此，$Y$矩阵可以写为三个部分，第一个部分是$m×n$的全$1$矩阵每行乘以$B$对应行的行平方和，第二个部分是相同大小的全$1$矩阵每列乘以$U$对应列的列平方和，第三个部分恰为$B$矩阵与$U$矩阵乘积的两倍。从而结果如下：</p>
+<p>令$Y<em>{ij} = |B_i-U_j|_2^2$，则$\displaystyle R=\sum</em>{i=1}^m\sum<em>{j=1}^n Y</em>{ij}Z_{ij}$，这在<code>Numpy</code>中可以用逐元素的乘法后求和实现，因此问题转化为了如何构造<code>Y</code>矩阵。</p>
+<script type="math/tex; mode=display">
+\begin{split}Y_{ij} &= \|B_i-U_j\|_2^2\\
+&=\sum_{k=1}^p(B_{ik}-U_{kj})^2\\
+&=\sum_{k=1}^p B_{ik}^2+\sum_{k=1}^p U_{kj}^2-2\sum_{k=1}^p B_{ik}U_{kj}\\\end{split}</script><p>从上式可以看出，第一第二项分别为$B$的行平方和与$U$的列平方和，第三项是两倍的内积。因此，$Y$矩阵可以写为三个部分，第一个部分是$m×n$的全$1$矩阵每行乘以$B$对应行的行平方和，第二个部分是相同大小的全$1$矩阵每列乘以$U$对应列的列平方和，第三个部分恰为$B$矩阵与$U$矩阵乘积的两倍。从而结果如下：</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">B[<span class="hljs-number">1</span>].shape<br></code></pre></td></tr></table></figure>
-
-
-
-
 <p>(50,)</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">U[:,<span class="hljs-number">1</span>].shape<br></code></pre></td></tr></table></figure>
-
-
-
-
 <p>(50,)</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">(((B**<span class="hljs-number">2</span>).sum(axis=<span class="hljs-number">1</span>).reshape(<span class="hljs-number">-1</span>,<span class="hljs-number">1</span>)+(U**<span class="hljs-number">2</span>).sum(axis=<span class="hljs-number">0</span>)<span class="hljs-number">-2</span>*B@U)*Z).sum()<br></code></pre></td></tr></table></figure>
-
-
-
-
 <p>100566</p>
 <h2 id="连续整数的最大长度-1"><a href="#连续整数的最大长度-1" class="headerlink" title="连续整数的最大长度"></a>连续整数的最大长度</h2><p>输入一个整数的 <code>Numpy</code> 数组，返回其中严格递增连续整数子数组的最大长度。例如，输入 [1,2,5,6,7]，[5,6,7]为具有最大长度的递增连续整数子数组，因此输出3；输入[3,2,1,2,3,4,6]，[1,2,3,4]为具有最大长度的递增连续整数子数组，因此输出4。请充分利用 Numpy 的内置函数完成。（提示：考虑使用 <code>nonzero, diff</code> 函数）</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">f = <span class="hljs-keyword">lambda</span> x:np.diff(np.nonzero(np.r_[<span class="hljs-number">1</span>,np.diff(x)!=<span class="hljs-number">1</span>,<span class="hljs-number">1</span>])).max()<br>f([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">5</span>,<span class="hljs-number">6</span>,<span class="hljs-number">7</span>])<br>f([<span class="hljs-number">3</span>,<span class="hljs-number">2</span>,<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>,<span class="hljs-number">6</span>])<br></code></pre></td></tr></table></figure>
-
-
-
-
 <p>4</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">x=[<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">5</span>,<span class="hljs-number">6</span>,<span class="hljs-number">7</span>]<br></code></pre></td></tr></table></figure>
-
-
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">np.diff(x)<br></code></pre></td></tr></table></figure>
-
-
-
-
 <p>array([1, 3, 1, 1])</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">np.diff(x)!=<span class="hljs-number">1</span><br></code></pre></td></tr></table></figure>
-
-
-
 <p>array([False,  True, False, False])</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">np.r_[<span class="hljs-number">1</span>,np.diff(x)!=<span class="hljs-number">1</span>,<span class="hljs-number">1</span>]<br></code></pre></td></tr></table></figure>
-
-
-
-
 <p>array([1, 0, 1, 0, 0, 1], dtype=int32)</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">np.nonzero(np.r_[<span class="hljs-number">1</span>,np.diff(x)!=<span class="hljs-number">1</span>,<span class="hljs-number">1</span>])<br></code></pre></td></tr></table></figure>
-
-
-
-
 <p>(array([0, 2, 5], dtype=int64),)</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">np.diff(np.nonzero(np.r_[<span class="hljs-number">1</span>,np.diff(x)!=<span class="hljs-number">1</span>,<span class="hljs-number">1</span>])).max()<br></code></pre></td></tr></table></figure>
-
-
-
-
 <p>3</p>
 
       
@@ -1158,11 +672,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">datawhale</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">pandas</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">pandas</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">datawhale</a>
         		</li>
       		
 		</ul>
@@ -1500,15 +1014,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">数据库系统</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Hexo</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">数据库系统</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1516,19 +1026,19 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Hexo</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">计算机视觉</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">数据结构</a>
+                <a href="javascript:void(0)" class="js-tag color2">pandas</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">datawhale</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">pandas</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1544,6 +1054,10 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">数据结构</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">数学建模</a>
               </li>
              
@@ -1552,11 +1066,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">计算机组成原理</a>
+                <a href="javascript:void(0)" class="js-tag color3">一蓑烟雨任平生</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">一蓑烟雨任平生</a>
+                <a href="javascript:void(0)" class="js-tag color3">计算机组成原理</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1654,7 +1168,11 @@ MathJax.Hub.Queue(function() {
         <ul class="search-ul">
           
             <li class="search-li">
-              <a href="/archives/2021/" target="_self" class="search-title">2021年 (๑•̀ㅂ•́)و✧</a>
+              <a href="/archives/2022/" target="_self" class="search-title">2022年 (๑•̀ㅂ•́)و✧</a>
+            </li>
+          
+            <li class="search-li">
+              <a href="/archives/2021/" target="_self" class="search-title">2021年 ╮(╯_╰)╭</a>
             </li>
           
             <li class="search-li">
