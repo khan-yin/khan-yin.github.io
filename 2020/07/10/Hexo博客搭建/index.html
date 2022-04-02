@@ -24,7 +24,7 @@
 <meta property="og:image" content="https://img-blog.csdnimg.cn/20200710225024894.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0phY2tfX19F,size_16,color_FFFFFF,t_70#pic_center">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/20200710223950744.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0phY2tfX19F,size_16,color_FFFFFF,t_70">
 <meta property="article:published_time" content="2020-07-10T15:01:00.000Z">
-<meta property="article:modified_time" content="2022-04-02T04:51:35.896Z">
+<meta property="article:modified_time" content="2022-04-02T07:20:05.870Z">
 <meta property="article:author" content="whut ykh">
 <meta property="article:tag" content="Hexo">
 <meta name="twitter:card" content="summary">
@@ -233,7 +233,7 @@
 <h2 id="github部署"><a href="#github部署" class="headerlink" title="github部署"></a>github部署</h2><p>对于github上进行部署的话我们首先需要新建一个repo，<strong>并且必须命名为：你的github账户名.github.io</strong>，建议大家最好配置好ssh这样就不用每次输入密码了<br>然后我们需要在博客根目录下npm一个用于部署的模块<code>deploy-git</code> </p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">npm install hexo-deployer-git --save<br></code></pre></td></tr></table></figure>
 <p>github对于hexo博客的部署是非常方便的，只需要在主配置文件<code>_config.yml</code>下添加一项配置就可以了，配置到服务器上也是如此<br>这里我直接将github和服务器都配置好了提交，你如果没有服务器端的配置就直接删掉那一行就行。</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># Deployment</span><br><span class="hljs-comment">## Docs: https://hexo.io/docs/deployment.html</span><br>deploy:<br>  <span class="hljs-built_in">type</span>: git<br>  repo: <br>        aliyun: xxxx@你的域名:/path/blog.git,<span class="hljs-comment">#这个我好像已经忘了如何设置了大家可以自行百度hexo部署到阿里云</span><br>        github: git@github.com:xxxx/xxxx.github.io.git<br>  branch: master <span class="hljs-comment">#一般用master分支就够了</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># Deployment</span><br><span class="hljs-comment">## Docs: https://hexo.io/docs/deployment.html</span><br>deploy:<br>  <span class="hljs-built_in">type</span>: git<br>  repo: <br>        aliyun: git@你的域名:/path/blog.git,<span class="hljs-comment">#这个我好像已经忘了如何设置了大家可以自行百度hexo部署到阿里云</span><br>        github: git@github.com:xxxx/xxxx.github.io.git<br>  branch: master <span class="hljs-comment">#一般用master分支就够了</span><br></code></pre></td></tr></table></figure>
 <p>配置好以后我们使用</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash"><span class="hljs-comment">#建议每次提交都执行这三个命令，</span><br><span class="hljs-comment">#当然了你也可以在直接写成bat文件或者sh文件，就不用每次自己手动输入了</span><br>hexo clean<br>hexo g<br>hexo d<br></code></pre></td></tr></table></figure>
 <p>他就会自动将我们所写的博客和所需要展示的内容转成htmlcssjs等文件push到我们的github上去,所以说大家如果有配置和修改自己选择的主题的话，可能你需要备份一下，不然到时候就没了，在部署的网页上这些npmmodules和你修改的样式都是直接打包好了的，你的源代码是不会提交上去的。</p>
@@ -596,15 +596,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">数据库系统</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">编译原理</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -612,7 +608,15 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">数据库系统</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">计算机视觉</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">数据结构</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -633,10 +637,6 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Java</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">数据结构</a>
               </li>
              
               <li class="article-tag-list-item">
