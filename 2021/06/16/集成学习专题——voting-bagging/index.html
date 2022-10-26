@@ -217,7 +217,8 @@
 <p>10101100100111001011011011011</p>
 <p>这导致的结果可能是致命的。一个常用的纠错方法是重复多次发送数据，并以少数服从多数的方法确定正确的传输数据。一般情况下，错误总是发生在局部，因此融合多个数据是降低误差的一个好方法，这就是投票法的基本思路。</p>
 <p>对于回归模型来说，投票法最终的预测结果是多个其他回归模型预测结果的平均值。</p>
-<p>对于分类模型，<strong>硬投票法</strong>的预测结果是多个模型预测结果中出现次数最多的类别，<strong>软投票</strong>对各类预测结果的概率进行求和，最终选取概率之和最大的类标签。<br><a id="more"></a></p>
+<p>对于分类模型，<strong>硬投票法</strong>的预测结果是多个模型预测结果中出现次数最多的类别，<strong>软投票</strong>对各类预测结果的概率进行求和，最终选取概率之和最大的类标签。</p>
+<a id="more"></a>
 <h2 id="投票法的原理分析"><a href="#投票法的原理分析" class="headerlink" title="投票法的原理分析"></a>投票法的原理分析</h2><p>投票法是一种遵循少数服从多数原则的集成学习模型，通过多个模型的集成降低方差，从而提高模型的鲁棒性。在理想情况下，投票法的预测效果应当优于任何一个基模型的预测效果。</p>
 <p>投票法在回归模型与分类模型上均可使用：</p>
 <ul>
@@ -256,23 +257,32 @@
 <h2 id="投票法的案例分析-基于sklearn，介绍pipe管道的使用以及voting的使用"><a href="#投票法的案例分析-基于sklearn，介绍pipe管道的使用以及voting的使用" class="headerlink" title="投票法的案例分析(基于sklearn，介绍pipe管道的使用以及voting的使用)"></a>投票法的案例分析(基于sklearn，介绍pipe管道的使用以及voting的使用)</h2><p>Sklearn中提供了 <a href="https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.VotingRegressor.html" target="_blank" rel="noopener">VotingRegressor</a> 与 <a href="https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.VotingClassifier.html" target="_blank" rel="noopener">VotingClassifier</a> 两个投票方法。 这两种模型的操作方式相同，并采用相同的参数。使用模型需要提供一个模型列表，列表中每个模型采用Tuple的结构表示，第一个元素代表名称，第二个元素代表模型，需要保证每个模型必须拥有唯一的名称。</p>
 <p>例如这里，我们定义两个模型：</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">models = [(<span class="hljs-string">'lr'</span>,LogisticRegression()),(<span class="hljs-string">'svm'</span>,SVC())]<br>ensemble = VotingClassifier(estimators=models)<br></code></pre></td></tr></table></figure>
+
 <p>有时某些模型需要一些预处理操作，我们可以为他们定义Pipeline完成模型预处理工作：</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">models = [(<span class="hljs-string">'lr'</span>,LogisticRegression()),(<span class="hljs-string">'svm'</span>,make_pipeline(StandardScaler(),SVC()))]<br>ensemble = VotingClassifier(estimators=models)<br></code></pre></td></tr></table></figure>
+
 <p>模型还提供了voting参数让我们选择软投票或者硬投票：</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">models = [(<span class="hljs-string">'lr'</span>,LogisticRegression()),(<span class="hljs-string">'svm'</span>,SVC())]<br>ensemble = VotingClassifier(estimators=models, voting=<span class="hljs-string">'soft'</span>)<br></code></pre></td></tr></table></figure>
+
 <p>下面我们使用一个完整的例子演示投票法的使用：</p>
 <p>首先我们创建一个1000个样本，20个特征的随机数据集：</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># test classification dataset</span><br><span class="hljs-keyword">from</span> sklearn.datasets <span class="hljs-keyword">import</span> make_classification<br><span class="hljs-comment"># define dataset</span><br>X, y = make_classification(n_samples=<span class="hljs-number">1000</span>, n_features=<span class="hljs-number">20</span>, n_informative=<span class="hljs-number">15</span>, n_redundant=<span class="hljs-number">5</span>, random_state=<span class="hljs-number">2</span>)<br><span class="hljs-comment"># summarize the dataset</span><br>print(X.shape, y.shape)<br></code></pre></td></tr></table></figure>
+
 <p>我们使用多个KNN模型作为基模型演示投票法，其中每个模型采用不同的邻居值K参数：</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># get a voting ensemble of models</span><br><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">get_voting</span><span class="hljs-params">()</span>:</span><br>	<span class="hljs-comment"># define the base models</span><br>	models = list()<br>	models.append((<span class="hljs-string">'knn1'</span>, KNeighborsClassifier(n_neighbors=<span class="hljs-number">1</span>)))<br>	models.append((<span class="hljs-string">'knn3'</span>, KNeighborsClassifier(n_neighbors=<span class="hljs-number">3</span>)))<br>	models.append((<span class="hljs-string">'knn5'</span>, KNeighborsClassifier(n_neighbors=<span class="hljs-number">5</span>)))<br>	models.append((<span class="hljs-string">'knn7'</span>, KNeighborsClassifier(n_neighbors=<span class="hljs-number">7</span>)))<br>	models.append((<span class="hljs-string">'knn9'</span>, KNeighborsClassifier(n_neighbors=<span class="hljs-number">9</span>)))<br>	<span class="hljs-comment"># define the voting ensemble</span><br>	ensemble = VotingClassifier(estimators=models, voting=<span class="hljs-string">'hard'</span>)<br>	<span class="hljs-keyword">return</span> ensemble<br></code></pre></td></tr></table></figure>
+
 <p>然后，我们可以创建一个模型列表来评估投票带来的提升，包括KNN模型配置的每个独立版本和硬投票模型。下面的get_models()函数可以为我们创建模型列表进行评估。</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># get a list of models to evaluate</span><br><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">get_models</span><span class="hljs-params">()</span>:</span><br>	models = dict()<br>	models[<span class="hljs-string">'knn1'</span>] = KNeighborsClassifier(n_neighbors=<span class="hljs-number">1</span>)<br>	models[<span class="hljs-string">'knn3'</span>] = KNeighborsClassifier(n_neighbors=<span class="hljs-number">3</span>)<br>	models[<span class="hljs-string">'knn5'</span>] = KNeighborsClassifier(n_neighbors=<span class="hljs-number">5</span>)<br>	models[<span class="hljs-string">'knn7'</span>] = KNeighborsClassifier(n_neighbors=<span class="hljs-number">7</span>)<br>	models[<span class="hljs-string">'knn9'</span>] = KNeighborsClassifier(n_neighbors=<span class="hljs-number">9</span>)<br>	models[<span class="hljs-string">'hard_voting'</span>] = get_voting()<br>	<span class="hljs-keyword">return</span> models<br></code></pre></td></tr></table></figure>
+
 <p>下面的evaluate_model()函数接收一个模型实例，并以分层10倍交叉验证三次重复的分数列表的形式返回。</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># evaluate a give model using cross-validation</span><br><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">evaluate_model</span><span class="hljs-params">(model, X, y)</span>:</span><br>	cv = RepeatedStratifiedKFold(n_splits=<span class="hljs-number">10</span>, n_repeats=<span class="hljs-number">3</span>, random_state=<span class="hljs-number">1</span>)<br>	scores = cross_val_score(model, X, y, scoring=<span class="hljs-string">'accuracy'</span>, cv=cv, n_jobs=<span class="hljs-number">-1</span>, error_score=<span class="hljs-string">'raise'</span>)<br>	<span class="hljs-keyword">return</span> scores<br></code></pre></td></tr></table></figure>
+
 <p>然后，我们可以报告每个算法的平均性能，还可以创建一个箱形图和须状图来比较每个算法的精度分数分布。</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># define dataset</span><br>X, y = get_dataset()<br><span class="hljs-comment"># get the models to evaluate</span><br>models = get_models()<br><span class="hljs-comment"># evaluate the models and store results</span><br>results, names = list(), list()<br><span class="hljs-keyword">for</span> name, model <span class="hljs-keyword">in</span> models.items():<br>	scores = evaluate_model(model, X, y)<br>	results.append(scores)<br>	names.append(name)<br>	print(<span class="hljs-string">'&gt;%s %.3f (%.3f)'</span> % (name, mean(scores), std(scores)))<br><span class="hljs-comment"># plot model performance for comparison</span><br>pyplot.boxplot(results, labels=names, showmeans=<span class="hljs-literal">True</span>)<br>pyplot.show()<br></code></pre></td></tr></table></figure>
+
 <p>我们得到的结果如下：</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><code class="hljs plain">&gt;knn1 0.873 (0.030)<br>&gt;knn3 0.889 (0.038)<br>&gt;knn5 0.895 (0.031)<br>&gt;knn7 0.899 (0.035)<br>&gt;knn9 0.900 (0.033)<br>&gt;hard_voting 0.902 (0.034)<br></code></pre></td></tr></table></figure>
+
 <p>显然投票的效果略大于任何一个基模型。</p>
 <p><img src="https://img-blog.csdnimg.cn/img_convert/f801ea25bd203a492f6c6c749788f553.png" alt="Box Plot of Hard Voting Ensemble Compared to Standalone Models for Binary Classification"></p>
 <p>通过箱形图我们可以看到硬投票方法对交叉验证整体预测结果分布带来的提升。</p>
@@ -284,8 +294,10 @@
 <h2 id="bagging的案例分析-基于sklearn，介绍随机森林的相关理论以及实例"><a href="#bagging的案例分析-基于sklearn，介绍随机森林的相关理论以及实例" class="headerlink" title="bagging的案例分析(基于sklearn，介绍随机森林的相关理论以及实例)"></a>bagging的案例分析(基于sklearn，介绍随机森林的相关理论以及实例)</h2><p>Sklearn为我们提供了 <a href="https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.BaggingRegressor.html" target="_blank" rel="noopener">BaggingRegressor</a> 与 <a href="https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.BaggingClassifier.html" target="_blank" rel="noopener">BaggingClassifier</a> 两种Bagging方法的API，我们在这里通过一个完整的例子演示Bagging在分类问题上的具体应用。这里两种方法的默认基模型是树模型。</p>
 <p>我们创建一个含有1000个样本20维特征的随机分类数据集：</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># test classification dataset</span><br><span class="hljs-keyword">from</span> sklearn.datasets <span class="hljs-keyword">import</span> make_classification<br><span class="hljs-comment"># define dataset</span><br>X, y = make_classification(n_samples=<span class="hljs-number">1000</span>, n_features=<span class="hljs-number">20</span>, n_informative=<span class="hljs-number">15</span>, n_redundant=<span class="hljs-number">5</span>, random_state=<span class="hljs-number">5</span>)<br><span class="hljs-comment"># summarize the dataset</span><br>print(X.shape, y.shape)<br></code></pre></td></tr></table></figure>
+
 <p>我们将使用重复的分层k-fold交叉验证来评估该模型，一共重复3次，每次有10个fold。我们将评估该模型在所有重复交叉验证中性能的平均值和标准差。</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># evaluate bagging algorithm for classification</span><br><span class="hljs-keyword">from</span> numpy <span class="hljs-keyword">import</span> mean<br><span class="hljs-keyword">from</span> numpy <span class="hljs-keyword">import</span> std<br><span class="hljs-keyword">from</span> sklearn.datasets <span class="hljs-keyword">import</span> make_classification<br><span class="hljs-keyword">from</span> sklearn.model_selection <span class="hljs-keyword">import</span> cross_val_score<br><span class="hljs-keyword">from</span> sklearn.model_selection <span class="hljs-keyword">import</span> RepeatedStratifiedKFold<br><span class="hljs-keyword">from</span> sklearn.ensemble <span class="hljs-keyword">import</span> BaggingClassifier<br><span class="hljs-comment"># define dataset</span><br>X, y = make_classification(n_samples=<span class="hljs-number">1000</span>, n_features=<span class="hljs-number">20</span>, n_informative=<span class="hljs-number">15</span>, n_redundant=<span class="hljs-number">5</span>, random_state=<span class="hljs-number">5</span>)<br><span class="hljs-comment"># define the model</span><br>model = BaggingClassifier()<br><span class="hljs-comment"># evaluate the model</span><br>cv = RepeatedStratifiedKFold(n_splits=<span class="hljs-number">10</span>, n_repeats=<span class="hljs-number">3</span>, random_state=<span class="hljs-number">1</span>)<br>n_scores = cross_val_score(model, X, y, scoring=<span class="hljs-string">'accuracy'</span>, cv=cv, n_jobs=<span class="hljs-number">-1</span>, error_score=<span class="hljs-string">'raise'</span>)<br><span class="hljs-comment"># report performance</span><br>print(<span class="hljs-string">'Accuracy: %.3f (%.3f)'</span> % (mean(n_scores), std(n_scores)))<br></code></pre></td></tr></table></figure>
+
 <p>最终模型的效果是Accuracy: 0.856 标准差0.037</p>
 
       
@@ -642,15 +654,15 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">youth</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Hexo</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">编译原理</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">youth</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -698,11 +710,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">机器学习</a>
+                <a href="javascript:void(0)" class="js-tag color3">一蓑烟雨任平生</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">一蓑烟雨任平生</a>
+                <a href="javascript:void(0)" class="js-tag color5">机器学习</a>
               </li>
             
             <div class="clearfix"></div>
