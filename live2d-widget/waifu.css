@@ -33,7 +33,8 @@
 	z-index: 1;
 }
 
-@media (max-width: 768px) {
+/*定义竖屏 css*/
+@media screen and (orientation:portrait)  {
 	#waifu {
 		right: 0;
 	}
