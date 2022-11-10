@@ -34,7 +34,7 @@
 }
 
 /*定义竖屏 css*/
-@media screen and ((orientation:portrait) or (max-width: 768px)) {
+@media screen and (max-width: 768px) {
 	#waifu {
 		right: 0;
 	}
