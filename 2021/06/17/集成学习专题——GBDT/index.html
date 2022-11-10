@@ -5,16 +5,16 @@
   
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-  <link rel="dns-prefetch" href="https://yoursite.com">
+  <link rel="dns-prefetch" href="https://jackyin.space">
   <title>集成学习专题——GBDT | ykhblog 一路向北</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="梯度提升决策树(GBDT)(1) 基于残差学习的提升树算法：在前面的学习过程中，我们一直讨论的都是分类树，比如Adaboost算法，并没有涉及回归的例子。在上一小节我们提到了一个加法模型+前向分步算法的框架，那能否使用这个框架解决回归的例子呢？答案是肯定的。接下来我们来探讨下如何使用加法模型+前向分步算法的框架实现回归问题。在使用加法模型+前向分步算法的框架解决问题之前，我们需要首先确定框架内使用">
 <meta property="og:type" content="article">
 <meta property="og:title" content="集成学习专题——GBDT">
-<meta property="og:url" content="https://yoursite.com/2021/06/17/%E9%9B%86%E6%88%90%E5%AD%A6%E4%B9%A0%E4%B8%93%E9%A2%98%E2%80%94%E2%80%94GBDT/index.html">
+<meta property="og:url" content="https://jackyin.space/2021/06/17/%E9%9B%86%E6%88%90%E5%AD%A6%E4%B9%A0%E4%B8%93%E9%A2%98%E2%80%94%E2%80%94GBDT/index.html">
 <meta property="og:site_name" content="ykhblog 一路向北">
 <meta property="og:description" content="梯度提升决策树(GBDT)(1) 基于残差学习的提升树算法：在前面的学习过程中，我们一直讨论的都是分类树，比如Adaboost算法，并没有涉及回归的例子。在上一小节我们提到了一个加法模型+前向分步算法的框架，那能否使用这个框架解决回归的例子呢？答案是肯定的。接下来我们来探讨下如何使用加法模型+前向分步算法的框架实现回归问题。在使用加法模型+前向分步算法的框架解决问题之前，我们需要首先确定框架内使用">
-<meta property="og:locale" content="en_US">
+<meta property="og:locale" content="zh">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/20210617235042845.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0phY2tfX19F,size_16,color_FFFFFF,t_70">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/20210617235127439.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0phY2tfX19F,size_16,color_FFFFFF,t_70#pic_center">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/20210617235127656.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0phY2tfX19F,size_16,color_FFFFFF,t_70#pic_center">
@@ -30,7 +30,7 @@
 <meta property="og:image" content="https://img-blog.csdnimg.cn/20210617235559608.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0phY2tfX19F,size_16,color_FFFFFF,t_70#pic_center">
 <meta property="article:published_time" content="2021-06-17T15:59:00.000Z">
 <meta property="article:modified_time" content="2021-06-17T16:01:59.288Z">
-<meta property="article:author" content="Jack Yin">
+<meta property="article:author" content="Jack yin">
 <meta property="article:tag" content="datawhale">
 <meta property="article:tag" content="机器学习">
 <meta name="twitter:card" content="summary">
@@ -76,7 +76,7 @@
 			<img src="/assets/xxb.jpg" class="js-avatar">
 		</a>
 		<hgroup>
-		  <h1 class="header-author" style="margin-bottom: 0%;"><a href="/">Jack Yin</a></h1>
+		  <h1 class="header-author" style="margin-bottom: 0%;"><a href="/">Jack yin</a></h1>
 		</hgroup>
 		
 
@@ -117,11 +117,11 @@
 		        
 					<a class="rss" target="_blank" href="/atom.xml" title="rss"><i class="icon-rss"></i></a>
 		        
-					<a class="qq" target="_blank" href="/assets/qq.jpg" title="qq"><i class="icon-qq"></i></a>
+					<a class="zhihu" target="_blank" href="https://www.zhihu.com/people/khan-55-55" title="zhihu"><i class="icon-zhihu"></i></a>
 		        
 					<a class="bilibili" target="_blank" href="https://space.bilibili.com/351001593" title="bilibili"><i class="icon-bilibili"></i></a>
 		        
-					<a class="mail" target="_blank" href="mailto:838278270@qq.com" title="mail"><i class="icon-mail"></i></a>
+					<a class="mail" target="_blank" href="mailto:yinkehan666@gmail.com" title="mail"><i class="icon-mail"></i></a>
 		        
 			</div>
 
@@ -151,7 +151,7 @@
 				<img src="/assets/xxb.jpg" class="js-avatar">
 			</div>
 			<hgroup>
-			  <h1 class="header-author js-header-author">Jack Yin</h1>
+			  <h1 class="header-author js-header-author">Jack yin</h1>
 			</hgroup>
 			
 			
@@ -171,11 +171,11 @@
 			        
 						<a class="rss" target="_blank" href="/atom.xml" title="rss"><i class="icon-rss"></i></a>
 			        
-						<a class="qq" target="_blank" href="/assets/qq.jpg" title="qq"><i class="icon-qq"></i></a>
+						<a class="zhihu" target="_blank" href="https://www.zhihu.com/people/khan-55-55" title="zhihu"><i class="icon-zhihu"></i></a>
 			        
 						<a class="bilibili" target="_blank" href="https://space.bilibili.com/351001593" title="bilibili"><i class="icon-bilibili"></i></a>
 			        
-						<a class="mail" target="_blank" href="mailto:838278270@qq.com" title="mail"><i class="icon-mail"></i></a>
+						<a class="mail" target="_blank" href="mailto:yinkehan666@gmail.com" title="mail"><i class="icon-mail"></i></a>
 			        
 				</div>
 			</nav>
@@ -346,7 +346,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=https://yoursite.com/2021/06/17/%E9%9B%86%E6%88%90%E5%AD%A6%E4%B9%A0%E4%B8%93%E9%A2%98%E2%80%94%E2%80%94GBDT/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=https://jackyin.space/2021/06/17/%E9%9B%86%E6%88%90%E5%AD%A6%E4%B9%A0%E4%B8%93%E9%A2%98%E2%80%94%E2%80%94GBDT/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -473,11 +473,11 @@ MathJax.Hub.Queue(function() {
     </script>
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2022 Jack Yin
+    		&copy; 2022 Jack yin
     	</div>
 		<div style="display: inline;">
 			<img src="http://www.beian.gov.cn/img/new/gongan.png">
-<a href="http://www.beian.miit.gov.cn/"  style="color:#f72b07" target="_blank">湘ICP备2022023439号</a>
+<a href="https://beian.miit.gov.cn"  style="color:#14191e;font-weight: 600;" target="_blank">湘ICP备2022023439号</a>
 		</div>
       	<div class="footer-right">
       		<a href="https://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
@@ -628,11 +628,15 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">youth</a>
+                <a href="javascript:void(0)" class="js-tag color5">Hexo</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">数据库系统</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">youth</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -641,10 +645,6 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">编译原理</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Hexo</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -744,11 +744,11 @@ MathJax.Hub.Queue(function() {
         <ul class="search-ul">
           
             <li class="search-li">
-              <a href="https://blog.csdn.net/Jack___E/article/details/102875285" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>我的csdn</a>
+              <a href="https://juejin.cn/user/2365804755816072" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>我的掘金</a>
             </li>
           
             <li class="search-li">
-              <a href="https://xgpax.top/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>广平的小世界</a>
+              <a href="https://bytedancer.vip/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>广平的小世界</a>
             </li>
           
             <li class="search-li">

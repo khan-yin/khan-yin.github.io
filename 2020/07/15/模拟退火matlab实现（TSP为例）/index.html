@@ -5,22 +5,22 @@
   
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-  <link rel="dns-prefetch" href="https://yoursite.com">
+  <link rel="dns-prefetch" href="https://jackyin.space">
   <title>模拟退火matlab实现（TSP为例） | ykhblog 一路向北</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="最近学习了模拟退火智能算法，顺便学习了一下matlab，顺带一提matlba真香，对矩阵的操作会比python的numpy操作要更加方便，这里我们是以TSP问题为例子，因为比较好理解。 模拟退火介绍模拟退火总的来说还是一种优化算法，他模拟的是淬火冶炼的一个过程，通过升温增强分子的热运动，然后再慢慢降温，使其达到稳定的状态。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="模拟退火matlab实现（TSP为例）">
-<meta property="og:url" content="https://yoursite.com/2020/07/15/%E6%A8%A1%E6%8B%9F%E9%80%80%E7%81%ABmatlab%E5%AE%9E%E7%8E%B0%EF%BC%88TSP%E4%B8%BA%E4%BE%8B%EF%BC%89/index.html">
+<meta property="og:url" content="https://jackyin.space/2020/07/15/%E6%A8%A1%E6%8B%9F%E9%80%80%E7%81%ABmatlab%E5%AE%9E%E7%8E%B0%EF%BC%88TSP%E4%B8%BA%E4%BE%8B%EF%BC%89/index.html">
 <meta property="og:site_name" content="ykhblog 一路向北">
 <meta property="og:description" content="最近学习了模拟退火智能算法，顺便学习了一下matlab，顺带一提matlba真香，对矩阵的操作会比python的numpy操作要更加方便，这里我们是以TSP问题为例子，因为比较好理解。 模拟退火介绍模拟退火总的来说还是一种优化算法，他模拟的是淬火冶炼的一个过程，通过升温增强分子的热运动，然后再慢慢降温，使其达到稳定的状态。">
-<meta property="og:locale" content="en_US">
+<meta property="og:locale" content="zh">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/20200715101056191.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0phY2tfX19F,size_16,color_FFFFFF,t_70#pic_center">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/20200715110631713.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0phY2tfX19F,size_16,color_FFFFFF,t_70#pic_center">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/20200715110536364.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0phY2tfX19F,size_16,color_FFFFFF,t_70#pic_center">
 <meta property="article:published_time" content="2020-07-15T03:38:00.000Z">
 <meta property="article:modified_time" content="2021-01-19T04:31:32.805Z">
-<meta property="article:author" content="Jack Yin">
+<meta property="article:author" content="Jack yin">
 <meta property="article:tag" content="数学建模">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://img-blog.csdnimg.cn/20200715101056191.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0phY2tfX19F,size_16,color_FFFFFF,t_70#pic_center">
@@ -65,7 +65,7 @@
 			<img src="/assets/xxb.jpg" class="js-avatar">
 		</a>
 		<hgroup>
-		  <h1 class="header-author" style="margin-bottom: 0%;"><a href="/">Jack Yin</a></h1>
+		  <h1 class="header-author" style="margin-bottom: 0%;"><a href="/">Jack yin</a></h1>
 		</hgroup>
 		
 
@@ -106,11 +106,11 @@
 		        
 					<a class="rss" target="_blank" href="/atom.xml" title="rss"><i class="icon-rss"></i></a>
 		        
-					<a class="qq" target="_blank" href="/assets/qq.jpg" title="qq"><i class="icon-qq"></i></a>
+					<a class="zhihu" target="_blank" href="https://www.zhihu.com/people/khan-55-55" title="zhihu"><i class="icon-zhihu"></i></a>
 		        
 					<a class="bilibili" target="_blank" href="https://space.bilibili.com/351001593" title="bilibili"><i class="icon-bilibili"></i></a>
 		        
-					<a class="mail" target="_blank" href="mailto:838278270@qq.com" title="mail"><i class="icon-mail"></i></a>
+					<a class="mail" target="_blank" href="mailto:yinkehan666@gmail.com" title="mail"><i class="icon-mail"></i></a>
 		        
 			</div>
 
@@ -140,7 +140,7 @@
 				<img src="/assets/xxb.jpg" class="js-avatar">
 			</div>
 			<hgroup>
-			  <h1 class="header-author js-header-author">Jack Yin</h1>
+			  <h1 class="header-author js-header-author">Jack yin</h1>
 			</hgroup>
 			
 			
@@ -160,11 +160,11 @@
 			        
 						<a class="rss" target="_blank" href="/atom.xml" title="rss"><i class="icon-rss"></i></a>
 			        
-						<a class="qq" target="_blank" href="/assets/qq.jpg" title="qq"><i class="icon-qq"></i></a>
+						<a class="zhihu" target="_blank" href="https://www.zhihu.com/people/khan-55-55" title="zhihu"><i class="icon-zhihu"></i></a>
 			        
 						<a class="bilibili" target="_blank" href="https://space.bilibili.com/351001593" title="bilibili"><i class="icon-bilibili"></i></a>
 			        
-						<a class="mail" target="_blank" href="mailto:838278270@qq.com" title="mail"><i class="icon-mail"></i></a>
+						<a class="mail" target="_blank" href="mailto:yinkehan666@gmail.com" title="mail"><i class="icon-mail"></i></a>
 			        
 				</div>
 			</nav>
@@ -317,7 +317,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=https://yoursite.com/2020/07/15/%E6%A8%A1%E6%8B%9F%E9%80%80%E7%81%ABmatlab%E5%AE%9E%E7%8E%B0%EF%BC%88TSP%E4%B8%BA%E4%BE%8B%EF%BC%89/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=https://jackyin.space/2020/07/15/%E6%A8%A1%E6%8B%9F%E9%80%80%E7%81%ABmatlab%E5%AE%9E%E7%8E%B0%EF%BC%88TSP%E4%B8%BA%E4%BE%8B%EF%BC%89/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -444,11 +444,11 @@ MathJax.Hub.Queue(function() {
     </script>
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2022 Jack Yin
+    		&copy; 2022 Jack yin
     	</div>
 		<div style="display: inline;">
 			<img src="http://www.beian.gov.cn/img/new/gongan.png">
-<a href="http://www.beian.miit.gov.cn/"  style="color:#f72b07" target="_blank">湘ICP备2022023439号</a>
+<a href="https://beian.miit.gov.cn"  style="color:#14191e;font-weight: 600;" target="_blank">湘ICP备2022023439号</a>
 		</div>
       	<div class="footer-right">
       		<a href="https://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
@@ -599,11 +599,15 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">youth</a>
+                <a href="javascript:void(0)" class="js-tag color5">Hexo</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">数据库系统</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">youth</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -612,10 +616,6 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">编译原理</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Hexo</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -715,11 +715,11 @@ MathJax.Hub.Queue(function() {
         <ul class="search-ul">
           
             <li class="search-li">
-              <a href="https://blog.csdn.net/Jack___E/article/details/102875285" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>我的csdn</a>
+              <a href="https://juejin.cn/user/2365804755816072" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>我的掘金</a>
             </li>
           
             <li class="search-li">
-              <a href="https://xgpax.top/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>广平的小世界</a>
+              <a href="https://bytedancer.vip/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>广平的小世界</a>
             </li>
           
             <li class="search-li">

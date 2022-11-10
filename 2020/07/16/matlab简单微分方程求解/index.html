@@ -5,16 +5,16 @@
   
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-  <link rel="dns-prefetch" href="https://yoursite.com">
+  <link rel="dns-prefetch" href="https://jackyin.space">
   <title>matlab简单微分方程求解 | ykhblog 一路向北</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="时隔半年，我又重回微分方程的学习了，现在学确实挺难搞的，很多知识和理论思路都忘了，数学还是很重要啊，其实一个蛮简单的东西我看了很久很久才慢慢的又懂了，话不多说，直接写文。首先要明确的一点就是，我们求微分方程的时候，要注意有解析解和数值解，解析解又有通解和特解，这在我们编写代码的时候可以通过初始点的值来获得特解。其实今天老师讲的还挺不错的，举出了很多的例子，基本上与物理有关，其实要说这一个模块最稳妥">
 <meta property="og:type" content="article">
 <meta property="og:title" content="matlab简单微分方程求解">
-<meta property="og:url" content="https://yoursite.com/2020/07/16/matlab%E7%AE%80%E5%8D%95%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B%E6%B1%82%E8%A7%A3/index.html">
+<meta property="og:url" content="https://jackyin.space/2020/07/16/matlab%E7%AE%80%E5%8D%95%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B%E6%B1%82%E8%A7%A3/index.html">
 <meta property="og:site_name" content="ykhblog 一路向北">
 <meta property="og:description" content="时隔半年，我又重回微分方程的学习了，现在学确实挺难搞的，很多知识和理论思路都忘了，数学还是很重要啊，其实一个蛮简单的东西我看了很久很久才慢慢的又懂了，话不多说，直接写文。首先要明确的一点就是，我们求微分方程的时候，要注意有解析解和数值解，解析解又有通解和特解，这在我们编写代码的时候可以通过初始点的值来获得特解。其实今天老师讲的还挺不错的，举出了很多的例子，基本上与物理有关，其实要说这一个模块最稳妥">
-<meta property="og:locale" content="en_US">
+<meta property="og:locale" content="zh">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/20200716225724889.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0phY2tfX19F,size_16,color_FFFFFF,t_70#pic_center">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/2020071622590399.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0phY2tfX19F,size_16,color_FFFFFF,t_70#pic_center">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/20200716230944302.png#pic_center">
@@ -29,7 +29,7 @@
 <meta property="og:image" content="https://img-blog.csdnimg.cn/20200716232957721.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0phY2tfX19F,size_16,color_FFFFFF,t_70#pic_center">
 <meta property="article:published_time" content="2020-07-16T15:36:00.000Z">
 <meta property="article:modified_time" content="2021-01-19T04:31:33.876Z">
-<meta property="article:author" content="Jack Yin">
+<meta property="article:author" content="Jack yin">
 <meta property="article:tag" content="数学建模">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://img-blog.csdnimg.cn/20200716225724889.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0phY2tfX19F,size_16,color_FFFFFF,t_70#pic_center">
@@ -74,7 +74,7 @@
 			<img src="/assets/xxb.jpg" class="js-avatar">
 		</a>
 		<hgroup>
-		  <h1 class="header-author" style="margin-bottom: 0%;"><a href="/">Jack Yin</a></h1>
+		  <h1 class="header-author" style="margin-bottom: 0%;"><a href="/">Jack yin</a></h1>
 		</hgroup>
 		
 
@@ -115,11 +115,11 @@
 		        
 					<a class="rss" target="_blank" href="/atom.xml" title="rss"><i class="icon-rss"></i></a>
 		        
-					<a class="qq" target="_blank" href="/assets/qq.jpg" title="qq"><i class="icon-qq"></i></a>
+					<a class="zhihu" target="_blank" href="https://www.zhihu.com/people/khan-55-55" title="zhihu"><i class="icon-zhihu"></i></a>
 		        
 					<a class="bilibili" target="_blank" href="https://space.bilibili.com/351001593" title="bilibili"><i class="icon-bilibili"></i></a>
 		        
-					<a class="mail" target="_blank" href="mailto:838278270@qq.com" title="mail"><i class="icon-mail"></i></a>
+					<a class="mail" target="_blank" href="mailto:yinkehan666@gmail.com" title="mail"><i class="icon-mail"></i></a>
 		        
 			</div>
 
@@ -149,7 +149,7 @@
 				<img src="/assets/xxb.jpg" class="js-avatar">
 			</div>
 			<hgroup>
-			  <h1 class="header-author js-header-author">Jack Yin</h1>
+			  <h1 class="header-author js-header-author">Jack yin</h1>
 			</hgroup>
 			
 			
@@ -169,11 +169,11 @@
 			        
 						<a class="rss" target="_blank" href="/atom.xml" title="rss"><i class="icon-rss"></i></a>
 			        
-						<a class="qq" target="_blank" href="/assets/qq.jpg" title="qq"><i class="icon-qq"></i></a>
+						<a class="zhihu" target="_blank" href="https://www.zhihu.com/people/khan-55-55" title="zhihu"><i class="icon-zhihu"></i></a>
 			        
 						<a class="bilibili" target="_blank" href="https://space.bilibili.com/351001593" title="bilibili"><i class="icon-bilibili"></i></a>
 			        
-						<a class="mail" target="_blank" href="mailto:838278270@qq.com" title="mail"><i class="icon-mail"></i></a>
+						<a class="mail" target="_blank" href="mailto:yinkehan666@gmail.com" title="mail"><i class="icon-mail"></i></a>
 			        
 				</div>
 			</nav>
@@ -311,7 +311,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=https://yoursite.com/2020/07/16/matlab%E7%AE%80%E5%8D%95%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B%E6%B1%82%E8%A7%A3/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=https://jackyin.space/2020/07/16/matlab%E7%AE%80%E5%8D%95%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B%E6%B1%82%E8%A7%A3/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -438,11 +438,11 @@ MathJax.Hub.Queue(function() {
     </script>
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2022 Jack Yin
+    		&copy; 2022 Jack yin
     	</div>
 		<div style="display: inline;">
 			<img src="http://www.beian.gov.cn/img/new/gongan.png">
-<a href="http://www.beian.miit.gov.cn/"  style="color:#f72b07" target="_blank">湘ICP备2022023439号</a>
+<a href="https://beian.miit.gov.cn"  style="color:#14191e;font-weight: 600;" target="_blank">湘ICP备2022023439号</a>
 		</div>
       	<div class="footer-right">
       		<a href="https://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
@@ -593,11 +593,15 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">youth</a>
+                <a href="javascript:void(0)" class="js-tag color5">Hexo</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">数据库系统</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">youth</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -606,10 +610,6 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">编译原理</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Hexo</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -709,11 +709,11 @@ MathJax.Hub.Queue(function() {
         <ul class="search-ul">
           
             <li class="search-li">
-              <a href="https://blog.csdn.net/Jack___E/article/details/102875285" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>我的csdn</a>
+              <a href="https://juejin.cn/user/2365804755816072" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>我的掘金</a>
             </li>
           
             <li class="search-li">
-              <a href="https://xgpax.top/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>广平的小世界</a>
+              <a href="https://bytedancer.vip/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>广平的小世界</a>
             </li>
           
             <li class="search-li">
