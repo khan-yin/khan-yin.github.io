@@ -19,8 +19,8 @@
 <meta property="article:published_time" content="2022-01-08T12:06:00.000Z">
 <meta property="article:modified_time" content="2022-11-10T13:48:30.262Z">
 <meta property="article:author" content="Jack yin">
-<meta property="article:tag" content="计算机视觉">
 <meta property="article:tag" content="youth">
+<meta property="article:tag" content="计算机视觉">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/dbd45e082698420b9b85744f2504308f~tplv-k3u1fbpfcp-watermark.image">
   
@@ -211,11 +211,12 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><img src="https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/dbd45e082698420b9b85744f2504308f~tplv-k3u1fbpfcp-watermark.image?" alt="66CC884772E6FB9A1E2BA12BC9E7C9C4.jpg"></p>
+        <p><img src="https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/dbd45e082698420b9b85744f2504308f~tplv-k3u1fbpfcp-watermark.image" alt="66CC884772E6FB9A1E2BA12BC9E7C9C4.jpg"></p>
 <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><blockquote>
 <p>第一次在掘金写面经，其实今年过得不尽人意，好在能找找实习调整一下心态吧，终于有钱换手机了！<strong>要说有什么新年愿望，那就希望2022一切好运吧。</strong> 虽然是实习面经但是其实也没怎么准备，随缘，放弃了bat的部门，估计对学历和论文有门槛(尝试性投了深圳字节直接挂简历，<strong>我永远喜欢bytedance</strong>😭)，10月投b站简历挂，旷视面试没过以后就没投了，后面去学车了，结果科目二没过，有点闲看到有朋友也在投，就不抱希望还是投了3家，比较幸运最后拿到了美团和商汤的实习offer，感谢面试官们手下留情🤣。</p>
 </blockquote>
 <a id="more"></a>
+
 <p><strong>个人情况：</strong>  </p>
 <ul>
 <li>学校：211 大四</li>
@@ -238,6 +239,7 @@
 <li>其他人或者老师给你任务安排时，如果与你的想法不合时，你会如何做？</li>
 </ul>
 <h3 id="手写IoU"><a href="#手写IoU" class="headerlink" title="手写IoU"></a>手写IoU</h3><figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np<br><br><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">IoU</span><span class="hljs-params">(bounding_box,ground_truth)</span>:</span><br>    <span class="hljs-string">"""</span><br><span class="hljs-string"></span><br><span class="hljs-string">    :param bounding_box: [[x1,y1,x2,y2,score]]</span><br><span class="hljs-string">    :param ground_truth: [x1,y1,x2,y2]</span><br><span class="hljs-string">    :return:</span><br><span class="hljs-string">    """</span><br>    x1 = bounding_box[:,<span class="hljs-number">0</span>]<br>    y1 = bounding_box[:,<span class="hljs-number">1</span>]<br>    x2 = bounding_box[:,<span class="hljs-number">2</span>]<br>    y2 = bounding_box[:,<span class="hljs-number">3</span>]<br>    score = bounding_box[:,<span class="hljs-number">4</span>]<br><br>    areas = (x2-x1) * (y2-y1)<br>    gt_area = (ground_truth[<span class="hljs-number">2</span>] - ground_truth[<span class="hljs-number">0</span>]) * (ground_truth[<span class="hljs-number">3</span>] - ground_truth[<span class="hljs-number">1</span>])<br><br>    xx1 = np.maximum(x1,ground_truth[<span class="hljs-number">0</span>])<br>    yy1 = np.maximum(y1,ground_truth[<span class="hljs-number">1</span>])<br>    xx2 = np.minimum(x2,ground_truth[<span class="hljs-number">2</span>])<br>    yy2 = np.minimum(y2,ground_truth[<span class="hljs-number">3</span>])<br><br>    h = np.maximum(<span class="hljs-number">0</span>,yy2-yy1)<br>    w = np.maximum(<span class="hljs-number">0</span>,xx2-xx1)<br><br>    inter = w * h<br><br>    ovr = inter / (gt_area + areas - inter) <span class="hljs-comment"># np.true_divide(inter, (gt_area + areas - inter))</span><br><br>    <span class="hljs-keyword">return</span> ovr<br></code></pre></td></tr></table></figure>
+
 <h3 id="旋转矩阵"><a href="#旋转矩阵" class="headerlink" title="旋转矩阵"></a>旋转矩阵</h3><figure class="highlight cpp"><table><tr><td class="code"><pre><code class="hljs cpp"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> &#123;</span><br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">rotate</span><span class="hljs-params">(<span class="hljs-built_in">vector</span>&lt;<span class="hljs-built_in">vector</span>&lt;<span class="hljs-keyword">int</span>&gt;&gt;&amp; matrix)</span> </span>&#123;<br>        <span class="hljs-keyword">int</span> n = matrix.size();<br>        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">0</span>;i&lt;n/<span class="hljs-number">2</span>;i++)<br>        &#123;<br>            <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> j=<span class="hljs-number">0</span>;j&lt;(n+<span class="hljs-number">1</span>)/<span class="hljs-number">2</span>;j++)<br>            &#123;<br>                <span class="hljs-comment">// (i,j) (j,n-i-1)  (n-j-1,i) (n-i-1,n-j-1)</span><br>                swap(matrix[i][j],matrix[n-i<span class="hljs-number">-1</span>][n-j<span class="hljs-number">-1</span>]);<br>                swap(matrix[i][j],matrix[n-j<span class="hljs-number">-1</span>][i]);<br>                swap(matrix[j][n-i<span class="hljs-number">-1</span>],matrix[n-i<span class="hljs-number">-1</span>][n-j<span class="hljs-number">-1</span>]);<br>            &#125;<br>        &#125;<br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
 <h2 id="小米"><a href="#小米" class="headerlink" title="小米"></a>小米</h2><p>小米面试其实是当时最好的选择，因为就在武汉本地，也不用外出，但是当时面试确实不太好，面试官对我其中一个项目比较感兴趣，被疯狂怼着追问细节。</p>
 <ul>
@@ -297,21 +299,25 @@
 <li><a href="https://leetcode-cn.com/problems/shu-zu-zhong-chu-xian-ci-shu-chao-guo-yi-ban-de-shu-zi-lcof/" target="_blank" rel="noopener">剑指 Offer 39. 数组中出现次数超过一半的数字</a> <strong>第二题直接限制时间复杂度</strong>$O(n)$，<strong>空间复杂度</strong>$O(1)$，我只会哈希方法，然后和面试官说了一下最优解方法我只记得叫<strong>摩尔投票</strong>，然后具体忘了。</li>
 </ul>
 <h3 id="栈的压入、弹出序列"><a href="#栈的压入、弹出序列" class="headerlink" title="栈的压入、弹出序列"></a>栈的压入、弹出序列</h3><figure class="highlight cpp"><table><tr><td class="code"><pre><code class="hljs cpp"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> &#123;</span><br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">validateStackSequences</span><span class="hljs-params">(<span class="hljs-built_in">vector</span>&lt;<span class="hljs-keyword">int</span>&gt;&amp; pushed, <span class="hljs-built_in">vector</span>&lt;<span class="hljs-keyword">int</span>&gt;&amp; popped)</span> </span>&#123;<br>            <span class="hljs-built_in">stack</span>&lt;<span class="hljs-keyword">int</span>&gt; stk;<br>            <span class="hljs-keyword">int</span> n = popped.size();<br>            <span class="hljs-keyword">int</span> m = pushed.size();<br>            <span class="hljs-keyword">int</span> j = <span class="hljs-number">0</span>;<br>            <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">0</span>;i&lt;m;i++)<br>            &#123;<br>                stk.push(pushed[i]);<br>                <span class="hljs-keyword">while</span>(stk.size()&amp;&amp;stk.top()==popped[j])<br>                &#123;<br>                    j++;<br>                    stk.pop();<br>                &#125;<br>            &#125;<br>            <span class="hljs-keyword">return</span> stk.empty();<br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
+
 <h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><p>还有一些感觉比较重要，但是没有被问道的东西，包括各种评价指标的含义等等，包括数学基础等等。<br>经典教程推荐：cs231n，吴恩达，李宏毅，动手学深度学习，《统计学习方法》<br>关于八股文方面这里推荐一个<a href="https://github.com/scutan90/DeepLearning-500-questions" target="_blank" rel="noopener">DeepLearning-500-questions</a></p>
 <h3 id="手写非极大抑制"><a href="#手写非极大抑制" class="headerlink" title="手写非极大抑制"></a>手写非极大抑制</h3><p><strong>使用非极大抑制的前提是，我们已经得到了一组候选框和对应label的置信分数，以及groud truth的信息，通过设定阈值来删除重合度较高的候选框。</strong><br>算法流程如下：</p>
 <ul>
-<li>根据置信度得分进行排序</li>
-<li>选择置信度最高的比边界框添加到最终输出列表中，将其从边界框列表中删除</li>
-<li>计算所有边界框的面积</li>
-<li>计算置信度最高的边界框与其它候选框的IoU。</li>
-<li>删除IoU大于阈值的边界框</li>
-<li>重复上述过程，直至边界框列表为空。</li>
+<li>  根据置信度得分进行排序</li>
+<li>  选择置信度最高的比边界框添加到最终输出列表中，将其从边界框列表中删除</li>
+<li>  计算所有边界框的面积</li>
+<li>  计算置信度最高的边界框与其它候选框的IoU。</li>
+<li>  删除IoU大于阈值的边界框</li>
+<li>  重复上述过程，直至边界框列表为空。</li>
 </ul>
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np<br><br><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">nms</span><span class="hljs-params">(dets, threshod, mode=<span class="hljs-string">"Union"</span>)</span>:</span><br>    <span class="hljs-string">"""</span><br><span class="hljs-string">    greedily select boxes with high confidence</span><br><span class="hljs-string">    keep boxes overlap &lt;= thresh</span><br><span class="hljs-string">    rule out overlap &gt; thresh</span><br><span class="hljs-string">    :param dets: [[x1, y1, x2, y2 score]]</span><br><span class="hljs-string">    :param threshod: retain overlap &lt;= thresh</span><br><span class="hljs-string">    :return: indexes to keep</span><br><span class="hljs-string">    """</span><br>    x1 = dets[:, <span class="hljs-number">0</span>]<br>    y1 = dets[:, <span class="hljs-number">1</span>]<br>    x2 = dets[:, <span class="hljs-number">2</span>]<br>    y2 = dets[:, <span class="hljs-number">3</span>]<br><br>    scores = dets[:, <span class="hljs-number">4</span>]<br><br>    areas = (x2 - x1 + <span class="hljs-number">1</span>) * (y2 - y1 + <span class="hljs-number">1</span>)<br>    order = scores.argsort()[::<span class="hljs-number">-1</span>]  <span class="hljs-comment"># reverse</span><br><br>    keep = []<br><br>    <span class="hljs-keyword">while</span> order.size() &gt; <span class="hljs-number">0</span>:<br>        i = order[<span class="hljs-number">0</span>]<br>        keep.append(i)<br>        <span class="hljs-comment"># A &amp; B left top position </span><br>        xx1 = np.maximun(x1[i], x1[order[<span class="hljs-number">1</span>, :]])<br>        yy1 = np.maximun(y1[i], y1[order[<span class="hljs-number">1</span>, :]])<br>        <span class="hljs-comment"># A &amp; B right down position</span><br>        xx2 = np.minimum(x2[i], x2[order[<span class="hljs-number">1</span>, :]])<br>        yy2 = np.minimum(y2[i], y2[order[<span class="hljs-number">1</span>:]])<br><br>        w = np.maximum(<span class="hljs-number">0.0</span>, xx2 - xx1 + <span class="hljs-number">1</span>)<br>        h = np.maximum(<span class="hljs-number">0.0</span>, yy2 - yy1 + <span class="hljs-number">1</span>)<br><br>        inter = w * h<br><br>        <span class="hljs-comment"># cacaulate the IOU between box which have largest score with other boxes</span><br>        <span class="hljs-keyword">if</span> mode == <span class="hljs-string">"Union"</span>:<br>            <span class="hljs-comment"># area[i]: the area of largest score</span><br>            ovr = inter / (areas[i] + areas[order[<span class="hljs-number">1</span>:]] - inter)<br>        <span class="hljs-keyword">elif</span> mode == <span class="hljs-string">"Minimum"</span>:<br>            ovr = inter / np.minimum(areas[i], areas[order[<span class="hljs-number">1</span>:]])<br>        <span class="hljs-comment"># delete the IoU that higher than threshod </span><br>        inds = np.where(ovr &lt;= threshod)[<span class="hljs-number">0</span>]<br>        order = order[inds + <span class="hljs-number">1</span>]  <span class="hljs-comment"># +1: eliminates the first element in order</span><br><br>    <span class="hljs-keyword">return</span> keep<br></code></pre></td></tr></table></figure>
+
 <h3 id="手写Kmeans方法"><a href="#手写Kmeans方法" class="headerlink" title="手写Kmeans方法"></a>手写Kmeans方法</h3><blockquote>
 <p>参考链接：<a href="https://www.cnblogs.com/lunge-blog/p/11657415.html" target="_blank" rel="noopener">https://www.cnblogs.com/lunge-blog/p/11657415.html</a></p>
 </blockquote>
-<p>这个版本不是最佳写法，某些处理有点暴力，可以用矩阵和numpy相关的操作会更简洁，但是退出迭代的条件写的很全的，有达到迭代次数，中心点集不变，中心点变化范围小于$\delta$<br><figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np<br><span class="hljs-keyword">import</span> matplotlib.pyplot <span class="hljs-keyword">as</span> plt<br><br>n = <span class="hljs-number">100</span><br>a = np.random.randn(<span class="hljs-number">0</span>,<span class="hljs-number">50</span>,n)<br>b = np.random.rand(<span class="hljs-number">0</span>,<span class="hljs-number">50</span>,n)<br>x = np.random.randint(<span class="hljs-number">0</span>,<span class="hljs-number">50</span>,n)<br>y = np.random.randint(<span class="hljs-number">0</span>,<span class="hljs-number">50</span>,n)<br>points = np.array(list(zip(x,y)))<br><br><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">distance</span><span class="hljs-params">(x,y)</span>:</span><br>    <span class="hljs-keyword">return</span> np.sqrt(np.sum((x-y)**<span class="hljs-number">2</span>))<br><br><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">k_means</span><span class="hljs-params">(points,k=<span class="hljs-number">5</span>,epochs=<span class="hljs-number">500</span>,delta=<span class="hljs-number">1e-3</span>)</span>:</span><br>    <span class="hljs-comment"># 初始化聚类中心</span><br>    center_ids = np.random.randint(<span class="hljs-number">0</span>,n,k)<br>    centers = points[center_ids]<br><br>    <span class="hljs-comment"># 聚类集合初始化</span><br>    results = []<br>    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(k):<br>        results.append([])<br>    step = <span class="hljs-number">1</span><br>    flag = <span class="hljs-literal">True</span><br><br>    <span class="hljs-comment"># 计算各点到中心的距离</span><br>    <span class="hljs-keyword">while</span> flag <span class="hljs-keyword">and</span> step &lt; epochs:<br>        <span class="hljs-comment"># 重新迭代</span><br>        <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(k):<br>            results[i] = []<br>        <span class="hljs-comment"># 计算每个点到距离中心的距离</span><br>        <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(len(points)):<br>            point = points[i]<br>            min_dis = np.inf<br>            min_id = <span class="hljs-number">0</span><br><br>            <span class="hljs-keyword">for</span> idx, center <span class="hljs-keyword">in</span> enumerate(centers):<br>                dis = distance(center,point)<br>                <span class="hljs-keyword">if</span> min_dis &gt; dis:<br>                    min_dis = dis<br>                    min_id = idx<br>            results[min_id].append(point)<br><br>        <span class="hljs-comment"># 更新聚类中心</span><br>        <span class="hljs-keyword">for</span> idx, old_center <span class="hljs-keyword">in</span> enumerate(centers):<br>            new_center = np.array(results[idx]).mean(axis=<span class="hljs-number">0</span>)<br>            <span class="hljs-keyword">if</span> distance(center, new_center) &gt; delta:<br>                centers[idx] = new_center<br>                flag = <span class="hljs-literal">False</span><br><br>        <span class="hljs-comment"># flag=True说明聚类中心已经不变了则可以退出了</span><br>        <span class="hljs-keyword">if</span> flag:<br>            <span class="hljs-keyword">break</span><br>        <span class="hljs-keyword">else</span>:<br>            flag = <span class="hljs-literal">True</span><br>        step += <span class="hljs-number">1</span><br><br>    <span class="hljs-keyword">return</span> results,centers<br><br><br><br>plt.plot(x,y,<span class="hljs-string">'ro'</span>)<br>results,centers=k_means(points,k=<span class="hljs-number">5</span>)<br>color=[<span class="hljs-string">'ko'</span>,<span class="hljs-string">'go'</span>,<span class="hljs-string">'bo'</span>,<span class="hljs-string">'yo'</span>,<span class="hljs-string">'co'</span>]<br><span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(len(results)):<br>    result=results[i]<br>    plt.plot([res[<span class="hljs-number">0</span>] <span class="hljs-keyword">for</span> res <span class="hljs-keyword">in</span> result],[res[<span class="hljs-number">1</span>] <span class="hljs-keyword">for</span> res <span class="hljs-keyword">in</span> result],color[i])<br>plt.plot([res[<span class="hljs-number">0</span>] <span class="hljs-keyword">for</span> res <span class="hljs-keyword">in</span> centers],[res[<span class="hljs-number">1</span>] <span class="hljs-keyword">for</span> res <span class="hljs-keyword">in</span> centers],<span class="hljs-string">'ro'</span>)<br>plt.show()<br></code></pre></td></tr></table></figure></p>
+<p>这个版本不是最佳写法，某些处理有点暴力，可以用矩阵和numpy相关的操作会更简洁，但是退出迭代的条件写的很全的，有达到迭代次数，中心点集不变，中心点变化范围小于$\delta$</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np<br><span class="hljs-keyword">import</span> matplotlib.pyplot <span class="hljs-keyword">as</span> plt<br><br>n = <span class="hljs-number">100</span><br>a = np.random.randn(<span class="hljs-number">0</span>,<span class="hljs-number">50</span>,n)<br>b = np.random.rand(<span class="hljs-number">0</span>,<span class="hljs-number">50</span>,n)<br>x = np.random.randint(<span class="hljs-number">0</span>,<span class="hljs-number">50</span>,n)<br>y = np.random.randint(<span class="hljs-number">0</span>,<span class="hljs-number">50</span>,n)<br>points = np.array(list(zip(x,y)))<br><br><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">distance</span><span class="hljs-params">(x,y)</span>:</span><br>    <span class="hljs-keyword">return</span> np.sqrt(np.sum((x-y)**<span class="hljs-number">2</span>))<br><br><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">k_means</span><span class="hljs-params">(points,k=<span class="hljs-number">5</span>,epochs=<span class="hljs-number">500</span>,delta=<span class="hljs-number">1e-3</span>)</span>:</span><br>    <span class="hljs-comment"># 初始化聚类中心</span><br>    center_ids = np.random.randint(<span class="hljs-number">0</span>,n,k)<br>    centers = points[center_ids]<br><br>    <span class="hljs-comment"># 聚类集合初始化</span><br>    results = []<br>    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(k):<br>        results.append([])<br>    step = <span class="hljs-number">1</span><br>    flag = <span class="hljs-literal">True</span><br><br>    <span class="hljs-comment"># 计算各点到中心的距离</span><br>    <span class="hljs-keyword">while</span> flag <span class="hljs-keyword">and</span> step &lt; epochs:<br>        <span class="hljs-comment"># 重新迭代</span><br>        <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(k):<br>            results[i] = []<br>        <span class="hljs-comment"># 计算每个点到距离中心的距离</span><br>        <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(len(points)):<br>            point = points[i]<br>            min_dis = np.inf<br>            min_id = <span class="hljs-number">0</span><br><br>            <span class="hljs-keyword">for</span> idx, center <span class="hljs-keyword">in</span> enumerate(centers):<br>                dis = distance(center,point)<br>                <span class="hljs-keyword">if</span> min_dis &gt; dis:<br>                    min_dis = dis<br>                    min_id = idx<br>            results[min_id].append(point)<br><br>        <span class="hljs-comment"># 更新聚类中心</span><br>        <span class="hljs-keyword">for</span> idx, old_center <span class="hljs-keyword">in</span> enumerate(centers):<br>            new_center = np.array(results[idx]).mean(axis=<span class="hljs-number">0</span>)<br>            <span class="hljs-keyword">if</span> distance(center, new_center) &gt; delta:<br>                centers[idx] = new_center<br>                flag = <span class="hljs-literal">False</span><br><br>        <span class="hljs-comment"># flag=True说明聚类中心已经不变了则可以退出了</span><br>        <span class="hljs-keyword">if</span> flag:<br>            <span class="hljs-keyword">break</span><br>        <span class="hljs-keyword">else</span>:<br>            flag = <span class="hljs-literal">True</span><br>        step += <span class="hljs-number">1</span><br><br>    <span class="hljs-keyword">return</span> results,centers<br><br><br><br>plt.plot(x,y,<span class="hljs-string">'ro'</span>)<br>results,centers=k_means(points,k=<span class="hljs-number">5</span>)<br>color=[<span class="hljs-string">'ko'</span>,<span class="hljs-string">'go'</span>,<span class="hljs-string">'bo'</span>,<span class="hljs-string">'yo'</span>,<span class="hljs-string">'co'</span>]<br><span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(len(results)):<br>    result=results[i]<br>    plt.plot([res[<span class="hljs-number">0</span>] <span class="hljs-keyword">for</span> res <span class="hljs-keyword">in</span> result],[res[<span class="hljs-number">1</span>] <span class="hljs-keyword">for</span> res <span class="hljs-keyword">in</span> result],color[i])<br>plt.plot([res[<span class="hljs-number">0</span>] <span class="hljs-keyword">for</span> res <span class="hljs-keyword">in</span> centers],[res[<span class="hljs-number">1</span>] <span class="hljs-keyword">for</span> res <span class="hljs-keyword">in</span> centers],<span class="hljs-string">'ro'</span>)<br>plt.show()<br></code></pre></td></tr></table></figure>
+
 <h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><blockquote>
 <p>本人能力有限，如果上述回答有任何错误，还请各位大佬及时指出</p>
 </blockquote>
@@ -322,7 +328,7 @@
 <li>不用害怕，尽量多交流，避免场面陷入尴尬。</li>
 <li>反问环节我一般问的是来这边的工作内容，学习的建议和评价，培养和安排之类的。</li>
 </ul>
-<p>「掘金链接：<a href="https://juejin.cn/post/7050660953846710302&quot;" target="_blank" rel="noopener">菜鸡的算法岗日常实习面经总结</a>」</p>
+<p>「掘金链接：<a href="https://juejin.cn/post/7050660953846710302%22" target="_blank" rel="noopener">菜鸡的算法岗日常实习面经总结</a>」</p>
 
       
 
@@ -336,11 +342,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">计算机视觉</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">youth</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">youth</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">计算机视觉</a>
         		</li>
       		
 		</ul>
@@ -678,7 +684,15 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">youth</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">数据库系统</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">编译原理</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -686,11 +700,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">计算机视觉</a>
+                <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">youth</a>
+                <a href="javascript:void(0)" class="js-tag color1">计算机视觉</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -718,19 +732,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">数学建模</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">操作系统</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">编译原理</a>
               </li>
              
               <li class="article-tag-list-item">

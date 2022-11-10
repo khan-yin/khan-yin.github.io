@@ -18,8 +18,8 @@
 <meta property="article:published_time" content="2020-10-02T08:03:30.000Z">
 <meta property="article:modified_time" content="2021-01-19T04:31:34.554Z">
 <meta property="article:author" content="Jack yin">
-<meta property="article:tag" content="web基础">
 <meta property="article:tag" content="JavaScript">
+<meta property="article:tag" content="web基础">
 <meta name="twitter:card" content="summary">
   
   
@@ -209,7 +209,9 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="对象与属性"><a href="#对象与属性" class="headerlink" title="对象与属性"></a>对象与属性</h2><p>同其他语言里面所描述的对象一样，在js里，一个对象就是一系列属性的集合，一个属性包含一个名和一个值。一个属性的值可以是函数，这种情况下属性也被称为方法。一个对象的属性可以被解释成一个附加到对象上的变量。对象有时也被叫作<strong>关联数组</strong>, 因为每个属性都有一个用于访问它的<strong>字符串值</strong>。<br><a id="more"></a><br>属性的访问设置与修改主要是通过两种手段实现，一种是通过点号对变量进行调用，一种是通过方括号的方式访问，其中通过方括号的方式是一种动态判定法(属性名只有到运行时才能判定)。</p>
+        <h2 id="对象与属性"><a href="#对象与属性" class="headerlink" title="对象与属性"></a>对象与属性</h2><p>同其他语言里面所描述的对象一样，在js里，一个对象就是一系列属性的集合，一个属性包含一个名和一个值。一个属性的值可以是函数，这种情况下属性也被称为方法。一个对象的属性可以被解释成一个附加到对象上的变量。对象有时也被叫作<strong>关联数组</strong>, 因为每个属性都有一个用于访问它的<strong>字符串值</strong>。</p>
+<a id="more"></a>
+<p>属性的访问设置与修改主要是通过两种手段实现，一种是通过点号对变量进行调用，一种是通过方括号的方式访问，其中通过方括号的方式是一种动态判定法(属性名只有到运行时才能判定)。</p>
 <p>一个对象的属性名可以是任何有效的 JavaScript 字符串，或者可以被转换为字符串的任何类型，<strong>包括空字符串</strong>。然而，一个属性的名称如果不是一个有效的 JavaScript 标识符（例如，一个由空格或连字符，或者以数字开头的属性名），<strong>就只能通过方括号标记访问。</strong></p>
 <p>方括号中的所有键都将转换为字符串类型，因为JavaScript中的对象只能使用<code>String</code>类型作为键类型,如果是<code>object</code>类型的话，也可以通过方括号直接添加属性，不过他添加属性的时候会调用<code>toString()</code>方法，并将其作为新的key值。</p>
 <p>你可以在<code>for...in</code>语句中使用方括号标记以枚举一个对象的所有属性</p>
@@ -220,18 +222,30 @@
 <li><strong>Object.getOwnPropertyNames(o)</strong><br>该方法返回对象 o 自身包含（不包括原型中）的所有属性(无论是否可枚举)的名称的数组。</li>
 </ul>
 <h2 id="创建新对象"><a href="#创建新对象" class="headerlink" title="创建新对象"></a>创建新对象</h2><p>JavaScript 拥有一系列预定义的对象，当然我们也可以自己创建对象，从  JavaScript 1.2 之后，你可以通过<strong>对象初始化器</strong>（Object Initializer）创建对象。或者你可以创建一个<strong>构造函数</strong>并使用该函数和<code>new</code>操作符初始化对象。</p>
-<h4 id="使用对象初始化器"><a href="#使用对象初始化器" class="headerlink" title="使用对象初始化器"></a>使用对象初始化器</h4><p>使用对象初始化器也被称作通过字面值创建对象，通过对象初始化器创建对象的语法如下：<br><figure class="highlight js"><table><tr><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">var</span> obj = &#123; <span class="hljs-attr">property_1</span>:   value_1,   <span class="hljs-comment">// property_# 可以是一个标识符...</span><br>            <span class="hljs-number">2</span>:            value_2,   <span class="hljs-comment">// 或一个数字...</span><br>           [<span class="hljs-string">"property"</span> +<span class="hljs-number">3</span>]: value_3,  <span class="hljs-comment">//  或一个可计算的key名... </span><br>            <span class="hljs-comment">// ...,</span><br>            <span class="hljs-string">"property n"</span>: value_n &#125;; <span class="hljs-comment">// 或一个字符串</span><br></code></pre></td></tr></table></figure><br>这里 <code>obj</code>是新对象的名称，每一个 <code>property_i</code> 是一个标识符（可以是一个名称、数字或字符串字面量），并且每个 <code>value_i</code> 是一个其值将被赋予 <code>property_i</code> 的表达式。<strong>obj 与赋值是可选的</strong>；<br><figure class="highlight js"><table><tr><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">var</span> myHonda = &#123;<span class="hljs-attr">color</span>: <span class="hljs-string">"red"</span>, <span class="hljs-attr">wheels</span>: <span class="hljs-number">4</span>, <span class="hljs-attr">engine</span>: &#123;<span class="hljs-attr">cylinders</span>: <span class="hljs-number">4</span>, <span class="hljs-attr">size</span>: <span class="hljs-number">2.2</span>&#125;&#125;;<span class="hljs-comment">//这里面的engine也是一个对象</span><br></code></pre></td></tr></table></figure></p>
+<h4 id="使用对象初始化器"><a href="#使用对象初始化器" class="headerlink" title="使用对象初始化器"></a>使用对象初始化器</h4><p>使用对象初始化器也被称作通过字面值创建对象，通过对象初始化器创建对象的语法如下：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">var</span> obj = &#123; <span class="hljs-attr">property_1</span>:   value_1,   <span class="hljs-comment">// property_# 可以是一个标识符...</span><br>            <span class="hljs-number">2</span>:            value_2,   <span class="hljs-comment">// 或一个数字...</span><br>           [<span class="hljs-string">"property"</span> +<span class="hljs-number">3</span>]: value_3,  <span class="hljs-comment">//  或一个可计算的key名... </span><br>            <span class="hljs-comment">// ...,</span><br>            <span class="hljs-string">"property n"</span>: value_n &#125;; <span class="hljs-comment">// 或一个字符串</span><br></code></pre></td></tr></table></figure>
+<p>这里 <code>obj</code>是新对象的名称，每一个 <code>property_i</code> 是一个标识符（可以是一个名称、数字或字符串字面量），并且每个 <code>value_i</code> 是一个其值将被赋予 <code>property_i</code> 的表达式。<strong>obj 与赋值是可选的</strong>；</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">var</span> myHonda = &#123;<span class="hljs-attr">color</span>: <span class="hljs-string">"red"</span>, <span class="hljs-attr">wheels</span>: <span class="hljs-number">4</span>, <span class="hljs-attr">engine</span>: &#123;<span class="hljs-attr">cylinders</span>: <span class="hljs-number">4</span>, <span class="hljs-attr">size</span>: <span class="hljs-number">2.2</span>&#125;&#125;;<span class="hljs-comment">//这里面的engine也是一个对象</span><br></code></pre></td></tr></table></figure>
+
 <h4 id="使用构造函数"><a href="#使用构造函数" class="headerlink" title="使用构造函数"></a>使用构造函数</h4><p>使用构造函数实例化对象的过程分为两步：</p>
 <ol>
 <li>通过创建一个构造函数来定义对象的类型。首字母大写是非常普遍而且很恰当的惯用法。</li>
 <li>通过 <code>new</code> 创建对象实例。</li>
 </ol>
-<h4 id="使用-Object-create-方法"><a href="#使用-Object-create-方法" class="headerlink" title="使用 Object.create 方法"></a>使用 Object.create 方法</h4><p>对象也可以用 <code>Object.create()</code> 方法创建。该方法非常有用，因为它允许你为创建的对象选择一个原型对象，而不用定义构造函数。<br><figure class="highlight js"><table><tr><td class="code"><pre><code class="hljs js"><span class="hljs-comment">// Animal properties and method encapsulation</span><br><span class="hljs-keyword">var</span> Animal = &#123;<br>  type: <span class="hljs-string">"Invertebrates"</span>, <span class="hljs-comment">// 属性默认值</span><br>  displayType : <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>&#123;  <span class="hljs-comment">// 用于显示type属性的方法</span><br>    <span class="hljs-built_in">console</span>.log(<span class="hljs-keyword">this</span>.type);<br>  &#125;<br>&#125;<br><br><span class="hljs-comment">// 创建一种新的动物——animal1 </span><br><span class="hljs-keyword">var</span> animal1 = <span class="hljs-built_in">Object</span>.create(Animal);<br>animal1.displayType(); <span class="hljs-comment">// Output:Invertebrates</span><br><br><span class="hljs-comment">// 创建一种新的动物——Fishes</span><br><span class="hljs-keyword">var</span> fish = <span class="hljs-built_in">Object</span>.create(Animal);<br>fish.type = <span class="hljs-string">"Fishes"</span>;<br>fish.displayType(); <span class="hljs-comment">// Output:Fishes</span><br></code></pre></td></tr></table></figure></p>
+<h4 id="使用-Object-create-方法"><a href="#使用-Object-create-方法" class="headerlink" title="使用 Object.create 方法"></a>使用 Object.create 方法</h4><p>对象也可以用 <code>Object.create()</code> 方法创建。该方法非常有用，因为它允许你为创建的对象选择一个原型对象，而不用定义构造函数。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><code class="hljs js"><span class="hljs-comment">// Animal properties and method encapsulation</span><br><span class="hljs-keyword">var</span> Animal = &#123;<br>  type: <span class="hljs-string">"Invertebrates"</span>, <span class="hljs-comment">// 属性默认值</span><br>  displayType : <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>&#123;  <span class="hljs-comment">// 用于显示type属性的方法</span><br>    <span class="hljs-built_in">console</span>.log(<span class="hljs-keyword">this</span>.type);<br>  &#125;<br>&#125;<br><br><span class="hljs-comment">// 创建一种新的动物——animal1 </span><br><span class="hljs-keyword">var</span> animal1 = <span class="hljs-built_in">Object</span>.create(Animal);<br>animal1.displayType(); <span class="hljs-comment">// Output:Invertebrates</span><br><br><span class="hljs-comment">// 创建一种新的动物——Fishes</span><br><span class="hljs-keyword">var</span> fish = <span class="hljs-built_in">Object</span>.create(Animal);<br>fish.type = <span class="hljs-string">"Fishes"</span>;<br>fish.displayType(); <span class="hljs-comment">// Output:Fishes</span><br></code></pre></td></tr></table></figure>
+
 <h2 id="继承"><a href="#继承" class="headerlink" title="继承"></a>继承</h2><p>所有的 JavaScript 对象至少继承于一个对象。<strong>被继承的对象被称作原型，并且继承的属性可通过构造函数的<code>prototype</code>对象找到。</strong></p>
-<h2 id="为对象类型定义属性"><a href="#为对象类型定义属性" class="headerlink" title="为对象类型定义属性"></a>为对象类型定义属性</h2><p>你可以通过 prototype 属性为之前定义的对象类型增加属性。这为该类型的所有对象，而不是仅仅一个对象增加了一个属性。下面的代码为所有类型为 car 的对象增加了 color 属性，然后为对象 car1 的 color 属性赋值：<br><figure class="highlight js"><table><tr><td class="code"><pre><code class="hljs js">Car.prototype.color = <span class="hljs-literal">null</span>;<br>car1.color = <span class="hljs-string">"black"</span>;<br></code></pre></td></tr></table></figure></p>
+<h2 id="为对象类型定义属性"><a href="#为对象类型定义属性" class="headerlink" title="为对象类型定义属性"></a>为对象类型定义属性</h2><p>你可以通过 prototype 属性为之前定义的对象类型增加属性。这为该类型的所有对象，而不是仅仅一个对象增加了一个属性。下面的代码为所有类型为 car 的对象增加了 color 属性，然后为对象 car1 的 color 属性赋值：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><code class="hljs js">Car.prototype.color = <span class="hljs-literal">null</span>;<br>car1.color = <span class="hljs-string">"black"</span>;<br></code></pre></td></tr></table></figure>
+
 <h2 id="通过-this-引用对象"><a href="#通过-this-引用对象" class="headerlink" title="通过 this 引用对象"></a>通过 this 引用对象</h2><p>avaScript 有一个特殊的关键字 this，它可以在方法中使用以指代当前对象。</p>
-<h2 id="删除属性"><a href="#删除属性" class="headerlink" title="删除属性"></a>删除属性</h2><p>你可以用<code>delete</code>操作符删除一个<strong>不是继承而来</strong>的属性。下面的例子说明如何删除一个属性：<br><figure class="highlight js"><table><tr><td class="code"><pre><code class="hljs js"><span class="hljs-comment">//Creates a new object, myobj, with two properties, a and b.</span><br><span class="hljs-keyword">var</span> myobj = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Object</span>;<br>myobj.a = <span class="hljs-number">5</span>;<br>myobj.b = <span class="hljs-number">12</span>;<br><br><span class="hljs-comment">//Removes the a property, leaving myobj with only the b property.</span><br><span class="hljs-keyword">delete</span> myobj.a;<br></code></pre></td></tr></table></figure></p>
-<h2 id="比较对象"><a href="#比较对象" class="headerlink" title="比较对象"></a>比较对象</h2><p><strong>在 JavaScript 中 objects 是一种引用类型。两个独立声明的对象永远也不会相等，即使他们有相同的属性，只有在比较一个对象和这个对象的引用时，才会返回true.</strong><br>这边是官方给出的例子<br><figure class="highlight js"><table><tr><td class="code"><pre><code class="hljs js"><span class="hljs-comment">// 两个变量, 两个具有同样的属性、但不相同的对象</span><br><span class="hljs-keyword">var</span> fruit = &#123;<span class="hljs-attr">name</span>: <span class="hljs-string">"apple"</span>&#125;;<br><span class="hljs-keyword">var</span> fruitbear = &#123;<span class="hljs-attr">name</span>: <span class="hljs-string">"apple"</span>&#125;;<br><br>fruit == fruitbear <span class="hljs-comment">// return false</span><br>fruit === fruitbear <span class="hljs-comment">// return false</span><br></code></pre></td></tr></table></figure><br><figure class="highlight js"><table><tr><td class="code"><pre><code class="hljs js"><span class="hljs-comment">// 两个变量, 同一个对象</span><br><span class="hljs-keyword">var</span> fruit = &#123;<span class="hljs-attr">name</span>: <span class="hljs-string">"apple"</span>&#125;;<br><span class="hljs-keyword">var</span> fruitbear = fruit;  <span class="hljs-comment">// 将fruit的对象引用(reference)赋值给 fruitbear</span><br>                        <span class="hljs-comment">// 也称为将fruitbear“指向”fruit对象</span><br><span class="hljs-comment">// fruit与fruitbear都指向同样的对象</span><br>fruit == fruitbear <span class="hljs-comment">// return true</span><br>fruit === fruitbear <span class="hljs-comment">// return true</span><br></code></pre></td></tr></table></figure></p>
+<h2 id="删除属性"><a href="#删除属性" class="headerlink" title="删除属性"></a>删除属性</h2><p>你可以用<code>delete</code>操作符删除一个<strong>不是继承而来</strong>的属性。下面的例子说明如何删除一个属性：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><code class="hljs js"><span class="hljs-comment">//Creates a new object, myobj, with two properties, a and b.</span><br><span class="hljs-keyword">var</span> myobj = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Object</span>;<br>myobj.a = <span class="hljs-number">5</span>;<br>myobj.b = <span class="hljs-number">12</span>;<br><br><span class="hljs-comment">//Removes the a property, leaving myobj with only the b property.</span><br><span class="hljs-keyword">delete</span> myobj.a;<br></code></pre></td></tr></table></figure>
+
+<h2 id="比较对象"><a href="#比较对象" class="headerlink" title="比较对象"></a>比较对象</h2><p><strong>在 JavaScript 中 objects 是一种引用类型。两个独立声明的对象永远也不会相等，即使他们有相同的属性，只有在比较一个对象和这个对象的引用时，才会返回true.</strong><br>这边是官方给出的例子</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><code class="hljs js"><span class="hljs-comment">// 两个变量, 两个具有同样的属性、但不相同的对象</span><br><span class="hljs-keyword">var</span> fruit = &#123;<span class="hljs-attr">name</span>: <span class="hljs-string">"apple"</span>&#125;;<br><span class="hljs-keyword">var</span> fruitbear = &#123;<span class="hljs-attr">name</span>: <span class="hljs-string">"apple"</span>&#125;;<br><br>fruit == fruitbear <span class="hljs-comment">// return false</span><br>fruit === fruitbear <span class="hljs-comment">// return false</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="code"><pre><code class="hljs js"><span class="hljs-comment">// 两个变量, 同一个对象</span><br><span class="hljs-keyword">var</span> fruit = &#123;<span class="hljs-attr">name</span>: <span class="hljs-string">"apple"</span>&#125;;<br><span class="hljs-keyword">var</span> fruitbear = fruit;  <span class="hljs-comment">// 将fruit的对象引用(reference)赋值给 fruitbear</span><br>                        <span class="hljs-comment">// 也称为将fruitbear“指向”fruit对象</span><br><span class="hljs-comment">// fruit与fruitbear都指向同样的对象</span><br>fruit == fruitbear <span class="hljs-comment">// return true</span><br>fruit === fruitbear <span class="hljs-comment">// return true</span><br></code></pre></td></tr></table></figure>
 
       
 
@@ -245,11 +259,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">web基础</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">JavaScript</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">JavaScript</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">web基础</a>
         		</li>
       		
 		</ul>
@@ -587,7 +601,15 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">youth</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">数据库系统</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">编译原理</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -595,11 +617,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">计算机视觉</a>
+                <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">youth</a>
+                <a href="javascript:void(0)" class="js-tag color1">计算机视觉</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -627,19 +649,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">数学建模</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">操作系统</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">编译原理</a>
               </li>
              
               <li class="article-tag-list-item">
