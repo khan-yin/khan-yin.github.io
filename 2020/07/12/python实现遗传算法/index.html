@@ -22,7 +22,7 @@
 <meta property="og:image" content="https://img-blog.csdnimg.cn/20200712213556520.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0phY2tfX19F,size_16,color_FFFFFF,t_70#pic_center">
 <meta property="article:published_time" content="2020-07-12T13:56:00.000Z">
 <meta property="article:modified_time" content="2021-01-19T04:31:33.790Z">
-<meta property="article:author" content="Jack yin">
+<meta property="article:author" content="Jack Yin">
 <meta property="article:tag" content="数学建模">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://img-blog.csdnimg.cn/20200712203430393.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0phY2tfX19F,size_16,color_FFFFFF,t_70#pic_center">
@@ -67,7 +67,7 @@
 			<img src="/assets/xxb.jpg" class="js-avatar">
 		</a>
 		<hgroup>
-		  <h1 class="header-author" style="margin-bottom: 0%;"><a href="/">Jack yin</a></h1>
+		  <h1 class="header-author" style="margin-bottom: 0%;"><a href="/">Jack Yin</a></h1>
 		</hgroup>
 		
 
@@ -112,7 +112,7 @@
 		        
 					<a class="bilibili" target="_blank" href="https://space.bilibili.com/351001593" title="bilibili"><i class="icon-bilibili"></i></a>
 		        
-					<a class="mail" target="_blank" href="mailto:yinkehan666@gmail.com" title="mail"><i class="icon-mail"></i></a>
+					<a class="mail" target="_blank" href="mailto:khany@foxmail.com" title="mail"><i class="icon-mail"></i></a>
 		        
 			</div>
 
@@ -142,7 +142,7 @@
 				<img src="/assets/xxb.jpg" class="js-avatar">
 			</div>
 			<hgroup>
-			  <h1 class="header-author js-header-author">Jack yin</h1>
+			  <h1 class="header-author js-header-author">Jack Yin</h1>
 			</hgroup>
 			
 			
@@ -166,7 +166,7 @@
 			        
 						<a class="bilibili" target="_blank" href="https://space.bilibili.com/351001593" title="bilibili"><i class="icon-bilibili"></i></a>
 			        
-						<a class="mail" target="_blank" href="mailto:yinkehan666@gmail.com" title="mail"><i class="icon-mail"></i></a>
+						<a class="mail" target="_blank" href="mailto:khany@foxmail.com" title="mail"><i class="icon-mail"></i></a>
 			        
 				</div>
 			</nav>
@@ -214,7 +214,8 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>今天研究了一下遗传算法，发现原理还是很好懂的，不过在应用层面上还是有很多要学习的方法，如何定义编码解码的过程，如何进行选择和交叉变异，这都是我们需要解决的事情，估计还是要多学多用才能学会，当然了如果大家对我写的这些内容如果有什么不同的看法的话也建议大家提出，毕竟算法小白一个。<br><a id="more"></a></p>
+        <p>今天研究了一下遗传算法，发现原理还是很好懂的，不过在应用层面上还是有很多要学习的方法，如何定义编码解码的过程，如何进行选择和交叉变异，这都是我们需要解决的事情，估计还是要多学多用才能学会，当然了如果大家对我写的这些内容如果有什么不同的看法的话也建议大家提出，毕竟算法小白一个。</p>
+<a id="more"></a>
 <h2 id="遗传算法介绍"><a href="#遗传算法介绍" class="headerlink" title="遗传算法介绍"></a>遗传算法介绍</h2><p>所谓遗传算法其实就是一种仿生算法，一种仿生全局优化算法模仿生物的遗传进化原理，通过自然选择（selection）、交叉（crossover）与变异（mutation）等操作机制，逐步淘汰掉适应度不够高的个体，使种群中个体的适应性（fitness）不断提高。<br><strong>核心思想：物竞天择，适者生存</strong><br><img src="https://img-blog.csdnimg.cn/20200712203430393.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0phY2tfX19F,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"><br>主要的一些应用领域主要是在</p>
 <ul>
 <li>函数优化，求函数极值类</li>
@@ -229,16 +230,20 @@
 <li><strong>解码</strong> ：解码主要是能够解析我们编码后的DNA序列，然后讲其表示的信息还原出来，然后进行适应度的计算。</li>
 <li><strong>自然选择</strong> ：自然选择主要是依据个体适应度的大小转化成被选择的概率，利用轮盘赌的方式——将数据按照指定的概率分布方式提取出来，从而实现了物竞天择适者生存的原理，适应度大的个体被留下来的概率会逐步增大。</li>
 <li><strong>变异</strong> ：随机修改某一位基因序列，从而改变他的适应度</li>
-<li><strong>交叉重组</strong> ：种群中随机选取两个个体，交互若干的DNA片段，从而改变他的适应度，生成新的子代<br><strong>这里我们要明白的一点就是，遗传算法只是提供了一个迭代的模板，具体的适应度函数也就是我们选择优化的相关指标和他的表示都是需要根据题目里面的问题来建模，然后编码解码的方式说白了其实就是如何表示我们要的可行解，比如说求一个函数的极值且精确到多少位那么他的可行解就是自变量，这里我们通常采用二进制编码，如果是TSP问题，那么可行解就可以表示成为各个配送点编号构成的一个数组，进行实数数组序列的方式编码，自然而然解码的方法和含义我们也都清楚了</strong><h2 id="求函数极值的问题"><a href="#求函数极值的问题" class="headerlink" title="求函数极值的问题"></a>求函数极值的问题</h2>这里是我根据网上莫烦的python视频教程，来写的一个算法，这里我们要做的问题是求出$f(x)=sin(10x)×x+cos(2x)×x$的极大值。</li>
+<li><strong>交叉重组</strong> ：种群中随机选取两个个体，交互若干的DNA片段，从而改变他的适应度，生成新的子代</li>
 </ul>
+<p><strong>这里我们要明白的一点就是，遗传算法只是提供了一个迭代的模板，具体的适应度函数也就是我们选择优化的相关指标和他的表示都是需要根据题目里面的问题来建模，然后编码解码的方式说白了其实就是如何表示我们要的可行解，比如说求一个函数的极值且精确到多少位那么他的可行解就是自变量，这里我们通常采用二进制编码，如果是TSP问题，那么可行解就可以表示成为各个配送点编号构成的一个数组，进行实数数组序列的方式编码，自然而然解码的方法和含义我们也都清楚了</strong></p>
+<h2 id="求函数极值的问题"><a href="#求函数极值的问题" class="headerlink" title="求函数极值的问题"></a>求函数极值的问题</h2><p>这里是我根据网上莫烦的python视频教程，来写的一个算法，这里我们要做的问题是求出$f(x)=sin(10x)×x+cos(2x)×x$的极大值。</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np<br><span class="hljs-keyword">import</span> pandas <span class="hljs-keyword">as</span> pd<br><span class="hljs-keyword">import</span> matplotlib.pyplot <span class="hljs-keyword">as</span> plt<br><br>DNA_SIZE=<span class="hljs-number">10</span>          <span class="hljs-comment">#编码DNA的长度</span><br>POP_SIZE=<span class="hljs-number">100</span>         <span class="hljs-comment">#初始化种群的大小</span><br>CROSS_RATE=<span class="hljs-number">0.8</span>       <span class="hljs-comment">#DNA交叉概率</span><br>MUTATION_RATE=<span class="hljs-number">0.003</span>  <span class="hljs-comment">#DNA变异概率</span><br>N_GENERATIONS=<span class="hljs-number">200</span>    <span class="hljs-comment">#迭代次数</span><br>X_BOUND=[<span class="hljs-number">0</span>,<span class="hljs-number">5</span>]        <span class="hljs-comment">#x upper and lower bounds x的区间</span><br><br><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">F</span><span class="hljs-params">(x)</span>:</span><br>    <span class="hljs-keyword">return</span> np.sin(<span class="hljs-number">10</span>*x)*x+np.cos(<span class="hljs-number">2</span>*x)*x<br><br><br><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">get_fitness</span><span class="hljs-params">(pred)</span>:</span><br>    <span class="hljs-keyword">return</span> pred+<span class="hljs-number">1e-3</span>-np.min(pred)<br>    <span class="hljs-comment">#获得适应值，这里是与min比较，越大则适应度越大，便于我们寻找最大值，为了防止结果为0特意加了一个较小的数来作为偏正</span><br><br><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">translateDNA</span><span class="hljs-params">(pop)</span>:</span><span class="hljs-comment">#DNA的二进制序列映射到x范围内</span><br>    <span class="hljs-keyword">return</span> pop.dot(<span class="hljs-number">2</span> ** np.arange(DNA_SIZE)[::<span class="hljs-number">-1</span>]) / float(<span class="hljs-number">2</span>**DNA_SIZE<span class="hljs-number">-1</span>) * (X_BOUND[<span class="hljs-number">1</span>]-X_BOUND[<span class="hljs-number">0</span>])<br><br><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">select</span><span class="hljs-params">(pop,fitness)</span>:</span><br><br>    idx = np.random.choice(np.arange(POP_SIZE), size=POP_SIZE, replace=<span class="hljs-literal">True</span>,p=fitness / fitness.sum())<br>    <span class="hljs-comment">#我们只要按照适应程度 fitness 来选 pop 中的 parent 就好. fitness 越大, 越有可能被选到.</span><br>    <span class="hljs-keyword">return</span> pop[idx]<br><br><span class="hljs-comment">#交叉</span><br><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">crossover</span><span class="hljs-params">(parent,pop)</span>:</span><br>    <span class="hljs-keyword">if</span> np.random.rand() &lt; CROSS_RATE:<br>        i_ = np.random.randint(<span class="hljs-number">0</span>, POP_SIZE, size=<span class="hljs-number">1</span>)  <span class="hljs-comment"># 选择一个母本的index</span><br>        print(<span class="hljs-string">"i_:"</span>,i_)<br>        print(<span class="hljs-string">"i_.size:"</span>,i_.size)<br>        cross_points = np.random.randint(<span class="hljs-number">0</span>, <span class="hljs-number">2</span>, size=DNA_SIZE).astype(np.bool)  <span class="hljs-comment"># choose crossover points</span><br>        print(<span class="hljs-string">"cross_point"</span>,cross_points)<br>        print(<span class="hljs-string">"corsssize:"</span>,cross_points.size)<br>        print(parent[cross_points])<br>        print(pop[i_, cross_points])<br>        parent[cross_points] = pop[i_, cross_points]  <span class="hljs-comment"># mating and produce one child</span><br>        print(parent[cross_points])<br>    <span class="hljs-keyword">return</span> parent<br><br><span class="hljs-comment">#变异</span><br><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">mutate</span><span class="hljs-params">(child)</span>:</span><br>    <span class="hljs-keyword">for</span> point <span class="hljs-keyword">in</span> range(DNA_SIZE):<br>        <span class="hljs-keyword">if</span> np.random.rand() &lt; MUTATION_RATE:<br>            child[point] = <span class="hljs-number">1</span> <span class="hljs-keyword">if</span> child[point] == <span class="hljs-number">0</span> <span class="hljs-keyword">else</span> <span class="hljs-number">0</span><br>    <span class="hljs-keyword">return</span> child<br><br>pop = np.random.randint(<span class="hljs-number">2</span>, size=(POP_SIZE, DNA_SIZE))   <span class="hljs-comment"># initialize the pop DNA</span><br><br>plt.ion()       <span class="hljs-comment"># something about plotting</span><br>x = np.linspace(*X_BOUND, <span class="hljs-number">200</span>)<br>plt.plot(x, F(x))<br><br><span class="hljs-keyword">for</span> _ <span class="hljs-keyword">in</span> range(N_GENERATIONS):<br>    F_values = F(translateDNA(pop))    <span class="hljs-comment"># compute function value by extracting DNA</span><br><br>    <span class="hljs-comment"># something about plotting</span><br>    <span class="hljs-comment"># if 'sca' in globals():</span><br>    <span class="hljs-comment">#     sca.remove()</span><br>    <span class="hljs-comment"># sca = plt.scatter(translateDNA(pop), F_values, s=200, lw=0, c='red', alpha=0.5)</span><br>    <span class="hljs-comment"># plt.pause(0.05)</span><br><br>    <span class="hljs-comment"># GA part (evolution)</span><br>    fitness = get_fitness(F_values)<br>    print(<span class="hljs-string">"Most fitted DNA: "</span>, pop[np.argmax(fitness), :])<br>    pop = select(pop, fitness)<br>    pop_copy = pop.copy()<br>    <span class="hljs-keyword">for</span> parent <span class="hljs-keyword">in</span> pop:<br>        child = crossover(parent, pop_copy)<br>        child = mutate(child)<br>        parent[:] = child       <span class="hljs-comment"># parent is replaced by its child</span><br>plt.scatter(translateDNA(pop), F_values, s=<span class="hljs-number">200</span>, lw=<span class="hljs-number">0</span>, c=<span class="hljs-string">'red'</span>, alpha=<span class="hljs-number">0.5</span>)<br>print(<span class="hljs-string">"x:"</span>,translateDNA(pop))<br>print(type(translateDNA(pop)))<br>print(len(translateDNA(pop)))<br>print(<span class="hljs-string">"max:"</span>,F_values)<br>plt.ioff()<br>plt.show()<br></code></pre></td></tr></table></figure>
-<p>最后我们可以展示一个结果，注意这个看似只有一个红点，其实这是100个种群个体集中得到的结果。，所以你最后打印的时候是一个100个解构成的1×100的解向量，最终都集中到了这个极值附近。<br><img src="https://img-blog.csdnimg.cn/20200712211521763.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0phY2tfX19F,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"><br>轮盘赌说的很复杂其实在python的random函数里可以说是封装好了，这里我们可以着重看看这个choice函数<br><figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">np.random.choice(a, size=<span class="hljs-literal">None</span>, replace=<span class="hljs-literal">True</span>, p=<span class="hljs-literal">None</span>)<br></code></pre></td></tr></table></figure><br><code>a</code>表示我们需要选取的数组。<br><code>size</code>表示我们需要提取的数据个数。<br><code>replace</code> 代表的意思是抽样之后还放不放回去，如果是False的话，抽取不放回，如果是True的话， 抽取放回。<br><code>p</code>表示的就是概率数组，代表每一个数被抽取出来的概率。<br>在我们代码中是写的</p>
+<p>最后我们可以展示一个结果，注意这个看似只有一个红点，其实这是100个种群个体集中得到的结果。，所以你最后打印的时候是一个100个解构成的1×100的解向量，最终都集中到了这个极值附近。<br><img src="https://img-blog.csdnimg.cn/20200712211521763.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0phY2tfX19F,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"><br>轮盘赌说的很复杂其实在python的random函数里可以说是封装好了，这里我们可以着重看看这个choice函数</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">np.random.choice(a, size=<span class="hljs-literal">None</span>, replace=<span class="hljs-literal">True</span>, p=<span class="hljs-literal">None</span>)<br></code></pre></td></tr></table></figure>
+<p><code>a</code>表示我们需要选取的数组。<br><code>size</code>表示我们需要提取的数据个数。<br><code>replace</code> 代表的意思是抽样之后还放不放回去，如果是False的话，抽取不放回，如果是True的话， 抽取放回。<br><code>p</code>表示的就是概率数组，代表每一个数被抽取出来的概率。<br>在我们代码中是写的</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">idx = np.random.choice(np.arange(POP_SIZE), size=POP_SIZE, replace=<span class="hljs-literal">True</span>,p=fitness / fitness.sum())<br></code></pre></td></tr></table></figure>
-<p>直接就抽取出了种群pop中每个个体的下标编号，这里我们的概率数组是使用的按照比例的适应度分配比例方法提取,而概率是以这种方式来建模计算的。</p>
-<script type="math/tex; mode=display">P_{i}=\frac{fitness(i)}{\sum_{i=0}^{n}{fitness(i)}}</script><p><img src="https://img-blog.csdnimg.cn/20200712213428229.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0phY2tfX19F,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p>
+<p>直接就抽取出了种群pop中每个个体的下标编号，这里我们的概率数组是使用的按照比例的适应度分配比例方法提取,而概率是以这种方式来建模计算的。<br>$$P_{i}=\frac{fitness(i)}{\sum_{i=0}^{n}{fitness(i)}}$$<br><img src="https://img-blog.csdnimg.cn/20200712213428229.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0phY2tfX19F,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p>
 <h2 id="求解TSP最短路的问题"><a href="#求解TSP最短路的问题" class="headerlink" title="求解TSP最短路的问题"></a>求解TSP最短路的问题</h2><p>tsp问题主要就是用户从某一起点出发然后经过所有的点一次并回到起点的最短路径，同时约定任意两点之前是互通可达的，我们要注意的是，可能两点之间的距离有时候是欧式距离，有的时候可能是哈密顿距离，自己要根据题意去判断。<br>这里我们主要讲解一下他的fitness函数主要是最短路径的总距离，编码序列则是最短路的编号，然后我们要注意这个问题在交叉变异的时候，我们一定要保证他首先是一条<strong>正确的可行解！不要出现有顶点重合或缺失的情况。</strong><br>这里我们在解决交叉的时候是先随机选取一部分父类的基因编号，然后再从母本的DNA序列里面选出子类中缺少的基因，从而获得基因重组。<br>而变异的时候也不同于例1里面的修改二进制编码，而是采用的调换两个基因序号来完成，从而保证我们的结果一定是一条规范正确的回路。</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> matplotlib.pyplot <span class="hljs-keyword">as</span> plt<br><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np<br><span class="hljs-keyword">import</span> pandas <span class="hljs-keyword">as</span> pd<br><br>N_CITIES = <span class="hljs-number">20</span>  <span class="hljs-comment"># 城市数量</span><br>CROSS_RATE = <span class="hljs-number">0.1</span> <span class="hljs-comment">#交叉概率</span><br>MUTATE_RATE = <span class="hljs-number">0.02</span> <span class="hljs-comment">#变异概率</span><br>POP_SIZE = <span class="hljs-number">500</span> <span class="hljs-comment">#种群概率</span><br>N_GENERATIONS = <span class="hljs-number">500</span> <span class="hljs-comment">#迭代次数</span><br><br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">GA</span><span class="hljs-params">(object)</span>:</span><br>    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span><span class="hljs-params">(self, DNA_size, cross_rate, mutation_rate, pop_size, )</span>:</span><br>        self.DNA_size = DNA_size<br>        self.cross_rate = cross_rate<br>        self.mutate_rate = mutation_rate<br>        self.pop_size = pop_size<br><br>        self.pop = np.vstack([np.random.permutation(DNA_size) <span class="hljs-keyword">for</span> _ <span class="hljs-keyword">in</span> range(pop_size)])<br><br>    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">translateDNA</span><span class="hljs-params">(self, DNA, city_position)</span>:</span>     <span class="hljs-comment"># get cities' coord in order</span><br>        line_x = np.empty_like(DNA, dtype=np.float64)<br>        line_y = np.empty_like(DNA, dtype=np.float64)<br>        <span class="hljs-keyword">for</span> i, d <span class="hljs-keyword">in</span> enumerate(DNA):<br>            city_coord = city_position[d]<br>            line_x[i, :] = city_coord[:, <span class="hljs-number">0</span>]<br>            line_y[i, :] = city_coord[:, <span class="hljs-number">1</span>]<br>        <span class="hljs-keyword">return</span> line_x, line_y<br><br>    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">get_fitness</span><span class="hljs-params">(self, line_x, line_y)</span>:</span><br>        total_distance = np.empty((line_x.shape[<span class="hljs-number">0</span>],), dtype=np.float64)<br>        <span class="hljs-keyword">for</span> i, (xs, ys) <span class="hljs-keyword">in</span> enumerate(zip(line_x, line_y)):<br>            total_distance[i] = np.sum(np.sqrt(np.square(np.diff(xs)) + np.square(np.diff(ys))))<br>        fitness = np.exp(self.DNA_size * <span class="hljs-number">2</span> / total_distance)<span class="hljs-comment">#把欧氏距离的影响扩大化</span><br>        <span class="hljs-keyword">return</span> fitness, total_distance<br><br>    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">select</span><span class="hljs-params">(self, fitness)</span>:</span><br>        idx = np.random.choice(np.arange(self.pop_size), size=self.pop_size, replace=<span class="hljs-literal">True</span>, p=fitness / fitness.sum())<br>        <span class="hljs-keyword">return</span> self.pop[idx]<br><br>    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">crossover</span><span class="hljs-params">(self, parent, pop)</span>:</span><br>        <span class="hljs-keyword">if</span> np.random.rand() &lt; self.cross_rate:<br>            i_ = np.random.randint(<span class="hljs-number">0</span>, self.pop_size, size=<span class="hljs-number">1</span>)                        <span class="hljs-comment"># select another individual from pop</span><br>            cross_points = np.random.randint(<span class="hljs-number">0</span>, <span class="hljs-number">2</span>, self.DNA_size).astype(np.bool)   <span class="hljs-comment"># choose crossover points</span><br>            keep_city = parent[~cross_points]                                       <span class="hljs-comment"># find the city number</span><br>            swap_city = pop[i_, np.isin(pop[i_].ravel(), keep_city, invert=<span class="hljs-literal">True</span>)]<br>            parent[:] = np.concatenate((keep_city, swap_city))<br>        <span class="hljs-keyword">return</span> parent<br><br>    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">mutate</span><span class="hljs-params">(self, child)</span>:</span><br>        <span class="hljs-keyword">for</span> point <span class="hljs-keyword">in</span> range(self.DNA_size):<br>            <span class="hljs-keyword">if</span> np.random.rand() &lt; self.mutate_rate:<br>                swap_point = np.random.randint(<span class="hljs-number">0</span>, self.DNA_size)<br>                swapA, swapB = child[point], child[swap_point]<br>                child[point], child[swap_point] = swapB, swapA<br>        <span class="hljs-keyword">return</span> child<br><br>    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">evolve</span><span class="hljs-params">(self, fitness)</span>:</span><br>        pop = self.select(fitness)<br>        pop_copy = pop.copy()<br>        <span class="hljs-keyword">for</span> parent <span class="hljs-keyword">in</span> pop:  <span class="hljs-comment"># for every parent</span><br>            child = self.crossover(parent, pop_copy)<br>            child = self.mutate(child)<br>            parent[:] = child<br>        self.pop = pop<br><br><br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">TravelSalesPerson</span><span class="hljs-params">(object)</span>:</span><br>    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span><span class="hljs-params">(self, n_cities)</span>:</span><br>        self.city_position = np.random.rand(n_cities, <span class="hljs-number">2</span>)<br>        plt.ion()<br><br>    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">plotting</span><span class="hljs-params">(self, lx, ly, total_d)</span>:</span><br>        plt.cla()<br>        plt.scatter(self.city_position[:, <span class="hljs-number">0</span>].T, self.city_position[:, <span class="hljs-number">1</span>].T, s=<span class="hljs-number">100</span>, c=<span class="hljs-string">'k'</span>)<br>        plt.plot(lx.T, ly.T, <span class="hljs-string">'r-'</span>)<br>        plt.text(<span class="hljs-number">-0.05</span>, <span class="hljs-number">-0.05</span>, <span class="hljs-string">"Total distance=%.2f"</span> % total_d, fontdict=&#123;<span class="hljs-string">'size'</span>: <span class="hljs-number">20</span>, <span class="hljs-string">'color'</span>: <span class="hljs-string">'red'</span>&#125;)<br>        plt.xlim((<span class="hljs-number">-0.1</span>, <span class="hljs-number">1.1</span>))<br>        plt.ylim((<span class="hljs-number">-0.1</span>, <span class="hljs-number">1.1</span>))<br>        plt.pause(<span class="hljs-number">0.01</span>)<br><br><br>ga = GA(DNA_size=N_CITIES, cross_rate=CROSS_RATE, mutation_rate=MUTATE_RATE, pop_size=POP_SIZE)<br><br>env = TravelSalesPerson(N_CITIES)<br><span class="hljs-keyword">for</span> generation <span class="hljs-keyword">in</span> range(N_GENERATIONS):<br>    lx, ly = ga.translateDNA(ga.pop, env.city_position)<span class="hljs-comment">#city_position（x,y）</span><br>    fitness, total_distance = ga.get_fitness(lx, ly)<span class="hljs-comment">#根据获得的路径计算路程</span><br>    ga.evolve(fitness)<br>    best_idx = np.argmax(fitness)<br>    print(<span class="hljs-string">'Gen:'</span>, generation, <span class="hljs-string">'| best fit: %.2f'</span> % fitness[best_idx],)<br><br>    <span class="hljs-comment"># env.plotting(lx[best_idx], ly[best_idx], total_distance[best_idx])</span><br>env.plotting(lx[best_idx], ly[best_idx], total_distance[best_idx])<br>plt.ioff()<br>plt.show()<br></code></pre></td></tr></table></figure>
-<p><img src="https://img-blog.csdnimg.cn/20200712213556520.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0phY2tfX19F,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"><br>在最后我附上我学习的这个视频教程吧,多看看知乎csdn还有很多解释。明天我的京东快递《matlab智能算法30个案例分析》就要到了，真的是本好书，顺带一提学校培训真累啊，还啥都不会。<br><a href="https://www.bilibili.com/video/BV1wW411Y7tr?from=search&amp;seid=8066184920722994513" target="_blank" rel="noopener">莫烦python遗传算法</a></p>
+
+<p><img src="https://img-blog.csdnimg.cn/20200712213556520.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0phY2tfX19F,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"><br>在最后我附上我学习的这个视频教程吧,多看看知乎csdn还有很多解释。明天我的京东快递《matlab智能算法30个案例分析》就要到了，真的是本好书，顺带一提学校培训真累啊，还啥都不会。<br><a href="https://www.bilibili.com/video/BV1wW411Y7tr?from=search&seid=8066184920722994513" target="_blank" rel="noopener">莫烦python遗传算法</a></p>
 
       
 
@@ -435,7 +440,7 @@ MathJax.Hub.Queue(function() {
     </script>
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2023 Jack yin
+    		&copy; 2023 Jack Yin
     	</div>
 		<div style="display: inline;">
 			<img src="http://www.beian.gov.cn/img/new/gongan.png">
@@ -590,6 +595,10 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">youth</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Hexo</a>
               </li>
              
@@ -598,7 +607,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">youth</a>
+                <a href="javascript:void(0)" class="js-tag color5">编译原理</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -606,7 +615,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">编译原理</a>
+                <a href="javascript:void(0)" class="js-tag color3">Go</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -714,7 +723,7 @@ MathJax.Hub.Queue(function() {
             </li>
           
             <li class="search-li">
-              <a href="https://www.lzccc.club/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>川哥</a>
+              <a href="https://zichuan-liu.github.io/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>川哥</a>
             </li>
           
             <li class="search-li">
@@ -748,23 +757,31 @@ MathJax.Hub.Queue(function() {
         <ul class="search-ul">
           
             <li class="search-li">
-              <a href="/archives/2100/" target="_self" class="search-title">一百年后</a>
+              <a href="/archives/2100/" target="_self" class="search-title">七百年后</a>
             </li>
           
             <li class="search-li">
-              <a href="/archives/2023/" target="_self" class="search-title">2023年 φ(≧ω≦*)♪</a>
+              <a href="/archives/2025/" target="_self" class="search-title">2025年 φ(≧ω≦*)♪</a>
             </li>
           
             <li class="search-li">
-              <a href="/archives/2022/" target="_self" class="search-title">2022年 (ಥ_ಥ)</a>
+              <a href="/archives/2024/" target="_self" class="search-title">2024年 ヾ(=･ω･=)o</a>
             </li>
           
             <li class="search-li">
-              <a href="/archives/2021/" target="_self" class="search-title">2021年 (๑•̀ㅂ•́)و✧</a>
+              <a href="/archives/2023/" target="_self" class="search-title">2023年 (๑•̀ㅂ•́)و✧</a>
             </li>
           
             <li class="search-li">
-              <a href="/archives/2020/" target="_self" class="search-title">2020年 ヾ(=･ω･=)o</a>
+              <a href="/archives/2022/" target="_self" class="search-title">2022年 ￣ω￣=</a>
+            </li>
+          
+            <li class="search-li">
+              <a href="/archives/2021/" target="_self" class="search-title">2021年 (ಥ_ಥ)</a>
+            </li>
+          
+            <li class="search-li">
+              <a href="/archives/2020/" target="_self" class="search-title">2020年 ╮(╯_╰)╭</a>
             </li>
           
         </ul>
@@ -777,7 +794,7 @@ MathJax.Hub.Queue(function() {
     
     	<section class="tools-section tools-section-me" q-show="aboutme">
   	  	
-  	  		<div class="aboutme-wrap" id="js-aboutme">在日落大道的你与我握手，&lt;br&gt;发觉太想和你闯遍这地球。&lt;br&gt;——————&lt;br&gt;花不似盛开，爱渐如大海。&lt;br&gt;即使你离开，我热情没改。</div>
+  	  		<div class="aboutme-wrap" id="js-aboutme">在日落大道的你与我握手，&lt;br&gt;发觉太想和你闯遍这地球。</div>
   	  	
     	</section>
     

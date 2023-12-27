@@ -20,7 +20,7 @@
 <meta property="og:image" content="https://jackyin.space/2020/09/10/%E6%95%B0%E6%8D%AE%E5%BA%93E-R%E5%9B%BE%E4%BB%8B%E7%BB%8D/3.png">
 <meta property="article:published_time" content="2020-09-10T14:37:19.000Z">
 <meta property="article:modified_time" content="2021-01-19T04:31:32.445Z">
-<meta property="article:author" content="Jack yin">
+<meta property="article:author" content="Jack Yin">
 <meta property="article:tag" content="数据库系统">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://jackyin.space/2020/09/10/%E6%95%B0%E6%8D%AE%E5%BA%93E-R%E5%9B%BE%E4%BB%8B%E7%BB%8D/1.png">
@@ -65,7 +65,7 @@
 			<img src="/assets/xxb.jpg" class="js-avatar">
 		</a>
 		<hgroup>
-		  <h1 class="header-author" style="margin-bottom: 0%;"><a href="/">Jack yin</a></h1>
+		  <h1 class="header-author" style="margin-bottom: 0%;"><a href="/">Jack Yin</a></h1>
 		</hgroup>
 		
 
@@ -110,7 +110,7 @@
 		        
 					<a class="bilibili" target="_blank" href="https://space.bilibili.com/351001593" title="bilibili"><i class="icon-bilibili"></i></a>
 		        
-					<a class="mail" target="_blank" href="mailto:yinkehan666@gmail.com" title="mail"><i class="icon-mail"></i></a>
+					<a class="mail" target="_blank" href="mailto:khany@foxmail.com" title="mail"><i class="icon-mail"></i></a>
 		        
 			</div>
 
@@ -140,7 +140,7 @@
 				<img src="/assets/xxb.jpg" class="js-avatar">
 			</div>
 			<hgroup>
-			  <h1 class="header-author js-header-author">Jack yin</h1>
+			  <h1 class="header-author js-header-author">Jack Yin</h1>
 			</hgroup>
 			
 			
@@ -164,7 +164,7 @@
 			        
 						<a class="bilibili" target="_blank" href="https://space.bilibili.com/351001593" title="bilibili"><i class="icon-bilibili"></i></a>
 			        
-						<a class="mail" target="_blank" href="mailto:yinkehan666@gmail.com" title="mail"><i class="icon-mail"></i></a>
+						<a class="mail" target="_blank" href="mailto:khany@foxmail.com" title="mail"><i class="icon-mail"></i></a>
 			        
 				</div>
 			</nav>
@@ -212,7 +212,8 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>教师节快乐，害，今天听了一整天的新裤子的关于夜晚和失眠的世界，果然我还是喜欢music和乐队还有老歌，9月10号嗯，今天的到来其实也宣告暑假的一切都告一段落了（祝国赛的朋友们都能取得好成绩！），新学期开始了，害又要开始学习了，第一节课老师就来整英语，真难为我，呜呜呜。行吧，正好做作业就写写数据库的东西吧，首先声明这篇博客差不多是一种笔记吧，大部分的文字来源于书本和网上的博客，书本是王珊和萨师煊的《数据库系统概论》，博客的话参考了比较多，这里就挂一两个吧<a href="https://blog.csdn.net/Medran/article/details/78424499" target="_blank" rel="noopener">E-R 图简介</a>,<a href="https://blog.csdn.net/qq_36513534/article/details/82219977" target="_blank" rel="noopener">数据库的设计</a><br><a id="more"></a></p>
+        <p>教师节快乐，害，今天听了一整天的新裤子的关于夜晚和失眠的世界，果然我还是喜欢music和乐队还有老歌，9月10号嗯，今天的到来其实也宣告暑假的一切都告一段落了（祝国赛的朋友们都能取得好成绩！），新学期开始了，害又要开始学习了，第一节课老师就来整英语，真难为我，呜呜呜。行吧，正好做作业就写写数据库的东西吧，首先声明这篇博客差不多是一种笔记吧，大部分的文字来源于书本和网上的博客，书本是王珊和萨师煊的《数据库系统概论》，博客的话参考了比较多，这里就挂一两个吧<a href="https://blog.csdn.net/Medran/article/details/78424499" target="_blank" rel="noopener">E-R 图简介</a>,<a href="https://blog.csdn.net/qq_36513534/article/details/82219977" target="_blank" rel="noopener">数据库的设计</a></p>
+<a id="more"></a>
 <h2 id="数据库E-R图介绍"><a href="#数据库E-R图介绍" class="headerlink" title="数据库E-R图介绍"></a>数据库E-R图介绍</h2><p>E-R模型是指Entity Relationship Diagrams（实体关系模型）<br><strong>E-R图3个要素：实体，属性，关系</strong>。E-R图提供了表示实体型、属性和联系的方法。 </p>
 <ul>
 <li>实体型用矩形表示，矩形框内写明实体名。</li>
@@ -220,24 +221,20 @@
 <li>联系用菱形表示，菱形框内写明联系名，并用无向边分别与有关实体型连接起来，同时在无向边旁标上联系的类型（1:1、1:n或m:n）  </li>
 </ul>
 <p><strong>连线</strong>：实体和属性之间、实体与联系之间、联系与属性之间用直线连接，并在直线上标注联系的类型。（注意：对于1：1的联系，要在两个实体连线方向各写1，1：n关系的，要在一的方向写1，多的方向写N；对于N:M关系的，则要在两个实体连线方向各写N,M）</p>
-<div class="table-container">
 <table>
 <thead>
 <tr>
-<th style="text-align:center">1:1联系</th>
-<th style="text-align:center">1：n联系</th>
-<th style="text-align:center">m:n联系</th>
+<th align="center">1:1联系</th>
+<th align="center">1：n联系</th>
+<th align="center">m:n联系</th>
 </tr>
 </thead>
-<tbody>
-<tr>
-<td style="text-align:center">将联系与任意端实体所对应的关系模式合并，加入另一端实体的码和联系的属性。</td>
-<td style="text-align:center">将联系与n端实体所对应的关系模式合并，加入1端实体的码和联系的属性。</td>
-<td style="text-align:center">将m:n联系转换成一个关系模式。将该联系相连的各实体的码和联系本身的属性转换为关系的属性。</td>
+<tbody><tr>
+<td align="center">将联系与任意端实体所对应的关系模式合并，加入另一端实体的码和联系的属性。</td>
+<td align="center">将联系与n端实体所对应的关系模式合并，加入1端实体的码和联系的属性。</td>
+<td align="center">将m:n联系转换成一个关系模式。将该联系相连的各实体的码和联系本身的属性转换为关系的属性。</td>
 </tr>
-</tbody>
-</table>
-</div>
+</tbody></table>
 <h2 id="实例——图书借阅管理系统"><a href="#实例——图书借阅管理系统" class="headerlink" title="实例——图书借阅管理系统"></a>实例——图书借阅管理系统</h2><p>数据库要求提供下述服务：</p>
 <ul>
 <li>可随时查询书库中现有书籍的品种、数量与存放位置。所有各类书籍均可由书号惟一标识。</li>
@@ -442,7 +439,7 @@ MathJax.Hub.Queue(function() {
     </script>
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2023 Jack yin
+    		&copy; 2023 Jack Yin
     	</div>
 		<div style="display: inline;">
 			<img src="http://www.beian.gov.cn/img/new/gongan.png">
@@ -597,6 +594,10 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">youth</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Hexo</a>
               </li>
              
@@ -605,7 +606,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">youth</a>
+                <a href="javascript:void(0)" class="js-tag color5">编译原理</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -613,7 +614,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">编译原理</a>
+                <a href="javascript:void(0)" class="js-tag color3">Go</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -721,7 +722,7 @@ MathJax.Hub.Queue(function() {
             </li>
           
             <li class="search-li">
-              <a href="https://www.lzccc.club/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>川哥</a>
+              <a href="https://zichuan-liu.github.io/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>川哥</a>
             </li>
           
             <li class="search-li">
@@ -755,23 +756,31 @@ MathJax.Hub.Queue(function() {
         <ul class="search-ul">
           
             <li class="search-li">
-              <a href="/archives/2100/" target="_self" class="search-title">一百年后</a>
+              <a href="/archives/2100/" target="_self" class="search-title">七百年后</a>
             </li>
           
             <li class="search-li">
-              <a href="/archives/2023/" target="_self" class="search-title">2023年 φ(≧ω≦*)♪</a>
+              <a href="/archives/2025/" target="_self" class="search-title">2025年 φ(≧ω≦*)♪</a>
             </li>
           
             <li class="search-li">
-              <a href="/archives/2022/" target="_self" class="search-title">2022年 (ಥ_ಥ)</a>
+              <a href="/archives/2024/" target="_self" class="search-title">2024年 ヾ(=･ω･=)o</a>
             </li>
           
             <li class="search-li">
-              <a href="/archives/2021/" target="_self" class="search-title">2021年 (๑•̀ㅂ•́)و✧</a>
+              <a href="/archives/2023/" target="_self" class="search-title">2023年 (๑•̀ㅂ•́)و✧</a>
             </li>
           
             <li class="search-li">
-              <a href="/archives/2020/" target="_self" class="search-title">2020年 ヾ(=･ω･=)o</a>
+              <a href="/archives/2022/" target="_self" class="search-title">2022年 ￣ω￣=</a>
+            </li>
+          
+            <li class="search-li">
+              <a href="/archives/2021/" target="_self" class="search-title">2021年 (ಥ_ಥ)</a>
+            </li>
+          
+            <li class="search-li">
+              <a href="/archives/2020/" target="_self" class="search-title">2020年 ╮(╯_╰)╭</a>
             </li>
           
         </ul>
@@ -784,7 +793,7 @@ MathJax.Hub.Queue(function() {
     
     	<section class="tools-section tools-section-me" q-show="aboutme">
   	  	
-  	  		<div class="aboutme-wrap" id="js-aboutme">在日落大道的你与我握手，&lt;br&gt;发觉太想和你闯遍这地球。&lt;br&gt;——————&lt;br&gt;花不似盛开，爱渐如大海。&lt;br&gt;即使你离开，我热情没改。</div>
+  	  		<div class="aboutme-wrap" id="js-aboutme">在日落大道的你与我握手，&lt;br&gt;发觉太想和你闯遍这地球。</div>
   	  	
     	</section>
     

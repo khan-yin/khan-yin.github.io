@@ -25,7 +25,7 @@
 <meta property="og:image" content="https://jackyin.space/2020/09/24/htmlcss%E5%9B%9E%E9%A1%BE/9.png">
 <meta property="article:published_time" content="2020-09-24T13:15:00.000Z">
 <meta property="article:modified_time" content="2021-01-19T04:31:34.832Z">
-<meta property="article:author" content="Jack yin">
+<meta property="article:author" content="Jack Yin">
 <meta property="article:tag" content="web基础">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://jackyin.space/2020/09/24/htmlcss%E5%9B%9E%E9%A1%BE/1.png">
@@ -70,7 +70,7 @@
 			<img src="/assets/xxb.jpg" class="js-avatar">
 		</a>
 		<hgroup>
-		  <h1 class="header-author" style="margin-bottom: 0%;"><a href="/">Jack yin</a></h1>
+		  <h1 class="header-author" style="margin-bottom: 0%;"><a href="/">Jack Yin</a></h1>
 		</hgroup>
 		
 
@@ -115,7 +115,7 @@
 		        
 					<a class="bilibili" target="_blank" href="https://space.bilibili.com/351001593" title="bilibili"><i class="icon-bilibili"></i></a>
 		        
-					<a class="mail" target="_blank" href="mailto:yinkehan666@gmail.com" title="mail"><i class="icon-mail"></i></a>
+					<a class="mail" target="_blank" href="mailto:khany@foxmail.com" title="mail"><i class="icon-mail"></i></a>
 		        
 			</div>
 
@@ -145,7 +145,7 @@
 				<img src="/assets/xxb.jpg" class="js-avatar">
 			</div>
 			<hgroup>
-			  <h1 class="header-author js-header-author">Jack yin</h1>
+			  <h1 class="header-author js-header-author">Jack Yin</h1>
 			</hgroup>
 			
 			
@@ -169,7 +169,7 @@
 			        
 						<a class="bilibili" target="_blank" href="https://space.bilibili.com/351001593" title="bilibili"><i class="icon-bilibili"></i></a>
 			        
-						<a class="mail" target="_blank" href="mailto:yinkehan666@gmail.com" title="mail"><i class="icon-mail"></i></a>
+						<a class="mail" target="_blank" href="mailto:khany@foxmail.com" title="mail"><i class="icon-mail"></i></a>
 			        
 				</div>
 			</nav>
@@ -219,51 +219,50 @@
       
         <h2 id="html回顾"><a href="#html回顾" class="headerlink" title="html回顾"></a>html回顾</h2><p>重回前端，文章是记录的<a href="https://developer.mozilla.org/zh-CN/docs/Web" target="_blank" rel="noopener">MDN Web Doc</a>和<a href="http://www.lvyestudy.com/les_cj/css_list.aspx" target="_blank" rel="noopener">绿叶学习网</a>的相关内容笔记。这里不会把基础知识列出来，这里主要是记录一些自己有新体会的东西。</p>
 <a id="more"></a>
+
 <p>HTML 不是一门编程语言，而是一种用于定义内容结构的标记语言，超文本标记语言 (英语：Hypertext Markup Language，简称：HTML ) 是一种用来结构化 Web 网页及其内容的标记语言。</p>
 <h3 id="浏览器的同源策略"><a href="#浏览器的同源策略" class="headerlink" title="浏览器的同源策略"></a>浏览器的同源策略</h3><p><a href="https://developer.mozilla.org/zh-CN/docs/Web/Security/Same-origin_policy" target="_blank" rel="noopener">同源策略</a>是一个重要的安全策略，它用于限制一个<a href="https://developer.mozilla.org/zh-CN/docs/Glossary/%E6%BA%90" target="_blank" rel="noopener">origin</a>的文档或者它加载的脚本如何能与另一个源的资源进行交互。它能帮助阻隔恶意文档，减少可能被攻击的媒介。</p>
 <p>如果两个 URL 的 protocol、port (如果有指定的话)和 host 都相同的话，则这两个 URL 是同源。这个方案也被称为“协议/主机/端口元组”，或者直接是 “元组”。（“元组” 是指一组项目构成的整体，双重/三重/四重/五重/等的通用形式）。</p>
 <p>下表给出了与 URL <code>http://store.company.com/dir/page.html</code> 的源进行对比的示例:</p>
-<div class="table-container">
 <table>
 <thead>
 <tr>
-<th style="text-align:center">URL</th>
-<th style="text-align:center">结果</th>
-<th style="text-align:center">原因</th>
+<th align="center">URL</th>
+<th align="center">结果</th>
+<th align="center">原因</th>
 </tr>
 </thead>
-<tbody>
-<tr>
-<td style="text-align:center"><code>http://store.company.com/dir2/other.html</code></td>
-<td style="text-align:center">同源</td>
-<td style="text-align:center">只有路径不同</td>
+<tbody><tr>
+<td align="center"><code>http://store.company.com/dir2/other.html</code></td>
+<td align="center">同源</td>
+<td align="center">只有路径不同</td>
 </tr>
 <tr>
-<td style="text-align:center"><code>http://store.company.com/dir/inner/another.html</code></td>
-<td style="text-align:center">同源</td>
-<td style="text-align:center">只有路径不同</td>
+<td align="center"><code>http://store.company.com/dir/inner/another.html    </code></td>
+<td align="center">同源</td>
+<td align="center">只有路径不同</td>
 </tr>
 <tr>
-<td style="text-align:center"><code>https://store.company.com/secure.html</code></td>
-<td style="text-align:center">失败</td>
-<td style="text-align:center">协议不同</td>
+<td align="center"><code>https://store.company.com/secure.html</code></td>
+<td align="center">失败</td>
+<td align="center">协议不同</td>
 </tr>
 <tr>
-<td style="text-align:center"><code>http://store.company.com:81/dir/etc.html</code></td>
-<td style="text-align:center">失败</td>
-<td style="text-align:center">端口不同 ( http:// 默认端口是80)</td>
+<td align="center"><code>http://store.company.com:81/dir/etc.html</code></td>
+<td align="center">失败</td>
+<td align="center">端口不同 ( http:// 默认端口是80)</td>
 </tr>
 <tr>
-<td style="text-align:center"><code>http://news.company.com/dir/other.html</code></td>
-<td style="text-align:center">失败</td>
-<td style="text-align:center">主机不同</td>
+<td align="center"><code>http://news.company.com/dir/other.html</code></td>
+<td align="center">失败</td>
+<td align="center">主机不同</td>
 </tr>
-</tbody>
-</table>
-</div>
+</tbody></table>
 <h3 id="插入图片不推荐方式"><a href="#插入图片不推荐方式" class="headerlink" title="插入图片不推荐方式"></a>插入图片不推荐方式</h3><figure class="highlight html"><table><tr><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"https://www.example.com/images/dinosaur.jpg"</span>&gt;</span><br></code></pre></td></tr></table></figure>
 <p>这种方式是不被推荐的，这样做只会使浏览器做更多的工作，例如重新通过 DNS 再去寻找 IP 地址。通常我们都会把图片和 HTML 放在同一个服务器上。</p>
-<p>有一个<strong>更好的做法</strong>是使用 HTML5 的<code>&lt;figure&gt;</code>和 <code>&lt;figcaption&gt;</code> 元素，它正是为此而被创造出来的：为图片提供一个语义容器，在标题和图片之间建立清晰的关联。我们之前的例子可以重写为:<br><figure class="highlight html"><table><tr><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">figure</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"https://raw.githubusercontent.com/mdn/learning-area/master/html/multimedia-and-embedding/images-in-html/dinosaur_small.jpg"</span></span><br><span class="hljs-tag">     <span class="hljs-attr">alt</span>=<span class="hljs-string">"一只恐龙头部和躯干的骨架，它有一个巨大的头，长着锋利的牙齿。"</span></span><br><span class="hljs-tag">     <span class="hljs-attr">width</span>=<span class="hljs-string">"400"</span></span><br><span class="hljs-tag">     <span class="hljs-attr">height</span>=<span class="hljs-string">"341"</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">figcaption</span>&gt;</span>曼彻斯特大学博物馆展出的一只霸王龙的化石<span class="hljs-tag">&lt;/<span class="hljs-name">figcaption</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">figure</span>&gt;</span><br></code></pre></td></tr></table></figure></p>
+<p>有一个<strong>更好的做法</strong>是使用 HTML5 的<code>&lt;figure&gt;</code>和 <code>&lt;figcaption&gt;</code> 元素，它正是为此而被创造出来的：为图片提供一个语义容器，在标题和图片之间建立清晰的关联。我们之前的例子可以重写为:</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">figure</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"https://raw.githubusercontent.com/mdn/learning-area/master/html/multimedia-and-embedding/images-in-html/dinosaur_small.jpg"</span></span><br><span class="hljs-tag">     <span class="hljs-attr">alt</span>=<span class="hljs-string">"一只恐龙头部和躯干的骨架，它有一个巨大的头，长着锋利的牙齿。"</span></span><br><span class="hljs-tag">     <span class="hljs-attr">width</span>=<span class="hljs-string">"400"</span></span><br><span class="hljs-tag">     <span class="hljs-attr">height</span>=<span class="hljs-string">"341"</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">figcaption</span>&gt;</span>曼彻斯特大学博物馆展出的一只霸王龙的化石<span class="hljs-tag">&lt;/<span class="hljs-name">figcaption</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">figure</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
 <h3 id="lt-input-gt"><a href="#lt-input-gt" class="headerlink" title="&lt;input&gt;"></a><code>&lt;input&gt;</code></h3><h3 id="formenctype属性"><a href="#formenctype属性" class="headerlink" title="formenctype属性"></a>formenctype属性</h3><p>由于input元素是一个提交按钮，因此该formenctype属性指定用于向服务器提交表单的内容类型。可能的值为：</p>
 <ul>
 <li>application/x-www-form-urlencoded：如果未指定属性，则为默认值。</li>
@@ -278,155 +277,148 @@
 <h2 id="元素的id和class"><a href="#元素的id和class" class="headerlink" title="元素的id和class"></a>元素的id和class</h2><h3 id="元素的id属性"><a href="#元素的id属性" class="headerlink" title="元素的id属性"></a>元素的id属性</h3><p>id属性被赋予了标识页面元素的唯一身份。如果一个页面出现了多个相同id属性取值，CSS选择器或者JavaScript就会因为无法分辨要控制的元素而最终报错。</p>
 <h3 id="元素的class属性"><a href="#元素的class属性" class="headerlink" title="元素的class属性"></a>元素的class属性</h3><p>如果你要为两个元素或者两个以上元素定义相同的样式，建议使用class属性。</p>
 <p><strong>（1）一个标签可以同时定义多个class；</strong><br><strong>（2）id也可以写成name，区别在于name是HTML中的标准，而id是XHTML中的标准，现在网页的标准都是使用id，所以大家尽量不要用name属性；</strong></p>
-<h2 id="选择器"><a href="#选择器" class="headerlink" title="选择器"></a>选择器</h2><p>1.元素选择器<br><img src="/2020/09/24/htmlcss%E5%9B%9E%E9%A1%BE/1.png" alt="元素选择器"><br>2.id选择器<br><img src="/2020/09/24/htmlcss%E5%9B%9E%E9%A1%BE/2.png" alt="id选择器"><br>3.class选择器<br><img src="/2020/09/24/htmlcss%E5%9B%9E%E9%A1%BE/3.png" alt="class选择器"><br>4.子元素选择器<br>子元素选择器，就是选中某个元素下的子元素，然后对该子元素设置CSS样式。<br><img src="/2020/09/24/htmlcss%E5%9B%9E%E9%A1%BE/4.png" alt="子元素选择器"><br>5.相邻选择器<br>相邻选择器，就是选中该元素的下一个兄弟元素，在这里注意一点，相邻选择器的操作对象是该元素的同级元素。<br><img src="/2020/09/24/htmlcss%E5%9B%9E%E9%A1%BE/5.png" alt="相邻选择器"><br>6.群组选择器<br>群组选择器，就是同时对几个选择器进行相同的操作。<br><img src="/2020/09/24/htmlcss%E5%9B%9E%E9%A1%BE/6.png" alt="群组选择器"><br>7.全局选择器<br>全局选择器，是由一个星号（<code>*</code>）代指的，它选中了文档中的所有内容（或者是父元素中的所有内容，比如，它紧随在其他元素以及邻代运算符之后的时候）下面的示例中，我们已经用全局选择器，移去了所有元素上的外边距<br><figure class="highlight css"><table><tr><td class="code"><pre><code class="hljs css">* &#123;<br>    <span class="hljs-attribute">margin</span>: <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure><br>一些新用法<br><img src="/2020/09/24/htmlcss%E5%9B%9E%E9%A1%BE/8.png" alt="8"><br><img src="/2020/09/24/htmlcss%E5%9B%9E%E9%A1%BE/9.png" alt="9"></p>
+<h2 id="选择器"><a href="#选择器" class="headerlink" title="选择器"></a>选择器</h2><p>1.元素选择器<br><img src="/2020/09/24/htmlcss%E5%9B%9E%E9%A1%BE/1.png" alt="元素选择器"><br>2.id选择器<br><img src="/2020/09/24/htmlcss%E5%9B%9E%E9%A1%BE/2.png" alt="id选择器"><br>3.class选择器<br><img src="/2020/09/24/htmlcss%E5%9B%9E%E9%A1%BE/3.png" alt="class选择器"><br>4.子元素选择器<br>子元素选择器，就是选中某个元素下的子元素，然后对该子元素设置CSS样式。<br><img src="/2020/09/24/htmlcss%E5%9B%9E%E9%A1%BE/4.png" alt="子元素选择器"><br>5.相邻选择器<br>相邻选择器，就是选中该元素的下一个兄弟元素，在这里注意一点，相邻选择器的操作对象是该元素的同级元素。<br><img src="/2020/09/24/htmlcss%E5%9B%9E%E9%A1%BE/5.png" alt="相邻选择器"><br>6.群组选择器<br>群组选择器，就是同时对几个选择器进行相同的操作。<br><img src="/2020/09/24/htmlcss%E5%9B%9E%E9%A1%BE/6.png" alt="群组选择器"><br>7.全局选择器<br>全局选择器，是由一个星号（<code>*</code>）代指的，它选中了文档中的所有内容（或者是父元素中的所有内容，比如，它紧随在其他元素以及邻代运算符之后的时候）下面的示例中，我们已经用全局选择器，移去了所有元素上的外边距</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><code class="hljs css">* &#123;<br>    <span class="hljs-attribute">margin</span>: <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>一些新用法<br><img src="/2020/09/24/htmlcss%E5%9B%9E%E9%A1%BE/8.png" alt="8"><br><img src="/2020/09/24/htmlcss%E5%9B%9E%E9%A1%BE/9.png" alt="9"></p>
 <h2 id="before和-after"><a href="#before和-after" class="headerlink" title="::before和::after"></a>::before和::after</h2><p><code>::before</code>和<code>::after</code>伪元素与<code>content</code>属性的共同使用，在CSS中被叫做“生成内容”</p>
 <h2 id="text-align属性"><a href="#text-align属性" class="headerlink" title="text-align属性"></a>text-align属性</h2><p>在CSS中，使用text-align属性控制文本的水平方向的对齐方式：左对齐、居中对齐、右对齐。</p>
 <p><strong>text-align属性不仅对文本文字有效，对img标签也有效，但是对其他标签无效。</strong></p>
-<div class="table-container">
 <table>
 <thead>
 <tr>
-<th style="text-align:center">text-align属性值</th>
-<th style="text-align:center">说明</th>
+<th align="center">text-align属性值</th>
+<th align="center">说明</th>
 </tr>
 </thead>
-<tbody>
-<tr>
-<td style="text-align:center">left</td>
-<td style="text-align:center">默认值，左对齐</td>
+<tbody><tr>
+<td align="center">left</td>
+<td align="center">默认值，左对齐</td>
 </tr>
 <tr>
-<td style="text-align:center">center</td>
-<td style="text-align:center">居中对齐</td>
+<td align="center">center</td>
+<td align="center">居中对齐</td>
 </tr>
 <tr>
-<td style="text-align:center">right</td>
-<td style="text-align:center">右对齐</td>
+<td align="center">right</td>
+<td align="center">右对齐</td>
 </tr>
-</tbody>
-</table>
-</div>
+</tbody></table>
 <h2 id="块元素和行内元素"><a href="#块元素和行内元素" class="headerlink" title="块元素和行内元素"></a>块元素和行内元素</h2><p>1、HTML元素根据浏览器表现形式分为两类：块元素，行内元素；</p>
 <p>2、块元素特点：</p>
 <ul>
 <li>独占一行，排斥其他元素跟其位于同一行，包括块元素和行内元素；</li>
 <li>块元素内部可以容纳其他块元素或行元素；</li>
 </ul>
-<div class="table-container">
 <table>
 <thead>
 <tr>
-<th style="text-align:center">块元素</th>
-<th style="text-align:center">说明</th>
+<th align="center">块元素</th>
+<th align="center">说明</th>
 </tr>
 </thead>
-<tbody>
-<tr>
-<td style="text-align:center">div</td>
-<td style="text-align:center">div层</td>
+<tbody><tr>
+<td align="center">div</td>
+<td align="center">div层</td>
 </tr>
 <tr>
-<td style="text-align:center">h1～h6</td>
-<td style="text-align:center">1到6级标题</td>
+<td align="center">h1～h6</td>
+<td align="center">1到6级标题</td>
 </tr>
 <tr>
-<td style="text-align:center">p    段落</td>
-<td style="text-align:center">会自动在其前后创建一些空白</td>
+<td align="center">p    段落</td>
+<td align="center">会自动在其前后创建一些空白</td>
 </tr>
 <tr>
-<td style="text-align:center">hr</td>
-<td style="text-align:center">分割线</td>
+<td align="center">hr</td>
+<td align="center">分割线</td>
 </tr>
 <tr>
-<td style="text-align:center">ol</td>
-<td style="text-align:center">有序列表</td>
+<td align="center">ol</td>
+<td align="center">有序列表</td>
 </tr>
 <tr>
-<td style="text-align:center">ul</td>
-<td style="text-align:center">无序列表</td>
+<td align="center">ul</td>
+<td align="center">无序列表</td>
 </tr>
-</tbody>
-</table>
-</div>
-<p>3、行内元素特点：</p>
+<tr>
+<td align="center">3、行内元素特点：</td>
+<td align="center"></td>
+</tr>
+</tbody></table>
 <ul>
 <li>可以与其他行内元素位于同一行；</li>
 <li>行内内部可以容纳其他行内元素，但不可以容纳块元素，不然会出现无法预知的效果；</li>
 </ul>
-<div class="table-container">
 <table>
 <thead>
 <tr>
-<th style="text-align:center">行内元素</th>
-<th style="text-align:center">说明</th>
+<th align="center">行内元素</th>
+<th align="center">说明</th>
 </tr>
 </thead>
-<tbody>
-<tr>
-<td style="text-align:center">strong</td>
-<td style="text-align:center">加粗强调</td>
+<tbody><tr>
+<td align="center">strong</td>
+<td align="center">加粗强调</td>
 </tr>
 <tr>
-<td style="text-align:center">em</td>
-<td style="text-align:center">斜体强调</td>
+<td align="center">em</td>
+<td align="center">斜体强调</td>
 </tr>
 <tr>
-<td style="text-align:center">s</td>
-<td style="text-align:center">删除线</td>
+<td align="center">s</td>
+<td align="center">删除线</td>
 </tr>
 <tr>
-<td style="text-align:center">u</td>
-<td style="text-align:center">下划线</td>
+<td align="center">u</td>
+<td align="center">下划线</td>
 </tr>
 <tr>
-<td style="text-align:center">a</td>
-<td style="text-align:center">超链接</td>
+<td align="center">a</td>
+<td align="center">超链接</td>
 </tr>
 <tr>
-<td style="text-align:center">span</td>
-<td style="text-align:center">常用行级，可定义文档中的行内元素</td>
+<td align="center">span</td>
+<td align="center">常用行级，可定义文档中的行内元素</td>
 </tr>
 <tr>
-<td style="text-align:center">img</td>
-<td style="text-align:center">图片</td>
+<td align="center">img</td>
+<td align="center">图片</td>
 </tr>
 <tr>
-<td style="text-align:center">input</td>
-<td style="text-align:center">表单</td>
+<td align="center">input</td>
+<td align="center">表单</td>
 </tr>
-</tbody>
-</table>
-</div>
-<h2 id="CSS边框（border）"><a href="#CSS边框（border）" class="headerlink" title="CSS边框（border）"></a>CSS边框（border）</h2><p>任何块元素和行内元素都可以设置边框属性。<br>设置一个元素的边框必须要同时设置border-width、border-style、border-color这三个属性，这个元素的边框才能在浏览器显示出来。<br><figure class="highlight css"><table><tr><td class="code"><pre><code class="hljs css"><span class="hljs-selector-tag">border-width</span><span class="hljs-selector-pseudo">:1px</span>;<br><span class="hljs-selector-tag">border-style</span><span class="hljs-selector-pseudo">:solid</span>;<br><span class="hljs-selector-tag">border-color</span><span class="hljs-selector-pseudo">:Red</span>;<br><span class="hljs-comment">/*简介写法*/</span><br><span class="hljs-selector-tag">border</span>: 1<span class="hljs-selector-tag">px</span> <span class="hljs-selector-tag">solid</span> <span class="hljs-selector-tag">Red</span>;<br></code></pre></td></tr></table></figure><br>在CSS中，我们可以分别针对上下左右四条边框设置单独的样式。<br><figure class="highlight css"><table><tr><td class="code"><pre><code class="hljs css"><span class="hljs-selector-tag">border-top-width</span><span class="hljs-selector-pseudo">:1px</span>;<br><span class="hljs-selector-tag">border-top-style</span><span class="hljs-selector-pseudo">:solid</span>;<br><span class="hljs-selector-tag">border-top-color</span><span class="hljs-selector-pseudo">:red</span>;<br><span class="hljs-comment">/*简介写法*/</span><br><span class="hljs-selector-tag">border-top</span>: 1<span class="hljs-selector-tag">px</span> <span class="hljs-selector-tag">solid</span> <span class="hljs-selector-tag">Red</span>;<br><span class="hljs-selector-tag">border-bottom</span>: 1<span class="hljs-selector-tag">px</span> <span class="hljs-selector-tag">solid</span> <span class="hljs-selector-tag">Red</span>;<br><span class="hljs-selector-tag">border-left</span>: 1<span class="hljs-selector-tag">px</span> <span class="hljs-selector-tag">solid</span> <span class="hljs-selector-tag">Red</span>;<br><span class="hljs-selector-tag">border-right</span>: 1<span class="hljs-selector-tag">px</span> <span class="hljs-selector-tag">solid</span> <span class="hljs-selector-tag">Red</span>;<br><br><span class="hljs-comment">/*去除边框的两种方法*/</span><br><span class="hljs-selector-tag">border-bottom</span><span class="hljs-selector-pseudo">:0px</span> <span class="hljs-comment">/*去除边框就不需要写颜色和样式了*/</span><br><span class="hljs-selector-tag">border-bottom</span><span class="hljs-selector-pseudo">:none</span><br></code></pre></td></tr></table></figure></p>
+</tbody></table>
+<h2 id="CSS边框（border）"><a href="#CSS边框（border）" class="headerlink" title="CSS边框（border）"></a>CSS边框（border）</h2><p>任何块元素和行内元素都可以设置边框属性。<br>设置一个元素的边框必须要同时设置border-width、border-style、border-color这三个属性，这个元素的边框才能在浏览器显示出来。</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><code class="hljs css"><span class="hljs-selector-tag">border-width</span><span class="hljs-selector-pseudo">:1px</span>;<br><span class="hljs-selector-tag">border-style</span><span class="hljs-selector-pseudo">:solid</span>;<br><span class="hljs-selector-tag">border-color</span><span class="hljs-selector-pseudo">:Red</span>;<br><span class="hljs-comment">/*简介写法*/</span><br><span class="hljs-selector-tag">border</span>: 1<span class="hljs-selector-tag">px</span> <span class="hljs-selector-tag">solid</span> <span class="hljs-selector-tag">Red</span>;<br></code></pre></td></tr></table></figure>
+<p>在CSS中，我们可以分别针对上下左右四条边框设置单独的样式。</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><code class="hljs css"><span class="hljs-selector-tag">border-top-width</span><span class="hljs-selector-pseudo">:1px</span>;<br><span class="hljs-selector-tag">border-top-style</span><span class="hljs-selector-pseudo">:solid</span>;<br><span class="hljs-selector-tag">border-top-color</span><span class="hljs-selector-pseudo">:red</span>;<br><span class="hljs-comment">/*简介写法*/</span><br><span class="hljs-selector-tag">border-top</span>: 1<span class="hljs-selector-tag">px</span> <span class="hljs-selector-tag">solid</span> <span class="hljs-selector-tag">Red</span>;<br><span class="hljs-selector-tag">border-bottom</span>: 1<span class="hljs-selector-tag">px</span> <span class="hljs-selector-tag">solid</span> <span class="hljs-selector-tag">Red</span>;<br><span class="hljs-selector-tag">border-left</span>: 1<span class="hljs-selector-tag">px</span> <span class="hljs-selector-tag">solid</span> <span class="hljs-selector-tag">Red</span>;<br><span class="hljs-selector-tag">border-right</span>: 1<span class="hljs-selector-tag">px</span> <span class="hljs-selector-tag">solid</span> <span class="hljs-selector-tag">Red</span>;<br><br><span class="hljs-comment">/*去除边框的两种方法*/</span><br><span class="hljs-selector-tag">border-bottom</span><span class="hljs-selector-pseudo">:0px</span> <span class="hljs-comment">/*去除边框就不需要写颜色和样式了*/</span><br><span class="hljs-selector-tag">border-bottom</span><span class="hljs-selector-pseudo">:none</span><br></code></pre></td></tr></table></figure>
+
 <h2 id="css背景样式background"><a href="#css背景样式background" class="headerlink" title="css背景样式background"></a>css背景样式background</h2><p>目前，不要再使用HTML的bgcolor之类的属性了，现在几乎全部都是使用CSS的background属性来控制元素的背景颜色和背景图像。<br>1.背景颜色<br>使用css的background-color属性<br>2.背景图像  </p>
-<div class="table-container">
 <table>
 <thead>
 <tr>
-<th style="text-align:center">属性</th>
-<th style="text-align:center">说明</th>
+<th align="center">属性</th>
+<th align="center">说明</th>
 </tr>
 </thead>
-<tbody>
-<tr>
-<td style="text-align:center">background-image</td>
-<td style="text-align:center">定义背景图像的路径，这样图片才能显示</td>
+<tbody><tr>
+<td align="center">background-image</td>
+<td align="center">定义背景图像的路径，这样图片才能显示</td>
 </tr>
 <tr>
-<td style="text-align:center">background-repeat</td>
-<td style="text-align:center">定义背景图像显示方式，例如纵向平铺、横向平铺</td>
+<td align="center">background-repeat</td>
+<td align="center">定义背景图像显示方式，例如纵向平铺、横向平铺</td>
 </tr>
 <tr>
-<td style="text-align:center">background-position</td>
-<td style="text-align:center">定义背景图像在元素哪个位置</td>
+<td align="center">background-position</td>
+<td align="center">定义背景图像在元素哪个位置</td>
 </tr>
 <tr>
-<td style="text-align:center">background-attachment</td>
-<td style="text-align:center">定义背景图像是否随内容而滚动</td>
+<td align="center">background-attachment</td>
+<td align="center">定义背景图像是否随内容而滚动</td>
 </tr>
-</tbody>
-</table>
-</div>
+</tbody></table>
 <h2 id="img适合框大小"><a href="#img适合框大小" class="headerlink" title="img适合框大小"></a>img适合框大小</h2><p><code>object-fit</code>属性可以在这里帮助你。当使用object-fit时，替换元素可以以多种方式被调整到合乎盒子的大小。</p>
 <h2 id="布局样式"><a href="#布局样式" class="headerlink" title="布局样式"></a>布局样式</h2><p>主要是通过<code>display</code>属性来操作，一般有<code>block,inline,inline-block,grid,flex,none</code>这几种操作，具体的使用还是需要多练习才能明白。</p>
 
@@ -625,7 +617,7 @@ MathJax.Hub.Queue(function() {
     </script>
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2023 Jack yin
+    		&copy; 2023 Jack Yin
     	</div>
 		<div style="display: inline;">
 			<img src="http://www.beian.gov.cn/img/new/gongan.png">
@@ -780,6 +772,10 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">youth</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Hexo</a>
               </li>
              
@@ -788,7 +784,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">youth</a>
+                <a href="javascript:void(0)" class="js-tag color5">编译原理</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -796,7 +792,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">编译原理</a>
+                <a href="javascript:void(0)" class="js-tag color3">Go</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -904,7 +900,7 @@ MathJax.Hub.Queue(function() {
             </li>
           
             <li class="search-li">
-              <a href="https://www.lzccc.club/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>川哥</a>
+              <a href="https://zichuan-liu.github.io/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>川哥</a>
             </li>
           
             <li class="search-li">
@@ -938,23 +934,31 @@ MathJax.Hub.Queue(function() {
         <ul class="search-ul">
           
             <li class="search-li">
-              <a href="/archives/2100/" target="_self" class="search-title">一百年后</a>
+              <a href="/archives/2100/" target="_self" class="search-title">七百年后</a>
             </li>
           
             <li class="search-li">
-              <a href="/archives/2023/" target="_self" class="search-title">2023年 φ(≧ω≦*)♪</a>
+              <a href="/archives/2025/" target="_self" class="search-title">2025年 φ(≧ω≦*)♪</a>
             </li>
           
             <li class="search-li">
-              <a href="/archives/2022/" target="_self" class="search-title">2022年 (ಥ_ಥ)</a>
+              <a href="/archives/2024/" target="_self" class="search-title">2024年 ヾ(=･ω･=)o</a>
             </li>
           
             <li class="search-li">
-              <a href="/archives/2021/" target="_self" class="search-title">2021年 (๑•̀ㅂ•́)و✧</a>
+              <a href="/archives/2023/" target="_self" class="search-title">2023年 (๑•̀ㅂ•́)و✧</a>
             </li>
           
             <li class="search-li">
-              <a href="/archives/2020/" target="_self" class="search-title">2020年 ヾ(=･ω･=)o</a>
+              <a href="/archives/2022/" target="_self" class="search-title">2022年 ￣ω￣=</a>
+            </li>
+          
+            <li class="search-li">
+              <a href="/archives/2021/" target="_self" class="search-title">2021年 (ಥ_ಥ)</a>
+            </li>
+          
+            <li class="search-li">
+              <a href="/archives/2020/" target="_self" class="search-title">2020年 ╮(╯_╰)╭</a>
             </li>
           
         </ul>
@@ -967,7 +971,7 @@ MathJax.Hub.Queue(function() {
     
     	<section class="tools-section tools-section-me" q-show="aboutme">
   	  	
-  	  		<div class="aboutme-wrap" id="js-aboutme">在日落大道的你与我握手，&lt;br&gt;发觉太想和你闯遍这地球。&lt;br&gt;——————&lt;br&gt;花不似盛开，爱渐如大海。&lt;br&gt;即使你离开，我热情没改。</div>
+  	  		<div class="aboutme-wrap" id="js-aboutme">在日落大道的你与我握手，&lt;br&gt;发觉太想和你闯遍这地球。</div>
   	  	
     	</section>
     

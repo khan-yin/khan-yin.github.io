@@ -17,7 +17,7 @@
 <meta property="og:locale" content="zh">
 <meta property="article:published_time" content="2020-11-05T16:27:36.000Z">
 <meta property="article:modified_time" content="2021-01-19T04:31:32.370Z">
-<meta property="article:author" content="Jack yin">
+<meta property="article:author" content="Jack Yin">
 <meta property="article:tag" content="操作系统">
 <meta name="twitter:card" content="summary">
   
@@ -61,7 +61,7 @@
 			<img src="/assets/xxb.jpg" class="js-avatar">
 		</a>
 		<hgroup>
-		  <h1 class="header-author" style="margin-bottom: 0%;"><a href="/">Jack yin</a></h1>
+		  <h1 class="header-author" style="margin-bottom: 0%;"><a href="/">Jack Yin</a></h1>
 		</hgroup>
 		
 
@@ -106,7 +106,7 @@
 		        
 					<a class="bilibili" target="_blank" href="https://space.bilibili.com/351001593" title="bilibili"><i class="icon-bilibili"></i></a>
 		        
-					<a class="mail" target="_blank" href="mailto:yinkehan666@gmail.com" title="mail"><i class="icon-mail"></i></a>
+					<a class="mail" target="_blank" href="mailto:khany@foxmail.com" title="mail"><i class="icon-mail"></i></a>
 		        
 			</div>
 
@@ -136,7 +136,7 @@
 				<img src="/assets/xxb.jpg" class="js-avatar">
 			</div>
 			<hgroup>
-			  <h1 class="header-author js-header-author">Jack yin</h1>
+			  <h1 class="header-author js-header-author">Jack Yin</h1>
 			</hgroup>
 			
 			
@@ -160,7 +160,7 @@
 			        
 						<a class="bilibili" target="_blank" href="https://space.bilibili.com/351001593" title="bilibili"><i class="icon-bilibili"></i></a>
 			        
-						<a class="mail" target="_blank" href="mailto:yinkehan666@gmail.com" title="mail"><i class="icon-mail"></i></a>
+						<a class="mail" target="_blank" href="mailto:khany@foxmail.com" title="mail"><i class="icon-mail"></i></a>
 			        
 				</div>
 			</nav>
@@ -208,9 +208,14 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="理发师问题"><a href="#理发师问题" class="headerlink" title="理发师问题"></a>理发师问题</h2><p>7.8 The Sleeping-Barber Problem. A barbershop consists of a waiting room with n chairs and the barber room containing the barber chair. If there are no customers to be served,the barber goes to sleep. If a customer enters the barbershop and all chairs are occupied, then the customer leaves the shop.If the barber is busy but chairs are available, then the customer sits in one of the free chairs. If the barber is asleep, the customer wakes up the barber. Write a program to coordinate the barber and the customers.<br><a id="more"></a><br><figure class="highlight c++"><table><tr><td class="code"><pre><code class="hljs c++">semaphore:<br>    full:=<span class="hljs-number">0</span>,empty:=n,mutex:=<span class="hljs-number">1</span>;<span class="hljs-comment">//刘军的写法</span><br><span class="hljs-comment">/*</span><br><span class="hljs-comment">*full表示当前需要理发的人数</span><br><span class="hljs-comment">*empty表示当前还剩下多少空椅子</span><br><span class="hljs-comment">*mutex进程互斥控制量，理发师一次只能给一个人理发</span><br><span class="hljs-comment">*/</span><br>Parbegin:<br>    customer: repeat<br>            <span class="hljs-keyword">if</span> empty=<span class="hljs-number">0</span>:<br>                customer leaves the shop<span class="hljs-comment">//没有空位置则离开</span><br>            P(empty);<br>            P(mutex);<br>            add a customer to chair<br>            V(mutex);<br>            V(full);<br>            until <span class="hljs-literal">false</span>;<br>    <br>    barber: repeat<br>            <span class="hljs-keyword">if</span> full=<span class="hljs-number">0</span>:<br>                barber sleep;<span class="hljs-comment">//没有人需要理发则睡觉</span><br>            P(full);<br>            P(mutex);<br>            cutting hair<br>            V(mutex);<br>            V(empty);<br>            until <span class="hljs-literal">false</span>;<br>Parend;<br></code></pre></td></tr></table></figure></p>
+        <h2 id="理发师问题"><a href="#理发师问题" class="headerlink" title="理发师问题"></a>理发师问题</h2><p>7.8 The Sleeping-Barber Problem. A barbershop consists of a waiting room with n chairs and the barber room containing the barber chair. If there are no customers to be served,the barber goes to sleep. If a customer enters the barbershop and all chairs are occupied, then the customer leaves the shop.If the barber is busy but chairs are available, then the customer sits in one of the free chairs. If the barber is asleep, the customer wakes up the barber. Write a program to coordinate the barber and the customers.</p>
+<a id="more"></a>
+<figure class="highlight c++"><table><tr><td class="code"><pre><code class="hljs c++">semaphore:<br>    full:=<span class="hljs-number">0</span>,empty:=n,mutex:=<span class="hljs-number">1</span>;<span class="hljs-comment">//刘军的写法</span><br><span class="hljs-comment">/*</span><br><span class="hljs-comment">*full表示当前需要理发的人数</span><br><span class="hljs-comment">*empty表示当前还剩下多少空椅子</span><br><span class="hljs-comment">*mutex进程互斥控制量，理发师一次只能给一个人理发</span><br><span class="hljs-comment">*/</span><br>Parbegin:<br>    customer: repeat<br>            <span class="hljs-keyword">if</span> empty=<span class="hljs-number">0</span>:<br>                customer leaves the shop<span class="hljs-comment">//没有空位置则离开</span><br>            P(empty);<br>            P(mutex);<br>            add a customer to chair<br>            V(mutex);<br>            V(full);<br>            until <span class="hljs-literal">false</span>;<br>    <br>    barber: repeat<br>            <span class="hljs-keyword">if</span> full=<span class="hljs-number">0</span>:<br>                barber sleep;<span class="hljs-comment">//没有人需要理发则睡觉</span><br>            P(full);<br>            P(mutex);<br>            cutting hair<br>            V(mutex);<br>            V(empty);<br>            until <span class="hljs-literal">false</span>;<br>Parend;<br></code></pre></td></tr></table></figure>
+
 <h2 id="生产者消费者"><a href="#生产者消费者" class="headerlink" title="生产者消费者"></a>生产者消费者</h2><figure class="highlight c++"><table><tr><td class="code"><pre><code class="hljs c++">type item=...;<br>var <span class="hljs-built_in">buffer</span>=...;<br><br>full,empty,mutex:semaphore;<br>nextp,nextc:item;<br><span class="hljs-built_in">begin</span>:<br>    full:=<span class="hljs-number">0</span>;empty:=n;mutex:=<span class="hljs-number">1</span>;<br>Parbegin:<br>    producer:repeat<br>        ...<br>        produce an item in nextp;<br>        ...<br>        p(empty);<br>        p(mutex);<br>        add nextp to <span class="hljs-built_in">buffer</span>;<br>        V(mutex);<br>        V(full);<br>        until <span class="hljs-literal">false</span>;<br>    <br>    consumer:repeat<br>        ...<br>        p(full);<br>        p(mutex);<br>        <span class="hljs-built_in">remove</span> an item from <span class="hljs-built_in">buffer</span> to nextc;<br>        释放缓冲区<br>        V(mutex);<br>        P(empty);<br>        ...<br>        consume the item in nextc;<br>        ...<br>        until <span class="hljs-literal">false</span>;<br>Parend<br></code></pre></td></tr></table></figure>
+
 <h2 id="读者写者"><a href="#读者写者" class="headerlink" title="读者写者"></a>读者写者</h2><figure class="highlight c++"><table><tr><td class="code"><pre><code class="hljs c++">semaphore mutex:=<span class="hljs-number">1</span>,wrt:=<span class="hljs-number">1</span>;<br><span class="hljs-keyword">int</span> readcount:=<span class="hljs-number">0</span>;<br>Parbegin:<br>    Writer:repeat<br>        P(wrt);<br>        写数据<br>        V(wrt);<br>    <br>    Reader:repeat<br>        P(mutex);<br>        readcount:=readcount+<span class="hljs-number">1</span>;<br>        <span class="hljs-keyword">if</span> readcount:=<span class="hljs-number">1</span> then P(wrt);<br>        V(mutex);<br>        读数据<br>        P(mutex);<br>        readcount:=readcount<span class="hljs-number">-1</span>;<br>        <span class="hljs-keyword">if</span> readcount=<span class="hljs-number">0</span> then V(wrt);<br>        V(mutex);<br>Parend<br></code></pre></td></tr></table></figure>
+
 <h2 id="哲学家问题"><a href="#哲学家问题" class="headerlink" title="哲学家问题"></a>哲学家问题</h2><figure class="highlight c++"><table><tr><td class="code"><pre><code class="hljs c++">semaphore chopstick[<span class="hljs-number">5</span>];<span class="hljs-comment">//初始信号量都为1</span><br>第i个进程描述为(i=<span class="hljs-number">0</span>,… ,<span class="hljs-number">4</span>)<br>   repeat<br>	  P(chopstick[i]);<br>	  P(chopstick[(i+<span class="hljs-number">1</span>) mod <span class="hljs-number">5</span>]);<br>	  吃<br>	  V(chopstick[i]);<br>	  V(Chopstick[(i+<span class="hljs-number">1</span>) mod <span class="hljs-number">5</span>];<br>	  思考<br>   until <span class="hljs-literal">false</span>;<br></code></pre></td></tr></table></figure>
       
 
@@ -407,7 +412,7 @@ MathJax.Hub.Queue(function() {
     </script>
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2023 Jack yin
+    		&copy; 2023 Jack Yin
     	</div>
 		<div style="display: inline;">
 			<img src="http://www.beian.gov.cn/img/new/gongan.png">
@@ -562,6 +567,10 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">youth</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Hexo</a>
               </li>
              
@@ -570,7 +579,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">youth</a>
+                <a href="javascript:void(0)" class="js-tag color5">编译原理</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -578,7 +587,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">编译原理</a>
+                <a href="javascript:void(0)" class="js-tag color3">Go</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -686,7 +695,7 @@ MathJax.Hub.Queue(function() {
             </li>
           
             <li class="search-li">
-              <a href="https://www.lzccc.club/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>川哥</a>
+              <a href="https://zichuan-liu.github.io/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>川哥</a>
             </li>
           
             <li class="search-li">
@@ -720,23 +729,31 @@ MathJax.Hub.Queue(function() {
         <ul class="search-ul">
           
             <li class="search-li">
-              <a href="/archives/2100/" target="_self" class="search-title">一百年后</a>
+              <a href="/archives/2100/" target="_self" class="search-title">七百年后</a>
             </li>
           
             <li class="search-li">
-              <a href="/archives/2023/" target="_self" class="search-title">2023年 φ(≧ω≦*)♪</a>
+              <a href="/archives/2025/" target="_self" class="search-title">2025年 φ(≧ω≦*)♪</a>
             </li>
           
             <li class="search-li">
-              <a href="/archives/2022/" target="_self" class="search-title">2022年 (ಥ_ಥ)</a>
+              <a href="/archives/2024/" target="_self" class="search-title">2024年 ヾ(=･ω･=)o</a>
             </li>
           
             <li class="search-li">
-              <a href="/archives/2021/" target="_self" class="search-title">2021年 (๑•̀ㅂ•́)و✧</a>
+              <a href="/archives/2023/" target="_self" class="search-title">2023年 (๑•̀ㅂ•́)و✧</a>
             </li>
           
             <li class="search-li">
-              <a href="/archives/2020/" target="_self" class="search-title">2020年 ヾ(=･ω･=)o</a>
+              <a href="/archives/2022/" target="_self" class="search-title">2022年 ￣ω￣=</a>
+            </li>
+          
+            <li class="search-li">
+              <a href="/archives/2021/" target="_self" class="search-title">2021年 (ಥ_ಥ)</a>
+            </li>
+          
+            <li class="search-li">
+              <a href="/archives/2020/" target="_self" class="search-title">2020年 ╮(╯_╰)╭</a>
             </li>
           
         </ul>
@@ -749,7 +766,7 @@ MathJax.Hub.Queue(function() {
     
     	<section class="tools-section tools-section-me" q-show="aboutme">
   	  	
-  	  		<div class="aboutme-wrap" id="js-aboutme">在日落大道的你与我握手，&lt;br&gt;发觉太想和你闯遍这地球。&lt;br&gt;——————&lt;br&gt;花不似盛开，爱渐如大海。&lt;br&gt;即使你离开，我热情没改。</div>
+  	  		<div class="aboutme-wrap" id="js-aboutme">在日落大道的你与我握手，&lt;br&gt;发觉太想和你闯遍这地球。</div>
   	  	
     	</section>
     

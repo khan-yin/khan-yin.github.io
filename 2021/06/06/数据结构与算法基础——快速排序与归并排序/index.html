@@ -19,7 +19,7 @@
 <meta property="og:image" content="https://img-blog.csdnimg.cn/20210606164025501.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0phY2tfX19F,size_16,color_FFFFFF,t_70">
 <meta property="article:published_time" content="2021-06-06T12:33:00.000Z">
 <meta property="article:modified_time" content="2021-06-13T07:58:18.745Z">
-<meta property="article:author" content="Jack yin">
+<meta property="article:author" content="Jack Yin">
 <meta property="article:tag" content="数据结构">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://img-blog.csdnimg.cn/20210606160649607.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0phY2tfX19F,size_16,color_FFFFFF,t_70">
@@ -64,7 +64,7 @@
 			<img src="/assets/xxb.jpg" class="js-avatar">
 		</a>
 		<hgroup>
-		  <h1 class="header-author" style="margin-bottom: 0%;"><a href="/">Jack yin</a></h1>
+		  <h1 class="header-author" style="margin-bottom: 0%;"><a href="/">Jack Yin</a></h1>
 		</hgroup>
 		
 
@@ -109,7 +109,7 @@
 		        
 					<a class="bilibili" target="_blank" href="https://space.bilibili.com/351001593" title="bilibili"><i class="icon-bilibili"></i></a>
 		        
-					<a class="mail" target="_blank" href="mailto:yinkehan666@gmail.com" title="mail"><i class="icon-mail"></i></a>
+					<a class="mail" target="_blank" href="mailto:khany@foxmail.com" title="mail"><i class="icon-mail"></i></a>
 		        
 			</div>
 
@@ -139,7 +139,7 @@
 				<img src="/assets/xxb.jpg" class="js-avatar">
 			</div>
 			<hgroup>
-			  <h1 class="header-author js-header-author">Jack yin</h1>
+			  <h1 class="header-author js-header-author">Jack Yin</h1>
 			</hgroup>
 			
 			
@@ -163,7 +163,7 @@
 			        
 						<a class="bilibili" target="_blank" href="https://space.bilibili.com/351001593" title="bilibili"><i class="icon-bilibili"></i></a>
 			        
-						<a class="mail" target="_blank" href="mailto:yinkehan666@gmail.com" title="mail"><i class="icon-mail"></i></a>
+						<a class="mail" target="_blank" href="mailto:khany@foxmail.com" title="mail"><i class="icon-mail"></i></a>
 			        
 				</div>
 			</nav>
@@ -211,16 +211,15 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>最近在复习数据结构，顺便整理之前刷题的一些模板和技巧，希望对大家都有帮助，博客会侧重讲解的是OJ代码实现，理论部分偏少但也会写一些自己的理解。<br>在之前大二上数据结构的时候我也有写过一个关于排序的专题介绍<a href="https://blog.csdn.net/Jack___E/article/details/102875285?spm=1001.2014.3001.5502" target="_blank" rel="noopener">数据结构复习——内部排序</a><br><a id="more"></a></p>
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>最近在复习数据结构，顺便整理之前刷题的一些模板和技巧，希望对大家都有帮助，博客会侧重讲解的是OJ代码实现，理论部分偏少但也会写一些自己的理解。<br>在之前大二上数据结构的时候我也有写过一个关于排序的专题介绍<a href="https://blog.csdn.net/Jack___E/article/details/102875285?spm=1001.2014.3001.5502" target="_blank" rel="noopener">数据结构复习——内部排序</a></p>
+<a id="more"></a>
 <h2 id="快速排序"><a href="#快速排序" class="headerlink" title="快速排序"></a>快速排序</h2><p>快速排序主要就是通过选取一个基准点，将一个区间内的数分成大于和小于两个部分，然后对左右区间再进行上述操作，直到子区间的长度为空为止。<strong>快速排序是不稳定的排序，如果需要变成稳定排序通过双关键字排序即可，通过下标控制绝对大小就能得到稳定的排序结果。</strong><br>快速排序分三步走：</p>
 <ul>
 <li>确定分界点</li>
 <li>调整左右区间</li>
 <li>递归处理左右子区间</li>
 </ul>
-<p>在代码实现当中，我们一般选取中间分位点会比较好，这样划分的区间比较平均。在遍历的过程当中每次调整区间的时间是$O(n)$，而区间递归的深度类似二叉树是$O(logn)$<br>在最好情况下，对于递归型的算法，我们利用<strong>主定理公式</strong>来计算快速排序时间复杂度得到$O(nlogn)$</p>
-<script type="math/tex; mode=display">
-T(n) = 2 T\left(\frac{n}{2}\right)+\Theta(n)</script><p>当然在最坏情况下，也就是数组是有序或者逆序的情况下，我们如果选择左右端点作为基准点，那么整个算法就相当于冒泡排序，递归的层数也就变成了$n$，则最坏时间复杂度为$O(n^2)$</p>
+<p>在代码实现当中，我们一般选取中间分位点会比较好，这样划分的区间比较平均。在遍历的过程当中每次调整区间的时间是$O(n)$，而区间递归的深度类似二叉树是$O(logn)$<br>在最好情况下，对于递归型的算法，我们利用<strong>主定理公式</strong>来计算快速排序时间复杂度得到$O(nlogn)$<br>$$<br>T(n) = 2 T\left(\frac{n}{2}\right)+\Theta(n)<br>$$<br>当然在最坏情况下，也就是数组是有序或者逆序的情况下，我们如果选择左右端点作为基准点，那么整个算法就相当于冒泡排序，递归的层数也就变成了$n$，则最坏时间复杂度为$O(n^2)$</p>
 <h4 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h4><figure class="highlight cpp"><table><tr><td class="code"><pre><code class="hljs cpp"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">quick_sort</span><span class="hljs-params">(<span class="hljs-keyword">int</span>[] q,<span class="hljs-keyword">int</span> l,<span class="hljs-keyword">int</span> r)</span></span><br><span class="hljs-function"></span>&#123;<br>	<span class="hljs-keyword">if</span>(l&gt;=r) <span class="hljs-keyword">return</span>;<br>	<span class="hljs-comment">// 1.确定分界点</span><br>	<span class="hljs-keyword">int</span> i = l - <span class="hljs-number">1</span>, j = r + <span class="hljs-number">1</span>, mid = q[l + r &gt;&gt; <span class="hljs-number">1</span>];<br>	<span class="hljs-comment">// 2.调整左右区间</span><br>	<span class="hljs-keyword">while</span>(i&lt;j)<br>	&#123;<br>		<span class="hljs-keyword">do</span> i++; <span class="hljs-keyword">while</span>(q[i]&lt;mid);<br>		<span class="hljs-keyword">do</span> j--; <span class="hljs-keyword">while</span>(q[j]&gt;mid);<br>		<span class="hljs-keyword">if</span>(i&lt;j) swap(q[i],q[j]);<br>	&#125;<br>	<span class="hljs-comment">//3.递归处理左右子区间</span><br>	quick_sort(l,j);<br>	quick_sort(j+<span class="hljs-number">1</span>,r);<br>&#125;<br></code></pre></td></tr></table></figure>
 <h4 id="经典例题"><a href="#经典例题" class="headerlink" title="经典例题"></a>经典例题</h4><p><a href="https://www.luogu.com.cn/problem/P1177" target="_blank" rel="noopener">洛谷P1177 【模板】快速排序</a></p>
 <h2 id="归并排序"><a href="#归并排序" class="headerlink" title="归并排序"></a>归并排序</h2><p>归并排序也是基于分治的思想，每次将区间对半分，逐步递归合并有序化子区间，最终实现所有的左右区间的有序归并，但是跟快速排序不同的是，我们需要开一个辅助数组来存储有序的部分，所以时间复杂度为$O(nlogn)$。归并排序是<strong>稳定</strong>的排序，在元素相等情况下我们总是放入数组下标较小的元素。<br>归并排序分三步走：</p>
@@ -429,7 +428,7 @@ MathJax.Hub.Queue(function() {
     </script>
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2023 Jack yin
+    		&copy; 2023 Jack Yin
     	</div>
 		<div style="display: inline;">
 			<img src="http://www.beian.gov.cn/img/new/gongan.png">
@@ -584,6 +583,10 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">youth</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Hexo</a>
               </li>
              
@@ -592,7 +595,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">youth</a>
+                <a href="javascript:void(0)" class="js-tag color5">编译原理</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -600,7 +603,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">编译原理</a>
+                <a href="javascript:void(0)" class="js-tag color3">Go</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -708,7 +711,7 @@ MathJax.Hub.Queue(function() {
             </li>
           
             <li class="search-li">
-              <a href="https://www.lzccc.club/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>川哥</a>
+              <a href="https://zichuan-liu.github.io/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>川哥</a>
             </li>
           
             <li class="search-li">
@@ -742,23 +745,31 @@ MathJax.Hub.Queue(function() {
         <ul class="search-ul">
           
             <li class="search-li">
-              <a href="/archives/2100/" target="_self" class="search-title">一百年后</a>
+              <a href="/archives/2100/" target="_self" class="search-title">七百年后</a>
             </li>
           
             <li class="search-li">
-              <a href="/archives/2023/" target="_self" class="search-title">2023年 φ(≧ω≦*)♪</a>
+              <a href="/archives/2025/" target="_self" class="search-title">2025年 φ(≧ω≦*)♪</a>
             </li>
           
             <li class="search-li">
-              <a href="/archives/2022/" target="_self" class="search-title">2022年 (ಥ_ಥ)</a>
+              <a href="/archives/2024/" target="_self" class="search-title">2024年 ヾ(=･ω･=)o</a>
             </li>
           
             <li class="search-li">
-              <a href="/archives/2021/" target="_self" class="search-title">2021年 (๑•̀ㅂ•́)و✧</a>
+              <a href="/archives/2023/" target="_self" class="search-title">2023年 (๑•̀ㅂ•́)و✧</a>
             </li>
           
             <li class="search-li">
-              <a href="/archives/2020/" target="_self" class="search-title">2020年 ヾ(=･ω･=)o</a>
+              <a href="/archives/2022/" target="_self" class="search-title">2022年 ￣ω￣=</a>
+            </li>
+          
+            <li class="search-li">
+              <a href="/archives/2021/" target="_self" class="search-title">2021年 (ಥ_ಥ)</a>
+            </li>
+          
+            <li class="search-li">
+              <a href="/archives/2020/" target="_self" class="search-title">2020年 ╮(╯_╰)╭</a>
             </li>
           
         </ul>
@@ -771,7 +782,7 @@ MathJax.Hub.Queue(function() {
     
     	<section class="tools-section tools-section-me" q-show="aboutme">
   	  	
-  	  		<div class="aboutme-wrap" id="js-aboutme">在日落大道的你与我握手，&lt;br&gt;发觉太想和你闯遍这地球。&lt;br&gt;——————&lt;br&gt;花不似盛开，爱渐如大海。&lt;br&gt;即使你离开，我热情没改。</div>
+  	  		<div class="aboutme-wrap" id="js-aboutme">在日落大道的你与我握手，&lt;br&gt;发觉太想和你闯遍这地球。</div>
   	  	
     	</section>
     
