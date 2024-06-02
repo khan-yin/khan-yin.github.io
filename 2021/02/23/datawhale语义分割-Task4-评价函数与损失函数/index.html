@@ -223,7 +223,7 @@
 <li>掌握评价/损失函数的实践；</li>
 </ul>
 <a id="more"></a>
-<h3 id="4-2-TP-TN-FP-FN"><a href="#4-2-TP-TN-FP-FN" class="headerlink" title="4.2 TP TN FP FN"></a>4.2 TP TN FP FN</h3><p>在讲解语义分割中常用的评价函数和损失函数之前，先补充一<strong>TP(真正例 true positive) TN(真反例 true negative) FP(假正例 false positive) FN(假反例 false negative)</strong>的知识。在分类问题中，我们经常看到上述的表述方式，以二分类为例，我们可以将所有的样本预测结果分成TP、TN、 FP、FN四类，并且每一类含有的样本数量之和为总样本数量，即TP+FP+FN+TN=总样本数量。其混淆矩阵如下：</p>
+<h3 id="4-2-TP-TN-FP-FN"><a href="#4-2-TP-TN-FP-FN" class="headerlink" title="4.2 TP TN FP FN"></a>4.2 TP TN FP FN</h3><p>在讲解语义分割中常用的评价函数和损失函数之前，先补充一**TP(真正例 true positive) TN(真反例 true negative) FP(假正例 false positive) FN(假反例 false negative)**的知识。在分类问题中，我们经常看到上述的表述方式，以二分类为例，我们可以将所有的样本预测结果分成TP、TN、 FP、FN四类，并且每一类含有的样本数量之和为总样本数量，即TP+FP+FN+TN=总样本数量。其混淆矩阵如下：</p>
 <p><img src="https://img-blog.csdnimg.cn/20210223144602309.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0phY2tfX19F,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p>
 <p>上述的概念都是通过以预测结果的视角定义的，可以依据下面方式理解：</p>
 <ul>
@@ -236,10 +236,7 @@
 <li><p>预测结果中的反例 → 在实际中是反例 → 的所有样本被称为真反例（TN）&lt;预测正确&gt;</p>
 </li>
 </ul>
-<p>这里就不得不提及精确率（precision）和召回率（recall）：</p>
-<script type="math/tex; mode=display">
-Precision=\frac{TP}{TP+FP} \\
-Recall=\frac{TP}{TP+FN}</script><p>$Precision$代表了预测的正例中真正的正例所占比例；$Recall$代表了真正的正例中被正确预测出来的比例。</p>
+<p>这里就不得不提及精确率（precision）和召回率（recall）：<br>$$<br>Precision=\frac{TP}{TP+FP} \<br>Recall=\frac{TP}{TP+FN}<br>$$<br>$Precision$代表了预测的正例中真正的正例所占比例；$Recall$代表了真正的正例中被正确预测出来的比例。</p>
 <p>转移到语义分割任务中来，我们可以将语义分割看作是对每一个图像像素的的分类问题。根据混淆矩阵中的定义，我们亦可以将特定像素所属的集合或区域划分成TP、TN、 FP、FN四类。</p>
 <p><img src="https://img-blog.csdnimg.cn/20210223144629443.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0phY2tfX19F,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p>
 <p>以上面的图片为例，图中左子图中的人物区域（黄色像素集合）是我们<strong>真实标注的前景信息（target）</strong>，其他区域（紫色像素集合）为背景信息。当经过预测之后，我们会得到的一张预测结果，图中右子图中的黄色像素为<strong>预测的前景（prediction）</strong>，紫色像素为预测的背景区域。此时，我们便能够将预测结果分成4个部分：</p>
@@ -255,130 +252,78 @@ Recall=\frac{TP}{TP+FN}</script><p>$Precision$代表了预测的正例中真正�
 </ul>
 <h3 id="4-3-Dice评价指标"><a href="#4-3-Dice评价指标" class="headerlink" title="4.3 Dice评价指标"></a>4.3 Dice评价指标</h3><p><strong>Dice系数</strong></p>
 <p>Dice系数（Dice coefficient）是常见的评价分割效果的方法之一，同样也可以改写成损失函数用来度量prediction和target之间的距离。Dice系数定义如下：</p>
-<script type="math/tex; mode=display">
-Dice (T, P) = \frac{2 |T \cap P|}{|T| \cup |P|} = \frac{2TP}{FP+2TP+FN}</script><p>式中：$T$表示真实前景（target），$P$表示预测前景（prediction）。Dice系数取值范围为$[0,1]$，其中值为1时代表预测与真实完全一致。仔细观察，Dice系数与分类评价指标中的F1 score很相似：</p>
-<script type="math/tex; mode=display">
-\frac{1}{F1} = \frac{1}{Precision} + \frac{1}{Recall}</script><script type="math/tex; mode=display">
-F1 = \frac{2TP}{FP+2TP+FN}</script><p>所以，Dice系数不仅在直观上体现了target与prediction的相似程度，同时其本质上还隐含了精确率和召回率两个重要指标。</p>
-<p>计算Dice时，将$|T \cap P|$近似为prediction与target对应元素相乘再相加的结果。$|T|$ 和$|P|$的计算直接进行简单的元素求和（也有一些做法是取平方求和），如下示例：</p>
-<script type="math/tex; mode=display">
-|T \cap P| = 
-\begin{bmatrix}
-0.01 & 0.03 & 0.02 & 0.02 \\ 
-0.05 & 0.12 & 0.09 & 0.07 \\
-0.89 & 0.85 & 0.88 & 0.91 \\
-0.99 & 0.97 & 0.95 & 0.97 \\
-\end{bmatrix} * 
-\begin{bmatrix}
-0 & 0 & 0 & 0 \\ 
-0 & 0 & 0 & 0 \\
-1 & 1 & 1 & 1 \\
-1 & 1 & 1 & 1 \\
-\end{bmatrix} \stackrel{}{\rightarrow} 
-\begin{bmatrix}
-0 & 0 & 0 & 0 \\ 
-0 & 0 & 0 & 0 \\
-0.89 & 0.85 & 0.88 & 0.91 \\
-0.99 & 0.97 & 0.95 & 0.97 \\
-\end{bmatrix} \stackrel{sum}{\rightarrow} 7.41</script><script type="math/tex; mode=display">
-|T| = 
-\begin{bmatrix}
-0.01 & 0.03 & 0.02 & 0.02 \\ 
-0.05 & 0.12 & 0.09 & 0.07 \\
-0.89 & 0.85 & 0.88 & 0.91 \\
-0.99 & 0.97 & 0.95 & 0.97 \\
-\end{bmatrix} \stackrel{sum}{\rightarrow} 7.82</script><script type="math/tex; mode=display">
-|P| = 
-\begin{bmatrix}
-0 & 0 & 0 & 0 \\ 
-0 & 0 & 0 & 0 \\
-1 & 1 & 1 & 1 \\
-1 & 1 & 1 & 1 \\
-\end{bmatrix}  \stackrel{sum}{\rightarrow} 8</script><p><strong>Dice Loss</strong></p>
-<p>Dice Loss是在<a href="https://arxiv.org/abs/1606.04797" target="_blank" rel="noopener">V-net</a>模型中被提出应用的，是通过Dice系数转变而来，其实为了能够实现最小化的损失函数，以方便模型训练，以$1 - Dice$的形式作为损失函数：</p>
-<script type="math/tex; mode=display">
-L = 1-\frac{2 |T \cap P|}{|T| \cup |P|}</script><p>在一些场合还可以添加上<strong>Laplace smoothing</strong>减少过拟合：</p>
-<script type="math/tex; mode=display">
-L = 1-\frac{2 |T \cap P| + 1}{|T| \cup |P|+1}</script><p><strong>代码实现</strong></p>
+<p>$$<br>Dice (T, P) = \frac{2 |T \cap P|}{|T| \cup |P|} = \frac{2TP}{FP+2TP+FN}<br>$$<br>式中：$T$表示真实前景（target），$P$表示预测前景（prediction）。Dice系数取值范围为$[0,1]$，其中值为1时代表预测与真实完全一致。仔细观察，Dice系数与分类评价指标中的F1 score很相似：</p>
+<p>$$<br>\frac{1}{F1} = \frac{1}{Precision} + \frac{1}{Recall}<br>$$</p>
+<p>$$<br>F1 = \frac{2TP}{FP+2TP+FN}<br>$$</p>
+<p>所以，Dice系数不仅在直观上体现了target与prediction的相似程度，同时其本质上还隐含了精确率和召回率两个重要指标。</p>
+<p>计算Dice时，将$|T \cap P|$近似为prediction与target对应元素相乘再相加的结果。$|T|$ 和$|P|$的计算直接进行简单的元素求和（也有一些做法是取平方求和），如下示例：<br>$$<br>|T \cap P| =<br>\begin{bmatrix}<br>0.01 &amp; 0.03 &amp; 0.02 &amp; 0.02 \<br>0.05 &amp; 0.12 &amp; 0.09 &amp; 0.07 \<br>0.89 &amp; 0.85 &amp; 0.88 &amp; 0.91 \<br>0.99 &amp; 0.97 &amp; 0.95 &amp; 0.97 \<br>\end{bmatrix} *<br>\begin{bmatrix}<br>0 &amp; 0 &amp; 0 &amp; 0 \<br>0 &amp; 0 &amp; 0 &amp; 0 \<br>1 &amp; 1 &amp; 1 &amp; 1 \<br>1 &amp; 1 &amp; 1 &amp; 1 \<br>\end{bmatrix} \stackrel{}{\rightarrow}<br>\begin{bmatrix}<br>0 &amp; 0 &amp; 0 &amp; 0 \<br>0 &amp; 0 &amp; 0 &amp; 0 \<br>0.89 &amp; 0.85 &amp; 0.88 &amp; 0.91 \<br>0.99 &amp; 0.97 &amp; 0.95 &amp; 0.97 \<br>\end{bmatrix} \stackrel{sum}{\rightarrow} 7.41<br>$$</p>
+<p>$$<br>|T| =<br>\begin{bmatrix}<br>0.01 &amp; 0.03 &amp; 0.02 &amp; 0.02 \<br>0.05 &amp; 0.12 &amp; 0.09 &amp; 0.07 \<br>0.89 &amp; 0.85 &amp; 0.88 &amp; 0.91 \<br>0.99 &amp; 0.97 &amp; 0.95 &amp; 0.97 \<br>\end{bmatrix} \stackrel{sum}{\rightarrow} 7.82<br>$$</p>
+<p>$$<br>|P| =<br>\begin{bmatrix}<br>0 &amp; 0 &amp; 0 &amp; 0 \<br>0 &amp; 0 &amp; 0 &amp; 0 \<br>1 &amp; 1 &amp; 1 &amp; 1 \<br>1 &amp; 1 &amp; 1 &amp; 1 \<br>\end{bmatrix}  \stackrel{sum}{\rightarrow} 8<br>$$</p>
+<p><strong>Dice Loss</strong></p>
+<p>Dice Loss是在<a href="https://arxiv.org/abs/1606.04797" target="_blank" rel="noopener">V-net</a>模型中被提出应用的，是通过Dice系数转变而来，其实为了能够实现最小化的损失函数，以方便模型训练，以$1 - Dice$的形式作为损失函数：<br>$$<br>L = 1-\frac{2 |T \cap P|}{|T| \cup |P|}<br>$$<br>在一些场合还可以添加上<strong>Laplace smoothing</strong>减少过拟合：<br>$$<br>L = 1-\frac{2 |T \cap P| + 1}{|T| \cup |P|+1}<br>$$</p>
+<p><strong>代码实现</strong></p>
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np<br><br><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">dice</span><span class="hljs-params">(output, target)</span>:</span><br>    <span class="hljs-string">'''计算Dice系数'''</span><br>    smooth = <span class="hljs-number">1e-6</span> <span class="hljs-comment"># 避免0为除数</span><br>    intersection = (output * target).sum()<br>    <span class="hljs-keyword">return</span> (<span class="hljs-number">2.</span> * intersection + smooth) / (output.sum() + target.sum() + smooth)<br><br><span class="hljs-comment"># 生成随机两个矩阵测试</span><br>target = np.random.randint(<span class="hljs-number">0</span>, <span class="hljs-number">2</span>, (<span class="hljs-number">3</span>, <span class="hljs-number">3</span>))<br>output = np.random.randint(<span class="hljs-number">0</span>, <span class="hljs-number">2</span>, (<span class="hljs-number">3</span>, <span class="hljs-number">3</span>))<br><br>d = dice(output, target)<br><span class="hljs-comment"># ----------------------------</span><br>target = array([[<span class="hljs-number">1</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>],<br>       			[<span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">1</span>],<br>			    [<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">1</span>]])<br>output = array([[<span class="hljs-number">1</span>, <span class="hljs-number">0</span>, <span class="hljs-number">1</span>],<br>       			[<span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">0</span>],<br>       			[<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>]])<br>d = <span class="hljs-number">0.5714286326530524</span><br></code></pre></td></tr></table></figure>
-<h3 id="4-4-IoU评价指标"><a href="#4-4-IoU评价指标" class="headerlink" title="4.4 IoU评价指标"></a>4.4 IoU评价指标</h3><p>IoU（intersection over union）指标就是常说的交并比，不仅在语义分割评价中经常被使用，在目标检测中也是常用的评价指标。顾名思义，交并比就是指target与prediction两者之间交集与并集的比值：</p>
-<script type="math/tex; mode=display">
-IoU=\frac{T \cap P}{T \cup P}=\frac{TP}{FP+TP+FN}</script><p>仍然以人物前景分割为例，如下图，其IoU的计算就是使用$intersection / union$。</p>
-<div class="table-container">
+
+<h3 id="4-4-IoU评价指标"><a href="#4-4-IoU评价指标" class="headerlink" title="4.4 IoU评价指标"></a>4.4 IoU评价指标</h3><p>IoU（intersection over union）指标就是常说的交并比，不仅在语义分割评价中经常被使用，在目标检测中也是常用的评价指标。顾名思义，交并比就是指target与prediction两者之间交集与并集的比值：<br>$$<br>IoU=\frac{T \cap P}{T \cup P}=\frac{TP}{FP+TP+FN}<br>$$<br>仍然以人物前景分割为例，如下图，其IoU的计算就是使用$intersection / union$。</p>
 <table>
 <thead>
 <tr>
-<th style="text-align:center">target</th>
-<th style="text-align:center">prediction</th>
+<th align="center">target</th>
+<th align="center">prediction</th>
 </tr>
 </thead>
-<tbody>
-<tr>
-<td style="text-align:center"><img src="https://img-blog.csdnimg.cn/20210223144740581.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0phY2tfX19F,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></td>
-<td style="text-align:center"><img src="https://img-blog.csdnimg.cn/20210223144755503.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0phY2tfX19F,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></td>
+<tbody><tr>
+<td align="center"><img src="https://img-blog.csdnimg.cn/20210223144740581.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0phY2tfX19F,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></td>
+<td align="center"><img src="https://img-blog.csdnimg.cn/20210223144755503.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0phY2tfX19F,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></td>
 </tr>
 <tr>
-<td style="text-align:center">Intersection( $T \cap P$)</td>
-<td style="text-align:center">union($T \cup P$)</td>
+<td align="center">Intersection( $T \cap P$)</td>
+<td align="center">union($T \cup P$)</td>
 </tr>
 <tr>
-<td style="text-align:center"><img src="https://img-blog.csdnimg.cn/20210223144825627.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0phY2tfX19F,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></td>
-<td style="text-align:center"><img src="https://img-blog.csdnimg.cn/20210223144847490.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0phY2tfX19F,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></td>
+<td align="center"><img src="https://img-blog.csdnimg.cn/20210223144825627.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0phY2tfX19F,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></td>
+<td align="center"><img src="https://img-blog.csdnimg.cn/20210223144847490.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0phY2tfX19F,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></td>
 </tr>
-</tbody>
-</table>
-</div>
+</tbody></table>
 <p><strong>代码实现</strong></p>
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">iou_score</span><span class="hljs-params">(output, target)</span>:</span><br>    <span class="hljs-string">'''计算IoU指标'''</span><br>	intersection = np.logical_and(target, output) <br>    union = np.logical_or(target, output) <br>    <span class="hljs-keyword">return</span> np.sum(intersection) / np.sum(union)<br><br><span class="hljs-comment"># 生成随机两个矩阵测试</span><br>target = np.random.randint(<span class="hljs-number">0</span>, <span class="hljs-number">2</span>, (<span class="hljs-number">3</span>, <span class="hljs-number">3</span>))<br>output = np.random.randint(<span class="hljs-number">0</span>, <span class="hljs-number">2</span>, (<span class="hljs-number">3</span>, <span class="hljs-number">3</span>))<br><br>d = iou_score(output, target)<br><span class="hljs-comment"># ----------------------------</span><br>target = array([[<span class="hljs-number">1</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>],<br>       			[<span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">1</span>],<br>			    [<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">1</span>]])<br>output = array([[<span class="hljs-number">1</span>, <span class="hljs-number">0</span>, <span class="hljs-number">1</span>],<br>       			[<span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">0</span>],<br>       			[<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>]])<br>d = <span class="hljs-number">0.4</span><br></code></pre></td></tr></table></figure>
-<h3 id="4-5-BCE损失函数"><a href="#4-5-BCE损失函数" class="headerlink" title="4.5 BCE损失函数"></a>4.5 BCE损失函数</h3><p>BCE损失函数（Binary Cross-Entropy Loss）是交叉熵损失函数（Cross-Entropy Loss）的一种特例，BCE Loss只应用在二分类任务中。针对分类问题，单样本的交叉熵损失为：</p>
-<script type="math/tex; mode=display">
-l(\pmb y, \pmb{\hat y})=- \sum_{i=1}^{c}y_i \cdot log\hat y_i</script><p>式中，$\pmb{y}={y_1,y_2,…,y_c,}$，其中$y_i$是非0即1的数字，代表了是否属于第$i$类，为真实值；$\hat y_i$代表属于第i类的概率，为预测值。可以看出，交叉熵损失考虑了多类别情况，针对每一种类别都求了损失。针对二分类问题，上述公式可以改写为：</p>
-<script type="math/tex; mode=display">
-l(y,\hat y)=-[y \cdot log\hat y +(1-y)\cdot log (1-\hat y)]</script><p>式中,$y$为真实值，非1即0；$\hat y$为所属此类的概率值，为预测值。这个公式也就是BCE损失函数，即二分类任务时的交叉熵损失。值得强调的是，公式中的$\hat y$为概率分布形式，因此在使用BCE损失前，<strong>都应该将预测出来的结果转变成概率值</strong>，一般为sigmoid激活之后的输出。</p>
+
+<h3 id="4-5-BCE损失函数"><a href="#4-5-BCE损失函数" class="headerlink" title="4.5 BCE损失函数"></a>4.5 BCE损失函数</h3><p>BCE损失函数（Binary Cross-Entropy Loss）是交叉熵损失函数（Cross-Entropy Loss）的一种特例，BCE Loss只应用在二分类任务中。针对分类问题，单样本的交叉熵损失为：<br>$$<br>l(\pmb y, \pmb{\hat y})=- \sum_{i=1}^{c}y_i \cdot log\hat y_i<br>$$<br>式中，$\pmb{y}={y_1,y_2,…,y_c,}$，其中$y_i$是非0即1的数字，代表了是否属于第$i$类，为真实值；$\hat y_i$代表属于第i类的概率，为预测值。可以看出，交叉熵损失考虑了多类别情况，针对每一种类别都求了损失。针对二分类问题，上述公式可以改写为：<br>$$<br>l(y,\hat y)=-[y \cdot log\hat y +(1-y)\cdot log (1-\hat y)]<br>$$<br>式中,$y$为真实值，非1即0；$\hat y$为所属此类的概率值，为预测值。这个公式也就是BCE损失函数，即二分类任务时的交叉熵损失。值得强调的是，公式中的$\hat y$为概率分布形式，因此在使用BCE损失前，<strong>都应该将预测出来的结果转变成概率值</strong>，一般为sigmoid激活之后的输出。</p>
 <p><strong>代码实现</strong></p>
 <p>在pytorch中，官方已经给出了BCE损失函数的API，免去了自己编写函数的痛苦：</p>
 <blockquote>
-<p><code>torch.nn.BCELoss(weight: Optional[torch.Tensor] = None, size_average=None, reduce=None, reduction: str = &#39;mean&#39;)</code></p>
-<script type="math/tex; mode=display">
-ℓ(y,\hat y)=L=\{l_1,…,l_N \}^⊤,\ \ \  l_n=-w_n[y_n \cdot log\hat y_n +(1-y_n)\cdot log (1-\hat y_n)]</script><p>参数：<br>weight(Tensor)- 为每一批量下的loss添加一个权重，很少使用<br>size_average(bool)- 弃用中<br>reduce(bool)- 弃用中<br>reduction(str) - ‘none’ | ‘mean’ | ‘sum’：为代替上面的size_average和reduce而生。——为mean时返回的该批量样本loss的平均值；为sum时，返回的该批量样本loss之和</p>
+<p><code>torch.nn.BCELoss(weight: Optional[torch.Tensor] = None, size_average=None, reduce=None, reduction: str = &#39;mean&#39;)</code><br>$$<br>ℓ(y,\hat y)=L={l_1,…,l_N }^⊤,\ \ \  l_n=-w_n[y_n \cdot log\hat y_n +(1-y_n)\cdot log (1-\hat y_n)]<br>$$<br>参数：<br>weight(Tensor)- 为每一批量下的loss添加一个权重，很少使用<br>size_average(bool)- 弃用中<br>reduce(bool)- 弃用中<br>reduction(str) - ‘none’ | ‘mean’ | ‘sum’：为代替上面的size_average和reduce而生。——为mean时返回的该批量样本loss的平均值；为sum时，返回的该批量样本loss之和</p>
 </blockquote>
 <p><strong>同时，pytorch还提供了已经结合了Sigmoid函数的BCE损失：<code>torch.nn.BCEWithLogitsLoss()</code>，相当于免去了实现进行Sigmoid激活的操作。</strong></p>
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> torch<br><span class="hljs-keyword">import</span> torch.nn <span class="hljs-keyword">as</span> nn<br><br>bce = nn.BCELoss()<br>bce_sig = nn.BCEWithLogitsLoss()<br><br>input = torch.randn(<span class="hljs-number">5</span>, <span class="hljs-number">1</span>, requires_grad=<span class="hljs-literal">True</span>)<br>target = torch.empty(<span class="hljs-number">5</span>, <span class="hljs-number">1</span>).random_(<span class="hljs-number">2</span>)<br>pre = nn.Sigmoid()(input)<br><br>loss_bce = bce(pre, target)<br>loss_bce_sig = bce_sig(input, target)<br><br><span class="hljs-comment"># ------------------------</span><br>input = tensor([[<span class="hljs-number">-0.2296</span>],<br>        		[<span class="hljs-number">-0.6389</span>],<br>        		[<span class="hljs-number">-0.2405</span>],<br>        		[ <span class="hljs-number">1.3451</span>],<br>        		[ <span class="hljs-number">0.7580</span>]], requires_grad=<span class="hljs-literal">True</span>)<br>output = tensor([[<span class="hljs-number">1.</span>],<br>        		 [<span class="hljs-number">0.</span>],<br>        		 [<span class="hljs-number">0.</span>],<br>        		 [<span class="hljs-number">1.</span>],<br>        		 [<span class="hljs-number">1.</span>]])<br>pre = tensor([[<span class="hljs-number">0.4428</span>],<br>        	  [<span class="hljs-number">0.3455</span>],<br>        	  [<span class="hljs-number">0.4402</span>],<br>        	  [<span class="hljs-number">0.7933</span>],<br>        	  [<span class="hljs-number">0.6809</span>]], grad_fn=&lt;SigmoidBackward&gt;)<br><br>print(loss_bce)<br>tensor(<span class="hljs-number">0.4869</span>, grad_fn=&lt;BinaryCrossEntropyBackward&gt;)<br><br>print(loss_bce_sig)<br>tensor(<span class="hljs-number">0.4869</span>, grad_fn=&lt;BinaryCrossEntropyWithLogitsBackward&gt;)<br></code></pre></td></tr></table></figure>
+
 <h3 id="4-6-Focal-Loss"><a href="#4-6-Focal-Loss" class="headerlink" title="4.6 Focal Loss"></a>4.6 Focal Loss</h3><p>Focal loss最初是出现在目标检测领域，主要是为了解决正负样本比例失调的问题。那么对于分割任务来说，如果存在数据不均衡的情况，也可以借用focal loss来进行缓解。Focal loss函数公式如下所示：</p>
-<script type="math/tex; mode=display">
-loss = -\frac{1}{N} \sum_{i=1}^{N}\left(\alpha y_{i}\left(1-p_{i}\right)^{\gamma} \log p_{i}+(1-\alpha)\left(1-y_{i}\right) p_{i}^{\gamma} \log \left(1-p_{i}\right)\right)</script><p>仔细观察就不难发现，它其实是BCE扩展而来，对比BCE其实就多了个</p>
-<script type="math/tex; mode=display">
-\alpha(1-p_{i})^{\gamma}和(1-\alpha)p_{i}^{\gamma}</script><p>为什么多了这个就能缓解正负样本不均衡的问题呢？见下图：</p>
+<p>$$<br>loss = -\frac{1}{N} \sum_{i=1}^{N}\left(\alpha y_{i}\left(1-p_{i}\right)^{\gamma} \log p_{i}+(1-\alpha)\left(1-y_{i}\right) p_{i}^{\gamma} \log \left(1-p_{i}\right)\right)<br>$$<br>仔细观察就不难发现，它其实是BCE扩展而来，对比BCE其实就多了个<br>$$<br>\alpha(1-p_{i})^{\gamma}和(1-\alpha)p_{i}^{\gamma}<br>$$<br>为什么多了这个就能缓解正负样本不均衡的问题呢？见下图：</p>
 <p><img src="https://img-blog.csdnimg.cn/20210223144942139.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0phY2tfX19F,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p>
 <p>简单来说：$α$解决样本不平衡问题，$γ$解决样本难易问题。</p>
 <p>也就是说，当数据不均衡时，可以根据比例设置合适的$α$，这个很好理解，为了能够使得正负样本得到的损失能够均衡，因此对loss前面加上一定的权重，其中负样本数量多，因此占用的权重可以设置的小一点；正样本数量少，就对正样本产生的损失的权重设的高一点。</p>
 <p>那γ具体怎么起作用呢？以图中$γ=5$曲线为例，假设$gt$类别为1，当模型预测结果为1的概率$p_t$比较大时，我们认为模型预测的比较准确，也就是说这个样本比较简单。而对于比较简单的样本，我们希望提供的loss小一些而让模型主要学习难一些的样本，也就是$p_t→ 1$则loss接近于0，既不用再特别学习；当分类错误时，$p_t → 0$则loss正常产生，继续学习。对比图中蓝色和绿色曲线，可以看到，γ值越大，当模型预测结果比较准确的时候能提供更小的loss，符合我们为简单样本降低loss的预期。</p>
 <p><strong>代码实现：</strong></p>
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> torch.nn <span class="hljs-keyword">as</span> nn<br><span class="hljs-keyword">import</span> torch<br><span class="hljs-keyword">import</span> torch.nn.functional <span class="hljs-keyword">as</span> F<br><br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">FocalLoss</span><span class="hljs-params">(nn.Module)</span>:</span><br>    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span><span class="hljs-params">(self, alpha=<span class="hljs-number">1</span>, gamma=<span class="hljs-number">2</span>, logits=False, reduce=True)</span>:</span><br>        super(FocalLoss, self).__init__()<br>        self.alpha = alpha<br>        self.gamma = gamma<br>        self.logits = logits	<span class="hljs-comment"># 如果BEC带logits则损失函数在计算BECloss之前会自动计算softmax/sigmoid将其映射到[0,1]</span><br>        self.reduce = reduce<br><br>    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">forward</span><span class="hljs-params">(self, inputs, targets)</span>:</span><br>        <span class="hljs-keyword">if</span> self.logits:<br>            BCE_loss = F.binary_cross_entropy_with_logits(inputs, targets, reduce=<span class="hljs-literal">False</span>)<br>        <span class="hljs-keyword">else</span>:<br>            BCE_loss = F.binary_cross_entropy(inputs, targets, reduce=<span class="hljs-literal">False</span>)<br>        pt = torch.exp(-BCE_loss)<br>        F_loss = self.alpha * (<span class="hljs-number">1</span>-pt)**self.gamma * BCE_loss<br><br>        <span class="hljs-keyword">if</span> self.reduce:<br>            <span class="hljs-keyword">return</span> torch.mean(F_loss)<br>        <span class="hljs-keyword">else</span>:<br>            <span class="hljs-keyword">return</span> F_loss<br><br><span class="hljs-comment"># ------------------------</span><br><br>FL1 = FocalLoss(logits=<span class="hljs-literal">False</span>)<br>FL2 = FocalLoss(logits=<span class="hljs-literal">True</span>)<br><br>inputs = torch.randn(<span class="hljs-number">5</span>, <span class="hljs-number">1</span>, requires_grad=<span class="hljs-literal">True</span>)<br>targets = torch.empty(<span class="hljs-number">5</span>, <span class="hljs-number">1</span>).random_(<span class="hljs-number">2</span>)<br>pre = nn.Sigmoid()(inputs)<br><br>f_loss_1 = FL1(pre, targets)<br>f_loss_2 = FL2(inputs, targets)<br><br><span class="hljs-comment"># ------------------------</span><br><br>print(<span class="hljs-string">'inputs:'</span>, inputs)<br>inputs: tensor([[<span class="hljs-number">-1.3521</span>],<br>        [ <span class="hljs-number">0.4975</span>],<br>        [<span class="hljs-number">-1.0178</span>],<br>        [<span class="hljs-number">-0.3859</span>],<br>        [<span class="hljs-number">-0.2923</span>]], requires_grad=<span class="hljs-literal">True</span>)<br>    <br>print(<span class="hljs-string">'targets:'</span>, targets)<br>targets: tensor([[<span class="hljs-number">1.</span>],<br>        [<span class="hljs-number">1.</span>],<br>        [<span class="hljs-number">0.</span>],<br>        [<span class="hljs-number">1.</span>],<br>        [<span class="hljs-number">1.</span>]])<br>    <br>print(<span class="hljs-string">'pre:'</span>, pre)<br>pre: tensor([[<span class="hljs-number">0.2055</span>],<br>        [<span class="hljs-number">0.6219</span>],<br>        [<span class="hljs-number">0.2655</span>],<br>        [<span class="hljs-number">0.4047</span>],<br>        [<span class="hljs-number">0.4274</span>]], grad_fn=&lt;SigmoidBackward&gt;)<br>    <br>print(<span class="hljs-string">'f_loss_1:'</span>, f_loss_1)<br>f_loss_1: tensor(<span class="hljs-number">0.3375</span>, grad_fn=&lt;MeanBackward0&gt;)<br>    <br>print(<span class="hljs-string">'f_loss_2'</span>, f_loss_2)<br>f_loss_2 tensor(<span class="hljs-number">0.3375</span>, grad_fn=&lt;MeanBackward0&gt;)<br></code></pre></td></tr></table></figure>
+
 <h3 id="4-7-Lovasz-Softmax"><a href="#4-7-Lovasz-Softmax" class="headerlink" title="4.7 Lovász-Softmax"></a>4.7 Lovász-Softmax</h3><p>IoU是评价分割模型分割结果质量的重要指标，因此很自然想到能否用$1-IoU$（即Jaccard loss）来做损失函数，但是它是一个离散的loss，不能直接求导，所以无法直接用来作为损失函数。为了克服这个离散的问题，可以采用lLovász extension将离散的Jaccard loss 变得连续，从而可以直接求导，使得其作为分割网络的loss function。Lovász-Softmax相比于交叉熵函数具有更好的效果。</p>
 <p>论文地址：<br><a href="http://openaccess.thecvf.com/content_cvpr_2018/html/Berman_The_LovaSz-Softmax_Loss_CVPR_2018_paper.html" target="_blank" rel="noopener">paper on CVF open access</a><br><a href="https://arxiv.org/abs/1705.08790" target="_blank" rel="noopener">arxiv paper</a></p>
 <p>首先明确定义，在语义分割任务中，给定真实像素标签向量$\pmb{y^*}$和预测像素标签$\pmb{\hat{y} }$，则所属类别$c$的IoU（也称为Jaccard index）如下，其取值范围为$[0,1]$，并规定$0/0=1$：</p>
-<script type="math/tex; mode=display">J_c(\pmb{y^*},\pmb{\hat{y} })=\frac{|\{\pmb{y^*}=c\} \cap \{\pmb{\hat{y} }=c\}|}{|\{\pmb{y^*}=c\} \cup \{\pmb{\hat{y} }=c\}|}</script><p>则Jaccard loss为：</p>
-<script type="math/tex; mode=display">\Delta_{J_c}(\pmb{y^*},\pmb{\hat{y} }) =1-J_c(\pmb{y^*},\pmb{\hat{y} })</script><p>针对类别$c$，所有未被正确预测的像素集合定义为：</p>
-<script type="math/tex; mode=display">
-M_c(\pmb{y^*},\pmb{\hat{y} })=\{ \pmb{y^*}=c, \pmb{\hat{y} } \neq c\} \cup \{  \pmb{y^*}\neq c, \pmb{\hat{y} } = c  \}</script><p>则可将Jaccard loss改写为关于$M_c$的子模集合函数（submodular set functions）：</p>
-<script type="math/tex; mode=display">\Delta_{J_c}:M_c \in \{0,1\}^{p} \mapsto \frac{|M_c|}{|\{\pmb{y^*}=c\}\cup M_c|}</script><p>方便理解，此处可以把${0,1}^p$理解成如图像mask展开成离散一维向量的形式。</p>
-<p>Lovász extension可以求解子模最小化问题，并且子模的Lovász extension是凸函数，可以高效实现最小化。在论文中作者对$\Delta$（集合函数）和$\overline{\Delta}$（集合函数的Lovász extension）进行了定义，为不涉及过多概念以方便理解，此处不再过多讨论。我们可以将$\overline{\Delta}$理解为一个线性插值函数，可以将${0,1}^p$这种离散向量连续化，主要是为了方便后续反向传播、求梯度等等。因此我们可以通过这个线性插值函数得到$\Delta<em>{J_c}$的Lovász extension$\overline{\Delta</em>{J_c} }$。</p>
-<p>在具有$c(c&gt;2)$个类别的语义分割任务中，我们使用Softmax函数将模型的输出映射到概率分布形式，类似传统交叉熵损失函数所进行的操作：</p>
-<script type="math/tex; mode=display">p_i(c)=\frac{e^{F_i(c)} }{\sum_{c^{'}\in C}e^{F_i(c^{'})} }　　\forall i \in [1,p],\forall c \in C</script><p>式中，$p_i(c)$表示了像素$i$所属类别$c$的概率。通过上式可以构建每个像素产生的误差$m(c)$：</p>
-<script type="math/tex; mode=display">m_i(c)=\left \{  
-\begin{array}{c}
-1-p_i(c),\ \ if \ \ c=y^{*}_{i} \\
-p_i(c),\ \ \ \ \ \ \ otherwise
-\end{array}
-\right.</script><p>可知，对于一张图像中所有像素则误差向量为$m(c)\in {0, 1}^p$，则可以建立关于$\Delta_{J_c}$的代理损失函数：</p>
-<script type="math/tex; mode=display">
-loss(p(c))=\overline{\Delta_{J_c} }(m(c))</script><p>当我们考虑整个数据集是，一般会使用mIoU进行度量，因此我们对上述损失也进行平均化处理，则定义的Lovász-Softmax损失函数为：</p>
-<script type="math/tex; mode=display">
-loss(\pmb{p})=\frac{1}{|C|}\sum_{c\in C}\overline{\Delta_{J_c} }(m(c))</script><p><strong>代码实现</strong></p>
+<p>$$J_c(\pmb{y^*},\pmb{\hat{y} })=\frac{|{\pmb{y^*}=c} \cap {\pmb{\hat{y} }=c}|}{|{\pmb{y^*}=c} \cup {\pmb{\hat{y} }=c}|}<br>$$</p>
+<p>则Jaccard loss为：<br>$$\Delta_{J_c}(\pmb{y^*},\pmb{\hat{y} }) =1-J_c(\pmb{y^*},\pmb{\hat{y} })<br>$$</p>
+<p>针对类别$c$，所有未被正确预测的像素集合定义为：</p>
+<p>$$<br>M_c(\pmb{y^*},\pmb{\hat{y} })={ \pmb{y^*}=c, \pmb{\hat{y} } \neq c} \cup {  \pmb{y^*}\neq c, \pmb{\hat{y} } = c  }<br>$$</p>
+<p>则可将Jaccard loss改写为关于$M_c$的子模集合函数（submodular set functions）：<br>$$\Delta_{J_c}:M_c \in {0,1}^{p} \mapsto \frac{|M_c|}{|{\pmb{y^*}=c}\cup M_c|}<br>$$</p>
+<p>方便理解，此处可以把${0,1}^p$理解成如图像mask展开成离散一维向量的形式。</p>
+<p>Lovász extension可以求解子模最小化问题，并且子模的Lovász extension是凸函数，可以高效实现最小化。在论文中作者对$\Delta$（集合函数）和$\overline{\Delta}$（集合函数的Lovász extension）进行了定义，为不涉及过多概念以方便理解，此处不再过多讨论。我们可以将$\overline{\Delta}$理解为一个线性插值函数，可以将${0,1}^p$这种离散向量连续化，主要是为了方便后续反向传播、求梯度等等。因此我们可以通过这个线性插值函数得到$\Delta_{J_c}$的Lovász extension$\overline{\Delta_{J_c} }$。</p>
+<p>在具有$c(c&gt;2)$个类别的语义分割任务中，我们使用Softmax函数将模型的输出映射到概率分布形式，类似传统交叉熵损失函数所进行的操作：<br>$$p_i(c)=\frac{e^{F_i(c)} }{\sum_{c^{‘}\in C}e^{F_i(c^{‘})} }　　\forall i \in [1,p],\forall c \in C<br>$$<br>式中，$p_i(c)$表示了像素$i$所属类别$c$的概率。通过上式可以构建每个像素产生的误差$m(c)$：</p>
+<p>$$m_i(c)=\left {<br>\begin{array}{c}<br>1-p_i(c),\ \ if \ \ c=y^{*}_{i} \<br>p_i(c),\ \ \ \ \ \ \ otherwise<br>\end{array}<br>\right.<br>$$</p>
+<p>可知，对于一张图像中所有像素则误差向量为$m(c)\in {0, 1}^p$，则可以建立关于$\Delta_{J_c}$的代理损失函数：<br>$$<br>loss(p(c))=\overline{\Delta_{J_c} }(m(c))<br>$$<br>当我们考虑整个数据集是，一般会使用mIoU进行度量，因此我们对上述损失也进行平均化处理，则定义的Lovász-Softmax损失函数为：<br>$$<br>loss(\pmb{p})=\frac{1}{|C|}\sum_{c\in C}\overline{\Delta_{J_c} }(m(c))<br>$$</p>
+<p><strong>代码实现</strong></p>
 <p>论文作者已经给出了Lovász-Softmax实现代码，并且有pytorch和tensorflow两种版本，并提供了使用demo。此处将针对多分类任务的Lovász-Softmax源码进行展示。</p>
 <p><a href="https://github.com/bermanmaxim/LovaszSoftmax" target="_blank" rel="noopener">Lovász-Softmax实现链接</a></p>
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> torch<br><span class="hljs-keyword">from</span> torch.autograd <span class="hljs-keyword">import</span> Variable<br><span class="hljs-keyword">import</span> torch.nn.functional <span class="hljs-keyword">as</span> F<br><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np<br><span class="hljs-keyword">try</span>:<br>    <span class="hljs-keyword">from</span> itertools <span class="hljs-keyword">import</span>  ifilterfalse<br><span class="hljs-keyword">except</span> ImportError: <span class="hljs-comment"># py3k</span><br>    <span class="hljs-keyword">from</span> itertools <span class="hljs-keyword">import</span>  filterfalse <span class="hljs-keyword">as</span> ifilterfalse<br>    <br><span class="hljs-comment"># --------------------------- MULTICLASS LOSSES ---------------------------</span><br><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">lovasz_softmax</span><span class="hljs-params">(probas, labels, classes=<span class="hljs-string">'present'</span>, per_image=False, ignore=None)</span>:</span><br>    <span class="hljs-string">"""</span><br><span class="hljs-string">    Multi-class Lovasz-Softmax loss</span><br><span class="hljs-string">      probas: [B, C, H, W] Variable, class probabilities at each prediction (between 0 and 1).</span><br><span class="hljs-string">              Interpreted as binary (sigmoid) output with outputs of size [B, H, W].</span><br><span class="hljs-string">      labels: [B, H, W] Tensor, ground truth labels (between 0 and C - 1)</span><br><span class="hljs-string">      classes: 'all' for all, 'present' for classes present in labels, or a list of classes to average.</span><br><span class="hljs-string">      per_image: compute the loss per image instead of per batch</span><br><span class="hljs-string">      ignore: void class labels</span><br><span class="hljs-string">    """</span><br>    <span class="hljs-keyword">if</span> per_image:<br>        loss = mean(lovasz_softmax_flat(*flatten_probas(prob.unsqueeze(<span class="hljs-number">0</span>), lab.unsqueeze(<span class="hljs-number">0</span>), ignore), classes=classes)<br>                          <span class="hljs-keyword">for</span> prob, lab <span class="hljs-keyword">in</span> zip(probas, labels))<br>    <span class="hljs-keyword">else</span>:<br>        loss = lovasz_softmax_flat(*flatten_probas(probas, labels, ignore), classes=classes)<br>    <span class="hljs-keyword">return</span> loss<br><br><br><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">lovasz_softmax_flat</span><span class="hljs-params">(probas, labels, classes=<span class="hljs-string">'present'</span>)</span>:</span><br>    <span class="hljs-string">"""</span><br><span class="hljs-string">    Multi-class Lovasz-Softmax loss</span><br><span class="hljs-string">      probas: [P, C] Variable, class probabilities at each prediction (between 0 and 1)</span><br><span class="hljs-string">      labels: [P] Tensor, ground truth labels (between 0 and C - 1)</span><br><span class="hljs-string">      classes: 'all' for all, 'present' for classes present in labels, or a list of classes to average.</span><br><span class="hljs-string">    """</span><br>    <span class="hljs-keyword">if</span> probas.numel() == <span class="hljs-number">0</span>:<br>        <span class="hljs-comment"># only void pixels, the gradients should be 0</span><br>        <span class="hljs-keyword">return</span> probas * <span class="hljs-number">0.</span><br>    C = probas.size(<span class="hljs-number">1</span>)<br>    losses = []<br>    class_to_sum = list(range(C)) <span class="hljs-keyword">if</span> classes <span class="hljs-keyword">in</span> [<span class="hljs-string">'all'</span>, <span class="hljs-string">'present'</span>] <span class="hljs-keyword">else</span> classes<br>    <span class="hljs-keyword">for</span> c <span class="hljs-keyword">in</span> class_to_sum:<br>        fg = (labels == c).float() <span class="hljs-comment"># foreground for class c</span><br>        <span class="hljs-keyword">if</span> (classes <span class="hljs-keyword">is</span> <span class="hljs-string">'present'</span> <span class="hljs-keyword">and</span> fg.sum() == <span class="hljs-number">0</span>):<br>            <span class="hljs-keyword">continue</span><br>        <span class="hljs-keyword">if</span> C == <span class="hljs-number">1</span>:<br>            <span class="hljs-keyword">if</span> len(classes) &gt; <span class="hljs-number">1</span>:<br>                <span class="hljs-keyword">raise</span> ValueError(<span class="hljs-string">'Sigmoid output possible only with 1 class'</span>)<br>            class_pred = probas[:, <span class="hljs-number">0</span>]<br>        <span class="hljs-keyword">else</span>:<br>            class_pred = probas[:, c]<br>        errors = (Variable(fg) - class_pred).abs()<br>        errors_sorted, perm = torch.sort(errors, <span class="hljs-number">0</span>, descending=<span class="hljs-literal">True</span>)<br>        perm = perm.data<br>        fg_sorted = fg[perm]<br>        losses.append(torch.dot(errors_sorted, Variable(lovasz_grad(fg_sorted))))<br>    <span class="hljs-keyword">return</span> mean(losses)<br><br><br><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">flatten_probas</span><span class="hljs-params">(probas, labels, ignore=None)</span>:</span><br>    <span class="hljs-string">"""</span><br><span class="hljs-string">    Flattens predictions in the batch</span><br><span class="hljs-string">    """</span><br>    <span class="hljs-keyword">if</span> probas.dim() == <span class="hljs-number">3</span>:<br>        <span class="hljs-comment"># assumes output of a sigmoid layer</span><br>        B, H, W = probas.size()<br>        probas = probas.view(B, <span class="hljs-number">1</span>, H, W)<br>    B, C, H, W = probas.size()<br>    probas = probas.permute(<span class="hljs-number">0</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">1</span>).contiguous().view(<span class="hljs-number">-1</span>, C)  <span class="hljs-comment"># B * H * W, C = P, C</span><br>    labels = labels.view(<span class="hljs-number">-1</span>)<br>    <span class="hljs-keyword">if</span> ignore <span class="hljs-keyword">is</span> <span class="hljs-literal">None</span>:<br>        <span class="hljs-keyword">return</span> probas, labels<br>    valid = (labels != ignore)<br>    vprobas = probas[valid.nonzero().squeeze()]<br>    vlabels = labels[valid]<br>    <span class="hljs-keyword">return</span> vprobas, vlabels<br><br><br><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">xloss</span><span class="hljs-params">(logits, labels, ignore=None)</span>:</span><br>    <span class="hljs-string">"""</span><br><span class="hljs-string">    Cross entropy loss</span><br><span class="hljs-string">    """</span><br>    <span class="hljs-keyword">return</span> F.cross_entropy(logits, Variable(labels), ignore_index=<span class="hljs-number">255</span>)<br><br><span class="hljs-comment"># --------------------------- HELPER FUNCTIONS ---------------------------</span><br><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">isnan</span><span class="hljs-params">(x)</span>:</span><br>    <span class="hljs-keyword">return</span> x != x<br>    <br><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">mean</span><span class="hljs-params">(l, ignore_nan=False, empty=<span class="hljs-number">0</span>)</span>:</span><br>    <span class="hljs-string">"""</span><br><span class="hljs-string">    nanmean compatible with generators.</span><br><span class="hljs-string">    """</span><br>    l = iter(l)<br>    <span class="hljs-keyword">if</span> ignore_nan:<br>        l = ifilterfalse(isnan, l)<br>    <span class="hljs-keyword">try</span>:<br>        n = <span class="hljs-number">1</span><br>        acc = next(l)<br>    <span class="hljs-keyword">except</span> StopIteration:<br>        <span class="hljs-keyword">if</span> empty == <span class="hljs-string">'raise'</span>:<br>            <span class="hljs-keyword">raise</span> ValueError(<span class="hljs-string">'Empty mean'</span>)<br>        <span class="hljs-keyword">return</span> empty<br>    <span class="hljs-keyword">for</span> n, v <span class="hljs-keyword">in</span> enumerate(l, <span class="hljs-number">2</span>):<br>        acc += v<br>    <span class="hljs-keyword">if</span> n == <span class="hljs-number">1</span>:<br>        <span class="hljs-keyword">return</span> acc<br>    <span class="hljs-keyword">return</span> acc / n<br></code></pre></td></tr></table></figure>
+
 <h3 id="4-8-参考链接"><a href="#4-8-参考链接" class="headerlink" title="4.8 参考链接"></a>4.8 参考链接</h3><p><a href="https://blog.csdn.net/lingzhou33/article/details/87901365" target="_blank" rel="noopener">语义分割的评价指标IoU</a></p>
 <p><a href="https://blog.csdn.net/Biyoner/article/details/84728417" target="_blank" rel="noopener">医学图像分割常用的损失函数</a></p>
 <p><a href="https://www.jianshu.com/p/0998e6560288" target="_blank" rel="noopener">What is “Dice loss” for image segmentation?</a></p>
@@ -693,7 +638,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">youth</a>
+                <a href="javascript:void(0)" class="js-tag color1">计算机视觉</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Go</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -701,19 +650,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">编译原理</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">计算机视觉</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Go</a>
+                <a href="javascript:void(0)" class="js-tag color1">youth</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -741,6 +678,10 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">数学建模</a>
               </li>
              
@@ -750,6 +691,10 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">计算机组成原理</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">编译原理</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -888,7 +833,7 @@ MathJax.Hub.Queue(function() {
     
     	<section class="tools-section tools-section-me" q-show="aboutme">
   	  	
-  	  		<div class="aboutme-wrap" id="js-aboutme">在日落大道的你与我握手，&lt;br&gt;发觉太想和你闯遍这地球。</div>
+  	  		<div class="aboutme-wrap" id="js-aboutme">在日落大道的你与我握手，&lt;br /&gt; 发觉太想和你闯遍这地球。</div>
   	  	
     	</section>
     

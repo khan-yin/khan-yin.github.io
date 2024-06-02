@@ -216,9 +216,12 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="数据结构与刷题——链表"><a href="#数据结构与刷题——链表" class="headerlink" title="数据结构与刷题——链表"></a>数据结构与刷题——链表</h2><p><img src="https://img-blog.csdnimg.cn/20210607085716429.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0phY2tfX19F,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><a id="more"></a><br><img src="https://img-blog.csdnimg.cn/20210607090224384.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0phY2tfX19F,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+        <h2 id="数据结构与刷题——链表"><a href="#数据结构与刷题——链表" class="headerlink" title="数据结构与刷题——链表"></a>数据结构与刷题——链表</h2><p><img src="https://img-blog.csdnimg.cn/20210607085716429.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0phY2tfX19F,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<a id="more"></a>
+<p><img src="https://img-blog.csdnimg.cn/20210607090224384.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0phY2tfX19F,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
 <h2 id="单链表代码模板"><a href="#单链表代码模板" class="headerlink" title="单链表代码模板"></a>单链表代码模板</h2><p>代码实现单链表的方法有很多种，但是对于acm刷题来说，我们通常使用的是静态链表的方式，这样代码运行速度更快，防止被卡时间。</p>
 <figure class="highlight cpp"><table><tr><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> N = <span class="hljs-number">100010</span>;<br><span class="hljs-keyword">int</span> head; <span class="hljs-comment">// 头指针</span><br><span class="hljs-keyword">int</span> e[N]; <span class="hljs-comment">// e[i]表示第i个节点的</span><br><span class="hljs-keyword">int</span> ne[N];<span class="hljs-comment">// 第i个节点的next指针，表示当前节点的直接后继的节点编号</span><br><span class="hljs-keyword">int</span> idx;<span class="hljs-comment">//记录已经存储了多少个节点</span><br><br><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">init</span><span class="hljs-params">()</span></span><br><span class="hljs-function"></span>&#123;<br>	head = <span class="hljs-number">-1</span>;<span class="hljs-comment">//用-1表示空节点</span><br>	idx = <span class="hljs-number">0</span>;<br>&#125;<br><br><span class="hljs-comment">//在第k个节点后面插入一个新节点，节点的值为x</span><br><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">insert</span><span class="hljs-params">(<span class="hljs-keyword">int</span> k,<span class="hljs-keyword">int</span> x)</span></span><br><span class="hljs-function"></span>&#123;<br>	e[idx] = x;<br>	ne[idx] = ne[k];<br>	ne[k] = idx++; <br>&#125;<br><br><span class="hljs-comment">// 删除第k+1个节点,即将将该节点的指针指向他的下一个元素</span><br><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">delete_node</span><span class="hljs-params">(<span class="hljs-keyword">int</span> k)</span></span><br><span class="hljs-function"></span>&#123;<br>	ne[k] = ne[ne[k]];<br>&#125;<br><br><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">delete_head</span><span class="hljs-params">()</span></span><br><span class="hljs-function"></span>&#123;<br>	head = ne[head];<br>&#125;<br><br><span class="hljs-comment">//遍历过程</span><br><span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = head; i!=<span class="hljs-number">-1</span>;i = ne[i])<br>&#123;<br>	<span class="hljs-built_in">cout</span>&lt;&lt;e[i]&lt;&lt;<span class="hljs-built_in">endl</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
 <h2 id="双链表"><a href="#双链表" class="headerlink" title="双链表"></a>双链表</h2><p>在实际的代码编写过程当中，我们也是直接使用静态链表来设置双链表，我们首先设置0号点和1号点为左右边界head，tail。之后我们就只需要在这两者之间插入节点构造双链表。<br><img src="https://img-blog.csdnimg.cn/20210613150500543.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0phY2tfX19F,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20210613151354570.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0phY2tfX19F,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
 <p><img src="https://img-blog.csdnimg.cn/20210613151720314.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0phY2tfX19F,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
 <figure class="highlight cpp"><table><tr><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> N = <span class="hljs-number">100010</span>;<br><span class="hljs-keyword">int</span> e[N];<br><span class="hljs-keyword">int</span> l[N];<br><span class="hljs-keyword">int</span> r[N];<br><span class="hljs-keyword">int</span> idx;<br><br><span class="hljs-comment">//初始化直接初始化出左右端点的下标，从而避免边界问题</span><br><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">init</span><span class="hljs-params">()</span></span><br><span class="hljs-function"></span>&#123;<br>    <span class="hljs-comment">//初始化的左右别搞反了</span><br>    r[<span class="hljs-number">0</span>] = <span class="hljs-number">1</span>;<br>    l[<span class="hljs-number">1</span>] = <span class="hljs-number">0</span>;<br>    idx =<span class="hljs-number">2</span>;<br>&#125;<br><br><span class="hljs-comment">// 在k节点的右侧插入一个x,其实也相当于左侧插入节点</span><br><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">add</span><span class="hljs-params">(<span class="hljs-keyword">int</span> k,<span class="hljs-keyword">int</span> x)</span></span><br><span class="hljs-function"></span>&#123;<br>    e[idx] = x;<br>    <span class="hljs-comment">//操作新节点的左右指针</span><br>    r[idx] = r[k];<br>    l[idx] = k;<br>    <span class="hljs-comment">//再操作原数组的节点</span><br>    l[r[k]] = idx;<br>    r[k] = idx++;<br>&#125;<br><br><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">remove</span><span class="hljs-params">(<span class="hljs-keyword">int</span> k)</span></span><br><span class="hljs-function"></span>&#123;<br>    l[r[k]] = l[k]; <span class="hljs-comment">//右节点的左侧，指向左节点</span><br>    r[l[k]] = r[k]; <span class="hljs-comment">//左节点的右侧，指向右节点</span><br>&#125;<br></code></pre></td></tr></table></figure>
@@ -527,7 +530,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">youth</a>
+                <a href="javascript:void(0)" class="js-tag color1">计算机视觉</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Go</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -535,19 +542,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">编译原理</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">计算机视觉</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Go</a>
+                <a href="javascript:void(0)" class="js-tag color1">youth</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -575,6 +570,10 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">数学建模</a>
               </li>
              
@@ -584,6 +583,10 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">计算机组成原理</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">编译原理</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -722,7 +725,7 @@ MathJax.Hub.Queue(function() {
     
     	<section class="tools-section tools-section-me" q-show="aboutme">
   	  	
-  	  		<div class="aboutme-wrap" id="js-aboutme">在日落大道的你与我握手，&lt;br&gt;发觉太想和你闯遍这地球。</div>
+  	  		<div class="aboutme-wrap" id="js-aboutme">在日落大道的你与我握手，&lt;br /&gt; 发觉太想和你闯遍这地球。</div>
   	  	
     	</section>
     

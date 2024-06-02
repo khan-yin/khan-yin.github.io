@@ -208,22 +208,55 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="复习题"><a href="#复习题" class="headerlink" title="复习题"></a>复习题</h2><p>Use only the INVENTORY table to answer Review Questions 2.17 through 2.40:<br><a id="more"></a><br>2.17 Write an SQL statement to display SKU and SKU_Description.<br><figure class="highlight sql"><table><tr><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> SKU,SKU_Description <span class="hljs-keyword">FROM</span> INVENTORY;<br></code></pre></td></tr></table></figure><br>2.18    Write an SQL statement to display SKU_Description and SKU.<br><figure class="highlight sql"><table><tr><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> SKU_Description,SKU <span class="hljs-keyword">FROM</span> INVENTORY;<br></code></pre></td></tr></table></figure></p>
-<p>2.19    Write an SQL statement to display WarehouseID.<br><figure class="highlight sql"><table><tr><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> WarehouseID <span class="hljs-keyword">FROM</span> INVENTORY;<br></code></pre></td></tr></table></figure></p>
-<p>2.20    Write an SQL statement to display unique WarehouseIDs.<br><figure class="highlight sql"><table><tr><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">DISTINCT</span> WarehouseID <span class="hljs-keyword">FROM</span> INVENTORY;<br></code></pre></td></tr></table></figure></p>
-<p>2.26    Write an SQL statement to display the SKU, SKU_Description, and WarehouseID for products that have a QuantityOnHand greater than 0. Sort the results in descending order by WarehouseID and in ascending order by SKU.<br><figure class="highlight sql"><table><tr><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> SKU, SKU_Description, WarehouseID<br><span class="hljs-keyword">FROM</span> INVENTORY<br><span class="hljs-keyword">WHERE</span> QuantityOnHand&gt;<span class="hljs-number">0</span><br><span class="hljs-keyword">ORDER</span> <span class="hljs-keyword">BY</span> WarehouseID <span class="hljs-keyword">DESC</span>, SKU <span class="hljs-keyword">ASC</span>;<br></code></pre></td></tr></table></figure></p>
-<p>2.29 Write an SQL statement to display the SKU, SKU_Description, WarehouseID, and QuantityOnHand for all products having a QuantityOnHand greater than 1 and less than 10. Do not use the BETWEEN keyword.<br><figure class="highlight sql"><table><tr><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> SKU, SKU_Description, WarehouseID, QuantityOnHand<br><span class="hljs-keyword">FROM</span> INVENTORY<br><span class="hljs-keyword">WHERE</span> QuantityOnHand&gt;<span class="hljs-number">1</span> <span class="hljs-keyword">AND</span> QuantityOnOrder&lt;<span class="hljs-number">10</span>;<br></code></pre></td></tr></table></figure></p>
-<p>2.36    Write an SQL statement to display the WarehouseID and the sum of QuantityOnHand,grouped by WarehouseID. Name the sum TotalItemsOnHand and display the results in descending order of TotalItemsOnHand.<br><figure class="highlight sql"><table><tr><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> WarehouseID , <span class="hljs-keyword">SUM</span> (QuantityOnHand) <span class="hljs-keyword">AS</span> TotalItamsOnHand<br><span class="hljs-keyword">FROM</span> INVENTORY<br><span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span> WarehouseID<br><span class="hljs-keyword">ORDER</span> <span class="hljs-keyword">BY</span> TotalItemsOnHand <span class="hljs-keyword">DESC</span>;<br></code></pre></td></tr></table></figure></p>
-<p><strong>2.37 Write an SQL statement to display the WarehouseID and the sum of QuantityOnHand, grouped by WarehouseID. Omit all SKU items that have 3 or more items on hand from the sum, and name the sum TotalItemsOnHandLT3 and display the results in descending order of TotalItemsOnHandLT3.</strong><br><figure class="highlight sql"><table><tr><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> WarehouseID , <span class="hljs-keyword">SUM</span> (QuantityOnHand) <span class="hljs-keyword">AS</span> TotalItamsOnHandLT3<br><span class="hljs-keyword">FROM</span> INVENTORY<br><span class="hljs-keyword">WHERE</span> QuantityOnHand&lt;<span class="hljs-number">3</span><br><span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span> WarehouseID<br><span class="hljs-keyword">ORDER</span> <span class="hljs-keyword">BY</span> TotalItemsOnHandLT3 <span class="hljs-keyword">DESC</span>;<br></code></pre></td></tr></table></figure></p>
+        <h2 id="复习题"><a href="#复习题" class="headerlink" title="复习题"></a>复习题</h2><p>Use only the INVENTORY table to answer Review Questions 2.17 through 2.40:</p>
+<a id="more"></a>
+<p>2.17 Write an SQL statement to display SKU and SKU_Description.</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> SKU,SKU_Description <span class="hljs-keyword">FROM</span> INVENTORY;<br></code></pre></td></tr></table></figure>
+<p>2.18    Write an SQL statement to display SKU_Description and SKU.</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> SKU_Description,SKU <span class="hljs-keyword">FROM</span> INVENTORY;<br></code></pre></td></tr></table></figure>
+
+<p>2.19    Write an SQL statement to display WarehouseID.</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> WarehouseID <span class="hljs-keyword">FROM</span> INVENTORY;<br></code></pre></td></tr></table></figure>
+
+
+<p>2.20    Write an SQL statement to display unique WarehouseIDs.</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">DISTINCT</span> WarehouseID <span class="hljs-keyword">FROM</span> INVENTORY;<br></code></pre></td></tr></table></figure>
+
+<p>2.26    Write an SQL statement to display the SKU, SKU_Description, and WarehouseID for products that have a QuantityOnHand greater than 0. Sort the results in descending order by WarehouseID and in ascending order by SKU.</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> SKU, SKU_Description, WarehouseID<br><span class="hljs-keyword">FROM</span> INVENTORY<br><span class="hljs-keyword">WHERE</span> QuantityOnHand&gt;<span class="hljs-number">0</span><br><span class="hljs-keyword">ORDER</span> <span class="hljs-keyword">BY</span> WarehouseID <span class="hljs-keyword">DESC</span>, SKU <span class="hljs-keyword">ASC</span>;<br></code></pre></td></tr></table></figure>
+
+<p>2.29 Write an SQL statement to display the SKU, SKU_Description, WarehouseID, and QuantityOnHand for all products having a QuantityOnHand greater than 1 and less than 10. Do not use the BETWEEN keyword. </p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> SKU, SKU_Description, WarehouseID, QuantityOnHand<br><span class="hljs-keyword">FROM</span> INVENTORY<br><span class="hljs-keyword">WHERE</span> QuantityOnHand&gt;<span class="hljs-number">1</span> <span class="hljs-keyword">AND</span> QuantityOnOrder&lt;<span class="hljs-number">10</span>;<br></code></pre></td></tr></table></figure>
+
+<p>2.36    Write an SQL statement to display the WarehouseID and the sum of QuantityOnHand,grouped by WarehouseID. Name the sum TotalItemsOnHand and display the results in descending order of TotalItemsOnHand.</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> WarehouseID , <span class="hljs-keyword">SUM</span> (QuantityOnHand) <span class="hljs-keyword">AS</span> TotalItamsOnHand<br><span class="hljs-keyword">FROM</span> INVENTORY<br><span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span> WarehouseID<br><span class="hljs-keyword">ORDER</span> <span class="hljs-keyword">BY</span> TotalItemsOnHand <span class="hljs-keyword">DESC</span>;<br></code></pre></td></tr></table></figure>
+
+<p><strong>2.37 Write an SQL statement to display the WarehouseID and the sum of QuantityOnHand, grouped by WarehouseID. Omit all SKU items that have 3 or more items on hand from the sum, and name the sum TotalItemsOnHandLT3 and display the results in descending order of TotalItemsOnHandLT3.</strong> </p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> WarehouseID , <span class="hljs-keyword">SUM</span> (QuantityOnHand) <span class="hljs-keyword">AS</span> TotalItamsOnHandLT3<br><span class="hljs-keyword">FROM</span> INVENTORY<br><span class="hljs-keyword">WHERE</span> QuantityOnHand&lt;<span class="hljs-number">3</span><br><span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span> WarehouseID<br><span class="hljs-keyword">ORDER</span> <span class="hljs-keyword">BY</span> TotalItemsOnHandLT3 <span class="hljs-keyword">DESC</span>;<br></code></pre></td></tr></table></figure>
+
 <p><strong>2.38 Write an SQL statement to display the WarehouseID and the sum of QuantityOnHand grouped by WarehouseID. Omit all SKU items that have 3 or more items on hand from the sum, and name the sum TotalItemsOnHandLT3. Show WarehouseID only for warehouses having fewer than 2 SKUs in their TotalItemesOnHandLT3 and display the results in descending order of TotalItemsOnHandLT3.</strong></p>
 <figure class="highlight sql"><table><tr><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> WarehouseID , <span class="hljs-keyword">SUM</span> (QuantityOnHand) <span class="hljs-keyword">AS</span> TotalItamsOnHandLT3,	<br><span class="hljs-keyword">FROM</span> INVENTORY<br><span class="hljs-keyword">WHERE</span> QuantityOnHand &lt;<span class="hljs-number">3</span><br><span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span> WarehouseID<br><span class="hljs-keyword">HAVING</span> <span class="hljs-keyword">COUNT</span>(*)&lt;<span class="hljs-number">2</span><br><span class="hljs-keyword">ORDER</span> <span class="hljs-keyword">BY</span> TotalItemsOnHandLT3 <span class="hljs-keyword">DESC</span>;<br></code></pre></td></tr></table></figure>
+
 <p>Use both the INVENTORY and WAREHOUSE tables to answer Review Questions 2.40 through 2.52: </p>
-<p>2.42 Write an SQL statement to display the SKU, SKU_Description, WarehouseID, Ware-houseCity, and WarehouseState of all items not stored in the Atlanta, Bangor, or Chicago warehouse. Do not use the NOT IN keyword.<br><figure class="highlight sql"><table><tr><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> SKU, SKU_Description, INVENTORY.WarehouseID, WarehouseCity, WarehouseState<br><span class="hljs-keyword">FROM</span> INVENTORY, WAREHOUSE<br><span class="hljs-keyword">WHERE</span> INVENTORY.WarehouseID=WAREHOUSE.WarehouseID <span class="hljs-keyword">AND</span> WarehouseCity!=<span class="hljs-string">'Atlanta'</span> <span class="hljs-keyword">AND</span> WarehouseCity!=<span class="hljs-string">'Chicago'</span> <span class="hljs-keyword">AND</span> WarehouseCity!=<span class="hljs-string">'Bangor'</span>;<br></code></pre></td></tr></table></figure></p>
-<p>2.44 Write an SQL statement to produce a single column called ItemLocation that combines the SKU_Description, the phrase “is in a warehouse in”, and WarehouseCity. Do not be concerned with removing leading or trailing blanks.<br><figure class="highlight sql"><table><tr><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">DISTINCT</span> <span class="hljs-keyword">RTRIM</span>(SKU_Description)+ <span class="hljs-string">'is in a warehouse'</span> + <span class="hljs-keyword">RTRIM</span>(WarehouseCity) <span class="hljs-keyword">AS</span> ItemLocation<br><span class="hljs-keyword">FROM</span> INVENTORY, WAREHOUSE <span class="hljs-keyword">WHERE</span> INVENTORY.WarehouseID=WAREHOUSE.WarehouseID;<br></code></pre></td></tr></table></figure></p>
-<p>2.45 Write an SQL statement to show the SKU, SKU_Description, WarehouseID for all items stored in a warehouse managed by ‘Lucille Smith’. Use a subquery.<br><figure class="highlight sql"><table><tr><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> SKU, SKU_Description, WarehouseID<br><span class="hljs-keyword">FROM</span> INVENTORY<br><span class="hljs-keyword">WHERE</span> WarehouseID <span class="hljs-keyword">IN</span> (<span class="hljs-keyword">SELECT</span> WarehouseID<br><span class="hljs-keyword">FROM</span> WAREHOUSE <span class="hljs-keyword">WHERE</span> Manager=<span class="hljs-string">'Lucille Smith'</span>);<br></code></pre></td></tr></table></figure></p>
-<p>2.46 Write an SQL statement to show the SKU, SKU_Description, WarehouseID for all items stored in a warehouse managed by ‘Lucille Smith’. Use a join.<br><figure class="highlight sql"><table><tr><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> SKU, SKU_Description, INVENTORY.WarehouseID<br><span class="hljs-keyword">FROM</span> INVENTORY, WAREHOUSE<br><span class="hljs-keyword">WHERE</span> INVENTORY.WarehouseID=WAREHOUSE.WarehouseID <span class="hljs-keyword">AND</span> WAREHOUSE.Manager= <span class="hljs-string">'Lucille Smith'</span>;<br></code></pre></td></tr></table></figure></p>
-<p>2.50 Write an SQL statement to show the WarehouseID and average QuantityOnHand of all items stored in a warehouse managed by ‘Lucille Smith’. Use a join using JOIN ON syntax.<br><figure class="highlight sql"><table><tr><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> INVENTORY.WarehouseID, <span class="hljs-keyword">AVG</span>(QuantityOnHand)<br><span class="hljs-keyword">FROM</span> INVENTORY <span class="hljs-keyword">JOIN</span> WAREHOUSE<br><span class="hljs-keyword">ON</span> INVENTORY.WarehouseID=WAREHOUSE.WarehouseID <br><span class="hljs-keyword">WHERE</span> WAREHOUSE.Manager=<span class="hljs-string">'Lucille Smith'</span>;<br></code></pre></td></tr></table></figure></p>
-<p>2.55 Write an SQL statement to join WAREHOUSE and INVENTORY and include all rows of WAREHOUSE in your answer, regardless of whether they have any INVENTORY. Run this statement.<br><figure class="highlight sql"><table><tr><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> *<br><span class="hljs-keyword">FROM</span> WAREHOUSE <span class="hljs-keyword">LEFT</span> <span class="hljs-keyword">OUTER</span> <span class="hljs-keyword">JOIN</span> INWENTORY <br><span class="hljs-keyword">ON</span> INVENTORY.WarehouseID=WAREHOUSE.WarehouseID;<br></code></pre></td></tr></table></figure></p>
+<p>2.42 Write an SQL statement to display the SKU, SKU_Description, WarehouseID, Ware-houseCity, and WarehouseState of all items not stored in the Atlanta, Bangor, or Chicago warehouse. Do not use the NOT IN keyword. </p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> SKU, SKU_Description, INVENTORY.WarehouseID, WarehouseCity, WarehouseState<br><span class="hljs-keyword">FROM</span> INVENTORY, WAREHOUSE<br><span class="hljs-keyword">WHERE</span> INVENTORY.WarehouseID=WAREHOUSE.WarehouseID <span class="hljs-keyword">AND</span> WarehouseCity!=<span class="hljs-string">'Atlanta'</span> <span class="hljs-keyword">AND</span> WarehouseCity!=<span class="hljs-string">'Chicago'</span> <span class="hljs-keyword">AND</span> WarehouseCity!=<span class="hljs-string">'Bangor'</span>;<br></code></pre></td></tr></table></figure>
+
+<p>2.44 Write an SQL statement to produce a single column called ItemLocation that combines the SKU_Description, the phrase “is in a warehouse in”, and WarehouseCity. Do not be concerned with removing leading or trailing blanks. </p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">DISTINCT</span> <span class="hljs-keyword">RTRIM</span>(SKU_Description)+ <span class="hljs-string">'is in a warehouse'</span> + <span class="hljs-keyword">RTRIM</span>(WarehouseCity) <span class="hljs-keyword">AS</span> ItemLocation<br><span class="hljs-keyword">FROM</span> INVENTORY, WAREHOUSE <span class="hljs-keyword">WHERE</span> INVENTORY.WarehouseID=WAREHOUSE.WarehouseID;<br></code></pre></td></tr></table></figure>
+
+<p>2.45 Write an SQL statement to show the SKU, SKU_Description, WarehouseID for all items stored in a warehouse managed by ‘Lucille Smith’. Use a subquery.</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> SKU, SKU_Description, WarehouseID<br><span class="hljs-keyword">FROM</span> INVENTORY<br><span class="hljs-keyword">WHERE</span> WarehouseID <span class="hljs-keyword">IN</span> (<span class="hljs-keyword">SELECT</span> WarehouseID<br><span class="hljs-keyword">FROM</span> WAREHOUSE <span class="hljs-keyword">WHERE</span> Manager=<span class="hljs-string">'Lucille Smith'</span>);<br></code></pre></td></tr></table></figure>
+
+<p>2.46 Write an SQL statement to show the SKU, SKU_Description, WarehouseID for all items stored in a warehouse managed by ‘Lucille Smith’. Use a join. </p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> SKU, SKU_Description, INVENTORY.WarehouseID<br><span class="hljs-keyword">FROM</span> INVENTORY, WAREHOUSE<br><span class="hljs-keyword">WHERE</span> INVENTORY.WarehouseID=WAREHOUSE.WarehouseID <span class="hljs-keyword">AND</span> WAREHOUSE.Manager= <span class="hljs-string">'Lucille Smith'</span>;<br></code></pre></td></tr></table></figure>
+
+<p>2.50 Write an SQL statement to show the WarehouseID and average QuantityOnHand of all items stored in a warehouse managed by ‘Lucille Smith’. Use a join using JOIN ON syntax.</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> INVENTORY.WarehouseID, <span class="hljs-keyword">AVG</span>(QuantityOnHand)<br><span class="hljs-keyword">FROM</span> INVENTORY <span class="hljs-keyword">JOIN</span> WAREHOUSE<br><span class="hljs-keyword">ON</span> INVENTORY.WarehouseID=WAREHOUSE.WarehouseID <br><span class="hljs-keyword">WHERE</span> WAREHOUSE.Manager=<span class="hljs-string">'Lucille Smith'</span>;<br></code></pre></td></tr></table></figure>
+
+<p>2.55 Write an SQL statement to join WAREHOUSE and INVENTORY and include all rows of WAREHOUSE in your answer, regardless of whether they have any INVENTORY. Run this statement.</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> *<br><span class="hljs-keyword">FROM</span> WAREHOUSE <span class="hljs-keyword">LEFT</span> <span class="hljs-keyword">OUTER</span> <span class="hljs-keyword">JOIN</span> INWENTORY <br><span class="hljs-keyword">ON</span> INVENTORY.WarehouseID=WAREHOUSE.WarehouseID;<br></code></pre></td></tr></table></figure>
+
+
 
       
 
@@ -528,7 +561,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">youth</a>
+                <a href="javascript:void(0)" class="js-tag color1">计算机视觉</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Go</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -536,19 +573,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">编译原理</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">计算机视觉</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Go</a>
+                <a href="javascript:void(0)" class="js-tag color1">youth</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -576,6 +601,10 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">数学建模</a>
               </li>
              
@@ -585,6 +614,10 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">计算机组成原理</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">编译原理</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -723,7 +756,7 @@ MathJax.Hub.Queue(function() {
     
     	<section class="tools-section tools-section-me" q-show="aboutme">
   	  	
-  	  		<div class="aboutme-wrap" id="js-aboutme">在日落大道的你与我握手，&lt;br&gt;发觉太想和你闯遍这地球。</div>
+  	  		<div class="aboutme-wrap" id="js-aboutme">在日落大道的你与我握手，&lt;br /&gt; 发觉太想和你闯遍这地球。</div>
   	  	
     	</section>
     

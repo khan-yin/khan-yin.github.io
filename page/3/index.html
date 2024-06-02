@@ -207,7 +207,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="语义分割-Task2-数据扩增"><a href="#语义分割-Task2-数据扩增" class="headerlink" title="语义分割-Task2 数据扩增"></a>语义分割-Task2 数据扩增</h1><p>本章对语义分割任务中常见的数据扩增方法进行介绍，并使用OpenCV和albumentations两个库完成具体的数据扩增操作。<br>干货链接：<br><a href="https://zhuanlan.zhihu.com/p/107399127/" target="_blank" rel="noopener">albumentations 数据增强工具的使用</a><br><a href="https://blog.csdn.net/weixin_38533896/article/details/86028509" target="_blank" rel="noopener">Pytorch：transforms的二十二个方法</a><br><a href="https://blog.csdn.net/zhangyuexiang123/article/details/107705311" target="_blank" rel="noopener">Pytorch使用albumentations实现数据增强</a><br></p>
+        <h1 id="语义分割-Task2-数据扩增"><a href="#语义分割-Task2-数据扩增" class="headerlink" title="语义分割-Task2 数据扩增"></a>语义分割-Task2 数据扩增</h1><p>本章对语义分割任务中常见的数据扩增方法进行介绍，并使用OpenCV和albumentations两个库完成具体的数据扩增操作。<br>干货链接：<br><a href="https://zhuanlan.zhihu.com/p/107399127/" target="_blank" rel="noopener">albumentations 数据增强工具的使用</a><br><a href="https://blog.csdn.net/weixin_38533896/article/details/86028509" target="_blank" rel="noopener">Pytorch：transforms的二十二个方法</a><br><a href="https://blog.csdn.net/zhangyuexiang123/article/details/107705311" target="_blank" rel="noopener">Pytorch使用albumentations实现数据增强</a></p>
         
       
 
@@ -365,7 +365,8 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h1 id="缺失数据"><a href="#缺失数据" class="headerlink" title="缺失数据"></a>缺失数据</h1><figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np<br><span class="hljs-keyword">import</span> pandas <span class="hljs-keyword">as</span> pd<br></code></pre></td></tr></table></figure>
-<h2 id="一、缺失值的统计和删除"><a href="#一、缺失值的统计和删除" class="headerlink" title="一、缺失值的统计和删除"></a>一、缺失值的统计和删除</h2><h2 id="1-缺失信息的统计"><a href="#1-缺失信息的统计" class="headerlink" title="1. 缺失信息的统计"></a>1. 缺失信息的统计</h2><p>缺失数据可以使用 <code>isna</code> 或 <code>isnull</code> （两个函数没有区别）来查看每个单元格是否缺失，结合 <code>mean</code> 可以计算出每列缺失值的比例：<br></p>
+
+<h2 id="一、缺失值的统计和删除"><a href="#一、缺失值的统计和删除" class="headerlink" title="一、缺失值的统计和删除"></a>一、缺失值的统计和删除</h2><h2 id="1-缺失信息的统计"><a href="#1-缺失信息的统计" class="headerlink" title="1. 缺失信息的统计"></a>1. 缺失信息的统计</h2><p>缺失数据可以使用 <code>isna</code> 或 <code>isnull</code> （两个函数没有区别）来查看每个单元格是否缺失，结合 <code>mean</code> 可以计算出每列缺失值的比例：</p>
         
       
 
@@ -444,7 +445,8 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h2 id="datawhale-pandas数据分析预备"><a href="#datawhale-pandas数据分析预备" class="headerlink" title="datawhale-pandas数据分析预备"></a>datawhale-pandas数据分析预备</h2><h2 id="列表推导式"><a href="#列表推导式" class="headerlink" title="列表推导式"></a>列表推导式</h2><figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">my_func</span><span class="hljs-params">(x)</span>:</span><br>    <span class="hljs-keyword">return</span> <span class="hljs-number">2</span>*x<br></code></pre></td></tr></table></figure>
-<h2 id="for-i-in"><a href="#for-i-in" class="headerlink" title="[ for i in ]"></a>[<em> for i in </em>]</h2><p>其中，第一个 <em> 为映射函数，其输入为后面 i 指代的内容，第二个 </em> 表示迭代的对象。<br></p>
+
+<h2 id="for-i-in"><a href="#for-i-in" class="headerlink" title="[* for i in *]"></a>[* for i in *]</h2><p>其中，第一个 * 为映射函数，其输入为后面 i 指代的内容，第二个 * 表示迭代的对象。</p>
         
       
 
@@ -522,7 +524,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="理发师问题"><a href="#理发师问题" class="headerlink" title="理发师问题"></a>理发师问题</h2><p>7.8 The Sleeping-Barber Problem. A barbershop consists of a waiting room with n chairs and the barber room containing the barber chair. If there are no customers to be served,the barber goes to sleep. If a customer enters the barbershop and all chairs are occupied, then the customer leaves the shop.If the barber is busy but chairs are available, then the customer sits in one of the free chairs. If the barber is asleep, the customer wakes up the barber. Write a program to coordinate the barber and the customers.<br></p>
+        <h2 id="理发师问题"><a href="#理发师问题" class="headerlink" title="理发师问题"></a>理发师问题</h2><p>7.8 The Sleeping-Barber Problem. A barbershop consists of a waiting room with n chairs and the barber room containing the barber chair. If there are no customers to be served,the barber goes to sleep. If a customer enters the barbershop and all chairs are occupied, then the customer leaves the shop.If the barber is busy but chairs are available, then the customer sits in one of the free chairs. If the barber is asleep, the customer wakes up the barber. Write a program to coordinate the barber and the customers.</p>
         
       
 
@@ -596,7 +598,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="复习题"><a href="#复习题" class="headerlink" title="复习题"></a>复习题</h2><p>Use only the INVENTORY table to answer Review Questions 2.17 through 2.40:<br></p>
+        <h2 id="复习题"><a href="#复习题" class="headerlink" title="复习题"></a>复习题</h2><p>Use only the INVENTORY table to answer Review Questions 2.17 through 2.40:</p>
         
       
 
@@ -747,7 +749,7 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>通常操作系统提供的主要功能都是由内核程序实现的，处理机在运行上层程序时，能进入操作系统内核运行的<strong>唯一途径</strong>就是中断或者异常。</p>
-<h2 id="中断和异常基本概念"><a href="#中断和异常基本概念" class="headerlink" title="中断和异常基本概念"></a>中断和异常基本概念</h2><p>中断(Interruption)：也称外中断，指来自处理机执行指令以外的事件发生。<br>异常(Exception)：也称内中断、例外、自陷(trap),指源自处理机执行指令内部的事件。<br></p>
+<h2 id="中断和异常基本概念"><a href="#中断和异常基本概念" class="headerlink" title="中断和异常基本概念"></a>中断和异常基本概念</h2><p>中断(Interruption)：也称外中断，指来自处理机执行指令以外的事件发生。<br>异常(Exception)：也称内中断、例外、自陷(trap),指源自处理机执行指令内部的事件。</p>
         
       
 
@@ -821,7 +823,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>操作系统比较硬核，不过最近发现了<a href="https://www.bilibili.com/video/BV1YE411D7nH?p=6" target="_blank" rel="noopener">王道考研</a>这个比较好的课程。这里是一些学习笔记总结。<br></p>
+        <p>操作系统比较硬核，不过最近发现了<a href="https://www.bilibili.com/video/BV1YE411D7nH?p=6" target="_blank" rel="noopener">王道考研</a>这个比较好的课程。这里是一些学习笔记总结。</p>
         
       
 
@@ -895,7 +897,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="对象与属性"><a href="#对象与属性" class="headerlink" title="对象与属性"></a>对象与属性</h2><p>同其他语言里面所描述的对象一样，在js里，一个对象就是一系列属性的集合，一个属性包含一个名和一个值。一个属性的值可以是函数，这种情况下属性也被称为方法。一个对象的属性可以被解释成一个附加到对象上的变量。对象有时也被叫作<strong>关联数组</strong>, 因为每个属性都有一个用于访问它的<strong>字符串值</strong>。<br></p>
+        <h2 id="对象与属性"><a href="#对象与属性" class="headerlink" title="对象与属性"></a>对象与属性</h2><p>同其他语言里面所描述的对象一样，在js里，一个对象就是一系列属性的集合，一个属性包含一个名和一个值。一个属性的值可以是函数，这种情况下属性也被称为方法。一个对象的属性可以被解释成一个附加到对象上的变量。对象有时也被叫作<strong>关联数组</strong>, 因为每个属性都有一个用于访问它的<strong>字符串值</strong>。</p>
         
       
 
@@ -909,11 +911,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">JavaScript</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">web基础</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">web基础</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">JavaScript</a>
         		</li>
       		
 		</ul>
@@ -1185,7 +1187,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">youth</a>
+                <a href="javascript:void(0)" class="js-tag color1">计算机视觉</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Go</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1193,19 +1199,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">编译原理</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">计算机视觉</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Go</a>
+                <a href="javascript:void(0)" class="js-tag color1">youth</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1233,6 +1227,10 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">数学建模</a>
               </li>
              
@@ -1242,6 +1240,10 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">计算机组成原理</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">编译原理</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1380,7 +1382,7 @@ MathJax.Hub.Queue(function() {
     
     	<section class="tools-section tools-section-me" q-show="aboutme">
   	  	
-  	  		<div class="aboutme-wrap" id="js-aboutme">在日落大道的你与我握手，&lt;br&gt;发觉太想和你闯遍这地球。</div>
+  	  		<div class="aboutme-wrap" id="js-aboutme">在日落大道的你与我握手，&lt;br /&gt; 发觉太想和你闯遍这地球。</div>
   	  	
     	</section>
     
