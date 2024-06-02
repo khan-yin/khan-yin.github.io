@@ -43,7 +43,7 @@
 <meta name="twitter:image" content="https://img-blog.csdnimg.cn/20210223115846286.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0phY2tfX19F,size_16,color_FFFFFF,t_70#pic_center">
   
   
-    <link rel="icon" href="/assets/ico_op_02.png">
+    <link rel="icon" href="/assets/liangx.jpg">
   
   <link rel="stylesheet" type="text/css" href="/./main.0cf68a.css">
   <style type="text/css">
@@ -229,9 +229,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="datawhale语义分割-Task3-语义分割模型发展"><a href="#datawhale语义分割-Task3-语义分割模型发展" class="headerlink" title="datawhale语义分割-Task3 语义分割模型发展"></a>datawhale语义分割-Task3 语义分割模型发展</h1><p>本章主要讲解的是语义分割网络模型的发展：FCN 、SegNet、Unet、DeepLab、RefineNet、PSPNet、GAN语义分割。</p>
-<a id="more"></a>
-
+        <h1 id="datawhale语义分割-Task3-语义分割模型发展"><a href="#datawhale语义分割-Task3-语义分割模型发展" class="headerlink" title="datawhale语义分割-Task3 语义分割模型发展"></a>datawhale语义分割-Task3 语义分割模型发展</h1><p>本章主要讲解的是语义分割网络模型的发展：FCN 、SegNet、Unet、DeepLab、RefineNet、PSPNet、GAN语义分割。<br><a id="more"></a></p>
 <h2 id="3-语义分割模型发展"><a href="#3-语义分割模型发展" class="headerlink" title="3 语义分割模型发展"></a>3 语义分割模型发展</h2><p>语义分割（全像素语义分割）作为经典的计算机视觉任务（图像分类，物体识别检测，语义分割）。其结合了图像分类、目标检测和图像分割，通过一定的方法将图像分割成具有一定语义含义的区域块，并识别出每个区域块的语义类别，实现从底层到高层的语义推理过程，最终得到一幅具有逐像素语义标注的分割图像。</p>
 <h3 id="3-1-学习目标"><a href="#3-1-学习目标" class="headerlink" title="3.1 学习目标"></a>3.1 学习目标</h3><ul>
 <li>掌握语义分割模型的原理和训练过程；</li>
@@ -368,7 +366,6 @@
 <p>参考链接：<a href="https://cloud.tencent.com/developer/article/1589733" target="_blank" rel="noopener">https://cloud.tencent.com/developer/article/1589733</a></p>
 <h3 id="3-9-具体调用"><a href="#3-9-具体调用" class="headerlink" title="3.9 具体调用"></a>3.9 具体调用</h3><p>对于常见的语义分割模型，推荐可以直接使用segmentation_models_pytorch库完成：</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> segmentation_models_pytorch <span class="hljs-keyword">as</span> smp<br><br>model = smp.Unet(<br>    encoder_name=<span class="hljs-string">"resnet34"</span>,        <span class="hljs-comment"># choose encoder, e.g. mobilenet_v2 or efficientnet-b7</span><br>    encoder_weights=<span class="hljs-string">"imagenet"</span>,     <span class="hljs-comment"># use `imagenet` pre-trained weights for encoder initialization</span><br>    in_channels=<span class="hljs-number">1</span>,                  <span class="hljs-comment"># model input channels (1 for gray-scale images, 3 for RGB, etc.)</span><br>    classes=<span class="hljs-number">3</span>,                      <span class="hljs-comment"># model output channels (number of classes in your dataset)</span><br>)<br></code></pre></td></tr></table></figure>
-
 <h3 id="3-9-本章小结"><a href="#3-9-本章小结" class="headerlink" title="3.9 本章小结"></a>3.9 本章小结</h3><p>本章对常见的语义分割网络模型进行介绍，并使用segmentation_models_pytorch完成具体调用。</p>
 
       
@@ -674,15 +671,7 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">数据库系统</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">计算机视觉</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Go</a>
+                <a href="javascript:void(0)" class="js-tag color1">youth</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -690,7 +679,27 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">youth</a>
+                <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">数据库系统</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">编译原理</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Go</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">计算机视觉</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">数据结构</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -699,10 +708,6 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">datawhale</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">数据结构</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -718,10 +723,6 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">数学建模</a>
               </li>
              
@@ -731,10 +732,6 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">计算机组成原理</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">编译原理</a>
               </li>
              
               <li class="article-tag-list-item">

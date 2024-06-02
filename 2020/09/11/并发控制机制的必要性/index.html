@@ -22,7 +22,7 @@
 <meta name="twitter:card" content="summary">
   
   
-    <link rel="icon" href="/assets/ico_op_02.png">
+    <link rel="icon" href="/assets/liangx.jpg">
   
   <link rel="stylesheet" type="text/css" href="/./main.0cf68a.css">
   <style type="text/css">
@@ -208,9 +208,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="Concurrency-control-mechanisms并发控制机制的必要性"><a href="#Concurrency-control-mechanisms并发控制机制的必要性" class="headerlink" title="Concurrency-control mechanisms并发控制机制的必要性"></a>Concurrency-control mechanisms并发控制机制的必要性</h2><p><strong>事务是并发控制的基本单位</strong>，保证事务的ACID特性是事务处理的重要任务，而事务的 ACID 特性可能遭到破坏的原因之一是多个事务对数据库的并发操作造成的。为了保证事务的隔离性和一致性，数据库管理系统需要对并发操作进行正确。<strong>并发操作带来的数据不一致性包括丢失修改、不可重复读和读“脏”数据。</strong></p>
-<a id="more"></a>
-<p><strong>1. 丢失修改(lost update)</strong><br>两个事务T1和T2,读入同一数据并修改，T2,提交的结果破坏了T1提交的结果，导致T的修改被丢失。<br><strong>2. 不可重复读(non-repeatable read)</strong><br>不可重复读是指事务T读取数据后，事务T执行更新操作，使T无法再现前一次读取结果。<br>具体地讲，不可重复读包括三种情况:  </p>
+        <h2 id="Concurrency-control-mechanisms并发控制机制的必要性"><a href="#Concurrency-control-mechanisms并发控制机制的必要性" class="headerlink" title="Concurrency-control mechanisms并发控制机制的必要性"></a>Concurrency-control mechanisms并发控制机制的必要性</h2><p><strong>事务是并发控制的基本单位</strong>，保证事务的ACID特性是事务处理的重要任务，而事务的 ACID 特性可能遭到破坏的原因之一是多个事务对数据库的并发操作造成的。为了保证事务的隔离性和一致性，数据库管理系统需要对并发操作进行正确。<strong>并发操作带来的数据不一致性包括丢失修改、不可重复读和读“脏”数据。</strong><br><a id="more"></a><br><strong>1. 丢失修改(lost update)</strong><br>两个事务T1和T2,读入同一数据并修改，T2,提交的结果破坏了T1提交的结果，导致T的修改被丢失。<br><strong>2. 不可重复读(non-repeatable read)</strong><br>不可重复读是指事务T读取数据后，事务T执行更新操作，使T无法再现前一次读取结果。<br>具体地讲，不可重复读包括三种情况:  </p>
 <ul>
 <li>事务T1读取某一数据后，事务T2对其进行了修改，当事务T1再次读该数据时，得到与前一次不同的值。</li>
 <li>事务T1按一定条件从数据库中读取了某些数据记录后，事务T2删除了其中部分记录，当T1再次按相同条件读取数据时，发现某些记录神秘地消失了。</li>
@@ -518,15 +516,7 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">数据库系统</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">计算机视觉</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Go</a>
+                <a href="javascript:void(0)" class="js-tag color1">youth</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -534,7 +524,27 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">youth</a>
+                <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">数据库系统</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">编译原理</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Go</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">计算机视觉</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">数据结构</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -543,10 +553,6 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">datawhale</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">数据结构</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -562,10 +568,6 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">数学建模</a>
               </li>
              
@@ -575,10 +577,6 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">计算机组成原理</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">编译原理</a>
               </li>
              
               <li class="article-tag-list-item">
