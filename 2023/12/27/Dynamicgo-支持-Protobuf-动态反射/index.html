@@ -233,9 +233,9 @@
 <li><a href="https://github.com/cloudwego/fastpb" target="_blank" rel="noopener">github.com/cloudwego/fastpb</a>：Protobuf 快速序列化第三方库，通过静态代码方式读写消息结构体，不支持协议转换和动态 IDL 解析。<br>因此如何设计自研一个功能完备、高性能、可扩展的 Protobuf 协议动态代理基础库是十分有必要的。<br><a href="https://github.com/khan-yin" target="_blank" rel="noopener">@khan-yin</a>和<a href="https://github.com/iStitches" target="_blank" rel="noopener">@iStitches</a>两位同学经过对 Protobuf 协议源码机制的深入学习，设计了高性能 Protobuf 协议动态泛化调用链路，能满足绝大多数 Protobuf 动态代理场景，并且性能优于官方实现，目前 PR<a href="https://github.com/cloudwego/dynamicgo/pull/37" target="_blank" rel="noopener">#37</a> 已经合入代码仓库。<a id="more"></a>
 <h2 id="Protobuf-设计思想"><a href="#Protobuf-设计思想" class="headerlink" title="Protobuf 设计思想"></a>Protobuf 设计思想</h2>由于 Protobuf 协议编码格式细节较为复杂，在介绍链路设计之前我们有必要先了解一下 Protobuf 协议的设计思想，后续的各项设计都将在严格遵守该协议规范的基础上进行改进。</li>
 </ul>
-<h3 id="官方源码链路思想"><a href="#官方源码链路思想" class="headerlink" title="官方源码链路思想"></a>官方源码链路思想</h3><p>Protobuf 源码链路过程主要涉及三类数据类型之间的转换，以 Message 对象进行管理，自定义 Value 类实现反射和底层存储，用 Message 对象能有效地进行管理和迁移，但也带来了许多反射和序列化开销。<br><img src="/2023/12/27/Dynamicgo-%E6%94%AF%E6%8C%81-Protobuf-%E5%8A%A8%E6%80%81%E5%8F%8D%E5%B0%84/1.jpg" alt></p>
+<h3 id="官方源码链路思想"><a href="#官方源码链路思想" class="headerlink" title="官方源码链路思想"></a>官方源码链路思想</h3><p>Protobuf 源码链路过程主要涉及三类数据类型之间的转换，以 Message 对象进行管理，自定义 Value 类实现反射和底层存储，用 Message 对象能有效地进行管理和迁移，但也带来了许多反射和序列化开销。<br><img src="/2023/12/27/Dynamicgo-%E6%94%AF%E6%8C%81-Protobuf-%E5%8A%A8%E6%80%81%E5%8F%8D%E5%B0%84/1.jpg"></p>
 <h3 id="Protobuf编码格式"><a href="#Protobuf编码格式" class="headerlink" title="Protobuf编码格式"></a>Protobuf编码格式</h3><p>Protobuf 编码字段格式大体上遵循 TLV(Tag，Length，Value) 的结构，但针对具体的类型存在一些编码差异，这里我们将较为全面的给出常见类型的编码模式。</p>
-<h4 id="Message-Field"><a href="#Message-Field" class="headerlink" title="Message Field"></a>Message Field</h4><p>Protobuf 的接口必定包裹在一个 Message 类型下，因此无论是 request 还是 response 最终都会包裹成一个 Message 对象，那么 Field 则是 Message 的一个基本单元，任何类型的字段都遵循这样的 TLV 结构：<br><img src="/2023/12/27/Dynamicgo-%E6%94%AF%E6%8C%81-Protobuf-%E5%8A%A8%E6%80%81%E5%8F%8D%E5%B0%84/2.jpg" alt></p>
+<h4 id="Message-Field"><a href="#Message-Field" class="headerlink" title="Message Field"></a>Message Field</h4><p>Protobuf 的接口必定包裹在一个 Message 类型下，因此无论是 request 还是 response 最终都会包裹成一个 Message 对象，那么 Field 则是 Message 的一个基本单元，任何类型的字段都遵循这样的 TLV 结构：<br><img src="/2023/12/27/Dynamicgo-%E6%94%AF%E6%8C%81-Protobuf-%E5%8A%A8%E6%80%81%E5%8F%8D%E5%B0%84/2.jpg"></p>
 <ul>
 <li>Tag 由字段编号 Field_number 和 wiretype 两部分决定，对位运算后的结果进行 varint 压缩，得到压缩后的字节数组作为字段的 Tag。</li>
 <li>wiretype 的值则表示的是 value 部分的编码方式，可以帮助我们清楚如何对 value 的读取和写入。<strong>到目前为止，wiretype只有 VarintType，Fixed32Type，Fixed64Type，BytesType 四类编码方式。</strong>其中VarintType 类型会被压缩后再编码，属于 Fixed32Type 和 Fixed64Typ 固定长度类型则分别占用4字节和8字节，而属于不定长编码类型 BytesType 的则会编码计算 value 部分的 ByteLen 再拼接 value 。</li>
@@ -247,13 +247,13 @@
 <ul>
 <li>Packed List Mode<br>如果list的元素本身属于 VarintType/Fixed32Type/Fixed64Type 编码格式，那么将采用 packed 模式编码整个 List ，在这种模式下的 list 是有 bytelen 的。Protobuf3 默认对这些类型启用 packed。</li>
 </ul>
-<p><img src="/2023/12/27/Dynamicgo-%E6%94%AF%E6%8C%81-Protobuf-%E5%8A%A8%E6%80%81%E5%8F%8D%E5%B0%84/3.jpg" alt></p>
+<p><img src="/2023/12/27/Dynamicgo-%E6%94%AF%E6%8C%81-Protobuf-%E5%8A%A8%E6%80%81%E5%8F%8D%E5%B0%84/3.jpg"></p>
 <ul>
 <li>UnPacked List Mode<br>当 list 元素属于 BytesType 编码格式时，list 将使用 unpacked 模式，直接编码每一个元素的 TLV，这里的 V 可能是嵌套的如List模式，<strong>那么 unpacked 模式下所有元素的 tag 都是相同的，list 字段的结束标志为与下一个 TLV 字段编码不同或者到达 buf 末尾。</strong></li>
 </ul>
-<p><img src="/2023/12/27/Dynamicgo-%E6%94%AF%E6%8C%81-Protobuf-%E5%8A%A8%E6%80%81%E5%8F%8D%E5%B0%84/4.jpg" alt></p>
+<p><img src="/2023/12/27/Dynamicgo-%E6%94%AF%E6%8C%81-Protobuf-%E5%8A%A8%E6%80%81%E5%8F%8D%E5%B0%84/4.jpg"></p>
 <h4 id="Map"><a href="#Map" class="headerlink" title="Map"></a>Map</h4><p>Map 编码模式与 unpacked list 相同，根据官方设计思想，Map 的每个 KV 键值对其实本质上就是一个 Message，固定 key 的 Field_number 是1，value 的 Field_number 是2，那么 Map 的编码模式就和 <code>List&lt;Message&gt;</code> 一致了。</p>
-<p><img src="/2023/12/27/Dynamicgo-%E6%94%AF%E6%8C%81-Protobuf-%E5%8A%A8%E6%80%81%E5%8F%8D%E5%B0%84/5.jpg" alt></p>
+<p><img src="/2023/12/27/Dynamicgo-%E6%94%AF%E6%8C%81-Protobuf-%E5%8A%A8%E6%80%81%E5%8F%8D%E5%B0%84/5.jpg"></p>
 <h4 id="源码-Descriptor-细节"><a href="#源码-Descriptor-细节" class="headerlink" title="源码 Descriptor 细节"></a>源码 Descriptor 细节</h4><p>这里主要介绍一下源码的 descriptor 设计上的一些需要注意的细节。</p>
 <ul>
 <li>Service 接口由 ServiceDescriptor 来描述，ServiceDescriptor 当中可以拿到每个 rpc 函数的 MethodDescriptor。</li>
@@ -261,14 +261,14 @@
 <li>MessageDescriptor 专门用来描述一个 Message 对象（也可能是一个 MapEntry ），可以通过 Fields() 找到每个字段的 FieldDescriptor 。</li>
 <li>FieldDescriptor 则兼容所有类型的描述。</li>
 </ul>
-<p><img src="/2023/12/27/Dynamicgo-%E6%94%AF%E6%8C%81-Protobuf-%E5%8A%A8%E6%80%81%E5%8F%8D%E5%B0%84/6.jpg" alt></p>
+<p><img src="/2023/12/27/Dynamicgo-%E6%94%AF%E6%8C%81-Protobuf-%E5%8A%A8%E6%80%81%E5%8F%8D%E5%B0%84/6.jpg"></p>
 <h2 id="动态反射"><a href="#动态反射" class="headerlink" title="动态反射"></a>动态反射</h2><p>针对 Protobuf 的反射使用场景，我们归纳出以下需求：</p>
 <ul>
 <li>具有完整的结构自描述和具体类型反射功能，兼容 scalar 类型以及复杂嵌套的 MESSAGE/LIST/MAP 结构。</li>
 <li>支持字节流模式下的对任意局部进行动态数据修改与遍历。</li>
 <li>保证数据可并发读。<br>这里我们借助 Go reflect 的设计思想，把通过 IDL 解析得到的准静态类型描述（只需跟随 IDL 更新一次）TypeDescriptor 和 原始数据单元 Node 打包成一个完全自描述的结构—— Value，提供一套完整的反射 API。</li>
 </ul>
-<p><img src="/2023/12/27/Dynamicgo-%E6%94%AF%E6%8C%81-Protobuf-%E5%8A%A8%E6%80%81%E5%8F%8D%E5%B0%84/7.jpg" alt></p>
+<p><img src="/2023/12/27/Dynamicgo-%E6%94%AF%E6%8C%81-Protobuf-%E5%8A%A8%E6%80%81%E5%8F%8D%E5%B0%84/7.jpg"></p>
 <p><strong>IDL 静态文件 parse 过程：</strong><br>为了提供文件流和内存字符串 io 流的 idl 文件解析，同时保证保证 go 版本兼容性，我们利用<a href="https://pkg.go.dev/github.com/jhump/protoreflect@v1.8.2" target="_blank" rel="noopener">protoreflect@v1.8.2</a>解析结果完成按需构造。从实现原理上来看，与高版本 <code>protoreflect</code> 利用<a href="https://pkg.go.dev/github.com/bufbuild/protocompile" target="_blank" rel="noopener">protocompile</a>对原始链路再 make 出源码的 warp 版本一致，更好的实现或许是处理利用 protoreflect 中的 ast 语法树构造。</p>
 <h3 id="Descriptor设计"><a href="#Descriptor设计" class="headerlink" title="Descriptor设计"></a>Descriptor设计</h3><p>Descriptor 的设计原理基本尽可能与源码保持一致，但为了更好的自反射性，我们抽象了一个 TypeDescriptor 来表示更细粒度的类型。</p>
 <h4 id="FieldDescriptor"><a href="#FieldDescriptor" class="headerlink" title="FieldDescriptor"></a>FieldDescriptor</h4><figure class="highlight go"><table><tr><td class="code"><pre><code class="hljs go"><span class="hljs-keyword">type</span> FieldDescriptor <span class="hljs-keyword">struct</span> &#123;<br>  kind     ProtoKind <span class="hljs-comment">// the same value with protobuf descriptor</span><br>  id       FieldNumber<br>  name     <span class="hljs-keyword">string</span><br>  jsonName <span class="hljs-keyword">string</span><br>  typ      *TypeDescriptor<br>&#125;<br></code></pre></td></tr></table></figure>
@@ -277,6 +277,7 @@
 <li><code>kind</code>：与源码 kind 功能一致，LIST 情况下 kind 是列表元素的 kind 类型，MAP 和 MESSAGE 情况下都为 messagekind。</li>
 </ul>
 <h4 id="TypeDescriptor"><a href="#TypeDescriptor" class="headerlink" title="TypeDescriptor"></a>TypeDescriptor</h4><figure class="highlight go"><table><tr><td class="code"><pre><code class="hljs go"><span class="hljs-keyword">type</span> TypeDescriptor <span class="hljs-keyword">struct</span> &#123;<br>  baseId FieldNumber <span class="hljs-comment">// for LIST/MAP to write field tag by baseId</span><br>  typ    Type<br>  name   <span class="hljs-keyword">string</span><br>  key    *TypeDescriptor<br>  elem   *TypeDescriptor<br>  msg    *MessageDescriptor <span class="hljs-comment">// for message, list+message element and map key-value entry</span><br>&#125;<br></code></pre></td></tr></table></figure>
+
 <ul>
 <li><code>baseId</code>：因为对于 LIST/MAP 类型的编码特殊性，如在 unpack 模式下，每一个元素都需要编写 Tag，我们必须在构造时针对 LIST/MAP 提供 fieldnumber，来保证读取和写入的自反射性。</li>
 <li><code>msg</code>：这里的 msg 不是仅 Message 类型独有，主要是方便 J2P 部分对于 List 和裁剪场景中 map 获取可能存在 value 内部字段缺失的 MapEntry 的 MassageDescriptor（在源码的设计理念当中 MAP 的元素被认为是一个含有 key 和 value 两个字段的 message ）的时候能直接利用 TypeDescriptor 进入下一层嵌套。</li>
@@ -288,6 +289,7 @@
 </ul>
 <h3 id="数据存储设计"><a href="#数据存储设计" class="headerlink" title="数据存储设计"></a>数据存储设计</h3><p>从协议本身的 TLV 嵌套思想出发，我们利用字节流的编码格式，建立健壮的自反射性结构体处理任意类型的解析。</p>
 <h4 id="Node结构"><a href="#Node结构" class="headerlink" title="Node结构"></a>Node结构</h4><figure class="highlight go"><table><tr><td class="code"><pre><code class="hljs go"><span class="hljs-keyword">type</span> Node <span class="hljs-keyword">struct</span> &#123;<br>    t    proto.Type <span class="hljs-comment">// node type</span><br>    et   proto.Type <span class="hljs-comment">// for map value or list element type</span><br>    kt   proto.Type <span class="hljs-comment">// for map key type</span><br>    v    unsafe.Pointer<br>    l    <span class="hljs-keyword">int</span> <span class="hljs-comment">// ptr len</span><br>    size <span class="hljs-keyword">int</span> <span class="hljs-comment">// only for MAP/LIST element counts</span><br>&#125;<br></code></pre></td></tr></table></figure>
+
 <p>具体的存储规则如下：</p>
 <ul>
 <li>基本类型 Node 表示：指针 v 的起始位置不包含 tag，指向 (L)V，t = 具体类型。</li>
@@ -298,10 +300,13 @@
 <li>ERROR类型Node表示：在 setnotfound 中，若片段设计与上述规则一致则可正确构造插入节点。  </li>
 </ul>
 <p>虽然 MAP/LIST 的父级 Node 存储有些变化，但是其子元素节点都是基本类型 / MESSAGE，所以叶子节点存储格式都是基本的 (L)V，这也便于序列化和数据基本单位的原子操作。</p>
-<h4 id="Value结构"><a href="#Value结构" class="headerlink" title="Value结构"></a>Value结构</h4><p>value 的结构本身是对 Node 的封装，将 Node 与相应的 descriptor 封装起来，但不同于 thrift，在 Protobuf 当中由于片段无法完全自解析出具体类型，之后的涉及到具体编码的部分操作不能脱离 descriptor，部分 API 实现只能 Value 类作为调用单位。<br><figure class="highlight go"><table><tr><td class="code"><pre><code class="hljs go"><span class="hljs-keyword">type</span> Value <span class="hljs-keyword">struct</span> &#123;<br>    Node<br>    Desc     *proto.TypeDescriptor<br>    IsRoot    <span class="hljs-keyword">bool</span><br>&#125;<br></code></pre></td></tr></table></figure></p>
+<h4 id="Value结构"><a href="#Value结构" class="headerlink" title="Value结构"></a>Value结构</h4><p>value 的结构本身是对 Node 的封装，将 Node 与相应的 descriptor 封装起来，但不同于 thrift，在 Protobuf 当中由于片段无法完全自解析出具体类型，之后的涉及到具体编码的部分操作不能脱离 descriptor，部分 API 实现只能 Value 类作为调用单位。</p>
+<figure class="highlight go"><table><tr><td class="code"><pre><code class="hljs go"><span class="hljs-keyword">type</span> Value <span class="hljs-keyword">struct</span> &#123;<br>    Node<br>    Desc     *proto.TypeDescriptor<br>    IsRoot    <span class="hljs-keyword">bool</span><br>&#125;<br></code></pre></td></tr></table></figure>
+
 <p>由于从 rpc 接口解析后我们直接得到了对应的 TypeDescriptor，再加上 root 节点本身没有前缀TL的独特编码结构，我们通过设置<code>IsRoot</code>标记来区分 root 节点和其余节点，实现 Value 结构的 Descriptor 统一。</p>
 <h2 id="数据编排"><a href="#数据编排" class="headerlink" title="数据编排"></a>数据编排</h2><p>不同于源码 Message 对象数据动态管理的思想，我们设计了更高效的动态管理方式。我们借助 DOM （Document Object Model）思想，将原始字节流数据层层包裹的结构，抽象成多层嵌套的 BTree 结构，实现对数据的定位，切分，裁剪等操作的 inplace 处理。</p>
-<h3 id="Path与PathNode"><a href="#Path与PathNode" class="headerlink" title="Path与PathNode"></a>Path与PathNode</h3><p>为了准确描述 DOM 中数据节点之间的嵌套关系，我们设计了 Path 结构，在 Path 的基础上，我们组合对应的数据单元 Node，然后再通过一个 Next 数组动态存储子节点，便可以组装成一个类似于 BTree 的泛型单元结构。<br><figure class="highlight go"><table><tr><td class="code"><pre><code class="hljs go"><span class="hljs-comment">// Path represents the relative position of a sub node in a complex parent node</span><br><span class="hljs-keyword">type</span> Path <span class="hljs-keyword">struct</span> &#123;<br>    t PathType <span class="hljs-comment">// 类似div标签的类型，用来区分field，map，list元素，帮助判定父级嵌套属于什么类型结构</span><br>    v unsafe.Pointer <span class="hljs-comment">// PathStrKey， PathFieldName类型，存储的是Key/FieldName的字符串指针</span><br>    l <span class="hljs-keyword">int</span> <br>    <span class="hljs-comment">// PathIndex类型，表示LIST的下标</span><br>    <span class="hljs-comment">// PathIntKey类型，表示MAPKey的数值</span><br>    <span class="hljs-comment">// PathFieldId类型，表示字段的id</span><br>&#125;<br><br>pathes []Path : 合理正确的Path数组，可以定位到嵌套复杂类型里具体的key/index的位置<br><br><br><span class="hljs-keyword">type</span> PathNode <span class="hljs-keyword">struct</span> &#123;  <br>    Path            <span class="hljs-comment">// DOM tree中用于定位当前Node的位置，并包含FieldId/FieldName/Key/index信息</span><br>    Node            <span class="hljs-comment">// 存储了复杂嵌套关系中该位置对应的具体bytes片段  </span><br>    Next []PathNode <span class="hljs-comment">// 下层嵌套的Node节点，基本类型下层Next为空</span><br> &#125;<br></code></pre></td></tr></table></figure></p>
+<h3 id="Path与PathNode"><a href="#Path与PathNode" class="headerlink" title="Path与PathNode"></a>Path与PathNode</h3><p>为了准确描述 DOM 中数据节点之间的嵌套关系，我们设计了 Path 结构，在 Path 的基础上，我们组合对应的数据单元 Node，然后再通过一个 Next 数组动态存储子节点，便可以组装成一个类似于 BTree 的泛型单元结构。</p>
+<figure class="highlight go"><table><tr><td class="code"><pre><code class="hljs go"><span class="hljs-comment">// Path represents the relative position of a sub node in a complex parent node</span><br><span class="hljs-keyword">type</span> Path <span class="hljs-keyword">struct</span> &#123;<br>    t PathType <span class="hljs-comment">// 类似div标签的类型，用来区分field，map，list元素，帮助判定父级嵌套属于什么类型结构</span><br>    v unsafe.Pointer <span class="hljs-comment">// PathStrKey， PathFieldName类型，存储的是Key/FieldName的字符串指针</span><br>    l <span class="hljs-keyword">int</span> <br>    <span class="hljs-comment">// PathIndex类型，表示LIST的下标</span><br>    <span class="hljs-comment">// PathIntKey类型，表示MAPKey的数值</span><br>    <span class="hljs-comment">// PathFieldId类型，表示字段的id</span><br>&#125;<br><br>pathes []Path : 合理正确的Path数组，可以定位到嵌套复杂类型里具体的key/index的位置<br><br><br><span class="hljs-keyword">type</span> PathNode <span class="hljs-keyword">struct</span> &#123;  <br>    Path            <span class="hljs-comment">// DOM tree中用于定位当前Node的位置，并包含FieldId/FieldName/Key/index信息</span><br>    Node            <span class="hljs-comment">// 存储了复杂嵌套关系中该位置对应的具体bytes片段  </span><br>    Next []PathNode <span class="hljs-comment">// 下层嵌套的Node节点，基本类型下层Next为空</span><br> &#125;<br></code></pre></td></tr></table></figure>
 <h3 id="构建DOM-Tree"><a href="#构建DOM-Tree" class="headerlink" title="构建DOM Tree"></a>构建DOM Tree</h3><p>构建 DOM 支持懒加载和全加载，在懒加载模式下 LIST/MAP 的 Node 当中 size 不会同步计算，而全加载在构造叶子节点的同时顺便更新了 size，构造后的节点都将遵循上述存储规则，具有自反射性和结构完整性。</p>
 <h3 id="查找字段"><a href="#查找字段" class="headerlink" title="查找字段"></a>查找字段</h3><p>支持任意Node查找，查找函数设计了三个外部API：GetByPath，GetByPathWithAddress，GetMany。</p>
 <ul>
@@ -323,14 +328,14 @@
 <li>更新规则：先 readTag，然后再 readLength，得到解 varint 压缩后的具体 bytelen 数值，计算 newlen = bytelen + diffLen，计算 newbytelen 压缩后的字节长度与原 bytelen 长度的差值 sublen，并累计diffLen += sublen。</li>
 <li>指针向前移动到下一个 path 和 address。</li>
 </ul>
-<p><img src="/2023/12/27/Dynamicgo-%E6%94%AF%E6%8C%81-Protobuf-%E5%8A%A8%E6%80%81%E5%8F%8D%E5%B0%84/8.jpg" alt></p>
+<p><img src="/2023/12/27/Dynamicgo-%E6%94%AF%E6%8C%81-Protobuf-%E5%8A%A8%E6%80%81%E5%8F%8D%E5%B0%84/8.jpg"></p>
 <h3 id="DOM序列化"><a href="#DOM序列化" class="headerlink" title="DOM序列化"></a>DOM序列化</h3><ul>
 <li>Marshal：建好 PathNode 后，可遍历拼接 DOM 的所有叶子节点片段，Tag 部分会通过 Path 类型和 Node 类型进行补全，bytelen 根据实际遍历节点进行更新。</li>
 <li>MarshalTo：针对数据裁剪场景，该设计方案具有很好的扩展性，可直接比对新旧 descriptor 中共有的字段 id，对字节流一次性拼接写入，无需依赖中间结构体，可支持多层嵌套字段缺失以及 LIST/MAP 内部元素字段缺失。</li>
 </ul>
-<p><img src="/2023/12/27/Dynamicgo-%E6%94%AF%E6%8C%81-Protobuf-%E5%8A%A8%E6%80%81%E5%8F%8D%E5%B0%84/9.jpg" alt></p>
+<p><img src="/2023/12/27/Dynamicgo-%E6%94%AF%E6%8C%81-Protobuf-%E5%8A%A8%E6%80%81%E5%8F%8D%E5%B0%84/9.jpg"></p>
 <h2 id="协议转换"><a href="#协议转换" class="headerlink" title="协议转换"></a>协议转换</h2><h3 id="ProtoBuf——-gt-JSON"><a href="#ProtoBuf——-gt-JSON" class="headerlink" title="ProtoBuf——&gt;JSON"></a>ProtoBuf——&gt;JSON</h3><p>Protobuf-&gt;JSON 协议转换的过程可以理解为逐字节解析 ProtoBuf，并结合 Descriptor 类型编码为 JSON 到输出字节流，整个过程是 in-place 进行的，并且结合内存池技术，仅需为输出字节流分配一次内存即可。</p>
-<p><img src="/2023/12/27/Dynamicgo-%E6%94%AF%E6%8C%81-Protobuf-%E5%8A%A8%E6%80%81%E5%8F%8D%E5%B0%84/10.jpg" alt></p>
+<p><img src="/2023/12/27/Dynamicgo-%E6%94%AF%E6%8C%81-Protobuf-%E5%8A%A8%E6%80%81%E5%8F%8D%E5%B0%84/10.jpg"></p>
 <p>ProtoBuf——&gt;JSON 的转换过程如下：</p>
 <ol>
 <li>根据输入的 Descriptor 指针类型区分，若为 Singular(string/number/bool/Enum) 类型，跳转到第5步开始编码；</li>
@@ -342,15 +347,17 @@
 <li>及时输入字节流读取位置和输出字节流写入位置，跳回2循环处理，直到读完输入字节流。</li>
 </ol>
 <h3 id="JSON——-gt-ProtoBuf"><a href="#JSON——-gt-ProtoBuf" class="headerlink" title="JSON——&gt;ProtoBuf"></a>JSON——&gt;ProtoBuf</h3><p>协议转换过程中借助 JSON 状态机原理和 <a href="https://github.com/bytedance/sonic/blob/main/ast/visitor.go#L36" target="_blank" rel="noopener">sonic</a> 思想，设计 UserNodeStack 实现了接口 Onxxx（OnBool、OnString、OnInt64….）方法达到编码 ProtoBuf 的目标，实现 in-place 遍历 JSON 转换。</p>
-<p><img src="/2023/12/27/Dynamicgo-%E6%94%AF%E6%8C%81-Protobuf-%E5%8A%A8%E6%80%81%E5%8F%8D%E5%B0%84/11.jpg" alt></p>
-<h4 id="VisitorUserNode-结构"><a href="#VisitorUserNode-结构" class="headerlink" title="VisitorUserNode 结构"></a>VisitorUserNode 结构</h4><p>因为在编码 Protobuf 格式的 Mesage/UnpackedList/Map 类型时需要对字段总长度回写，并且在解析复杂类型（Message/Map/List）的子元素时需要依赖复杂类型 Descriptor 来获取子元素 Descriptor，所以需要 VisitorUserNode 结构来保存解析 json 时的中间数据。<br><figure class="highlight go"><table><tr><td class="code"><pre><code class="hljs go"><span class="hljs-keyword">type</span> VisitorUserNode <span class="hljs-keyword">struct</span> &#123;<br>    stk             []VisitorUserNodeStack<br>    sp              <span class="hljs-keyword">uint8</span><br>    p               *binary.BinaryProtocol<br>    globalFieldDesc *proto.FieldDescriptor<br>&#125;<br></code></pre></td></tr></table></figure></p>
+<p><img src="/2023/12/27/Dynamicgo-%E6%94%AF%E6%8C%81-Protobuf-%E5%8A%A8%E6%80%81%E5%8F%8D%E5%B0%84/11.jpg"></p>
+<h4 id="VisitorUserNode-结构"><a href="#VisitorUserNode-结构" class="headerlink" title="VisitorUserNode 结构"></a>VisitorUserNode 结构</h4><p>因为在编码 Protobuf 格式的 Mesage/UnpackedList/Map 类型时需要对字段总长度回写，并且在解析复杂类型（Message/Map/List）的子元素时需要依赖复杂类型 Descriptor 来获取子元素 Descriptor，所以需要 VisitorUserNode 结构来保存解析 json 时的中间数据。</p>
+<figure class="highlight go"><table><tr><td class="code"><pre><code class="hljs go"><span class="hljs-keyword">type</span> VisitorUserNode <span class="hljs-keyword">struct</span> &#123;<br>    stk             []VisitorUserNodeStack<br>    sp              <span class="hljs-keyword">uint8</span><br>    p               *binary.BinaryProtocol<br>    globalFieldDesc *proto.FieldDescriptor<br>&#125;<br></code></pre></td></tr></table></figure>
 <ul>
 <li>stk：记录解析时中间变量的栈结构，在解析 Message 类型时记录 MessageDescriptor、PrefixLen；在解析 Map 类型时记录 FieldDescriptor、PairPrefixLen；在解析 List 类型时记录 FieldDescriptor、PrefixListLen；</li>
 <li>sp：当前所处栈的层级；</li>
 <li>p：输出字节流；</li>
 <li>globalFieldDesc：每当解析完 MessageField 的 jsonKey 值，保存该字段 Descriptor 值；</li>
 </ul>
-<h4 id="VisitorUserNodeStack-结构"><a href="#VisitorUserNodeStack-结构" class="headerlink" title="VisitorUserNodeStack 结构"></a>VisitorUserNodeStack 结构</h4><p>记录解析时字段 Descriptor、回写长度的起始地址 PrefixLenPos 的栈结构。<br><figure class="highlight go"><table><tr><td class="code"><pre><code class="hljs go"><span class="hljs-keyword">type</span> VisitorUserNodeStack <span class="hljs-keyword">struct</span> &#123;<br>    typ   <span class="hljs-keyword">uint8</span><br>    state visitorUserNodeState<br>&#125;<br></code></pre></td></tr></table></figure></p>
+<h4 id="VisitorUserNodeStack-结构"><a href="#VisitorUserNodeStack-结构" class="headerlink" title="VisitorUserNodeStack 结构"></a>VisitorUserNodeStack 结构</h4><p>记录解析时字段 Descriptor、回写长度的起始地址 PrefixLenPos 的栈结构。</p>
+<figure class="highlight go"><table><tr><td class="code"><pre><code class="hljs go"><span class="hljs-keyword">type</span> VisitorUserNodeStack <span class="hljs-keyword">struct</span> &#123;<br>    typ   <span class="hljs-keyword">uint8</span><br>    state visitorUserNodeState<br>&#125;<br></code></pre></td></tr></table></figure>
 <ul>
 <li>typ：当前字段的类型，取值有对象类型（objStkType）、数组类型（arrStkType）、哈希类型（mapStkType）；</li>
 <li>state：存储详细的数据值；</li>
@@ -364,19 +371,23 @@
 <h4 id="协议转换过程"><a href="#协议转换过程" class="headerlink" title="协议转换过程"></a>协议转换过程</h4><p>JSON——&gt;ProtoBuf 的转换过程如下：</p>
 <ol>
 <li>从输入字节流中读取一个 json 值，并判断其具体类型（<code>object/array/string/float/int/bool/null</code>）；</li>
-<li>如果是 object 类型，可能对应 ProtoBuf MapType/MessageType，sonic 会按照 <code>OnObjectBegin()-&gt;OnObjectKey()-&gt;decodeValue()...</code> 顺序处理输入字节流<ul>
+<li>如果是 object 类型，可能对应 ProtoBuf MapType/MessageType，sonic 会按照 <code>OnObjectBegin()-&gt;OnObjectKey()-&gt;decodeValue()...</code> 顺序处理输入字节流</li>
+</ol>
+<ul>
 <li><code>OnObjectBegin()</code>阶段解析具体的动态类型描述 FieldDescriptor 并压栈；</li>
 <li><code>OnObjectKey()</code> 阶段解析 jsonKey 并以 ProtoBuf 格式编码 Tag、Length 到输出字节流；</li>
 <li><code>decodeValue()</code>阶段递归解析子元素并以 ProtoBuf 格式编码 Value 部分到输出字节流，若子类型为复杂类型（Message/Map），会递归执行第 2 步；若子类型为复杂类型（List），会递归执行第 3 步。</li>
 </ul>
-</li>
-<li>如果是 array 类型，对应 ProtoBuf PackedList/UnpackedList，sonic 会按照 <code>OnObjectBegin()-&gt;OnObjectKey()-&gt;OnArrayBegin()-&gt;decodeValue()-&gt;OnArrayEnd()...</code> 顺序处理输入字节流<ul>
+<ol start="3">
+<li>如果是 array 类型，对应 ProtoBuf PackedList/UnpackedList，sonic 会按照 <code>OnObjectBegin()-&gt;OnObjectKey()-&gt;OnArrayBegin()-&gt;decodeValue()-&gt;OnArrayEnd()...</code> 顺序处理输入字节流</li>
+</ol>
+<ul>
 <li><code>OnObjectBegin()</code>阶段处理解析 List 字段对应动态类型描述 FieldDescriptor 并压栈；</li>
 <li><code>OnObjectKey()</code>阶段解析 List 下子元素的动态类型描述 FieldDescriptor 并压栈；</li>
 <li><code>OnArrayBegin()</code>阶段将 PackedList 类型的 Tag、Length 编码到输出字节流；</li>
 <li><code>decodeValue()</code>阶段循环处理子元素，按照子元素类型编码到输出流，若子元素为复杂类型（Message），会跳转到第 2 步递归执行。</li>
 </ul>
-</li>
+<ol start="4">
 <li>在结束处理某字段数据后执行 <code>onValueEnd()、OnArrayEnd()、OnObjectEnd()</code>，获取栈顶 <code>lenPos</code> 数据，对字段长度部分回写并退栈。</li>
 <li>更新输入和输出字节流位置，跳回第 1 步循环处理，直到处理完输入流数据。</li>
 </ol>
@@ -391,26 +402,26 @@
 <li>图中列举了 DOM 常用操作的性能，测试细节与 thrift 相同。</li>
 <li>MarshalTo 方法：相比 ProtobufGo 提升随着数据规模的增大趋势越明显，ns/op 开销约为源码方法的0.29 ~ 0.32。</li>
 </ul>
-<p><img src="/2023/12/27/Dynamicgo-%E6%94%AF%E6%8C%81-Protobuf-%E5%8A%A8%E6%80%81%E5%8F%8D%E5%B0%84/12.png" alt></p>
-<p><img src="/2023/12/27/Dynamicgo-%E6%94%AF%E6%8C%81-Protobuf-%E5%8A%A8%E6%80%81%E5%8F%8D%E5%B0%84/13.png" alt></p>
+<p><img src="/2023/12/27/Dynamicgo-%E6%94%AF%E6%8C%81-Protobuf-%E5%8A%A8%E6%80%81%E5%8F%8D%E5%B0%84/12.png"></p>
+<p><img src="/2023/12/27/Dynamicgo-%E6%94%AF%E6%8C%81-Protobuf-%E5%8A%A8%E6%80%81%E5%8F%8D%E5%B0%84/13.png"></p>
 <h3 id="字段Get-Set定量测试"><a href="#字段Get-Set定量测试" class="headerlink" title="字段Get/Set定量测试"></a>字段Get/Set定量测试</h3><ul>
 <li>factor 用于修改从上到下扫描 proto 文件字段获取比率。</li>
 <li>定量测试比较方法是 ProtobufGo 的 dynamicpb 模块和 DynamicGo 的 Get/SetByPath，SetMany，测试对象是medium data 的情况。</li>
 <li>Set/Get 字段定量测试结果均优于 ProtobufGo，且在获取字段越稀疏的情况下性能加速越明显。</li>
 <li>Setmany 性能加速更明显，在 100% 字段下 ns/op 开销约为 0.11。</li>
 </ul>
-<p><img src="/2023/12/27/Dynamicgo-%E6%94%AF%E6%8C%81-Protobuf-%E5%8A%A8%E6%80%81%E5%8F%8D%E5%B0%84/14.png" alt></p>
+<p><img src="/2023/12/27/Dynamicgo-%E6%94%AF%E6%8C%81-Protobuf-%E5%8A%A8%E6%80%81%E5%8F%8D%E5%B0%84/14.png"></p>
 <h3 id="序列化-反序列"><a href="#序列化-反序列" class="headerlink" title="序列化/反序列"></a>序列化/反序列</h3><ul>
 <li>序列化在 small 规模略高于 ProtobufGo，medium 规模的数据上性能优势更明显，ns/op 开销约为源码的0.54 ~ 0.84。</li>
 <li>反序列化在 reuse 模式下，small 规模略高于 ProtobufGo，在 medium 规模数据上性能优势更明显，ns/op 开销约为源码的0.44 ~ 0.47，随数据规模增大性能优势增加。</li>
 </ul>
-<p><img src="/2023/12/27/Dynamicgo-%E6%94%AF%E6%8C%81-Protobuf-%E5%8A%A8%E6%80%81%E5%8F%8D%E5%B0%84/15.png" alt></p>
-<p><img src="/2023/12/27/Dynamicgo-%E6%94%AF%E6%8C%81-Protobuf-%E5%8A%A8%E6%80%81%E5%8F%8D%E5%B0%84/16.png" alt></p>
+<p><img src="/2023/12/27/Dynamicgo-%E6%94%AF%E6%8C%81-Protobuf-%E5%8A%A8%E6%80%81%E5%8F%8D%E5%B0%84/15.png"></p>
+<p><img src="/2023/12/27/Dynamicgo-%E6%94%AF%E6%8C%81-Protobuf-%E5%8A%A8%E6%80%81%E5%8F%8D%E5%B0%84/16.png"></p>
 <h3 id="协议转换-1"><a href="#协议转换-1" class="headerlink" title="协议转换"></a>协议转换</h3><ul>
 <li>Json2Protobuf 优于 ProtobufGo，ns/op 性能开销约为源码的0.21 ~ 0.89，随着数据量规模增大优势增加。</li>
 <li>Protobuf2Json 性能明显优于 ProtobufGo，ns/op 开销约为源码的0.13 ~ 0.21，而相比 Kitex，ns/op 约为Sonic+Kitex 的0.40 ~ 0.92，随着数据量规模增大优势增加。</li>
 </ul>
-<p><img src="/2023/12/27/Dynamicgo-%E6%94%AF%E6%8C%81-Protobuf-%E5%8A%A8%E6%80%81%E5%8F%8D%E5%B0%84/17.png" alt></p>
+<p><img src="/2023/12/27/Dynamicgo-%E6%94%AF%E6%8C%81-Protobuf-%E5%8A%A8%E6%80%81%E5%8F%8D%E5%B0%84/17.png"></p>
 <h2 id="应用与展望"><a href="#应用与展望" class="headerlink" title="应用与展望"></a>应用与展望</h2><p>目前 dynamicgo 对于 Protobuf 协议的可支持的功能包括：</p>
 <ul>
 <li>替代官方源码的 JSON 协议转换，实现更高性能的 HTTP&lt;&gt;PB 动态网关</li>
@@ -458,6 +469,15 @@
 
   
 <nav id="article-nav">
+  
+    <a href="/2024/06/09/Never-Stop-Thinking/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          Never Stop Thinking
+        
+      </div>
+    </a>
   
   
     <a href="/2022/03/31/%E6%97%A2%E5%BE%80%E4%B8%8D%E6%81%8B%EF%BC%8C%E7%BA%B5%E6%83%85%E5%90%91%E5%89%8D%EF%BC%8C%E6%B1%9F%E6%B9%96%E5%86%8D%E8%A7%81%E2%80%94%E2%80%9422%E5%B2%81%E9%82%A3%E5%B9%B4%EF%BC%8C%E5%9C%A8%E5%8C%97%E4%BA%AC%E7%9A%84%E6%97%A5%E5%AD%90/" id="article-nav-older" class="article-nav-link-wrap">
@@ -718,7 +738,7 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">计算机视觉</a>
+                <a href="javascript:void(0)" class="js-tag color1">数据库系统</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -726,15 +746,23 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Go</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Hexo</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">数据库系统</a>
+                <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">编译原理</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Go</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">计算机视觉</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -762,10 +790,6 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">数学建模</a>
               </li>
              
@@ -775,10 +799,6 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">计算机组成原理</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">编译原理</a>
               </li>
              
               <li class="article-tag-list-item">
