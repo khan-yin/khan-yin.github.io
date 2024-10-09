@@ -1,0 +1,34 @@
+{
+  "name": "hexo-site",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "build": "hexo generate",
+    "clean": "hexo clean",
+    "deploy": "hexo deploy",
+    "server": "hexo server"
+  },
+  "hexo": {
+    "version": "4.2.1"
+  },
+  "dependencies": {
+    "hexo": "^4.0.0",
+    "hexo-admin": "^2.3.0",
+    "hexo-asset-image": "https://github.com/CodeFalling/hexo-asset-image",
+    "hexo-deployer-git": "^2.1.0",
+    "hexo-filter-highlight": "^1.0.0",
+    "hexo-generator-archive": "^1.0.0",
+    "hexo-generator-category": "^1.0.0",
+    "hexo-generator-feed": "^2.2.0",
+    "hexo-generator-index": "^1.0.0",
+    "hexo-generator-json-content": "^4.1.6",
+    "hexo-generator-tag": "^1.0.0",
+    "hexo-inject": "^1.0.0",
+    "hexo-math": "^3.0.4",
+    "hexo-renderer-ejs": "^1.0.0",
+    "hexo-renderer-kramed": "^0.1.4",
+    "hexo-renderer-marked": "^3.0.0",
+    "hexo-renderer-stylus": "^1.1.0",
+    "hexo-server": "^1.0.0"
+  }
+}
