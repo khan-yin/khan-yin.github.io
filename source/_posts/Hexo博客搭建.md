@@ -15,9 +15,9 @@ date: 2020-07-10 23:01:00
 - [参考链接3](https://shu-ren-yu.github.io/2020/02/08/hexo-%E5%BB%BA%E7%AB%99%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99/)
 - [参考链接4](https://ccs.zone/post/65edc760.html)
  
-好了说完了这些现在开始讲我搭建我的博客的过程<!--more-->
+好了说完了这些现在开始讲我搭建我的博客的过程。<!--more-->
 ## 安装git，nodejs
-安装git和nodejs这个我就不过多介绍了，大家去csdn找找最新的相关安装教程就行了，在codesheep的视频里面也有教大家怎么做，记得切换一下node源到淘宝镜像cnpm，有的时候npm下载特别慢或者是报错。
+安装git和nodejs这个我就不过多介绍了，大家去csdn找找最新的相关安装教程就行了，在codesheep的视频里面也有教大家怎么做，记得切换一下node源到淘宝镜像cnpm，有的时候npm下载特别慢或者是报错。**2024-10-9更新：安装node现在最好使用nvm安装管理node版本，再来通过npm装hexo**
 ## 官网下载hexo博客框架
 [hexo官网](https://hexo.io/)，如果在hexo的使用过程有什么问题也可以去看hexo的官方文档
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20200710212314229.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0phY2tfX19F,size_16,color_FFFFFF,t_70)
