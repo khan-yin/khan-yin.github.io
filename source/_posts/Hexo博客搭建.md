@@ -100,9 +100,11 @@ hexo new "my first blog" 新建一个名为my first blog的博客，会显示在
 大家可能会注意到我这里好像不仅生成了文件还生成了一个同名的文件夹，这个文件夹是用于引入同名博客的图片的。
 当然了其实我建议最好在csdn上写好自己的博客发表以后就变成网图了，然后直接复制csdn的博文在commit到hexo上面这样就不用存图片啥的，不过这里还是介绍一下本地图片引入吧
 
- 1. 把主页配置文件`_config.yml` 里的`post_asset_folder:`这个选项设置为true
- 2. 在你的hexo目录下执行这样一句话`npm install hexo-asset-image --save`，这是下载安装一个可以上传本地图片的插件
- 3. 然后你在执行`hexo new "xxx"`的时候会同时生成这个文件夹了，里面存入图片就行，然后使用markdown的语法引入图片就行。
+1. 把主页配置文件`_config.yml` 里的`post_asset_folder:`这个选项设置为true
+2. 在你的hexo目录下执行这样一句话`npm install hexo-asset-image --save`，这是下载安装一个可以上传本地图片的插件
+3. 然后你在执行`hexo new "xxx"`的时候会同时生成这个文件夹了，里面存入图片就行，然后使用markdown的语法引入图片就行。
+
+**注意：** 当我们想删除之前已经发布的文章时，最好先删除掉之前`hexo d`生成的`.deploy_git`目录，偶尔会出现删除失败的情况。
 
 ## 代码高亮设置
 代码高亮设置就在你所选的主题目录下有一个`layout/_partial/head.ejs`里面引入一下对应的css和highlight.js就行，我选择的格式是`atom-one-dark.css`，去highlight.js官网下载一个highlightjs的压缩包里面有很多中代码风格的css。
