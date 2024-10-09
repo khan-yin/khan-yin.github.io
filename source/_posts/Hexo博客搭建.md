@@ -119,5 +119,4 @@ hexo new "my first blog" 新建一个名为my first blog的博客，会显示在
 
 ## 博客迁移
 为了更便于hexo原始博客资源和主题自定义在不同机器之间的迁移，我们可以借助Github平台托管创建新的分支来存储这些原始文件，其实主要就是将`source`, `themes`, `scaffolds`, `_config.yml`, `package.json`等文件提交即可，Hexo框架自带生成的`.gitignore`已经帮我们整理了不需要提交的文件。可以参考我的代码仓库分支设置[khan-yin.github.io/hexo-sources-env](https://github.com/khan-yin/khan-yin.github.io/tree/hexo-sources-env)。
-参考链接：
-- [hexo博客同步管理及迁移](https://www.jianshu.com/p/fceaf373d797)
+参考链接：[hexo博客同步管理及迁移](https://www.jianshu.com/p/fceaf373d797)
