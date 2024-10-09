@@ -1,5 +1,6 @@
 # hexo-sources-env
 This branch stores my customized yilia themes and blog origin markdown files for migration.
+**Note:** `source/_drafts/` and `source/_discarded/` are hidden and ignored.
 
 ## Usage
 - download all the node_modules

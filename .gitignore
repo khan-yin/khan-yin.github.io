@@ -5,4 +5,6 @@ db.json
 *.log
 node_modules/
 public/
+source/_drafts/
+source/_discarded/
 .deploy*/
