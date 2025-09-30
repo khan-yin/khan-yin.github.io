@@ -112,12 +112,9 @@ hexo new "my first blog" 新建一个名为my first blog的博客，会显示在
 ![引入](https://img-blog.csdnimg.cn/20200710225154715.png)
 ![这个部分丢入服务器](https://img-blog.csdnimg.cn/20200710225107993.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0phY2tfX19F,size_16,color_FFFFFF,t_70)
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20200710225024894.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0phY2tfX19F,size_16,color_FFFFFF,t_70#pic_center)
-## 看板娘
-这个看板娘是来自一位github上的大佬，但我好像忘了叫什么了，在以前的star记录里也没找到，以后找到了再补上吧，就引入几个链接就行。
+## Live2d
+这个Live2d是来自一位github上的大佬，但我好像忘了叫什么了，在以前的star记录里也没找到，以后找到了再补上吧，就引入几个链接就行。
 对了如果不想让博客内容全部展示的话还需要在markdown的任意位置加一句`<!--more-->`这样就会隐去后面的内容让别人点击展开详情查看。
-这里放一张我自己的博客图片吧哈哈哈
-[ykhblog 一路向北](https://khany.top/)
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20200710223950744.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0phY2tfX19F,size_16,color_FFFFFF,t_70)
 
 ## 博客迁移
 为了更便于hexo原始博客资源和主题自定义在不同机器之间的迁移，我们可以借助Github平台托管创建新的分支来存储这些原始文件，其实主要就是将`source`, `themes`, `scaffolds`, `_config.yml`, `package.json`等文件提交即可，Hexo框架自带生成的`.gitignore`已经帮我们整理了不需要提交的文件。可以参考我的代码仓库分支设置[khan-yin.github.io/hexo-sources-env](https://github.com/khan-yin/khan-yin.github.io/tree/hexo-sources-env)。

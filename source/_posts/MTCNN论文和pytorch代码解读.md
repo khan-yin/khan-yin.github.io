@@ -9,7 +9,6 @@ date: 2021-04-12 08:39:00
 
 ## 传送门
 > 论文地址：[https://arxiv.org/ftp/arxiv/papers/1604/1604.02878.pdf](https://arxiv.org/ftp/arxiv/papers/1604/1604.02878.pdf)
-> 我的论文笔记：[https://khany.top/file/paper/mtcnn.pdf](https://khany.top/file/paper/mtcnn.pdf)
 > 本文csdn链接：[https://blog.csdn.net/Jack___E/article/details/115601474](https://blog.csdn.net/Jack___E/article/details/115601474)
 > github参考：[https://github.com/Sierkinhane/mtcnn-pytorch](https://github.com/Sierkinhane/mtcnn-pytorch)
 > github参考：[https://github.com/GitHberChen/MTCNN_Pytorch](https://github.com/GitHberChen/MTCNN_Pytorch)
