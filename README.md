@@ -30,6 +30,13 @@ hexo s # you can check and deploy in localhost
 hexo d # push to remote repository for deployment
 ```
 
+if you meet some erros when using hexo command like:
+```bash
+ERROR Plugin load failed: xxxxxx
+Error: Cannot find module 'xxx'
+```
+you could try `pnpm add xxx` to install the package.
+
 - uninstall node_modules?
 ```bash
 rimraf node_modules
