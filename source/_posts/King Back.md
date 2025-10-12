@@ -5,4 +5,4 @@ tags:
 categories: []
 date: 2020-01-19 12:31:00
 ---
-![星游记](../2.jpg)
+![星游记](King Back/2.jpg)
