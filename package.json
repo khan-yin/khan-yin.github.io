@@ -12,9 +12,12 @@
     "version": "4.2.1"
   },
   "dependencies": {
+    "body-parser": "^2.2.0",
+    "chalk": "^4.1.2",
+    "cheerio": "^1.1.2",
     "hexo": "^4.0.0",
     "hexo-admin": "^2.3.0",
-    "hexo-asset-image": "https://github.com/CodeFalling/hexo-asset-image",
+    "hexo-asset-link": "^2.2.4",
     "hexo-deployer-git": "^2.1.0",
     "hexo-filter-highlight": "^1.0.0",
     "hexo-generator-archive": "^1.0.0",
@@ -29,6 +32,10 @@
     "hexo-renderer-kramed": "^0.1.4",
     "hexo-renderer-marked": "^3.0.0",
     "hexo-renderer-stylus": "^1.1.0",
-    "hexo-server": "^1.0.0"
+    "hexo-server": "^1.0.0",
+    "keyword-extractor": "^0.0.28",
+    "moment": "^2.30.1",
+    "object-assign": "^4.1.1",
+    "serve-static": "^2.2.0"
   }
 }
